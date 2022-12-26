@@ -1,6 +1,8 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
-<html dir="rtl" lang="fa">
+{% comment %} <html dir="rtl" lang="fa"> {% endcomment %}
+<html dir="" lang="en">
 
     <head>
         <meta charset="utf-8" />
@@ -42,7 +44,9 @@
         
         {% comment %} <script src="https://kit.fontawesome.com/da37b563d5.js" crossorigin="anonymous"></script> {% endcomment %}
         <!-- RTL bootsrap -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous">
+        {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous"> {% endcomment %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 
         <link href="{% static 'css/base.css' %}" rel="stylesheet">
       

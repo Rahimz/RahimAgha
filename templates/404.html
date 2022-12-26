@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}404 | {% trans 'Computer Museum' %}{% endblock %}
+{% block title %}{% trans 'Error' %} 404 {% endblock %}
 
 {% block content %}
 <div class="container">
@@ -14,7 +14,7 @@
     <div class="row mt-5 pt-5 text-center">
         <div class="col-md-12 ">
             <h2 class="text-muted center">{% trans 'There is nothing here!' %}</h2>
-            <a href="{% url 'generals:home' %}" class="btn btn-outline-secondary my-5 ">{% trans 'Home' %}</a>
+            <a href="{% url 'home' %}" class="btn btn-outline-secondary my-5 ">{% trans 'Home' %}</a>
         </div>
     </div>
 </div>
