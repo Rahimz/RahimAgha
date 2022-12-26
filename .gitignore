@@ -2,7 +2,7 @@ reated by https://www.toptal.com/developers/gitignore/api/django,pycharm,visuals
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,pycharm,visualstudiocode
 ### Bokstore project ###
 # All passwords goes in secrets.py file 
-secrets.py
+secret.py
 
 ### Django ###
 *.log
