@@ -1,0 +1,50 @@
+{% load i18n %}
+{% load static %}
+
+<div class="p-5 container-fluid bg-dark">
+    <div class="row p-5">
+     
+      <div class="col-md-4 text-light px-4">
+        <p class="lead">{% trans 'Iran Computer Museum' %}</p>
+        <p>{% lorem 1 b random %}</p>
+        
+        
+        <!-- <p>
+          <a href="mailto:info@irancomputermuseum.org">info@irancomputermuseum.org/</a>
+        </p> -->
+      </div>
+      <div class="col-md-4 text-light px-4">
+        <p class="lead">{% trans 'Address' %} :</p>
+        <p>{% lorem 1 b random %}</p>
+        <!-- <p>{% trans 'About ICM' %}</p>
+        <p>{% trans 'Projects' %}</p>
+        <p>{% trans 'Website rules' %}</p>
+        <p>{% trans 'Q&A' %}</p>
+        <p>{% trans 'Contact us' %}</p> -->
+      </div>
+
+      <div class="col-md-4 text-light px-4">
+        <p class="lead">HEADER</p>
+
+        <div class="d-flex justify-content-between w-75">
+          <a href="http://computermuseum.ir/">
+            <!-- <i class="fab fa-telegram-plane"></i> -->
+            <img src="{% static 'img/twitter.png' %}" alt="Iran computer museum twitter logo">
+          </a>
+          <a href="http://computermuseum.ir/">
+            <img src="{% static 'img/linkdin.png' %}" alt="Iran computer museum linkdin logo">
+            <!-- <i class="fab fa-instagram"></i> -->
+          </a>
+          <a href="http://computermuseum.ir/">
+            <img src="{% static 'img/instagram.png' %}" alt="Iran computer museum instagram logo">
+            <!-- <i class="fab fa-twitter"></i> -->
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row bg-dark text-center">
+    <p class="text-light pt-3">{% trans 'Iran Computer Museum'%} 1401</p> -->
+</div>

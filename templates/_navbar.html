@@ -1,0 +1,71 @@
+{% load i18n %}
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light border-bottom shadow">
+    <div class="container-fluid py-4">
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'img/logo_far_small.png' %}" alt="RahimAgha logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+          <li class="nav-item">
+            <a class="nav-link {% if mainNavSection == 'services' %}active{% endif %}" href="#">{% trans "Services" %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if mainNavSection == 'projects' %}active{% endif %}" href="#">{% trans "Projects" %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if mainNavSection == 'resume' %}active{% endif %}" href="#">{% trans "Resume" %}</a>
+          </li>
+          {% comment %}
+          
+         
+          
+        
+        </ul>
+        {# if statement for change the redirection of search result #}
+        <div class="border-main-blue">
+
+          {% if '127.0.0.1' in request.get_host %}
+          <form class="d-flex search-form"  id="formId" onSubmit="return runLocalSearch()">      
+          {% else %}            
+            <form class="d-flex search-form"  id="formId" onSubmit="return runProductionSearch()">      
+          {% endif %}
+            <input class="" id="inputValue" type="search" placeholder="{% trans "Search" %}" aria-label="Search">
+              <!-- <a class="btn" onclick="getInputValue();" href="{% url 'search:search' %}?={{ input_value }}">
+                <img src="{% static 'img/Vector.svg' %}" alt="" width="24px" height="auto" >
+              </a> -->
+            <button class="btn"  type="submit">
+              <img src="{% static 'img/Vector.svg' %}" alt="" width="24px" height="auto" >
+            </button>              
+          </form>
+        </div>
+
+        <div class="ms-3">
+          {% if request.user.is_authenticated %}
+          <div><a href="{% url 'logout' %}"><i class="fas fa-sign-out text-dark"></i></a></div>          
+          {% endif %}
+        </div>
+      {% endcomment %}
+      </div> 
+    </div>
+  </nav>
+
+  {% block script %}
+  <script>
+    function runLocalSearch() {
+      var input_value = document.getElementById("inputValue").value;
+      location = 'http://127.0.0.1:8000/search/?search-query='+ input_value;
+      return false;
+    }    
+    function runProductionSearch() {
+      var input_value = document.getElementById("inputValue").value;
+      location = 'http://computermuseum.ir/search/?search-query='+ input_value;
+      return false;
+    }    
+    </script>
+  {% endblock script %}
