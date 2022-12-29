@@ -60,10 +60,12 @@
     <body>
         <header>
               {% include '_navbar.html' %}
+{% comment %} 
               {% if request.user.is_staff %}
               {% include '_staff_navbar.html' %}
               {% endif %}
               {% include '_messages.html' %}
+               {% endcomment %}
         </header>
         <main>         
           

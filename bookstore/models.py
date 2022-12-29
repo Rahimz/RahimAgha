@@ -25,6 +25,9 @@ class Feature(TimeStampedModel):
     show_rank = models.PositiveIntegerField(
         default=10
     )
+    published = models.BooleanField(
+        default=True
+    )
 
     class Meta:
         ordering = ('show_rank', 'id')

@@ -1,0 +1,173 @@
+{% extends '_base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ page_title }}{% endblock title %}
+{% block content %}
+<div class="container bg-dark text-light    ">
+    <div class="row" >
+        <h2>{% trans "Bookstore solution" %}</h2>        
+    </div>
+    
+    <div class="row" id="">
+        <h3>
+            {% trans "What is it" %}?
+        </h3>
+        <p>{% trans "The bookstore solution is software for managing a bookstore with its all transaction" %}</p>      
+    </div>
+    <div class="row" id="">
+        <h3>
+            {% trans "Who need it" %}?
+        </h3>
+        <p>{% trans "Everyone who want to manage a bookstore online or offline need a software to manage sales and purchase and product workflow" %}</p>
+    </div>
+    <div class="row" id="">
+        <div class="col">
+        <h3>
+            {% trans "How it works" %}?
+        </h3>
+        <p>{% trans "It has these parts" %}:</p>
+            <ul>
+                <li><a href="#sales">{% trans "Sales" %}</a></li>
+                <li><a href="#orders">{% trans "Orders management" %}</a></li>
+                <li><a href="#purchases">{% trans "Purchases management" %}</a></li>
+                <li><a href="#products">{% trans "Products management" %}</a></li>
+                <li><a href="#warehouses">{% trans "Warehouses management" %}</a></li>
+                <li><a href="#clients">{% trans "Clients" %}</a></li>
+                <li><a href="#reports">{% trans "Reports" %}</a></li>
+                <li><a href="#shop">{% trans "Online bookshop" %}</a></li>
+                <li><a href="#blog">{% trans "Weblog" %}</a></li>
+            </ul>
+            <h5>{% trans "And also" %}</h5>
+            <ul>
+                <li>{% trans "Online bookshop" %}</li>
+                <li>{% trans "Blog" %}</li>                
+            </ul>
+        </div>
+    </div>
+    <div class="row" id="">
+        <div class="col">
+
+            <h3>
+                {% trans "What is the main features" %}?
+            </h3>
+            <p>
+                {% trans "There are a lot of features in this software in comparison with other bookstre management software" %}
+                <br>
+                {% trans "These are some of the main features" %}:
+            </p>
+            
+            <h5 id="sales">{% trans "Sales" %}</h5>
+            <ul>
+                <li>{% trans "Staff can add draft invoice" %}</li>
+                <li>{% trans "Staff can add make a payment link" %}</li>
+                <li>{% trans "there are 7 sales channels" %}</li>
+                <li>{% trans "Staff can control both the online and in bookstore invoices at the same place" %}</li>
+                <li>{% trans "invoice could be pay by cash, bank gateway or by clients credit" %}</li>
+                <li>{% trans "shipping method could be change when the invoice is approved" %}</li>
+                <li>{% trans "Other prosucts than books also could be added to invoice" %}</li>
+                <li>{% trans "Print formatted invoice on Thermo printers or A4 size" %}</li>
+            </ul>
+            
+            <h5 id="orders">{% trans "Orders management" %}</h5>
+            <ul>
+                <li>{% trans "Order is categorized nased on their channels" %}</li>
+                <li>{% trans "Orders have a shipping workflow with bike delivery, post or pickup from bookstore" %}</li>
+                <li>{% trans "There is a workflow for collectiong onlie orders from the bookstore and make records in the database" %}</li>
+                <li>{% trans "There is a powerfull search in orders based on product name, client, channel and order number" %}</li>
+                <li>{% trans "Orders can be changed to draft to change the details" %}</li>
+            </ul>
+            
+            <h5 id="purchases">{% trans "Purchases management" %}</h5>
+            <ul>
+                <li>{% trans "Purchases are added to database after approve proccess" %}</li>
+                <li>{% trans "The purchase proccess could manage the 7 variations of prices that each single book could have" %}</li>
+                <li>{% trans "There are a list of vendors to register a purchase" %}</li>                
+            </ul>
+            
+            <h5 id="products">{% trans "Products management" %}</h5>
+            <ul>
+                <li>{% trans "Every single book have more than 50 different data details like as ISBN, author, page number, wieght, published year and more" %}</li>
+                <li>{% trans "Products could have more than 10 pictures" %}</li>
+                <li>{% trans "Each product has a Main price and stock and 5 other price and stock for New variation and a price and stock for Used variation" %}</li>
+                <li>{% trans "the history of any changes are kept for products" %}</li>
+                <li>{% trans "Product could be placed in Product List to use for some purposes" %}</li>
+                
+            </ul>
+            
+            <h5 id="warehouses">{% trans "Warehouses management" %}</h5>
+            <ul>
+                <li>{% trans "Product workflow which shows any actions that happened on a book" %}</li>
+                <li>{% trans "Daily report of sold products and current stock of their variation" %}</li>
+                <li>{% trans "Inventory review proccess" %}</li>
+                <li>{% trans "Finding any contradictions between shelves and database" %}</li>
+                <li>{% trans "Refund workflow both from client or to the vendor" %}</li>
+            </ul>
+            
+            <h5 id="clients">{% trans "Clients" %}</h5>
+            <ul>
+                <li>{% trans "Add and remove clients" %}</li>
+                <li>{% trans "See the history of clients orders" %}</li>
+                <li>{% trans "Manage clients credit" %}</li>
+            </ul>
+            
+            <h5 id="reports">{% trans "Reports" %}</h5>
+            <ul>
+                <li>{% trans "There are a lot of slaes and purchase reports" %}</li>
+                <li>{% trans "Sales by day" %}</li>
+                <li>{% trans "All orders" %}</li>
+                <li>{% trans "Sales by week/channel/variation" %}</li>
+                <li>{% trans "Export reports to excel" %}</li>
+            </ul>
+            
+            <h5 id="shop">{% trans "Online bookshop" %}</h5>
+            <ul>
+                <li>{% trans "Search and filter products" %}</li>
+                <li>{% trans "Add them to the cart" %}</li>
+                <li>{% trans "Inform me button for unavailable products" %}</li>
+                <li>{% trans "Login/Logout/reset password and manage addresses and user information in the profile" %}</li>
+                <li>{% trans "Pay the order online or offline" %}</li>
+                <li>{% trans "Add the book request if the product is unavailable in the databse" %}</li>
+            </ul>
+            
+            <h5 id="blog">{% trans "Weblog" %}</h5>
+            <ul>
+                <li>{% trans "A list of all posts in one page" %}</li>
+                <li>{% trans "The ability to filter posts" %}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row" id="">
+        <h3>
+            {% trans "Wahit is the price" %}?
+        </h3>
+        <div class="col-md-4">
+            <h3>{% trans "Full" %}</h3>
+            <ul>
+                <li>{% trans "All features" %}</li>
+                <li>{% trans "All reports" %}</li>
+                <li>{% trans "Server configuration" %}</li>
+                <li>{% trans "One year support" %}</li>
+            </ul>
+            <div class="my-2">
+                <span class="border border-danger rounded p-2"> 170 M</span>  
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h3>{% trans "Basic Modules" %}</h3>
+            <ul>
+                <li>{% trans "Sales, orders, Purchases" %}</li>
+                <li>{% trans "Slaes report" %}</li>
+                <li>{% trans "Server configuration" %}</li>
+                <li>{% trans "6 month support" %}</li>
+            </ul>
+            <div class="my-2">
+                <span class="border border-danger rounded p-2"> 60 M</span>  
+            </div>
+        </div>  
+        
+    </div>
+    
+        
+</div>
+{% endblock content %}
