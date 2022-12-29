@@ -1,10 +1,10 @@
 {% load i18n %}
 {% load static %}
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom shadow">
-    <div class="container-fluid py-4">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom shadow" id="top">
+    <div class="container-fluid py-1">
       <a class="navbar-brand" href="{% url 'home' %}">
-        <img src="{% static 'img/logo_far_small.png' %}" alt="RahimAgha logo">
+        <img src="{% static 'img/rahimagha_logo_sq.png' %}" alt="RahimAgha logo" width="70px" height="auto">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -13,7 +13,7 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           
           <li class="nav-item">
-            <a class="nav-link {% if mainNavSection == 'services' %}active{% endif %}" href="{% url 'bookstore:bookstore' %}">{% trans "Services" %}</a>
+            <a class="nav-link {% if mainNavSection == 'services' %}active{% endif %}" href="{% url 'bookstore:bookstore' %}">{% trans "Bookstore" %}</a>
           </li>
           <li class="nav-item">
             <a class="nav-link {% if mainNavSection == 'projects' %}active{% endif %}" href="{% url 'home' %}#projects">{% trans "Projects" %}</a>
