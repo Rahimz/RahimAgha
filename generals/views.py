@@ -9,6 +9,6 @@ def HomeView(request):
         request,
         'home.html',
         {
-
+            'page_title': _('Home')
         }
     )
