@@ -25,29 +25,37 @@
               </div>
         </form>
     </div> -->
+    <h2 class="pt-4">{% trans "Bookstore solution" %}</h2>
     <div class="row" id="bookstore">
-        <h2>{% trans "Bookstore solution" %}</h2>
         <div class="col-md-12">
             <div class="bg-dark text-light p-4">
                 <div class="rounded">
                     <img src="{% static 'img/staff_home_bookstore.png' %}" alt="bookstore home page" width="100%" height="auto">
                 </div>
-                    <h4>{% trans "What is bookstore solution?" %}</h4>
-                    <p>
-                        {% lorem 1 b random %}
-                    </p>
-                    <h4>{% trans "Features" %}</h4>
-                    <p>
-                        {% lorem 1 b random %}
-                    </p>
-
+                <h4 class="pt-3">{% trans "What is bookstore solution?" %}</h4>
+                <p>
+                    {% trans "The bookstore solution is an online sulotin for anyone who sells books" %}. {% trans "In this software you can register invoices, purchases and also you could have an online shop" %}. 
+                    <br>
+                    {% trans "With this software you do not need any other cashier solution" %}
+                </p>
+                <h4>{% trans "Main features" %}</h4>
+                <ul>
+                    <li>{% trans "It is really flexible and can be just be tailored to your needs" %}</li>
+                    <li>{% trans "Each book could have 7 variaion-stock" %}</li>
+                    <li>{% trans "You could control the whole proccess of purchase, sales and change in variation prices" %}</li>
+                    <li>{% trans "There a robust search engine in the system for online user and staffs" %}</li>
+                    <li>{% trans "Many kind of permissions and access levels could be defined in the system for staffs" %}</li>
+                </ul>
+                <div>
+                    <a href="{% url 'bookstore:bookstore' %}" class="btn btn-light px-3 py-2">{% trans "See more details on Bookstore solution" %}...</a>
                 </div>
+            </div>
         </div>
 
     </div>
     <div class="row py-5" id="projects">
+        
         <h2>{% trans "Projects" %} <a class="ms-5 lead " href="#top">&#8593</a></h2>
-       
         <div class="col-md-6">
             <div class="bg-dark text-light text-center p-4">
                 <div class="text-center" style="height: 15rem;">
@@ -64,8 +72,8 @@
         </div>          
         <div class="col-md-6">
             <div class="bg-dark text-light text-center p-4">
-                <div class="text-center bg-light" style="height: 15rem;">
-                    <img class="rounded" src="{% static 'img/computermuseum.png' %}" alt="Iran computer museum logo" width="auto" height="100%">
+                <div class="text-center " style="height: 15rem;">
+                    <img class="rounded bg-light" src="{% static 'img/computermuseum2.png' %}" alt="Iran computer museum logo" width="auto" height="100%">
                 </div>
                 <h4 class="mt-3" >Computermuseum.ir</h4>
                 <p>
@@ -91,11 +99,11 @@
             <ul>
                 <li>rahimagha.ir (2021): {% trans "A mini online shop now change to this site (as developer)" %}</li>
                 <li><a target="_blank" rel="nofollow" href="http://Khanemon.com">Khanemon.com</a> (2019-2021): {% trans "An Online marketplace for interior products (as project manager)" %}</li>
-                <li><a target="_blank" rel="nofollow" href="http://Gineau.com">Gineau.com</a> (2019): {% trans "A website for hand-made leather products (as developer)" %}</li>
-                <li><a target="_blank" rel="nofollow" href="http://Elvatech.ir">Elvatech.ir</a> (2019): {% trans "Company website (as developer)" %}</li>
+                <li><a target="_blank" rel="nofollow" href="http://Sirsoor.com">Sirsoor.com</a> (2017-2019): {% trans "cooking weblog (as content manager and photographer)" %}</li>
                 <li><a target="_blank" rel="nofollow" href="http://Cookiran.ir">Cookiran.ir</a> (2016-2017) {% trans "One of the biggest chain confectionery in Iran (as project manager)" %}</li>
                 <li><a target="_blank" rel="nofollow" href="http://Nahantavan.ir">Nahantavan.ir</a> (2017-2018): {% trans "A platform for disabled job seekers (as project manager)" %}</li>
-                <li><a target="_blank" rel="nofollow" href="http://Sirsoor.com">Sirsoor.com</a> (2017-2019): {% trans "cooking weblog (as content manager and photographer)" %}</li>
+                <li><a target="_blank" rel="nofollow" href="http://Elvatech.ir">Elvatech.ir</a> (2019): {% trans "Company website (as developer)" %}</li>
+                <li><a target="_blank" rel="nofollow" href="http://Gineau.com">Gineau.com</a> (2019): {% trans "A website for hand-made leather products (as developer)" %}</li>
             </ul>
             <a href="{% static 'resume/CV_wr_dev_en_2022_2.pdf' %}" class="btn btn-outline-light" download>{% trans "Resume" %} <span class="small" dir="ltr">.pdf</span> &#8595</a>
 

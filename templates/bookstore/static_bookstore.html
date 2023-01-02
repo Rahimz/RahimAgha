@@ -10,19 +10,44 @@
     </div>
     
     <div class="row" id="">
-        <h3>
-            {% trans "What is it" %}?
-        </h3>
-        <p>{% trans "The bookstore solution is software for managing a bookstore with its all transaction" %}</p>      
-    </div>
-    <div class="row" id="">
-        <h3>
-            {% trans "Who need it" %}?
-        </h3>
-        <p>{% trans "Everyone who want to manage a bookstore online or offline need a software to manage sales and purchase and product workflow" %}</p>
+        <div class="col">
+            <div class="image border bg-warning text-dark p-5">
+                photo of introduction of the software 
+            </div>
+            <h3>
+                {% trans "What is it" %}?
+            </h3>
+            <p>{% trans "The bookstore solution is software for managing a bookstore with its all transaction" %}.
+                <br>{% trans "It consist of these modules" %}:
+            </p>
+            <ul>
+                <li>{% trans "Sales" %}</li>
+                <li>{% trans "Orders" %}</li>
+                <li>{% trans "Purchases" %}</li>
+                <li>{% trans "Products" %}</li>
+                <li>{% trans "Online shop" %}</li>
+                <li>{% trans "warehouses" %}</li>
+                <li>{% trans "Reports" %}</li>
+            </ul>
+            
+        </div>
     </div>
     <div class="row" id="">
         <div class="col">
+            <div class="image border bg-warning text-dark p-5">
+                Photo of bookstore
+            </div>
+            <h3>
+                {% trans "Who need it" %}?
+            </h3>
+            <p>{% trans "Everyone who want to manage a bookstore online or offline need a software to manage sales and purchase and product workflow" %}</p>
+        </div>
+    </div>
+    <div class="row" id="">
+        <div class="col">
+            <div class="image border bg-warning text-dark p-5">
+                Sliced crops of staff parts
+            </div>
         <h3>
             {% trans "How it works" %}?
         </h3>
@@ -84,7 +109,9 @@
                 <li>{% trans "The purchase proccess could manage the 7 variations of prices that each single book could have" %}</li>
                 <li>{% trans "There are a list of vendors to register a purchase" %}</li>                
             </ul>
-            
+            <div class="image border bg-warning text-dark p-5">
+                Photo of products/staff
+            </div>
             <h5 id="products">{% trans "Products management" %}</h5>
             <ul>
                 <li>{% trans "Every single book have more than 50 different data details like as ISBN, author, page number, wieght, published year and more" %}</li>
@@ -110,7 +137,9 @@
                 <li>{% trans "See the history of clients orders" %}</li>
                 <li>{% trans "Manage clients credit" %}</li>
             </ul>
-            
+            <div class="image border bg-warning text-dark p-5">
+                Photo of reports 
+            </div>
             <h5 id="reports">{% trans "Reports" %}</h5>
             <ul>
                 <li>{% trans "There are a lot of slaes and purchase reports" %}</li>
@@ -120,6 +149,9 @@
                 <li>{% trans "Export reports to excel" %}</li>
             </ul>
             
+            <div class="image border bg-warning text-dark p-5">
+                Photo of reports 
+            </div>
             <h5 id="shop">{% trans "Online bookshop" %}</h5>
             <ul>
                 <li>{% trans "Search and filter products" %}</li>
