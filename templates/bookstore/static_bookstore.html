@@ -195,7 +195,12 @@
                             <td>{% trans "sales" %}</td>
                         <td class="fs-4">&#10003;</td>
                         <td class="fs-4">&#10003;</td>
-                        <td >{% trans "For details please contact me" %}</td>
+                        <td rowspan="13">
+                            <p class="mt-2">
+                                {% trans "For details please contact me" %}
+                                <a href="{% url 'contacts:contacts' %}?require=customization" class="btn-special ms-2">{% trans "Customization details" %}</a>
+                            </p>
+                        </td>
                     </tr>
                     <tr>
                         <td>1</td>
@@ -271,7 +276,10 @@
                     </tr>
                 </tbody>
             </table>
-            <p class="lead">{% trans "Don't hesitate to contact me for consulting or to know the price details" %}.</p>
+            <p class="lead my-4">{% trans "Don't hesitate to contact me for consulting or to know the price details" %}.
+                <a href="{% url 'contacts:contacts' %}?require=price" class="btn-special ms-2 ">{% trans "Prices and other details" %}</a>
+
+            </p>
         </div>
     </div>
         

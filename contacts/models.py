@@ -15,6 +15,10 @@ class Contact(models.Model):
         null=True, 
         blank=True
     )
+    require = models.CharField(
+        max_length=14,
+        default='message'
+    )
     created = models.DateField(
         auto_now_add=True
     )

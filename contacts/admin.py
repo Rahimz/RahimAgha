@@ -7,7 +7,7 @@ from .models import Contact
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
     list_display = [
-        'id', 'title', 'is_checked', 'phone', 'email'
+        'id', 'title', 'require', 'is_checked', 'phone', 'email'
     ]
     list_editable = ['is_checked', ]
     # search_fields = ['id', 'title', 'description']

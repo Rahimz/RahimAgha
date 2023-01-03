@@ -134,3 +134,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR , 'media/')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+GOOGLE_RECAPTCHA_SECRET_KEY = secret_key_for_recaptcha
