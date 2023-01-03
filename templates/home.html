@@ -30,7 +30,9 @@
         <div class="col-md-12">
             <div class=" p-4">
                 <div >
-                    <img src="{% static 'img/staff_home_bookstore.png' %}" class="rounded" alt="bookstore home page" width="100%" height="auto">
+                    <a href="{% url 'bookstore:bookstore' %}" class="" style=" text-decoration: None;">
+                        <img src="{% static 'img/staff_home_bookstore.png' %}" class="rounded" alt="bookstore home page" width="100%" height="auto">
+                    </a>
                 </div>
                 <h4 class="pt-3">{% trans "What is bookstore solution?" %}</h4>
                 <p>
