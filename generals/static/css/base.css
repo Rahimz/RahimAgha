@@ -33,6 +33,7 @@ a:visited {
     color: #d9b383;
     text-decoration: none;
     padding: 10px;
+    background-color: #231b0e;
     
 }
 .btn-special:hover {
@@ -41,4 +42,10 @@ a:visited {
     color: yellow;
     text-decoration: none;
 
+}
+.success-message {
+    color: #7ba84a;
+}
+form label {
+    color:#d9b383;
 }

@@ -41,8 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'crispy_forms',
+    
     'generals.apps.GeneralsConfig',
     'bookstore.apps.BookstoreConfig',
+    'contacts.apps.ContactsConfig',
 ]
 
 MIDDLEWARE = [

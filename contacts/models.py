@@ -1,0 +1,23 @@
+from django.db import models
+
+
+class Contact(models.Model):
+    title = models.CharField(
+        max_length=100,
+    )
+    description = models.TextField()
+    phone = models.CharField(
+        max_length=14,
+        null=True,
+        blank=True
+    )
+    email = models.EmailField(
+        null=True, 
+        blank=True
+    )
+    created = models.DateField(
+        auto_now_add=True
+    )
+    is_checked = models.BooleanField(
+        default=False
+    )
