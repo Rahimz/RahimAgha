@@ -10,7 +10,8 @@ def bookstore(request):
         request,
         'bookstore/static_bookstore.html',
         {
-            'page_title': _('Bookstore solution'),            
+            'page_title': _('Bookstore solution'),
+            'mainNavSection': 'services'
         }
     )
 

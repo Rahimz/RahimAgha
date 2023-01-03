@@ -10,6 +10,7 @@ from .models import Contact
 
 def contacts(request):
     page_title = _('Contacts')
+    mainNavSection= 'contacts'
     require = request.GET.get('require')  if request.GET.get('require') in ('customization', 'price') else None
     if request.method == 'POST':
         form = ContactForm(data=request.POST)
@@ -38,6 +39,7 @@ def contacts(request):
                         'form': ContactForm(),
                         'success_message': _('Thanks a lot, Your message is registered and I will contact you'),
                         'page_title': page_title,
+                        'mainNavSection': mainNavSection,
                         
                     })
     else:
@@ -48,6 +50,7 @@ def contacts(request):
         {
             'form': form,
             'page_title': page_title,
-            'require': require
+            'require': require,
+            'mainNavSection': mainNavSection,
         }
     )

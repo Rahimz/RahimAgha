@@ -10,6 +10,7 @@ def HomeView(request):
         request,
         'home.html',
         {
-            'page_title': _('Home')
+            'page_title': _('Home'),
+            'mainNavSection': 'home'
         }
     )
