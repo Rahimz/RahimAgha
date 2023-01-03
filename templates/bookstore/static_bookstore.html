@@ -170,33 +170,111 @@
         </div>
     </div>
     <div class="row" id="">
-        <h3>
+        <h3 id="prices">
             {% trans "Wahit is the price" %}? <a class="ms-5 lead fw-bold fs-4 " href="#top" style="text-decoration: none;">&#8593</a>
         </h3>
-        <div class="col-md-4">
-            <h3>{% trans "Full" %}</h3>
-            <ul>
-                <li>{% trans "All features" %}</li>
-                <li>{% trans "All reports" %}</li>
-                <li>{% trans "Server configuration" %}</li>
-                <li>{% trans "One year support" %}</li>
-            </ul>
-            <div class="my-2">
-                <span class="border border-danger rounded p-2"> 170 M</span>  
-            </div>
+        <p>{% trans "The price is based on which features are needed for the project" %}
+            {% trans "The package could be Full with all features or could be on basic features" %}. {% trans "The full customization is also avaialbe" %}.
+        </p>
+        <div class="col-md-12">
+            <div class="table-responsive">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{% trans "Modules" %}</th>
+                            <th>{% trans "Full" %}</th>
+                            <th>{% trans "Basic" %}</th>
+                            <th>{% trans "Customized" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>{% trans "sales" %}</td>
+                        <td class="fs-4">&#10003;</td>
+                        <td class="fs-4">&#10003;</td>
+                        <td >{% trans "For details please contact me" %}</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>{% trans "Orders" %}</td>
+                        <td class="fs-4">&#10003;</td>
+                        <td class="fs-4">&#10003;</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>{% trans "Purchases" %}</td>
+                        <td class="fs-4">&#10003;</td>
+                        <td class="fs-4">&#10003;</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>{% trans "Products" %}</td>
+                        <td class="fs-4">&#10003;</td>
+                        <td class="fs-4">&#10003;</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>{% trans "Client" %}</td>
+                        <td class="fs-4">&#10003;</td>
+                        <td class="fs-4">&#10003;</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>{% trans "Credit system" %}</td>
+                        <td class="fs-4">&#10003;</td>
+                        <td class="fs-4 text-danger">&#215;</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>{% trans "Warehouses" %}</td>
+                        <td class="fs-4">&#10003;</td>
+                        <td class="fs-4">&#10003;</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>{% trans "Reports" %}</td>
+                        <td class="fs-4">&#10003;</td>                        
+                        <td class="fs-4">&#10003;</td>                        
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>{% trans "Refund system" %}</td>
+                        <td class="fs-4">&#10003;</td>
+                        <td class="fs-4 text-danger">&#215;</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>{% trans "Online shop" %}</td>
+                        <td class="fs-4">&#10003;</td>
+                        <td class="fs-4 text-danger">&#215;</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>{% trans "Weblog" %}</td>
+                        <td class="fs-4">&#10003;</td>
+                        <td class="fs-4 text-danger">&#215;</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>{% trans "Ticket system" %}</td>
+                        <td class="fs-4">&#10003;</td>
+                        <td class="fs-4 text-danger">&#215;</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>{% trans "Email/SMS comunication system" %}</td>
+                        <td class="fs-4">&#10003;</td>
+                        <td class="fs-4 text-danger">&#215;</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="lead">{% trans "Don't hesitate to contact me for consulting or to know the price details" %}.</p>
         </div>
-        <div class="col-md-4">
-            <h3>{% trans "Basic Modules" %}</h3>
-            <ul>
-                <li>{% trans "Sales, orders, Purchases" %}</li>
-                <li>{% trans "Slaes report" %}</li>
-                <li>{% trans "Server configuration" %}</li>
-                <li>{% trans "6 month support" %}</li>
-            </ul>
-            <div class="my-2">
-                <span class="border border-danger rounded p-2"> 60 M</span>  
-            </div>
-        </div>  
+    </div>
+        
         
     </div>
     
