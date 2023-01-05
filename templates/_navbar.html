@@ -28,6 +28,17 @@
           <li class="nav-item">
             <a class="nav-link {% if mainNavSection == 'contacts' %}active{% endif %}" href="{% url 'contacts:contacts' %}">{% trans "Contact me" %}</a>
           </li>
+          {% get_current_language as LANGUAGE_CODE %}
+          {% get_available_languages as LANGUAGES %}
+          {% get_language_info_list for LANGUAGES as languages %}
+          <li class="nav-item">
+            {% if LANGUAGE_CODE == 'en' %}
+              <a href="/fa/" class="nav-link ms-4">fa</a>
+              {% else %}
+              <a href="/en/" class="nav-link ms-4">en</a>
+              {% endif %}
+          </li>
+
           
           {% comment %}
         <div class="ms-3">
