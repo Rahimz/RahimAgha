@@ -1,0 +1,692 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-05 17:11+0330\n"
+"PO-Revision-Date: 2023-01-05 13:52+0000\n"
+"Last-Translator:   <>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.9.8\n"
+
+#: bookstore/views.py:13 templates/bookstore/bookstore.html:9
+#: templates/bookstore/static_bookstore.html:9 templates/home.html:28
+msgid "Bookstore solution"
+msgstr "راهکار کتابفروشی"
+
+#: contacts/views.py:12
+msgid "Contacts"
+msgstr "تماس‌ها"
+
+#: contacts/views.py:40
+msgid "Thanks a lot, Your message is registered and I will contact you"
+msgstr "متشکرم، پیغام شما ثبت شد. به زودی با شما تماس خواهم گرفت"
+
+#: generals/views.py:13 templates/404.html:17 templates/500.html:17
+#: templates/_navbar.html:16
+msgid "Home"
+msgstr "خانه"
+
+#: templates/404.html:6 templates/500.html:6
+msgid "Error"
+msgstr "خطا"
+
+#: templates/404.html:11
+msgid "404 Error"
+msgstr "خطا ۴۰۴"
+
+#: templates/404.html:16
+msgid "There is nothing here!"
+msgstr "چیزی اینجا نیست"
+
+#: templates/500.html:11
+msgid "500 Error"
+msgstr "خطا ۵۰۰"
+
+#: templates/500.html:16
+msgid "There is an error in our server! Please try later or contact admins."
+msgstr "خطایی در سرور است لطفا بعدا تلاش کنید یا با ادمین وب‌سایت تماس بگیرید"
+
+#: templates/_footer.html:8
+msgid "Rahim Aghareb"
+msgstr "رحیم اقارب"
+
+#: templates/_footer.html:9
+msgid ""
+"I am a software designer and developer. I have more than 10 years "
+"experiences in website design and now I am developing web-applications based"
+" on django and python."
+msgstr ""
+
+#: templates/_footer.html:19
+msgid "Links"
+msgstr ""
+
+#: templates/_footer.html:29 templates/_navbar.html:29
+#: templates/contacts/contacts.html:13
+msgid "Contact me"
+msgstr ""
+
+#: templates/_navbar.html:20 templates/home.html:60
+msgid "Projects"
+msgstr ""
+
+#: templates/_navbar.html:23 templates/home.html:94 templates/home.html:110
+msgid "Resume"
+msgstr ""
+
+#: templates/_navbar.html:26
+msgid "Bookstore"
+msgstr ""
+
+#: templates/_pagination.html:5
+msgid "first"
+msgstr ""
+
+#: templates/_pagination.html:6
+msgid "Previous"
+msgstr ""
+
+#: templates/_pagination.html:9
+msgid "Page"
+msgstr ""
+
+#: templates/_pagination.html:9
+msgid "of"
+msgstr ""
+
+#: templates/_pagination.html:12
+msgid "Next"
+msgstr ""
+
+#: templates/_pagination.html:13
+msgid "last"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:18
+msgid "What is it"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:20
+msgid ""
+"The bookstore solution is software for managing a bookstore with its all "
+"transaction"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:21
+msgid "It consist of these modules"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:24
+#: templates/bookstore/static_bookstore.html:57
+#: templates/bookstore/static_bookstore.html:86
+msgid "Sales"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:25
+#: templates/bookstore/static_bookstore.html:211
+msgid "Orders"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:26
+#: templates/bookstore/static_bookstore.html:217
+msgid "Purchases"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:27
+#: templates/bookstore/static_bookstore.html:223
+msgid "Products"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:28
+#: templates/bookstore/static_bookstore.html:259
+msgid "Online shop"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:29
+msgid "warehouses"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:30
+#: templates/bookstore/static_bookstore.html:63
+#: templates/bookstore/static_bookstore.html:146
+#: templates/bookstore/static_bookstore.html:247
+msgid "Reports"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:41
+msgid "Who need it"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:43
+msgid ""
+"Everyone who want to manage a bookstore online or offline need a software to"
+" manage sales and purchase and product workflow"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:50
+msgid ""
+"Bookstore solution has a powerfull two-sided staff tabs to manage the system"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:53
+msgid "How it works"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:55
+msgid "It has these parts"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:58
+#: templates/bookstore/static_bookstore.html:98
+msgid "Orders management"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:59
+#: templates/bookstore/static_bookstore.html:107
+msgid "Purchases management"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:60
+#: templates/bookstore/static_bookstore.html:117
+msgid "Products management"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:61
+#: templates/bookstore/static_bookstore.html:127
+msgid "Warehouses management"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:62
+#: templates/bookstore/static_bookstore.html:136
+msgid "Clients"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:64
+#: templates/bookstore/static_bookstore.html:69
+#: templates/bookstore/static_bookstore.html:159
+msgid "Online bookshop"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:65
+#: templates/bookstore/static_bookstore.html:169
+#: templates/bookstore/static_bookstore.html:265
+msgid "Weblog"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:67
+msgid "And also"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:70
+msgid "Blog"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:78
+msgid "What is the main features"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:81
+msgid ""
+"There are a lot of features in this software in comparison with other "
+"bookstre management software"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:83
+msgid "These are some of the main features"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:88
+msgid "Staff can add draft invoice"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:89
+msgid "Staff can add make a payment link"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:90
+msgid "there are 7 sales channels"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:91
+msgid ""
+"Staff can control both the online and in bookstore invoices at the same "
+"place"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:92
+msgid "invoice could be pay by cash, bank gateway or by clients credit"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:93
+msgid "shipping method could be change when the invoice is approved"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:94
+msgid "Other prosucts than books also could be added to invoice"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:95
+msgid "Print formatted invoice on Thermo printers or A4 size"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:100
+msgid "Order is categorized nased on their channels"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:101
+msgid ""
+"Orders have a shipping workflow with bike delivery, post or pickup from "
+"bookstore"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:102
+msgid ""
+"There is a workflow for collectiong onlie orders from the bookstore and make"
+" records in the database"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:103
+msgid ""
+"There is a powerfull search in orders based on product name, client, channel"
+" and order number"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:104
+msgid "Orders can be changed to draft to change the details"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:109
+msgid "Purchases are added to database after approve proccess"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:110
+msgid ""
+"The purchase proccess could manage the 7 variations of prices that each "
+"single book could have"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:111
+msgid "There are a list of vendors to register a purchase"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:119
+msgid ""
+"Every single book have more than 50 different data details like as ISBN, "
+"author, page number, wieght, published year and more"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:120
+msgid "Products could have more than 10 pictures"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:121
+msgid ""
+"Each product has a Main price and stock and 5 other price and stock for New "
+"variation and a price and stock for Used variation"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:122
+msgid "the history of any changes are kept for products"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:123
+msgid "Product could be placed in Product List to use for some purposes"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:129
+msgid "Product workflow which shows any actions that happened on a book"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:130
+msgid "Daily report of sold products and current stock of their variation"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:131
+msgid "Inventory review proccess"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:132
+msgid "Finding any contradictions between shelves and database"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:133
+msgid "Refund workflow both from client or to the vendor"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:138
+msgid "Add and remove clients"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:139
+msgid "See the history of clients orders"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:140
+msgid "Manage clients credit"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:144
+msgid "A powerfull filtering system for reports"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:148
+msgid "There are a lot of slaes and purchase reports"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:149
+msgid "Sales by day"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:150
+msgid "All orders"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:151
+msgid "Sales by week/channel/variation"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:152
+msgid "Export reports to excel"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:161
+msgid "Search and filter products"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:162
+msgid "Add them to the cart"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:163
+msgid "Inform me button for unavailable products"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:164
+msgid ""
+"Login/Logout/reset password and manage addresses and user information in the"
+" profile"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:165
+msgid "Pay the order online or offline"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:166
+msgid "Add the book request if the product is unavailable in the databse"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:171
+msgid "A list of all posts in one page"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:172
+msgid "The ability to filter posts"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:178
+msgid "Wahit is the price"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:180
+msgid "The price is based on which features are needed for the project"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:181
+msgid ""
+"The package could be Full with all features or could be on basic features"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:181
+msgid "The full customization is also avaialbe"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:190
+msgid "Modules"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:191
+msgid "Full"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:192
+msgid "Basic"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:193
+msgid "Customized"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:199
+msgid "sales"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:204
+msgid "For details please contact me"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:205
+msgid "Customization details"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:229
+msgid "Client"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:235
+msgid "Credit system"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:241
+msgid "Warehouses"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:253
+msgid "Refund system"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:271
+msgid "Ticket system"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:277
+msgid "Email/SMS comunication system"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:283
+msgid ""
+"Don't hesitate to contact me for consulting or to know the price details"
+msgstr ""
+
+#: templates/bookstore/static_bookstore.html:284
+msgid "Prices and other details"
+msgstr ""
+
+#: templates/contacts/contacts.html:23 templates/contacts/contacts.html:25
+msgid "It seems you need more data about"
+msgstr ""
+
+#: templates/contacts/contacts.html:23
+msgid "customization details"
+msgstr ""
+
+#: templates/contacts/contacts.html:25
+msgid "prices"
+msgstr ""
+
+#: templates/contacts/contacts.html:28
+msgid "Please let me know how could I help you"
+msgstr ""
+
+#: templates/contacts/contacts.html:34
+msgid "Submit"
+msgstr ""
+
+#: templates/contacts/contacts.html:38
+msgid "You can also contact me with"
+msgstr ""
+
+#: templates/contacts/contacts.html:40
+msgid "Email"
+msgstr ""
+
+#: templates/contacts/contacts.html:43
+msgid "my Github activities"
+msgstr ""
+
+#: templates/contacts/contacts.html:47
+msgid "my older experiences and jobs"
+msgstr ""
+
+#: templates/home.html:37
+msgid "What is bookstore solution?"
+msgstr ""
+
+#: templates/home.html:39
+msgid "The bookstore solution is an online sulotin for anyone who sells books"
+msgstr ""
+
+#: templates/home.html:39
+msgid ""
+"In this software you can register invoices, purchases and also you could "
+"have an online shop"
+msgstr ""
+
+#: templates/home.html:41
+msgid "With this software you do not need any other cashier solution"
+msgstr ""
+
+#: templates/home.html:43
+msgid "Main features"
+msgstr ""
+
+#: templates/home.html:45
+msgid "It is really flexible and can be just be tailored to your needs"
+msgstr ""
+
+#: templates/home.html:46
+msgid "Each book could have 7 variaion-stock"
+msgstr ""
+
+#: templates/home.html:47
+msgid ""
+"You could control the whole proccess of purchase, sales and change in "
+"variation prices"
+msgstr ""
+
+#: templates/home.html:48
+msgid "There a robust search engine in the system for online user and staffs"
+msgstr ""
+
+#: templates/home.html:49
+msgid ""
+"Many kind of permissions and access levels could be defined in the system "
+"for staffs"
+msgstr ""
+
+#: templates/home.html:52
+msgid "See more details on Bookstore solution"
+msgstr ""
+
+#: templates/home.html:68
+msgid ""
+"Ketabe Damavand is a bookstore in Tehran and also has online channels for "
+"introduce and sell books"
+msgstr ""
+
+#: templates/home.html:69
+msgid ""
+"The Ketabedamavand.com is started in 2021 and now it has more than 30,000 "
+"products with about 3,000 clients and 10 staff"
+msgstr ""
+
+#: templates/home.html:71 templates/home.html:85
+msgid "Website"
+msgstr ""
+
+#: templates/home.html:82
+msgid ""
+"Computer museum is the first Itan computer museum and the website has "
+"Exhibition, Timeline, Science Tour and Oral History project"
+msgstr ""
+
+#: templates/home.html:83
+msgid ""
+"In the backend the website support a standard system of archival items "
+"record keeping"
+msgstr ""
+
+#: templates/home.html:96
+msgid "Rahim Aghareb (1979-9-21) Python/Django developer"
+msgstr ""
+
+#: templates/home.html:98
+msgid ""
+"I develop small size websites with Python and Django in back-end and enhance"
+" them with HTML, CSS, Bootstrap and JavaScript in front-end. Then I publish "
+"them on Linux VPS"
+msgstr ""
+
+#: templates/home.html:100
+msgid "Some of the projects"
+msgstr ""
+
+#: templates/home.html:102
+msgid "A mini online shop now change to this site (as developer)"
+msgstr ""
+
+#: templates/home.html:103
+msgid "An Online marketplace for interior products (as project manager)"
+msgstr ""
+
+#: templates/home.html:104
+msgid "cooking weblog (as content manager and photographer)"
+msgstr ""
+
+#: templates/home.html:105
+msgid "One of the biggest chain confectionery in Iran (as project manager)"
+msgstr ""
+
+#: templates/home.html:106
+msgid "A platform for disabled job seekers (as project manager)"
+msgstr ""
+
+#: templates/home.html:107
+msgid "Company website (as developer)"
+msgstr ""
+
+#: templates/home.html:108
+msgid "A website for hand-made leather products (as developer)"
+msgstr ""
+
+#: templates/home.html:112
+msgid "Voluntary Jobs"
+msgstr ""
+
+#: templates/home.html:113
+msgid "Django Girls"
+msgstr ""
+
+#: templates/home.html:114
+msgid ""
+"is a non-profit organization to help people to organize free, one-day "
+"programming workshop."
+msgstr ""
+
+#: templates/home.html:116
+msgid "I was responsible for the first Django Girls workshop in Tehran"
+msgstr ""
+
+#: templates/home.html:118
+msgid "Now responsible for Farsi translation of Django Girls tutorial"
+msgstr ""

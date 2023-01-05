@@ -18,13 +18,15 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.conf.urls.i18n import i18n_patterns
 
-urlpatterns = [
-    path('', include('generals.urls')),
+urlpatterns = i18n_patterns(
     path('bookstore/', include('bookstore.urls', namespace='bookstore')),
     path('contacts/', include('contacts.urls', namespace='contacts')),
     path('admin/', admin.site.urls),
-]
+    path('rosetta/', include('rosetta.urls')),
+    path('', include('generals.urls')),
+)
 
 
 if settings.DEBUG:
