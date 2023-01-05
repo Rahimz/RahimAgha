@@ -12,6 +12,9 @@ p, li {
 table, td, th {
     color:#d9b383 !important;
 }
+.text-brown-light {
+    color:#d9b383 !important;
+}
 a {
     color: #7ba84a;
     /* text-decoration: None; */
@@ -50,4 +53,7 @@ a:visited {
 }
 form label {
     color:#d9b383;
+}
+.image-bg {
+    background-color: #624728 !important;
 }

@@ -11,8 +11,8 @@
     
     <div class="row" id="">
         <div class="col">
-            <div class="image border bg-warning text-dark p-5">
-                photo of introduction of the software 
+            <div class="border image-bg rounded">
+                <img src="{% static 'img/mix_what_is_it.png' %}" alt="What is bookstore solution" width="100%" height="auto">
             </div>
             <h3>
                 {% trans "What is it" %}?
@@ -34,8 +34,8 @@
     </div>
     <div class="row" id="">
         <div class="col">
-            <div class="image border bg-warning text-dark p-5">
-                Photo of bookstore
+            <div class="image-bg border p-5">
+               <p> Photo of bookstore</p>
             </div>
             <h3>
                 {% trans "Who need it" %}?
@@ -45,8 +45,9 @@
     </div>
     <div class="row" id="">
         <div class="col">
-            <div class="image border bg-warning text-dark p-5">
-                Sliced crops of staff parts
+            <div class="border image-bg rounded">
+                <img src="{% static 'img/orders_staff.png' %}" alt="staff menus screenshot" width="100%" height="auto">
+                <span class="text-brown-light">{% trans "Bookstore solution has a powerfull two-sided staff tabs to manage the system" %}</span>
             </div>
         <h3>
             {% trans "How it works" %}?
@@ -109,8 +110,9 @@
                 <li>{% trans "The purchase proccess could manage the 7 variations of prices that each single book could have" %}</li>
                 <li>{% trans "There are a list of vendors to register a purchase" %}</li>                
             </ul>
-            <div class="image border bg-warning text-dark p-5">
-                Photo of products/staff
+            <div class="border image-bg rounded">
+                <img src="{% static 'img/products_menus.png' %}" alt="staff menus screenshot" width="100%" height="auto">
+                
             </div>
             <h5 id="products">{% trans "Products management" %}</h5>
             <ul>
@@ -137,8 +139,9 @@
                 <li>{% trans "See the history of clients orders" %}</li>
                 <li>{% trans "Manage clients credit" %}</li>
             </ul>
-            <div class="image border bg-warning text-dark p-5">
-                Photo of reports 
+            <div class="border image-bg rounded">
+                <img src="{% static 'img/reports.png' %}" alt="report menus screenshot of bookstore software" width="100%" height="auto">
+                <span class="text-brown-light">{% trans "A powerfull filtering system for reports" %}</span>
             </div>
             <h5 id="reports">{% trans "Reports" %}</h5>
             <ul>
@@ -149,8 +152,9 @@
                 <li>{% trans "Export reports to excel" %}</li>
             </ul>
 
-            <div class="image border bg-warning text-dark p-5">
-                Photo of reports 
+            <div class="border image-bg rounded">
+                <img src="{% static 'img/online_shop.png' %}" alt="online shop screenshot of bookstore software ketabe damavand" width="100%" height="auto">
+                
             </div>
             <h5 id="shop">{% trans "Online bookshop" %}</h5>
             <ul>
