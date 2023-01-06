@@ -15,7 +15,7 @@
                 <img src="{% static 'img/mix_what_is_it.png' %}" alt="What is bookstore solution" width="100%" height="auto">
             </div>
             <h3>
-                {% trans "What is it" %}?
+                {% trans "What is it" %}
             </h3>
             <p>{% trans "The bookstore solution is software for managing a bookstore with its all transaction" %}.
                 <br>{% trans "It consist of these modules" %}:
@@ -34,11 +34,11 @@
     </div>
     <div class="row" id="">
         <div class="col">
-            <div class="image-bg border p-5">
+            {% comment %} <div class="image-bg border p-5">
                <p> Photo of bookstore</p>
-            </div>
+            </div> {% endcomment %}
             <h3>
-                {% trans "Who need it" %}?
+                {% trans "Who need it" %}
             </h3>
             <p>{% trans "Everyone who want to manage a bookstore online or offline need a software to manage sales and purchase and product workflow" %}</p>
         </div>
@@ -50,7 +50,7 @@
                 <span class="text-brown-light">{% trans "Bookstore solution has a powerfull two-sided staff tabs to manage the system" %}</span>
             </div>
         <h3>
-            {% trans "How it works" %}?
+            {% trans "How it works" %}
         </h3>
         <p>{% trans "It has these parts" %}:</p>
             <ul>
@@ -75,7 +75,7 @@
         <div class="col">
 
             <h3>
-                {% trans "What is the main features" %}? <a class="ms-5 lead fw-bold fs-4 " href="#top" style="text-decoration: none;">&#8593</a>  
+                {% trans "What is the main features" %} <a class="ms-5 lead fw-bold fs-4 " href="#top" style="text-decoration: none;">&#8593</a>  
             </h3>
             <p>
                 {% trans "There are a lot of features in this software in comparison with other bookstre management software" %}
@@ -175,7 +175,7 @@
     </div>
     <div class="row" id="">
         <h3 id="prices">
-            {% trans "Wahit is the price" %}? <a class="ms-5 lead fw-bold fs-4 " href="#top" style="text-decoration: none;">&#8593</a>
+            {% trans "Wahit is the price" %} <a class="ms-5 lead fw-bold fs-4 " href="#top" style="text-decoration: none;">&#8593</a>
         </h3>
         <p>{% trans "The price is based on which features are needed for the project" %}
             {% trans "The package could be Full with all features or could be on basic features" %}. {% trans "The full customization is also avaialbe" %}.
