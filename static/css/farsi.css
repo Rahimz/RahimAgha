@@ -3,3 +3,7 @@
     src: url(../fonts/IRANSansWebFaNum.woff2);
   }
   
+  body {
+    background-color: #382910;
+    font-family: iransans, helevicta, sans-serif;
+}
