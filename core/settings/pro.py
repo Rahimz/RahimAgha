@@ -9,4 +9,4 @@ ALLOWED_HOSTS = [
     'localhost'
     ]
 
-# CSRF_TRUSTED_ORIGINS = ['https://*.ketabedamavand.com']
+CSRF_TRUSTED_ORIGINS = ['https://*.rahimagha.ir']
