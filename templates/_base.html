@@ -54,7 +54,18 @@
         <link href="{% static 'css/base.css' %}" rel="stylesheet">
       
         
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y98JBDYN4X"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
 
+            function gtag() {
+            dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-Y98JBDYN4X');
+        </script>
       
         {% block head %}{% endblock %}
       

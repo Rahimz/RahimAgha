@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 django = "4.1.4"
 pillow = "*"
-django-crispy-forms = "*"
+django-crispy-forms = "*"mi
 django-rosetta = "0.9.3"
 gunicorn = "*"
 uvicorn = "*"
