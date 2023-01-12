@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'generals.apps.GeneralsConfig',
     'bookstore.apps.BookstoreConfig',
     'contacts.apps.ContactsConfig',
+    'quizes.apps.QuizesConfig',
 ]
 
 MIDDLEWARE = [

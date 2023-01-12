@@ -23,6 +23,7 @@ from django.conf.urls.i18n import i18n_patterns
 urlpatterns = i18n_patterns(
     path('bookstore/', include('bookstore.urls', namespace='bookstore')),
     path('contacts/', include('contacts.urls', namespace='contacts')),
+    path('quizes/', include('quizes.urls', namespace='quizes')),
     path('admin/', admin.site.urls),
     path('rosetta/', include('rosetta.urls')),
     path('', include('generals.urls')),
