@@ -22,9 +22,16 @@ class QuestionCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page_title'] = _('Create question')
+        context['mainNavSection'] = 'quizes' 
         return context
 
 
 class QuestionListView(ListView):
     model = Question
     template_name = 'quizes/question_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = _('Questions list')
+        context['mainNavSection'] = 'quizes' 
+        return context
