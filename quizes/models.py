@@ -44,9 +44,7 @@ class Question(TimeStampedModel):
     #     null=True,
     #     blank=True,
     # )
-    description = models.CharField(
-        max_length=350,        
-    )
+    description = models.TextField()
     correct = models.CharField(
         _('Correct answer'),
         max_length=350,
