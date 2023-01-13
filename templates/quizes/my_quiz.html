@@ -1,0 +1,26 @@
+{% extends '_base.html' %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+
+{% endblock head %}
+{% block title %}{{ page_title }}{% endblock title %}
+
+{% block content %}
+<div class="container bg-brown " >
+    <h2 class="pt-4">{% trans "Book quiz" %}</h2>
+    <div class="row py-5" id="">
+        <div class="col">
+            <p class="lead">{% trans "Welcome to book quiz" %}</p>
+            <p>{% trans "How much do you know about books" %}?</p>
+            <p>
+                <a href="{% url 'quizes:my_quiz' %}?start=True">{% trans "Test yourself" %}</a>
+            </p>
+        
+        </div>
+    </div>
+        
+</div>
+{% endblock content %}
