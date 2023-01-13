@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
 from django.utils.translation import gettext_lazy as _
@@ -37,23 +37,85 @@ class QuestionListView(ListView):
         context['mainNavSection'] = 'quizes' 
         return context
 
-def MyQuizView(request):
+def MyQuizView(request, pk=None):
     # print(request.GET.get('start'), type(request.GET.get('start')))
-    if request.GET.get('start') == 'True' and request.session.get('quiz_completed', True):
-        questions = SelectQuestion('3')
-        # quiz = Quiz.objects.crreate(
-        #     difficulty='1',
-        #     questions=questions
-        # )
-        print(questions)
-
+    quiz = None
+    quiz_difficulty = '1'
+    # if request.GET.get('start') == 'True' and request.session.get('quiz_completed', True):
+    if request.GET.get('start') == 'True':
+        questions = Question.objects.filter(id__in=SelectQuestion(quiz_difficulty))
+        
+        quiz = Quiz.objects.create(
+            difficulty=quiz_difficulty,        
+        )
+        quiz.questions.add(*questions)
+        request.session['quiz_id'] = str(quiz.pk)
+        request.session['quiz_completed'] = False
+        print('quiz created', quiz.pk)
+        return redirect ('quizes:my_quiz_proccess', quiz.pk)
     
+    # elif not request.session.get('quiz_completed'):
+    #     quiz = get_object_or_404(Quiz, pk=request.session.get('quiz_id', None))
+    #     print('quiz created before')
+    #     return redirect ('quizes:my_quiz_proccess', quiz.pk)
         
     return render(
         request,
         'quizes/my_quiz.html',
         {
             'page_title': _('My quiz'),
+            'quiz': quiz ,
+        }
+    )
+
+
+def MyQuizProccessView(request, pk):
+    print('quiz proccess started', pk)
+    quiz = get_object_or_404(Quiz, pk=pk)
+    questions = quiz.questions.all()
+
+    # if request.GET.get('q') == 1 :
+    question = questions[0]    
+    print('question 1: ', question.description, question.correct)
+    
+    step = int(request.GET.get('q'))
+    if not step:
+        step = 1
+    
+    print(request.GET.get('q'), ': q')
+    if request.GET.get(question.correct) == 'on': 
+
+        print('correct')
+        step += 1
+
+    if step == 2 or request.GET.get('q') == 2 :
+        question = questions[1]
+        print('question 2: ', question.description, question.correct)
+        
+    if step == 3 or request.GET.get('q') == 3 :
+        question = questions[2]
+        print('question 3: ', question.description, question.correct)
+        
+    if step == 4 or request.GET.get('q') == 4 :
+        question = questions[3]
+        print('question 4: ', question.description, question.correct)
+        
+    if step == 5 or request.GET.get('q') == 5 :
+        question = questions[4]
+        print('question 5: ', question.description, question.correct)
+ 
+    
+    next_step = step + 1
+
+    return render(
+        request,
+        'quizes/my_quiz_proccess.html',
+        {
+            'page_title': _('My quiz'),
+            'quiz': quiz,
+            'question': question,
+            'step': step, 
+            'next_step': next_step, 
         }
     )
 
