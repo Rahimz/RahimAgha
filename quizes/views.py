@@ -49,10 +49,11 @@ def MyQuizView(request, pk=None):
             difficulty=quiz_difficulty,        
         )
         quiz.questions.add(*questions)
+        
         request.session['quiz_id'] = str(quiz.pk)
         request.session['quiz_completed'] = False
-        print('quiz created', quiz.pk)
-        return redirect ('quizes:my_quiz_proccess', quiz.pk)
+        # print('quiz created', quiz.pk)
+        return redirect ('quizes:my_quiz_proccess', quiz.pk, 1)
     
     # elif not request.session.get('quiz_completed'):
     #     quiz = get_object_or_404(Quiz, pk=request.session.get('quiz_id', None))
@@ -69,43 +70,46 @@ def MyQuizView(request, pk=None):
     )
 
 
-def MyQuizProccessView(request, pk):
-    print('quiz proccess started', pk)
+def MyQuizProccessView(request, pk, step=1):
     quiz = get_object_or_404(Quiz, pk=pk)
     questions = quiz.questions.all()
-
-    # if request.GET.get('q') == 1 :
-    question = questions[0]    
-    print('question 1: ', question.description, question.correct)
-    
-    step = int(request.GET.get('q'))
-    if not step:
-        step = 1
-    
-    print(request.GET.get('q'), ': q')
-    if request.GET.get(question.correct) == 'on': 
-
-        print('correct')
-        step += 1
-
-    if step == 2 or request.GET.get('q') == 2 :
-        question = questions[1]
-        print('question 2: ', question.description, question.correct)
+    user_answer = None
+   
+    if request.method == 'POST':
+        for item in '1234':
+            # print(f"{item}: ", request.POST.get(f"answer-{item}"))
+            if request.POST.get(f"answer-{item}") == 'on':
+                user_answer = f"answer-{item}"
+        print(f'check {step} question ')
+        question = questions[step-1]
+        request.session[str(question.id)]['response'] = user_answer
+        print(f'write {step} answer in session', user_answer)
         
-    if step == 3 or request.GET.get('q') == 3 :
-        question = questions[2]
-        print('question 3: ', question.description, question.correct)
+
+        step = step + 1
+        question = questions[step-1]
+        answers = question.get_answers()
+        request.session[str(question.id)] = {'answers': answers, 'response': None}
+        print(f'prepare {step} question')
+
+        if step > 4:
+            print(f'if {step} >4 answer in session and redirect')
+            request.session[str(questions[4].id)]['response'] = user_answer
+            # print(user_answer)
+            return redirect ('quizes:my_quiz_result', quiz.pk)
+
+
         
-    if step == 4 or request.GET.get('q') == 4 :
-        question = questions[3]
-        print('question 4: ', question.description, question.correct)
-        
-    if step == 5 or request.GET.get('q') == 5 :
-        question = questions[4]
-        print('question 5: ', question.description, question.correct)
- 
+
+        return redirect ('quizes:my_quiz_proccess', quiz.pk, step)
+
     
-    next_step = step + 1
+    # make first question 
+    print(f'prepare {step} question')
+    question = questions[step-1]
+    answers = question.get_answers()
+    request.session[str(question.id)] = {'answers': answers, 'response': None}
+   
 
     return render(
         request,
@@ -114,8 +118,9 @@ def MyQuizProccessView(request, pk):
             'page_title': _('My quiz'),
             'quiz': quiz,
             'question': question,
+            'answers': answers,
             'step': step, 
-            'next_step': next_step, 
+            # 'next_step': next_step, 
         }
     )
 
@@ -140,12 +145,13 @@ def SelectQuestion(level):
 
 def QuizResultView(request, pk):
     quiz = get_object_or_404(Quiz, pk=pk)
-    if not quiz.completed:
-        quiz = None
-    
+    # if not quiz.completed:
+    #     quiz = None
+    for question in quiz.questions.all():
+        print(request.session[str(question.id)])
     return render(
         request,
-        'quiz/question_list.html',
+        'quizes/show_results.html',
         {
             'quiz': quiz,
             'page_title': _('Quiz results')

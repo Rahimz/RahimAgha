@@ -16,23 +16,21 @@
             {% for q in questions %}{% endfor %}
             <p class="lead">{% trans "Question" %}: {{ step }}</p>
             <p class="lead">{{ question.description }}</p>
-            <form action="" >
-                {% for ans in question.get_answers %}
-                <div class="form-check" 
-                    action="{% if step < 6 %}{% url 'quizes:my_quiz_proccess' quiz.pk %}?q={{ next_step }}{% endif %}"
-                >
-                    <input class="form-check-input" type="radio" name="{{ ans }}" id="answer-{{ forloop.counter }}">
-                    <label class="form-check-label" for="{{ ans }}">
+            <form action="" method="POST">
+                {% csrf_token %}                
+                {% for ans in answers %}
+                <div class="form-check" action="">
+                    <input class="form-check-input" type="radio" name="answer-{{ forloop.counter }}" id="answer-{{ forloop.counter }}" >
+                    <label class="form-check-label" for="answer-{{ forloop.counter }}">
                         {{ ans }}
                     </label>
                     
                 </div>
                 {% endfor %}
-                {% if next_step < 6 %}
-                <a href="{% url 'quizes:my_quiz_proccess' quiz.pk %}?q={{ next_step }}" value="">{% trans 'Next' %} {{ step }}</a>
+                {% if step < 6 %}
+                <input type="submit" name="next" value="{% trans 'Next' %}" class="btn btn-warning my-3">
                 {% else %}
-                <a href="#" value="">{% trans 'Result' %}</a>
-                
+                <input type="submit" name="result" value="{% trans 'Result' %}" class="btn btn-warning my-3">
                 {% endif %}
                   
             </form>

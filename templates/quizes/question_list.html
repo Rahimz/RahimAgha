@@ -14,6 +14,7 @@
     <div class="row py-5" id="question-list">
         <div class="col">
             <a href="{% url 'quizes:question_create' %}" class="btn btn-warning my-2">{% trans "New question" %}</a>
+            <a href="{% url 'quizes:my_quiz' %}" class="btn btn-warning my-2">{% trans "New Quiz" %}</a>
             <table class="table">
                 <tbody>
                     {% for que in object_list %}
