@@ -14,7 +14,21 @@
     <div class="row py-5" id="">
         <div class="col">
             <p class="lead">{% trans "Your resluts" %}</p>
-         
+            {% for respon in responses %}
+            <p class="{% if respon.result %}text-success{% else %}text-danger{% endif %}">
+                {{ respon.question.description }}
+                {% trans "Answer" %}:
+                {{ respon.user_response }}
+            </p>
+            {% if not respon.result %}
+               <p class="text-success">{% trans "Correct answer" %}: {{ respon.correct_answer }}</p>
+            {% endif %}
+            {% if respon.question.link %}
+            <a href="{{ respon.question.link }}" target="_blank">{% trans "You may need this book" %}</a>
+              
+            {% endif %}
+            <hr class="w-50 text-light">
+            {% endfor %}
         
         </div>
     </div>

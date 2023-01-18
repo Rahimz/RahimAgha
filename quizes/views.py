@@ -3,11 +3,12 @@ from django.urls import reverse
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Sum
 import random 
 
 from django.forms import Select
 
-from .models import Question, Quiz
+from .models import Question, Quiz, QuizResponse
 
 class QuestionCreateView(CreateView):
     model = Question
@@ -43,22 +44,27 @@ def MyQuizView(request, pk=None):
     quiz_difficulty = '1'
     # if request.GET.get('start') == 'True' and request.session.get('quiz_completed', True):
     if request.GET.get('start') == 'True':
-        questions = Question.objects.filter(id__in=SelectQuestion(quiz_difficulty))
+        questions_id = SelectQuestion(quiz_difficulty)
+        questions = Question.objects.filter(id__in=questions_id)
         
         quiz = Quiz.objects.create(
-            difficulty=quiz_difficulty,        
+            difficulty=quiz_difficulty,
+            questions_id = questions_id,
         )
         quiz.questions.add(*questions)
-        
-        request.session['quiz_id'] = str(quiz.pk)
-        request.session['quiz_completed'] = False
-        # print('quiz created', quiz.pk)
+
+        # make QuizResponse for every single question
+        for item in questions:
+            quizRespone = QuizResponse.objects.create(
+                quiz = quiz,
+                question = item,
+                answers = item.get_answers(),
+                correct_answer = item.correct,
+            )
+
         return redirect ('quizes:my_quiz_proccess', quiz.pk, 1)
     
-    # elif not request.session.get('quiz_completed'):
-    #     quiz = get_object_or_404(Quiz, pk=request.session.get('quiz_id', None))
-    #     print('quiz created before')
-    #     return redirect ('quizes:my_quiz_proccess', quiz.pk)
+
         
     return render(
         request,
@@ -69,6 +75,61 @@ def MyQuizView(request, pk=None):
         }
     )
 
+def NewMyQuizProccessView(request, quiz_pk, step=1):
+    quiz = get_object_or_404(Quiz, pk=quiz_pk)
+    responses = quiz.responses.all()
+    print('responses is created', responses.count())
+    response = responses[step-1]
+    question = response.question
+    answers = response.answers
+    if request.method == 'POST':
+        user_answer = None
+        answer_list = response.answers 
+        for item in '1234':
+            # print(f"{item}: ", request.POST.get(f"answer-{item}"))
+            if request.POST.get(f"answer-{item}") == 'on':
+                user_answer = f"answer-{item}"
+                user_answer_string = response.answers[int(item) - 1]
+        
+        #  we wan to write user response to the record
+        response.user_response = user_answer_string
+        response.save()
+        # print('user respnse saved', response.user_response)
+        # print(f'user response for step {step} stores to quizResponse')
+        if step <= 4:
+            return redirect('quizes:my_quiz_proccess', quiz_pk, step + 1)
+        else:
+            return redirect ('quizes:my_quiz_result', quiz.pk)
+
+    return render(
+        request,
+        'quizes/my_quiz_proccess.html',
+        {
+            'page_title': _('My quiz'),
+            'quiz': quiz,
+            'question': question,
+            'answers': answers,
+            'step': step, 
+            # 'next_step': next_step, 
+        }
+    )
+
+
+def QuizResultView(request, pk):
+    quiz = get_object_or_404(Quiz, pk=pk)
+    responses = quiz.responses.all()
+
+
+    
+    return render(
+        request,
+        'quizes/show_results.html',
+        {
+            'quiz': quiz,
+            'page_title': _('Quiz results'),
+            'responses': responses,
+        }
+    )
 
 def MyQuizProccessView(request, pk, step=1):
     quiz = get_object_or_404(Quiz, pk=pk)
@@ -143,17 +204,3 @@ def SelectQuestion(level):
     return questions
 
 
-def QuizResultView(request, pk):
-    quiz = get_object_or_404(Quiz, pk=pk)
-    # if not quiz.completed:
-    #     quiz = None
-    for question in quiz.questions.all():
-        print(request.session[str(question.id)])
-    return render(
-        request,
-        'quizes/show_results.html',
-        {
-            'quiz': quiz,
-            'page_title': _('Quiz results')
-        }
-    )

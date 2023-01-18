@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.contrib.postgres.fields import ArrayField
 import uuid 
 import random
 
@@ -124,6 +125,10 @@ class Quiz(TimeStampedModel):
     number_of_questions = models.IntegerField(
         default=5
     )
+    questions_id = ArrayField(
+        models.IntegerField(null=True, blank=True),
+        null=True, blank=True
+    )
     questions = models.ManyToManyField(
         Question, 
         related_name='quizes'
@@ -133,3 +138,42 @@ class Quiz(TimeStampedModel):
     def __str__(self):
         return str(self.uuid)
     
+
+
+class QuizResponse(TimeStampedModel):
+    quiz = models.ForeignKey(
+        Quiz, 
+        on_delete=models.SET_NULL,
+        null=True, 
+        blank=True,
+        related_name='responses'
+    )
+    question = models.ForeignKey(
+        Question, 
+        on_delete=models.SET_NULL,
+        null=True, 
+        blank=True,
+        related_name='question_uses'
+    )
+    answers = ArrayField(
+        models.CharField(max_length=350, blank=True),
+        null=True,
+        blank=True
+    )
+    correct_answer = models.CharField(
+        max_length=350,
+        null=True, 
+        blank=True
+    )
+    user_response = models.CharField(
+        max_length=350,
+        null=True, 
+        blank=True
+    )
+    result = models.BooleanField(
+        default=False
+    )
+    def save(self, *args, **kwargs):
+        if self.user_response == self.correct_answer:
+            self.result = True
+        return super().save(*args, **kwargs)
