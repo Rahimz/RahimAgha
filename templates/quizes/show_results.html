@@ -9,27 +9,51 @@
 {% block title %}{{ page_title }}{% endblock title %}
 
 {% block content %}
-<div class="container bg-brown " >
+<div class="container bg-brown" >
     <h2 class="pt-4">{% trans "Book quiz" %}</h2>
     <div class="row py-5" id="">
         <div class="col">
             <p class="lead">{% trans "Your resluts" %}</p>
-            {% for respon in responses %}
-            <p class="{% if respon.result %}text-success{% else %}text-danger{% endif %}">
-                {{ respon.question.description }}
-                {% trans "Answer" %}:
-                {{ respon.user_response }}
-            </p>
-            {% if not respon.result %}
-               <p class="text-success">{% trans "Correct answer" %}: {{ respon.correct_answer }}</p>
-            {% endif %}
-            {% if respon.question.link %}
-            <a href="{{ respon.question.link }}" target="_blank">{% trans "You may need this book" %}</a>
-              
-            {% endif %}
-            <hr class="w-50 text-light">
-            {% endfor %}
-        
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>{% trans "Question" %}</th>
+                        <th>{% trans "Answer" %}</th>
+                        <th>{% trans "Result" %}</th>
+                        {% if not respon.result %}
+                          <th></th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for id, respon in responses_dict.items %}
+                    <tr>
+                        <td>{{ respon.question }}</td>
+                        <td>{{ respon.correct }}</td>
+                        <td><span>{% if respon.result %}1{% else %}0{% endif %}</span></td>
+                        {% if not respon.result %}
+                        <td>
+                            <a href="{{ respon.book_link }}" target="_blank">
+                                <img src="{{ respon.src }}" class="rounded" alt="" width="100px" height="auto">               
+                                <br>
+                                {% trans "Your answer was" %}: 
+                                <span class="fw-bold">{{respon.user_response}}</span>
+                                <br>
+                                {% trans "You may need this book" %}
+                            </a>
+                        </td>
+                      {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td class="lead text-warning">{{ sum }}</td>
+                    </tr>
+                </tfoot>
+            </table> 
         </div>
     </div>
         

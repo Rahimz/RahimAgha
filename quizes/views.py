@@ -5,8 +5,10 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum
 import random 
+import requests
 
-from django.forms import Select
+from bs4 import BeautifulSoup
+
 
 from .models import Question, Quiz, QuizResponse
 
@@ -119,7 +121,28 @@ def QuizResultView(request, pk):
     quiz = get_object_or_404(Quiz, pk=pk)
     responses = quiz.responses.all()
 
-
+    responses_dict = {}
+    sum = 0
+    for response in responses:
+        src = None
+        if response.question.link:
+            res = requests.get(response.question.link)
+            soup = BeautifulSoup(res.text, 'html.parser')
+            src = f"https://ketabedamavand.com{soup.body.main.img['src']}"
+        
+        responses_dict[response.id] = {
+            'question': response.question.description,
+            'result': response.result,
+            'book_link': response.question.link,
+            'src': src, 
+            'correct': response.correct_answer, 
+            'user_response': response.user_response, 
+        }
+        if response.result:
+            sum += 1
+    
+    quiz.final_result = sum 
+    quiz.save(update_fields=['final_result'])
     
     return render(
         request,
@@ -128,6 +151,8 @@ def QuizResultView(request, pk):
             'quiz': quiz,
             'page_title': _('Quiz results'),
             'responses': responses,
+            'responses_dict': responses_dict,
+            'sum': sum, 
         }
     )
 

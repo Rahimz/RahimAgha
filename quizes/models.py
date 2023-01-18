@@ -133,6 +133,9 @@ class Quiz(TimeStampedModel):
         Question, 
         related_name='quizes'
     )
+    final_result = models.PositiveIntegerField(
+        default=0
+    )
     # we need time of quiz to be set
     # session check if there is any quiz or not 
     def __str__(self):
