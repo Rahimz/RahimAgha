@@ -36,7 +36,7 @@
                         {% if not respon.result %}
                         <td>
                             {% trans "Your answer was" %}: 
-                            <span class="fw-bold">{{respon.user_response}}</span>
+                            <span class="fw-bold text-danger">{{respon.user_response}}</span>
                             <br>
                             {% if respon.book_link %}
                             <a href="{{ respon.book_link }}" target="_blank" class="btn-special">
