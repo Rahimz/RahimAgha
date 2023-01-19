@@ -136,7 +136,8 @@ class Quiz(TimeStampedModel):
     final_result = models.PositiveIntegerField(
         default=0
     )
-    
+    class Meta:
+        ordering = ('-created',)
     # we need time of quiz to be set
     # session check if there is any quiz or not 
     def __str__(self):
@@ -163,6 +164,12 @@ class QuizResponse(TimeStampedModel):
         models.CharField(max_length=350, blank=True),
         null=True,
         blank=True
+    )
+    step = models.PositiveIntegerField(
+        default=1
+    )
+    done = models.BooleanField(
+        default=False
     )
     correct_answer = models.CharField(
         max_length=350,

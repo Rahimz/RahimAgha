@@ -21,7 +21,7 @@
                         <th>{% trans "Question" %}</th>
                         <th>{% trans "Answer" %}</th>
                         <th>{% trans "Result" %}</th>
-                        {% if not respon.result %}
+                        {% if sum < 5 %}
                           <th>{% trans "The books we should read" %}</th>
                         {% endif %}
                     </tr>

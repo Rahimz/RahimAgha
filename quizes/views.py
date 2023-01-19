@@ -57,13 +57,17 @@ def MyQuizView(request, pk=None):
 
         # print(request.META.get('HTTP_X_FORWARDED_FOR', request.META.get('REMOTE_ADDR', '')).split(',')[0].strip())
         # make QuizResponse for every single question
-        for item in questions:
+        temp_step = 1
+        for item in questions_id:
+            question = Question.objects.get(pk=item)
             quizRespone = QuizResponse.objects.create(
                 quiz = quiz,
-                question = item,
-                answers = item.get_answers(),
-                correct_answer = item.correct,
+                question = question,
+                answers = question.get_answers(),
+                correct_answer = question.correct,
+                step=temp_step
             )
+            temp_step += 1
 
         return redirect ('quizes:my_quiz_proccess', quiz.pk, 1)
     
@@ -83,15 +87,19 @@ def NewMyQuizProccessView(request, quiz_pk, step=1, error=None):
     # check if the quiz completed or not
     if quiz.completed:
         return redirect('quizes:my_quiz_result', quiz_pk)
-    responses = quiz.responses.all()
-
+    #  the responses order by the step
+    responses = quiz.responses.all().order_by('step')
+    #  we always select the first step from the remaining steps
+    remain_step = list(responses.filter(done=False).values_list('step', flat=True))
+    current_step = remain_step[0]
     required_msg = None
+
     if error == 'error':
         required_msg =  _('Please choose one')
     
 
     print('responses is created', responses.count())
-    response = responses[step-1]
+    response = responses.get(step=current_step)
     question = response.question
     answers = response.answers
     if request.method == 'POST':
@@ -106,16 +114,18 @@ def NewMyQuizProccessView(request, quiz_pk, step=1, error=None):
                 user_answer_string = response.answers[int(item) - 1]
                 multiple += 1
         
-        if multiple > 1 or not user_answer_string:
-            return redirect ('quizes:my_quiz_proccess_error', 'error', quiz_pk, step)
-        
+        if multiple > 1:
+            return redirect ('quizes:my_quiz_proccess_error', 'error', quiz_pk, current_step)
+        if not user_answer_string:
+            return redirect ('quizes:my_quiz_proccess_error', 'error', quiz_pk, current_step)
         #  we want to write user response to the record
         response.user_response = user_answer_string
+        response.done = True
         response.save()
         # print('user respnse saved', response.user_response)
         # print(f'user response for step {step} stores to quizResponse')
         if step <= 4:
-            return redirect('quizes:my_quiz_proccess', quiz_pk, step + 1)
+            return redirect('quizes:my_quiz_proccess', quiz_pk, current_step + 1)
         else:
             return redirect ('quizes:my_quiz_result', quiz.pk)
 
@@ -136,7 +146,7 @@ def NewMyQuizProccessView(request, quiz_pk, step=1, error=None):
 
 def QuizResultView(request, pk):
     quiz = get_object_or_404(Quiz, pk=pk)
-    responses = quiz.responses.all()#.order_by('id')
+    responses = quiz.responses.all().order_by('step')
 
     responses_dict = {}
     responses_list = []
