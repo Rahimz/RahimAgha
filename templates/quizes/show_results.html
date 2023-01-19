@@ -22,26 +22,29 @@
                         <th>{% trans "Answer" %}</th>
                         <th>{% trans "Result" %}</th>
                         {% if not respon.result %}
-                          <th></th>
+                          <th>{% trans "The books we should read" %}</th>
                         {% endif %}
                     </tr>
                 </thead>
                 <tbody>
-                    {% for id, respon in responses_dict.items %}
+                    {% for id, respon in responses_dict.items %} 
+                    {#  {% for respon in responses_list %} #}
                     <tr>
                         <td>{{ respon.question }}</td>
                         <td>{{ respon.correct }}</td>
                         <td><span>{% if respon.result %}1{% else %}0{% endif %}</span></td>
                         {% if not respon.result %}
                         <td>
+                            {% trans "Your answer was" %}: 
+                            <span class="fw-bold">{{respon.user_response}}</span>
+                            <br>
+                            {% if respon.book_link %}
                             <a href="{{ respon.book_link }}" target="_blank">
                                 <img src="{{ respon.src }}" class="rounded" alt="" width="100px" height="auto">               
                                 <br>
-                                {% trans "Your answer was" %}: 
-                                <span class="fw-bold">{{respon.user_response}}</span>
-                                <br>
                                 {% trans "You may need this book" %}
                             </a>
+                            {% endif %}
                         </td>
                       {% endif %}
                     </tr>
@@ -51,9 +54,12 @@
                     <tr>
                         <td colspan="2"></td>
                         <td class="lead text-warning">{{ sum }}</td>
+                        <td></td>
                     </tr>
                 </tfoot>
             </table> 
+            <a href="{% url 'quizes:my_quiz' %}?start=True" class="btn btn-warning">{% trans "Do another quiz" %}</a>
+
         </div>
     </div>
         
