@@ -39,10 +39,12 @@
                             <span class="fw-bold">{{respon.user_response}}</span>
                             <br>
                             {% if respon.book_link %}
-                            <a href="{{ respon.book_link }}" target="_blank">
-                                <img src="{{ respon.src }}" class="rounded" alt="" width="100px" height="auto">               
+                            <a href="{{ respon.book_link }}" target="_blank" class="btn-special">
+                                {% if respon.src %}
+                                    <img src="{{ respon.src }}" class="rounded" alt="" width="100px" height="auto">               
+                                {% endif %}
                                 <br>
-                                {% trans "You may need this book" %}
+                                <span>{% trans "You may need this book" %} &#8599</span>
                             </a>
                             {% endif %}
                         </td>

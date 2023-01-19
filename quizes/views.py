@@ -80,6 +80,9 @@ def MyQuizView(request, pk=None):
 
 def NewMyQuizProccessView(request, quiz_pk, step=1):
     quiz = get_object_or_404(Quiz, pk=quiz_pk)
+    # check if the quiz completed or not
+    if quiz.completed:
+        return redirect('quizes:my_quiz_result', quiz_pk)
     responses = quiz.responses.all()
     print('responses is created', responses.count())
     response = responses[step-1]
@@ -128,9 +131,13 @@ def QuizResultView(request, pk):
     for response in responses:
         src = None
         if response.question.link:
-            res = requests.get(response.question.link)
-            soup = BeautifulSoup(res.text, 'html.parser')
-            src = f"https://ketabedamavand.com{soup.body.main.img['src']}"
+            try:
+                res = requests.get(response.question.link)
+            except:
+                res = None
+            if res:
+                soup = BeautifulSoup(res.text, 'html.parser')
+                src = f"https://ketabedamavand.com{soup.body.main.img['src']}"
         
         responses_dict[response.id] = {
             'question': response.question.description,
@@ -153,7 +160,8 @@ def QuizResultView(request, pk):
             sum += 1
     
     quiz.final_result = sum 
-    quiz.save(update_fields=['final_result'])
+    quiz.completed = True
+    quiz.save(update_fields=['final_result', 'completed'])
     responses_list.reverse()
     return render(
         request,
