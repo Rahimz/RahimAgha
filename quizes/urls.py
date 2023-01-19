@@ -9,6 +9,7 @@ urlpatterns = [
     path('questions/list/', login_required(views.QuestionListView.as_view()), name='questions_list' ),
 
     path('my-quiz/result/<uuid:pk>/', views.QuizResultView, name='my_quiz_result' ),    
+    path('my-quiz/<str:error>/<uuid:quiz_pk>/<int:step>/', views.NewMyQuizProccessView, name='my_quiz_proccess_error' ),
     path('my-quiz/<uuid:quiz_pk>/<int:step>/', views.NewMyQuizProccessView, name='my_quiz_proccess' ),
     path('my-quiz/', views.MyQuizView, name='my_quiz' ), #also uses for start a quiz
 

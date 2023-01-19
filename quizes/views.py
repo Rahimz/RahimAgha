@@ -78,12 +78,18 @@ def MyQuizView(request, pk=None):
         }
     )
 
-def NewMyQuizProccessView(request, quiz_pk, step=1):
+def NewMyQuizProccessView(request, quiz_pk, step=1, error=None):
     quiz = get_object_or_404(Quiz, pk=quiz_pk)
     # check if the quiz completed or not
     if quiz.completed:
         return redirect('quizes:my_quiz_result', quiz_pk)
     responses = quiz.responses.all()
+
+    required_msg = None
+    if error == 'error':
+        required_msg =  _('Please choose one')
+    
+
     print('responses is created', responses.count())
     response = responses[step-1]
     question = response.question
@@ -91,13 +97,19 @@ def NewMyQuizProccessView(request, quiz_pk, step=1):
     if request.method == 'POST':
         user_answer = None
         answer_list = response.answers 
+        user_answer_string = None
+        multiple = 0
         for item in '1234':
             # print(f"{item}: ", request.POST.get(f"answer-{item}"))
             if request.POST.get(f"answer-{item}") == 'on':
                 user_answer = f"answer-{item}"
                 user_answer_string = response.answers[int(item) - 1]
+                multiple += 1
         
-        #  we wan to write user response to the record
+        if multiple > 1 or not user_answer_string:
+            return redirect ('quizes:my_quiz_proccess_error', 'error', quiz_pk, step)
+        
+        #  we want to write user response to the record
         response.user_response = user_answer_string
         response.save()
         # print('user respnse saved', response.user_response)
@@ -116,7 +128,8 @@ def NewMyQuizProccessView(request, quiz_pk, step=1):
             'question': question,
             'answers': answers,
             'step': step, 
-            # 'next_step': next_step, 
+            'required_msg': required_msg,
+           
         }
     )
 
