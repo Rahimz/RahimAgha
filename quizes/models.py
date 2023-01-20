@@ -36,8 +36,19 @@ class TimeStampedModel(models.Model):
     class Meta:
         abstract = True
 
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(published=True)
+
 
 class Question(TimeStampedModel):
+    DIFFICULTY_CHOICES = (
+        (1, _('1')),
+        (2, _('2')),
+        (3, _('3')),
+        (4, _('4')),
+        (5, _('5')),
+    )
     # quiz = models.ForeignKey(
     #     Quiz,
     #     on_delete=models.SET_NULL,
@@ -69,6 +80,7 @@ class Question(TimeStampedModel):
     # it sets by admin from 1-5 easy to hard
     difficulty = models.IntegerField(
         default=1,
+        choices=DIFFICULTY_CHOICES
     )
     uses = models.PositiveIntegerField(
         default=0
@@ -85,6 +97,8 @@ class Question(TimeStampedModel):
         default=True
     )
 
+    objects = models.Manager()
+    get_published = PublishedManager()
 
     def __str__(self):        
         return self.description[:35]    

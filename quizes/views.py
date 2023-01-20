@@ -17,7 +17,7 @@ class QuestionCreateView(CreateView):
     template_name = 'quizes/question_create.html'
     fields = [
         'description', 'correct', 'wrong_1', 'wrong_2', 'wrong_3',
-        'difficulty',         
+        'difficulty', 'link', 'published' 
     ]
     success_url = '/quizes/questions/list/'
     
@@ -26,6 +26,25 @@ class QuestionCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page_title'] = _('Create question')
+        context['mainNavSection'] = 'quizes' 
+        return context
+
+
+class QuestionUpdateView(UpdateView):
+    model = Question
+    template_name = 'quizes/question_create.html'
+    fields = [
+        'description', 'correct', 'wrong_1', 'wrong_2', 'wrong_3',
+        'difficulty', 'link', 'published'           
+    ]
+    # success_url = '/quizes/questions/list/'
+    def get_success_url(self):
+        return reverse ('quizes:questions_list')
+    
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = _('Update question')
         context['mainNavSection'] = 'quizes' 
         return context
 
@@ -98,7 +117,7 @@ def NewMyQuizProccessView(request, quiz_pk, step=1, error=None):
         required_msg =  _('Please choose one')
     
 
-    print('responses is created', responses.count())
+    # print('responses is created', responses.count())
     response = responses.get(step=current_step)
     question = response.question
     answers = response.answers
@@ -260,9 +279,10 @@ def SelectQuestion(level):
     This function makes a list of 5 questions id
     and returns it in a list
     """
-    qs_easy = list(Question.objects.filter(difficulty__in=['1']).values_list('pk', flat=True))
-    qs_medium = list(Question.objects.filter(difficulty__in=['2', '3']).values_list('pk', flat=True))
-    qs_hard = list(Question.objects.filter(difficulty__in=['4', '5']).values_list('pk', flat=True))
+    questions_qs = Question.get_published.all()
+    qs_easy = list(questions_qs.filter(difficulty__in=['1']).values_list('pk', flat=True))
+    qs_medium = list(questions_qs.filter(difficulty__in=['2', '3']).values_list('pk', flat=True))
+    qs_hard = list(questions_qs.filter(difficulty__in=['4', '5']).values_list('pk', flat=True))
 
     if level == '1':
         questions = random.sample(qs_easy, 1) + random.sample(qs_medium, 3) + random.sample(qs_hard, 1)

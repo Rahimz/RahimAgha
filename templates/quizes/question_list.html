@@ -20,8 +20,10 @@
                     {% for que in object_list %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
-                        <td>{{ que }}</td>
+                        <td>
+                            <a href="{% url 'quizes:question_update' que.id %}">{{ que }}</a></td>
                         <td>{{ que.difficulty }}</td>                        
+                        <td>{{ que.published }}</td>                        
                     </tr>
                     {% endfor %}
                     
