@@ -28,11 +28,21 @@
           <li class="nav-item">
             <a class="nav-link {% if mainNavSection == 'contacts' %}active{% endif %}" href="{% url 'contacts:contacts' %}">{% trans "Contact me" %}</a>
           </li>
-          {% if request.user.is_superuser %}
+          {% comment %} Show the quiz tab in farsi {% endcomment %}
+          {% if LANGUAGE_CODE == 'fa' %}
           <li class="nav-item">
-            <a class="nav-link {% if mainNavSection == 'quizes' %}active{% endif %}" href="{% url 'quizes:questions_list' %}">{% trans "Quizes" %}</a>
-          </li>
+            <a class="nav-link {% if mainNavSection == 'quizes' %}active{% endif %}" 
+            {% if request.user.is_superuser %}
+            href="{% url 'quizes:questions_list' %}"
+            {% else %}
+            href="{% url 'quizes:my_quiz' %}"
+            {% endif %}
+            >
+            {% trans "Quizes" %}
+          </a>
+          </li>          
           {% endif %}
+
           {% get_current_language as LANGUAGE_CODE %}
           {% get_available_languages as LANGUAGES %}
           {% get_language_info_list for LANGUAGES as languages %}
