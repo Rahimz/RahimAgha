@@ -11,11 +11,39 @@
 {% block content %}
 <div class="container bg-brown " >
     <h2 class="pt-4">{% trans "Question list" %}</h2>
+    <form action="">
+        <div class="input-group mb-3">            
+            <input class="form-control" type="text" name="search" id="search"
+            aria-label="Search button" aria-describedby="button-addon1" autofocus="on"
+            >
+            <button class="btn btn-outline-light" type="submit" id="button-addon1">
+                {% trans 'Search' %}
+            </button>      
+        </div>
+        {% if results %}
+          {% for item in results %}
+          <a href="{% url 'quizes:question_update' item.id %}" class="bg-light p-1 m-2">{{ item }}</a>
+          {% endfor %}
+        {% endif %}      
+    </form>
+    {% if query %}
+    <p>{{ query }} <a href="{% url 'quizes:questions_list' %}" class="text-light fs-5 ms-3">&times;</a></p>
+      
+    {% endif %}
     <div class="row py-5" id="question-list">
         <div class="col">
             <a href="{% url 'quizes:question_create' %}" class="btn btn-warning my-2">{% trans "New question" %}</a>
             <a href="{% url 'quizes:my_quiz' %}" class="btn btn-warning my-2">{% trans "New Quiz" %}</a>
             <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>{% trans "Question" %}</th>
+                        <th>{% trans "Difficulty" %}</th>
+                        <th>{% trans "Published" %}</th>
+                        <th>{% trans "Link" %}</th>
+                    </tr>
+                </thead>
                 <tbody>
                     {% for que in object_list %}
                     <tr>
@@ -23,7 +51,19 @@
                         <td>
                             <a href="{% url 'quizes:question_update' que.id %}">{{ que }}</a></td>
                         <td>{{ que.difficulty }}</td>                        
-                        <td>{{ que.published }}</td>                        
+                        
+                        {% if que.published %}
+                        <td class="text-success fs-5">&check;</td>                        
+                        {% else %}
+                        <td class="text-danger fs-5">&times;</td>                        
+                        {% endif %}
+                        
+                        {% if que.link %}
+                        <td class="text-success fs-5">&check;</td>                        
+                        {% else %}
+                        <td class="text-danger fs-5">&times;</td>                        
+                        {% endif %}
+
                     </tr>
                     {% endfor %}
                     

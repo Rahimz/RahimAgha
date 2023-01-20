@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-20 14:14+0330\n"
-"PO-Revision-Date: 2023-01-20 10:44+0000\n"
+"POT-Creation-Date: 2023-01-20 16:49+0330\n"
+"PO-Revision-Date: 2023-01-20 13:20+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -117,27 +117,27 @@ msgstr "متوسط ۱-۲-۲"
 msgid "Hard 1-1-3"
 msgstr "سخت ۱-۱-۳"
 
-#: quizes/views.py:28 templates/quizes/question_create.html:13
+#: quizes/views.py:27 templates/quizes/question_create.html:13
 msgid "Create question"
 msgstr "ساختن سوال"
 
-#: quizes/views.py:47
+#: quizes/views.py:46
 msgid "Update question"
 msgstr "به روزرسانی سوال"
 
-#: quizes/views.py:58
+#: quizes/views.py:69
 msgid "Questions list"
 msgstr "لیست سوال‌ها"
 
-#: quizes/views.py:123 quizes/views.py:179 quizes/views.py:282
+#: quizes/views.py:137 quizes/views.py:194 quizes/views.py:297
 msgid "My quiz"
 msgstr "آزمون من"
 
-#: quizes/views.py:141
+#: quizes/views.py:156
 msgid "Please choose one"
 msgstr "لطفاً یک گزینه را انتخاب کنید"
 
-#: quizes/views.py:229
+#: quizes/views.py:244
 msgid "Quiz results"
 msgstr "نتایج آزمون"
 
@@ -195,7 +195,7 @@ msgstr "رزومه"
 msgid "Bookstore"
 msgstr "کتاب‌فروشی"
 
-#: templates/_navbar.html:33
+#: templates/_navbar.html:42
 msgid "Quizes"
 msgstr "آزمون‌ها"
 
@@ -870,6 +870,7 @@ msgid "Test yourself"
 msgstr "خودتان را بسنجید"
 
 #: templates/quizes/my_quiz_proccess.html:21
+#: templates/quizes/question_list.html:41
 #: templates/quizes/show_results.html:21
 msgid "Question"
 msgstr "سوال"
@@ -887,13 +888,30 @@ msgstr "ذخیره"
 msgid "Question list"
 msgstr "لیست سوال‌ها"
 
-#: templates/quizes/question_list.html:16
+#: templates/quizes/question_list.html:20
+msgid "Search"
+msgstr "جستجو"
+
+#: templates/quizes/question_list.html:35
 msgid "New question"
 msgstr "سوال جدید"
 
-#: templates/quizes/question_list.html:17
+#: templates/quizes/question_list.html:36
 msgid "New Quiz"
 msgstr "آزمون جدید"
+
+#: templates/quizes/question_list.html:42
+msgid "Difficulty"
+msgstr "سختی"
+
+#: templates/quizes/question_list.html:43
+msgid "Published"
+msgstr "منتشر شده"
+
+#: templates/quizes/question_list.html:44
+#| msgid "Links"
+msgid "Link"
+msgstr "لینک‌"
 
 #: templates/quizes/show_results.html:16
 msgid "Your resluts"
@@ -924,6 +942,5 @@ msgid "Do a little harder quiz"
 msgstr "یک آزمون کمی سخت تر"
 
 #: templates/quizes/show_results.html:65
-#| msgid "Do a hard quiz quiz"
 msgid "Do a hard quiz"
 msgstr "یک آزمون خیلی سخت"

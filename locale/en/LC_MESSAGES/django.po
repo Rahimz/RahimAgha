@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-20 14:14+0330\n"
+"POT-Creation-Date: 2023-01-20 16:49+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,27 +116,27 @@ msgstr ""
 msgid "Hard 1-1-3"
 msgstr ""
 
-#: quizes/views.py:28 templates/quizes/question_create.html:13
+#: quizes/views.py:27 templates/quizes/question_create.html:13
 msgid "Create question"
 msgstr ""
 
-#: quizes/views.py:47
+#: quizes/views.py:46
 msgid "Update question"
 msgstr ""
 
-#: quizes/views.py:58
+#: quizes/views.py:69
 msgid "Questions list"
 msgstr ""
 
-#: quizes/views.py:123 quizes/views.py:179 quizes/views.py:282
+#: quizes/views.py:137 quizes/views.py:194 quizes/views.py:297
 msgid "My quiz"
 msgstr ""
 
-#: quizes/views.py:141
+#: quizes/views.py:156
 msgid "Please choose one"
 msgstr ""
 
-#: quizes/views.py:229
+#: quizes/views.py:244
 msgid "Quiz results"
 msgstr ""
 
@@ -192,7 +192,7 @@ msgstr ""
 msgid "Bookstore"
 msgstr ""
 
-#: templates/_navbar.html:33
+#: templates/_navbar.html:42
 msgid "Quizes"
 msgstr ""
 
@@ -811,7 +811,7 @@ msgid "Test yourself"
 msgstr ""
 
 #: templates/quizes/my_quiz_proccess.html:21
-#: templates/quizes/show_results.html:21
+#: templates/quizes/question_list.html:41 templates/quizes/show_results.html:21
 msgid "Question"
 msgstr ""
 
@@ -828,12 +828,28 @@ msgstr ""
 msgid "Question list"
 msgstr ""
 
-#: templates/quizes/question_list.html:16
+#: templates/quizes/question_list.html:20
+msgid "Search"
+msgstr ""
+
+#: templates/quizes/question_list.html:35
 msgid "New question"
 msgstr ""
 
-#: templates/quizes/question_list.html:17
+#: templates/quizes/question_list.html:36
 msgid "New Quiz"
+msgstr ""
+
+#: templates/quizes/question_list.html:42
+msgid "Difficulty"
+msgstr ""
+
+#: templates/quizes/question_list.html:43
+msgid "Published"
+msgstr ""
+
+#: templates/quizes/question_list.html:44
+msgid "Link"
 msgstr ""
 
 #: templates/quizes/show_results.html:16

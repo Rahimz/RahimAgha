@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.postgres.search import SearchVector
 from django.db.models import Sum
 import random 
 import requests
@@ -20,8 +21,6 @@ class QuestionCreateView(CreateView):
         'difficulty', 'link', 'published' 
     ]
     success_url = '/quizes/questions/list/'
-    
-
         
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -50,13 +49,28 @@ class QuestionUpdateView(UpdateView):
 
 
 class QuestionListView(ListView):
+    queryset = Question.objects.all()
     model = Question
     template_name = 'quizes/question_list.html'
+    ordering = ('difficulty', )
 
+    def get_queryset(self):
+        if self.request.GET.get('search'):
+
+            return super().get_queryset().annotate(
+            search=SearchVector('description', 'correct', 'wrong_1', 'wrong_2', 'wrong_3'),
+                ).filter(search=self.request.GET.get('search'))
+
+        return super().get_queryset()
+       
     def get_context_data(self, **kwargs):
+        
         context = super().get_context_data(**kwargs)
         context['page_title'] = _('Questions list')
-        context['mainNavSection'] = 'quizes' 
+        context['mainNavSection'] = 'quizes'
+        if self.request.GET.get('search'):
+            context['query'] = self.request.GET.get('search')
+   
         return context
 
 def MyQuizView(request, pk=None):
@@ -124,6 +138,7 @@ def MyQuizView(request, pk=None):
             'quiz': quiz ,
         }
     )
+
 
 def NewMyQuizProccessView(request, quiz_pk, step=1, error=None):
     quiz = get_object_or_404(Quiz, pk=quiz_pk)
