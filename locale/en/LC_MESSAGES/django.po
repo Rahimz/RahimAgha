@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-05 18:44+0330\n"
+"POT-Creation-Date: 2023-01-20 13:39+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,17 +47,97 @@ msgstr ""
 msgid "Thanks a lot, Your message is registered and I will contact you"
 msgstr ""
 
-#: core/settings/base.py:121
+#: core/settings/base.py:126
 msgid "English"
 msgstr ""
 
-#: core/settings/base.py:122
+#: core/settings/base.py:127
 msgid "Farsi"
 msgstr ""
 
 #: generals/views.py:13 templates/404.html:17 templates/500.html:17
 #: templates/_navbar.html:16
 msgid "Home"
+msgstr ""
+
+#: quizes/models.py:15
+msgid "created"
+msgstr ""
+
+#: quizes/models.py:20
+msgid "modified"
+msgstr ""
+
+#: quizes/models.py:46
+msgid "1"
+msgstr ""
+
+#: quizes/models.py:47
+msgid "2"
+msgstr ""
+
+#: quizes/models.py:48
+msgid "3"
+msgstr ""
+
+#: quizes/models.py:49
+msgid "4"
+msgstr ""
+
+#: quizes/models.py:50
+msgid "5"
+msgstr ""
+
+#: quizes/models.py:61
+msgid "Correct answer"
+msgstr ""
+
+#: quizes/models.py:65
+msgid "Wrong answer 1"
+msgstr ""
+
+#: quizes/models.py:69
+msgid "Wrong answer 2"
+msgstr ""
+
+#: quizes/models.py:73
+msgid "Wrong answer 3"
+msgstr ""
+
+#: quizes/models.py:112
+msgid "Easy 1-3-1"
+msgstr ""
+
+#: quizes/models.py:113
+msgid "Medium 1-2-2"
+msgstr ""
+
+#: quizes/models.py:114
+msgid "Hard 1-1-3"
+msgstr ""
+
+#: quizes/views.py:28 templates/quizes/question_create.html:13
+msgid "Create question"
+msgstr ""
+
+#: quizes/views.py:47
+msgid "Update question"
+msgstr ""
+
+#: quizes/views.py:58
+msgid "Questions list"
+msgstr ""
+
+#: quizes/views.py:99 quizes/views.py:155 quizes/views.py:267
+msgid "My quiz"
+msgstr ""
+
+#: quizes/views.py:117
+msgid "Please choose one"
+msgstr ""
+
+#: quizes/views.py:213
+msgid "Quiz results"
 msgstr ""
 
 #: templates/404.html:6 templates/500.html:6
@@ -112,6 +192,10 @@ msgstr ""
 msgid "Bookstore"
 msgstr ""
 
+#: templates/_navbar.html:33
+msgid "Quizes"
+msgstr ""
+
 #: templates/_pagination.html:5
 msgid "first"
 msgstr ""
@@ -128,7 +212,7 @@ msgstr ""
 msgid "of"
 msgstr ""
 
-#: templates/_pagination.html:12
+#: templates/_pagination.html:12 templates/quizes/my_quiz_proccess.html:37
 msgid "Next"
 msgstr ""
 
@@ -151,28 +235,28 @@ msgid "It consist of these modules"
 msgstr ""
 
 #: templates/bookstore/static_bookstore.html:24
-#: templates/bookstore/static_bookstore.html:57
-#: templates/bookstore/static_bookstore.html:86
+#: templates/bookstore/static_bookstore.html:58
+#: templates/bookstore/static_bookstore.html:87
 msgid "Sales"
 msgstr ""
 
 #: templates/bookstore/static_bookstore.html:25
-#: templates/bookstore/static_bookstore.html:211
+#: templates/bookstore/static_bookstore.html:212
 msgid "Orders"
 msgstr ""
 
 #: templates/bookstore/static_bookstore.html:26
-#: templates/bookstore/static_bookstore.html:217
+#: templates/bookstore/static_bookstore.html:218
 msgid "Purchases"
 msgstr ""
 
 #: templates/bookstore/static_bookstore.html:27
-#: templates/bookstore/static_bookstore.html:223
+#: templates/bookstore/static_bookstore.html:224
 msgid "Products"
 msgstr ""
 
 #: templates/bookstore/static_bookstore.html:28
-#: templates/bookstore/static_bookstore.html:259
+#: templates/bookstore/static_bookstore.html:260
 msgid "Online shop"
 msgstr ""
 
@@ -181,356 +265,356 @@ msgid "warehouses"
 msgstr ""
 
 #: templates/bookstore/static_bookstore.html:30
-#: templates/bookstore/static_bookstore.html:63
-#: templates/bookstore/static_bookstore.html:146
-#: templates/bookstore/static_bookstore.html:247
+#: templates/bookstore/static_bookstore.html:64
+#: templates/bookstore/static_bookstore.html:147
+#: templates/bookstore/static_bookstore.html:248
 msgid "Reports"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:41
+#: templates/bookstore/static_bookstore.html:42
 msgid "Who need it"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:43
+#: templates/bookstore/static_bookstore.html:44
 msgid ""
 "Everyone who want to manage a bookstore online or offline need a software to "
 "manage sales and purchase and product workflow"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:50
+#: templates/bookstore/static_bookstore.html:51
 msgid ""
 "Bookstore solution has a powerfull two-sided staff tabs to manage the system"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:53
+#: templates/bookstore/static_bookstore.html:54
 msgid "How it works"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:55
+#: templates/bookstore/static_bookstore.html:56
 msgid "It has these parts"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:58
-#: templates/bookstore/static_bookstore.html:98
+#: templates/bookstore/static_bookstore.html:59
+#: templates/bookstore/static_bookstore.html:99
 msgid "Orders management"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:59
-#: templates/bookstore/static_bookstore.html:107
+#: templates/bookstore/static_bookstore.html:60
+#: templates/bookstore/static_bookstore.html:108
 msgid "Purchases management"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:60
-#: templates/bookstore/static_bookstore.html:117
+#: templates/bookstore/static_bookstore.html:61
+#: templates/bookstore/static_bookstore.html:118
 msgid "Products management"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:61
-#: templates/bookstore/static_bookstore.html:127
+#: templates/bookstore/static_bookstore.html:62
+#: templates/bookstore/static_bookstore.html:128
 msgid "Warehouses management"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:62
-#: templates/bookstore/static_bookstore.html:136
+#: templates/bookstore/static_bookstore.html:63
+#: templates/bookstore/static_bookstore.html:137
 msgid "Clients"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:64
-#: templates/bookstore/static_bookstore.html:69
-#: templates/bookstore/static_bookstore.html:159
+#: templates/bookstore/static_bookstore.html:65
+#: templates/bookstore/static_bookstore.html:70
+#: templates/bookstore/static_bookstore.html:160
 msgid "Online bookshop"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:65
-#: templates/bookstore/static_bookstore.html:169
-#: templates/bookstore/static_bookstore.html:265
+#: templates/bookstore/static_bookstore.html:66
+#: templates/bookstore/static_bookstore.html:170
+#: templates/bookstore/static_bookstore.html:266
 msgid "Weblog"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:67
+#: templates/bookstore/static_bookstore.html:68
 msgid "And also"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:70
+#: templates/bookstore/static_bookstore.html:71
 msgid "Blog"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:78
+#: templates/bookstore/static_bookstore.html:79
 msgid "What is the main features"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:81
+#: templates/bookstore/static_bookstore.html:82
 msgid ""
 "There are a lot of features in this software in comparison with other "
 "bookstre management software"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:83
+#: templates/bookstore/static_bookstore.html:84
 msgid "These are some of the main features"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:88
+#: templates/bookstore/static_bookstore.html:89
 msgid "Staff can add draft invoice"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:89
+#: templates/bookstore/static_bookstore.html:90
 msgid "Staff can add make a payment link"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:90
+#: templates/bookstore/static_bookstore.html:91
 msgid "there are 7 sales channels"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:91
+#: templates/bookstore/static_bookstore.html:92
 msgid ""
 "Staff can control both the online and in bookstore invoices at the same place"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:92
+#: templates/bookstore/static_bookstore.html:93
 msgid "invoice could be pay by cash, bank gateway or by clients credit"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:93
+#: templates/bookstore/static_bookstore.html:94
 msgid "shipping method could be change when the invoice is approved"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:94
+#: templates/bookstore/static_bookstore.html:95
 msgid "Other prosucts than books also could be added to invoice"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:95
+#: templates/bookstore/static_bookstore.html:96
 msgid "Print formatted invoice on Thermo printers or A4 size"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:100
+#: templates/bookstore/static_bookstore.html:101
 msgid "Order is categorized nased on their channels"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:101
+#: templates/bookstore/static_bookstore.html:102
 msgid ""
 "Orders have a shipping workflow with bike delivery, post or pickup from "
 "bookstore"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:102
+#: templates/bookstore/static_bookstore.html:103
 msgid ""
 "There is a workflow for collecting onlie orders from the bookstore and make "
 "records in the database"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:103
+#: templates/bookstore/static_bookstore.html:104
 msgid ""
 "There is a powerfull search in orders based on product name, client, channel "
 "and order number"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:104
+#: templates/bookstore/static_bookstore.html:105
 msgid "Orders can be changed to draft to change the details"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:109
+#: templates/bookstore/static_bookstore.html:110
 msgid "Purchases are added to database after approve proccess"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:110
+#: templates/bookstore/static_bookstore.html:111
 msgid ""
 "The purchase proccess could manage the 7 variations of prices that each "
 "single book could have"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:111
+#: templates/bookstore/static_bookstore.html:112
 msgid "There are a list of vendors to register a purchase"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:119
+#: templates/bookstore/static_bookstore.html:120
 msgid ""
 "Every single book have more than 50 different data details like as ISBN, "
 "author, page number, wieght, published year and more"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:120
+#: templates/bookstore/static_bookstore.html:121
 msgid "Products could have more than 10 pictures"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:121
+#: templates/bookstore/static_bookstore.html:122
 msgid ""
 "Each product has a Main price and stock and 5 other price and stock for New "
 "variation and a price and stock for Used variation"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:122
+#: templates/bookstore/static_bookstore.html:123
 msgid "the history of any changes are kept for products"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:123
+#: templates/bookstore/static_bookstore.html:124
 msgid "Product could be placed in Product List to use for some purposes"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:129
+#: templates/bookstore/static_bookstore.html:130
 msgid "Product workflow which shows any actions that happened on a book"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:130
+#: templates/bookstore/static_bookstore.html:131
 msgid "Daily report of sold products and current stock of their variation"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:131
+#: templates/bookstore/static_bookstore.html:132
 msgid "Inventory review proccess"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:132
+#: templates/bookstore/static_bookstore.html:133
 msgid "Finding any contradictions between shelves and database"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:133
+#: templates/bookstore/static_bookstore.html:134
 msgid "Refund workflow both from client or to the vendor"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:138
+#: templates/bookstore/static_bookstore.html:139
 msgid "Add and remove clients"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:139
+#: templates/bookstore/static_bookstore.html:140
 msgid "See the history of clients orders"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:140
+#: templates/bookstore/static_bookstore.html:141
 msgid "Manage clients credit"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:144
+#: templates/bookstore/static_bookstore.html:145
 msgid "A powerfull filtering system for reports"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:148
+#: templates/bookstore/static_bookstore.html:149
 msgid "There are a lot of slaes and purchase reports"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:149
+#: templates/bookstore/static_bookstore.html:150
 msgid "Sales by day"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:150
+#: templates/bookstore/static_bookstore.html:151
 msgid "All orders"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:151
+#: templates/bookstore/static_bookstore.html:152
 msgid "Sales by week/channel/variation"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:152
+#: templates/bookstore/static_bookstore.html:153
 msgid "Export reports to excel"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:161
+#: templates/bookstore/static_bookstore.html:162
 msgid "Search and filter products"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:162
+#: templates/bookstore/static_bookstore.html:163
 msgid "Add them to the cart"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:163
+#: templates/bookstore/static_bookstore.html:164
 msgid "Inform me button for unavailable products"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:164
+#: templates/bookstore/static_bookstore.html:165
 msgid ""
 "Login/Logout/reset password and manage addresses and user information in the "
 "profile"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:165
+#: templates/bookstore/static_bookstore.html:166
 msgid "Pay the order online or offline"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:166
+#: templates/bookstore/static_bookstore.html:167
 msgid "Add the book request if the product is unavailable in the databse"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:171
+#: templates/bookstore/static_bookstore.html:172
 msgid "A list of all posts in one page"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:172
+#: templates/bookstore/static_bookstore.html:173
 msgid "The ability to filter posts"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:178
+#: templates/bookstore/static_bookstore.html:179
 msgid "Wahit is the price"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:180
+#: templates/bookstore/static_bookstore.html:181
 msgid "The price is based on which features are needed for the project"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:181
+#: templates/bookstore/static_bookstore.html:182
 msgid ""
 "The package could be Full with all features or could be on basic features"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:181
+#: templates/bookstore/static_bookstore.html:182
 msgid "The full customization is also avaialbe"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:190
+#: templates/bookstore/static_bookstore.html:191
 msgid "Modules"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:191
+#: templates/bookstore/static_bookstore.html:192
 msgid "Full"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:192
+#: templates/bookstore/static_bookstore.html:193
 msgid "Basic"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:193
+#: templates/bookstore/static_bookstore.html:194
 msgid "Customized"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:199
+#: templates/bookstore/static_bookstore.html:200
 msgid "sales"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:204
+#: templates/bookstore/static_bookstore.html:205
 msgid "For details please contact me"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:205
+#: templates/bookstore/static_bookstore.html:206
 msgid "Customization details"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:229
+#: templates/bookstore/static_bookstore.html:230
 msgid "Client"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:235
+#: templates/bookstore/static_bookstore.html:236
 msgid "Credit system"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:241
+#: templates/bookstore/static_bookstore.html:242
 msgid "Warehouses"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:253
+#: templates/bookstore/static_bookstore.html:254
 msgid "Refund system"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:271
+#: templates/bookstore/static_bookstore.html:272
 msgid "Ticket system"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:277
+#: templates/bookstore/static_bookstore.html:278
 msgid "Email/SMS comunication system"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:283
+#: templates/bookstore/static_bookstore.html:284
 msgid ""
 "Don't hesitate to contact me for consulting or to know the price details"
 msgstr ""
 
-#: templates/bookstore/static_bookstore.html:284
+#: templates/bookstore/static_bookstore.html:285
 msgid "Prices and other details"
 msgstr ""
 
@@ -707,4 +791,71 @@ msgstr ""
 
 #: templates/home.html:118
 msgid "Now responsible for Farsi translation of Django Girls tutorial"
+msgstr ""
+
+#: templates/quizes/my_quiz.html:13 templates/quizes/my_quiz_proccess.html:13
+#: templates/quizes/show_results.html:13
+msgid "Book quiz"
+msgstr ""
+
+#: templates/quizes/my_quiz.html:16
+msgid "Welcome to book quiz"
+msgstr ""
+
+#: templates/quizes/my_quiz.html:17
+msgid "How much do you know about books"
+msgstr ""
+
+#: templates/quizes/my_quiz.html:19
+msgid "Test yourself"
+msgstr ""
+
+#: templates/quizes/my_quiz_proccess.html:21
+#: templates/quizes/show_results.html:21
+msgid "Question"
+msgstr ""
+
+#: templates/quizes/my_quiz_proccess.html:39
+#: templates/quizes/show_results.html:23
+msgid "Result"
+msgstr ""
+
+#: templates/quizes/question_create.html:19
+msgid "Save"
+msgstr ""
+
+#: templates/quizes/question_list.html:13
+msgid "Question list"
+msgstr ""
+
+#: templates/quizes/question_list.html:16
+msgid "New question"
+msgstr ""
+
+#: templates/quizes/question_list.html:17
+msgid "New Quiz"
+msgstr ""
+
+#: templates/quizes/show_results.html:16
+msgid "Your resluts"
+msgstr ""
+
+#: templates/quizes/show_results.html:22
+msgid "Answer"
+msgstr ""
+
+#: templates/quizes/show_results.html:25
+msgid "The books we should read"
+msgstr ""
+
+#: templates/quizes/show_results.html:38
+msgid "Your answer was"
+msgstr ""
+
+#: templates/quizes/show_results.html:47
+msgid "You may need this book"
+msgstr ""
+
+#: templates/quizes/show_results.html:63
+msgid "Do another quiz"
 msgstr ""

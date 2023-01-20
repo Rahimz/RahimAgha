@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-05 18:44+0330\n"
-"PO-Revision-Date: 2023-01-05 15:14+0000\n"
+"POT-Creation-Date: 2023-01-20 13:39+0330\n"
+"PO-Revision-Date: 2023-01-20 10:13+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -48,11 +48,11 @@ msgstr "تماس‌ها"
 msgid "Thanks a lot, Your message is registered and I will contact you"
 msgstr "متشکرم، پیغام شما ثبت شد. به زودی با شما تماس خواهم گرفت"
 
-#: core/settings/base.py:121
+#: core/settings/base.py:126
 msgid "English"
 msgstr "انگلیسی"
 
-#: core/settings/base.py:122
+#: core/settings/base.py:127
 msgid "Farsi"
 msgstr "فارسی"
 
@@ -60,6 +60,86 @@ msgstr "فارسی"
 #: templates/_navbar.html:16
 msgid "Home"
 msgstr "خانه"
+
+#: quizes/models.py:15
+msgid "created"
+msgstr "ساخته‌شده"
+
+#: quizes/models.py:20
+msgid "modified"
+msgstr "اصلاح‌شده"
+
+#: quizes/models.py:46
+msgid "1"
+msgstr "۱"
+
+#: quizes/models.py:47
+msgid "2"
+msgstr "۲"
+
+#: quizes/models.py:48
+msgid "3"
+msgstr "۳"
+
+#: quizes/models.py:49
+msgid "4"
+msgstr "۴"
+
+#: quizes/models.py:50
+msgid "5"
+msgstr "۵"
+
+#: quizes/models.py:61
+msgid "Correct answer"
+msgstr "پاسخ درست"
+
+#: quizes/models.py:65
+msgid "Wrong answer 1"
+msgstr "پاسخ غلط ۱"
+
+#: quizes/models.py:69
+msgid "Wrong answer 2"
+msgstr "پاسخ غلط ۲"
+
+#: quizes/models.py:73
+msgid "Wrong answer 3"
+msgstr "پاسخ غلط ۳"
+
+#: quizes/models.py:112
+msgid "Easy 1-3-1"
+msgstr "ساده ۱-۳-۱"
+
+#: quizes/models.py:113
+msgid "Medium 1-2-2"
+msgstr "متوسط ۱-۲-۲"
+
+#: quizes/models.py:114
+msgid "Hard 1-1-3"
+msgstr "سخت ۱-۱-۳"
+
+#: quizes/views.py:28 templates/quizes/question_create.html:13
+msgid "Create question"
+msgstr "ساختن سوال"
+
+#: quizes/views.py:47
+msgid "Update question"
+msgstr "به روزرسانی سوال"
+
+#: quizes/views.py:58
+msgid "Questions list"
+msgstr "لیست سوال‌ها"
+
+#: quizes/views.py:99 quizes/views.py:155 quizes/views.py:267
+msgid "My quiz"
+msgstr "آزمون من"
+
+#: quizes/views.py:117
+msgid "Please choose one"
+msgstr "لطفاً یک گزینه را انتخاب کنید"
+
+#: quizes/views.py:213
+msgid "Quiz results"
+msgstr "نتایج آزمون"
 
 #: templates/404.html:6 templates/500.html:6
 msgid "Error"
@@ -115,6 +195,10 @@ msgstr "رزومه"
 msgid "Bookstore"
 msgstr "کتاب‌فروشی"
 
+#: templates/_navbar.html:33
+msgid "Quizes"
+msgstr "آزمون‌ها"
+
 #: templates/_pagination.html:5
 msgid "first"
 msgstr "اولین"
@@ -131,7 +215,7 @@ msgstr "صفحه"
 msgid "of"
 msgstr "از"
 
-#: templates/_pagination.html:12
+#: templates/_pagination.html:12 templates/quizes/my_quiz_proccess.html:37
 msgid "Next"
 msgstr "بعدی"
 
@@ -155,28 +239,28 @@ msgid "It consist of these modules"
 msgstr "این نرم‌افزار شامل ماژول‌های زیر است"
 
 #: templates/bookstore/static_bookstore.html:24
-#: templates/bookstore/static_bookstore.html:57
-#: templates/bookstore/static_bookstore.html:86
+#: templates/bookstore/static_bookstore.html:58
+#: templates/bookstore/static_bookstore.html:87
 msgid "Sales"
 msgstr "فروش‌ها"
 
 #: templates/bookstore/static_bookstore.html:25
-#: templates/bookstore/static_bookstore.html:211
+#: templates/bookstore/static_bookstore.html:212
 msgid "Orders"
 msgstr "سفارش‌ها"
 
 #: templates/bookstore/static_bookstore.html:26
-#: templates/bookstore/static_bookstore.html:217
+#: templates/bookstore/static_bookstore.html:218
 msgid "Purchases"
 msgstr "خریدها"
 
 #: templates/bookstore/static_bookstore.html:27
-#: templates/bookstore/static_bookstore.html:223
+#: templates/bookstore/static_bookstore.html:224
 msgid "Products"
 msgstr "محصولات"
 
 #: templates/bookstore/static_bookstore.html:28
-#: templates/bookstore/static_bookstore.html:259
+#: templates/bookstore/static_bookstore.html:260
 msgid "Online shop"
 msgstr "فروشگاه آنلاین"
 
@@ -185,17 +269,17 @@ msgid "warehouses"
 msgstr "انبارها"
 
 #: templates/bookstore/static_bookstore.html:30
-#: templates/bookstore/static_bookstore.html:63
-#: templates/bookstore/static_bookstore.html:146
-#: templates/bookstore/static_bookstore.html:247
+#: templates/bookstore/static_bookstore.html:64
+#: templates/bookstore/static_bookstore.html:147
+#: templates/bookstore/static_bookstore.html:248
 msgid "Reports"
 msgstr "گزارش‌ها"
 
-#: templates/bookstore/static_bookstore.html:41
+#: templates/bookstore/static_bookstore.html:42
 msgid "Who need it"
 msgstr "به درد چه کسی می‌خورد"
 
-#: templates/bookstore/static_bookstore.html:43
+#: templates/bookstore/static_bookstore.html:44
 msgid ""
 "Everyone who want to manage a bookstore online or offline need a software to"
 " manage sales and purchase and product workflow"
@@ -203,69 +287,69 @@ msgstr ""
 "هرکس که بخواهد یک کتاب‌فروشی آنلاین یا یک فروشگاه کتاب‌فروشی داشته باشد برای"
 " مدیریت فروش وخرید و جریان کالا، به یک نرم افزار مدیریت کتابفروشی نیاز دارد"
 
-#: templates/bookstore/static_bookstore.html:50
+#: templates/bookstore/static_bookstore.html:51
 msgid ""
 "Bookstore solution has a powerfull two-sided staff tabs to manage the system"
 msgstr "راهکار کتاب‌فروشی یک سیستم دسترسی دوطرفه از تب‌ها برای کارمندان دارد"
 
-#: templates/bookstore/static_bookstore.html:53
+#: templates/bookstore/static_bookstore.html:54
 msgid "How it works"
 msgstr "چگونه کار می‌کند"
 
-#: templates/bookstore/static_bookstore.html:55
+#: templates/bookstore/static_bookstore.html:56
 msgid "It has these parts"
 msgstr "شامل این بخش‌ها است"
 
-#: templates/bookstore/static_bookstore.html:58
-#: templates/bookstore/static_bookstore.html:98
+#: templates/bookstore/static_bookstore.html:59
+#: templates/bookstore/static_bookstore.html:99
 msgid "Orders management"
 msgstr "مدیریت سفارش‌ها "
 
-#: templates/bookstore/static_bookstore.html:59
-#: templates/bookstore/static_bookstore.html:107
+#: templates/bookstore/static_bookstore.html:60
+#: templates/bookstore/static_bookstore.html:108
 msgid "Purchases management"
 msgstr "مدیریت خرید‌ها"
 
-#: templates/bookstore/static_bookstore.html:60
-#: templates/bookstore/static_bookstore.html:117
+#: templates/bookstore/static_bookstore.html:61
+#: templates/bookstore/static_bookstore.html:118
 msgid "Products management"
 msgstr "مدیریت محصولات"
 
-#: templates/bookstore/static_bookstore.html:61
-#: templates/bookstore/static_bookstore.html:127
+#: templates/bookstore/static_bookstore.html:62
+#: templates/bookstore/static_bookstore.html:128
 msgid "Warehouses management"
 msgstr "مدیریت انبارها"
 
-#: templates/bookstore/static_bookstore.html:62
-#: templates/bookstore/static_bookstore.html:136
+#: templates/bookstore/static_bookstore.html:63
+#: templates/bookstore/static_bookstore.html:137
 msgid "Clients"
 msgstr "مشتریان"
 
-#: templates/bookstore/static_bookstore.html:64
-#: templates/bookstore/static_bookstore.html:69
-#: templates/bookstore/static_bookstore.html:159
+#: templates/bookstore/static_bookstore.html:65
+#: templates/bookstore/static_bookstore.html:70
+#: templates/bookstore/static_bookstore.html:160
 msgid "Online bookshop"
 msgstr "فروشگاه آنلاین"
 
-#: templates/bookstore/static_bookstore.html:65
-#: templates/bookstore/static_bookstore.html:169
-#: templates/bookstore/static_bookstore.html:265
+#: templates/bookstore/static_bookstore.html:66
+#: templates/bookstore/static_bookstore.html:170
+#: templates/bookstore/static_bookstore.html:266
 msgid "Weblog"
 msgstr "وبلاگ"
 
-#: templates/bookstore/static_bookstore.html:67
+#: templates/bookstore/static_bookstore.html:68
 msgid "And also"
 msgstr "و هنمچنین"
 
-#: templates/bookstore/static_bookstore.html:70
+#: templates/bookstore/static_bookstore.html:71
 msgid "Blog"
 msgstr "وبلاگ"
 
-#: templates/bookstore/static_bookstore.html:78
+#: templates/bookstore/static_bookstore.html:79
 msgid "What is the main features"
 msgstr "مهم‌ترین ویژگی‌های آن چیست"
 
-#: templates/bookstore/static_bookstore.html:81
+#: templates/bookstore/static_bookstore.html:82
 msgid ""
 "There are a lot of features in this software in comparison with other "
 "bookstre management software"
@@ -273,25 +357,25 @@ msgstr ""
 "ویژگی‌های زیادی در این نرم‌افزار در مقایسه با سایر سیستم‌های مدیریت "
 "کتاب‌فروشی وجود دارد"
 
-#: templates/bookstore/static_bookstore.html:83
+#: templates/bookstore/static_bookstore.html:84
 msgid "These are some of the main features"
 msgstr "این موارد برخی از مهم‌ترین این ویژگی‌ها هستند"
 
-#: templates/bookstore/static_bookstore.html:88
+#: templates/bookstore/static_bookstore.html:89
 msgid "Staff can add draft invoice"
 msgstr "پرسنل می‌توانند فاکتور پیش‌نویس ایجاد کنند"
 
-#: templates/bookstore/static_bookstore.html:89
+#: templates/bookstore/static_bookstore.html:90
 msgid "Staff can add make a payment link"
 msgstr ""
 "پرسنل می‌توانند برای مشتری لینک پرداخت بر اساس درگاه پرداخت ایجاد کنند"
 
-#: templates/bookstore/static_bookstore.html:90
+#: templates/bookstore/static_bookstore.html:91
 msgid "there are 7 sales channels"
 msgstr ""
 "برای ثبت فروش یک کالا ۷ کانال مختلف مانند تلگرام و اینستاگرام وجود دارد"
 
-#: templates/bookstore/static_bookstore.html:91
+#: templates/bookstore/static_bookstore.html:92
 msgid ""
 "Staff can control both the online and in bookstore invoices at the same "
 "place"
@@ -299,37 +383,37 @@ msgstr ""
 "کارمندان می‌توانند فروش‌های آنلاین (ثبت سفارش توسط مشتری یا توسط پرسنل) و "
 "فروش‌های حضوری را در یک پنل یکسان مدیریت کنند"
 
-#: templates/bookstore/static_bookstore.html:92
+#: templates/bookstore/static_bookstore.html:93
 msgid "invoice could be pay by cash, bank gateway or by clients credit"
 msgstr ""
 "فاکتور می‌تواند به صورت آنلاین از طریق درگاه بانک، از طریق کارت به کارت یا "
 "نقدی پرداخت شود"
 
-#: templates/bookstore/static_bookstore.html:93
+#: templates/bookstore/static_bookstore.html:94
 msgid "shipping method could be change when the invoice is approved"
 msgstr "روش ارسال سفارش هنگام تایید فاکتور می‌تواند تعیین شود "
 
-#: templates/bookstore/static_bookstore.html:94
+#: templates/bookstore/static_bookstore.html:95
 msgid "Other prosucts than books also could be added to invoice"
 msgstr "سایر محصولات به غیر از کتاب، قابل فروش از طریق نرم‌افزار هستند"
 
-#: templates/bookstore/static_bookstore.html:95
+#: templates/bookstore/static_bookstore.html:96
 msgid "Print formatted invoice on Thermo printers or A4 size"
 msgstr ""
 "فاکتور فرمت شده می‌تواند توسط پرینترهای حرارتی، یا پرینتر معمولی چاپ شود"
 
-#: templates/bookstore/static_bookstore.html:100
+#: templates/bookstore/static_bookstore.html:101
 msgid "Order is categorized nased on their channels"
 msgstr "سفارش‌ها بر اساس کانال فروش قابل تفکیک هستند"
 
-#: templates/bookstore/static_bookstore.html:101
+#: templates/bookstore/static_bookstore.html:102
 msgid ""
 "Orders have a shipping workflow with bike delivery, post or pickup from "
 "bookstore"
 msgstr ""
 "سفارش‌ها یک جریان کار ارسال سفارش به وسیله پیک، پست یا دریافت حضوری دارند"
 
-#: templates/bookstore/static_bookstore.html:102
+#: templates/bookstore/static_bookstore.html:103
 msgid ""
 "There is a workflow for collecting onlie orders from the bookstore and make "
 "records in the database"
@@ -337,7 +421,7 @@ msgstr ""
 "یک چریان کار برای جمع‌آوری روزمره سفارش‌ها از فروشگاه تعریف شده است که "
 "فرآیند در دیتابیس نیز ثبت می‌شود"
 
-#: templates/bookstore/static_bookstore.html:103
+#: templates/bookstore/static_bookstore.html:104
 msgid ""
 "There is a powerfull search in orders based on product name, client, channel"
 " and order number"
@@ -345,27 +429,27 @@ msgstr ""
 "یک سیستم جستجوی قدرتمند در بخش سفارش ها بر اساس شماره سفارش، نام مشتری، نام "
 "کالا یا کانال فروش وجود دارد"
 
-#: templates/bookstore/static_bookstore.html:104
+#: templates/bookstore/static_bookstore.html:105
 msgid "Orders can be changed to draft to change the details"
 msgstr "سفارش‌ها به دو روش مختلف می‌توانند به حالت پیش‌نویس برگردند "
 
-#: templates/bookstore/static_bookstore.html:109
+#: templates/bookstore/static_bookstore.html:110
 msgid "Purchases are added to database after approve proccess"
 msgstr ""
 "موجودی کالای خریداری شده پس از تایید فاکتور خرید، به موجودی دیتابیس اضافه "
 "می‌شود "
 
-#: templates/bookstore/static_bookstore.html:110
+#: templates/bookstore/static_bookstore.html:111
 msgid ""
 "The purchase proccess could manage the 7 variations of prices that each "
 "single book could have"
 msgstr "سیستم خرید می‌تواند ۷ قیمت مختلف برای یک کالای یکسان را مدیریت کند "
 
-#: templates/bookstore/static_bookstore.html:111
+#: templates/bookstore/static_bookstore.html:112
 msgid "There are a list of vendors to register a purchase"
 msgstr "تامین‌کنندگان مختلف برای خرید کالا قابل ایجاد و مدیریت هستند"
 
-#: templates/bookstore/static_bookstore.html:119
+#: templates/bookstore/static_bookstore.html:120
 msgid ""
 "Every single book have more than 50 different data details like as ISBN, "
 "author, page number, wieght, published year and more"
@@ -373,11 +457,11 @@ msgstr ""
 "هر محصول دارای بیش از ۵۰ فیلد اطلاعاتی مختلف مانند شابک، نویسنده، دسته بندی،"
 " ناشر اول، ناشر دوم، سال نشر، رده سنی و ... است"
 
-#: templates/bookstore/static_bookstore.html:120
+#: templates/bookstore/static_bookstore.html:121
 msgid "Products could have more than 10 pictures"
 msgstr "هر محصول می‌تواند بیش از ۱۰ عکس داشته باشد"
 
-#: templates/bookstore/static_bookstore.html:121
+#: templates/bookstore/static_bookstore.html:122
 msgid ""
 "Each product has a Main price and stock and 5 other price and stock for New "
 "variation and a price and stock for Used variation"
@@ -385,186 +469,186 @@ msgstr ""
 "هر محصول بیش از ۵ تنوع مختلف قیمت-موجودی برای کتاب‌های نو و یک تنوع قیمت-"
 "موجودی برای کتاب‌های دست‌دوم دارد"
 
-#: templates/bookstore/static_bookstore.html:122
+#: templates/bookstore/static_bookstore.html:123
 msgid "the history of any changes are kept for products"
 msgstr "سابقه هر تغییری برای یک محصول نگهداری می‌شود "
 
-#: templates/bookstore/static_bookstore.html:123
+#: templates/bookstore/static_bookstore.html:124
 msgid "Product could be placed in Product List to use for some purposes"
 msgstr "محصولات برای استفاده‌های مختلفی می‌توانند در لیست‌ها قرار بگیرند"
 
-#: templates/bookstore/static_bookstore.html:129
+#: templates/bookstore/static_bookstore.html:130
 msgid "Product workflow which shows any actions that happened on a book"
 msgstr "جریان گردش کالا می‌تواند هر تراکنش مربوط به کتاب را نشان دهد"
 
-#: templates/bookstore/static_bookstore.html:130
+#: templates/bookstore/static_bookstore.html:131
 msgid "Daily report of sold products and current stock of their variation"
 msgstr ""
 "گزارش روزانه کتاب‌های فروخته شده و موجودی فعلی آنها در دیتابیس به صورت "
 "روزانه قابل تهیه است"
 
-#: templates/bookstore/static_bookstore.html:131
+#: templates/bookstore/static_bookstore.html:132
 msgid "Inventory review proccess"
 msgstr "جریان کار انبارگردانی"
 
-#: templates/bookstore/static_bookstore.html:132
+#: templates/bookstore/static_bookstore.html:133
 msgid "Finding any contradictions between shelves and database"
 msgstr "پیداکردن مغایرت بین موجودی قفسه و موجودی دیتابیس بر اساس تنوع کتاب"
 
-#: templates/bookstore/static_bookstore.html:133
+#: templates/bookstore/static_bookstore.html:134
 msgid "Refund workflow both from client or to the vendor"
 msgstr "امکان مرجوع کردن کالا توسط مشتری یا به تامین‌کننده"
 
-#: templates/bookstore/static_bookstore.html:138
+#: templates/bookstore/static_bookstore.html:139
 msgid "Add and remove clients"
 msgstr "اضافه و حذف کردن مشتری"
 
-#: templates/bookstore/static_bookstore.html:139
+#: templates/bookstore/static_bookstore.html:140
 msgid "See the history of clients orders"
 msgstr "دیدن سایقه خرید‌های مشتری و لیست مشتریان با بیشترین خرید"
 
-#: templates/bookstore/static_bookstore.html:140
+#: templates/bookstore/static_bookstore.html:141
 msgid "Manage clients credit"
 msgstr "مدیریت اعتبار مشتریان"
 
-#: templates/bookstore/static_bookstore.html:144
+#: templates/bookstore/static_bookstore.html:145
 msgid "A powerfull filtering system for reports"
 msgstr "سیستم قدرتمند فیلتر کردن گزارش‌ها "
 
-#: templates/bookstore/static_bookstore.html:148
+#: templates/bookstore/static_bookstore.html:149
 msgid "There are a lot of slaes and purchase reports"
 msgstr "گزارش‌های متنوع از خریدها و فروش‌ها "
 
-#: templates/bookstore/static_bookstore.html:149
+#: templates/bookstore/static_bookstore.html:150
 msgid "Sales by day"
 msgstr "گزارش فروش بر اساس روز"
 
-#: templates/bookstore/static_bookstore.html:150
+#: templates/bookstore/static_bookstore.html:151
 msgid "All orders"
 msgstr "گزارش تمام فروش‌ها "
 
-#: templates/bookstore/static_bookstore.html:151
+#: templates/bookstore/static_bookstore.html:152
 msgid "Sales by week/channel/variation"
 msgstr "فروش بر اساس هفته/کانال/تنوع"
 
-#: templates/bookstore/static_bookstore.html:152
+#: templates/bookstore/static_bookstore.html:153
 msgid "Export reports to excel"
 msgstr "خروجی گرفتن به صورت فایل اکسل"
 
-#: templates/bookstore/static_bookstore.html:161
+#: templates/bookstore/static_bookstore.html:162
 msgid "Search and filter products"
 msgstr "جستجو و فیلتر کردن محصولات"
 
-#: templates/bookstore/static_bookstore.html:162
+#: templates/bookstore/static_bookstore.html:163
 msgid "Add them to the cart"
 msgstr "اضافه کردن محصول به سبد خرید"
 
-#: templates/bookstore/static_bookstore.html:163
+#: templates/bookstore/static_bookstore.html:164
 msgid "Inform me button for unavailable products"
 msgstr ""
 "کلید \"موجود شد به من اطلاع بده\" به همراه سیستم اطلاع‌رسانی ایمیلی برای "
 "محصولات"
 
-#: templates/bookstore/static_bookstore.html:164
+#: templates/bookstore/static_bookstore.html:165
 msgid ""
 "Login/Logout/reset password and manage addresses and user information in the"
 " profile"
 msgstr ""
 "ورود/خروج/ریست پسورد به همراه امکان تغییر اطلاعات کاربری و مدیریت آدرس‌ها"
 
-#: templates/bookstore/static_bookstore.html:165
+#: templates/bookstore/static_bookstore.html:166
 msgid "Pay the order online or offline"
 msgstr "پرداخت سفارش به صورت آنلاین یا آفلاین"
 
-#: templates/bookstore/static_bookstore.html:166
+#: templates/bookstore/static_bookstore.html:167
 msgid "Add the book request if the product is unavailable in the databse"
 msgstr "ثبت درخواست برای خرید کالا، چنانچه کتابی در فروشگاه موجود نباشد"
 
-#: templates/bookstore/static_bookstore.html:171
+#: templates/bookstore/static_bookstore.html:172
 msgid "A list of all posts in one page"
 msgstr "لیستی از تمام پست‌ها در یک صفحه"
 
-#: templates/bookstore/static_bookstore.html:172
+#: templates/bookstore/static_bookstore.html:173
 msgid "The ability to filter posts"
 msgstr "امکان فیلتر کردن پست‌ها "
 
-#: templates/bookstore/static_bookstore.html:178
+#: templates/bookstore/static_bookstore.html:179
 msgid "Wahit is the price"
 msgstr "قیمت نرم‌افزار چقدر است"
 
-#: templates/bookstore/static_bookstore.html:180
+#: templates/bookstore/static_bookstore.html:181
 msgid "The price is based on which features are needed for the project"
 msgstr "قیمت بر اساس ویژگی‌هایی است که شما برای پروژه خود نیاز داشته باشید"
 
-#: templates/bookstore/static_bookstore.html:181
+#: templates/bookstore/static_bookstore.html:182
 msgid ""
 "The package could be Full with all features or could be on basic features"
 msgstr ""
 "یک بسته می‌تواند به صورت کامل با تمام ویژگی‌ها باشد یا فقط ویژگی‌های پایه را"
 " داشته باشد"
 
-#: templates/bookstore/static_bookstore.html:181
+#: templates/bookstore/static_bookstore.html:182
 msgid "The full customization is also avaialbe"
 msgstr "امکان سفارشی سازی تمام بخش‌ها نیز وجود دارد"
 
-#: templates/bookstore/static_bookstore.html:190
+#: templates/bookstore/static_bookstore.html:191
 msgid "Modules"
 msgstr "ماژول‌ها "
 
-#: templates/bookstore/static_bookstore.html:191
+#: templates/bookstore/static_bookstore.html:192
 msgid "Full"
 msgstr "کامل"
 
-#: templates/bookstore/static_bookstore.html:192
+#: templates/bookstore/static_bookstore.html:193
 msgid "Basic"
 msgstr "پایه"
 
-#: templates/bookstore/static_bookstore.html:193
+#: templates/bookstore/static_bookstore.html:194
 msgid "Customized"
 msgstr "سفارشی‌سازی‌ شده"
 
-#: templates/bookstore/static_bookstore.html:199
+#: templates/bookstore/static_bookstore.html:200
 msgid "sales"
 msgstr "فروش‌ها "
 
-#: templates/bookstore/static_bookstore.html:204
+#: templates/bookstore/static_bookstore.html:205
 msgid "For details please contact me"
 msgstr "برای جزییات بیشتر لطفا با من تماس بگیرید"
 
-#: templates/bookstore/static_bookstore.html:205
+#: templates/bookstore/static_bookstore.html:206
 msgid "Customization details"
 msgstr "جزییات سفارشی‌سازی"
 
-#: templates/bookstore/static_bookstore.html:229
+#: templates/bookstore/static_bookstore.html:230
 msgid "Client"
 msgstr "مشتریان"
 
-#: templates/bookstore/static_bookstore.html:235
+#: templates/bookstore/static_bookstore.html:236
 msgid "Credit system"
 msgstr "سیستم اعتباری"
 
-#: templates/bookstore/static_bookstore.html:241
+#: templates/bookstore/static_bookstore.html:242
 msgid "Warehouses"
 msgstr "انبارها"
 
-#: templates/bookstore/static_bookstore.html:253
+#: templates/bookstore/static_bookstore.html:254
 msgid "Refund system"
 msgstr "سیستم مرجوعی"
 
-#: templates/bookstore/static_bookstore.html:271
+#: templates/bookstore/static_bookstore.html:272
 msgid "Ticket system"
 msgstr "سیستم تیکت‌‌ها"
 
-#: templates/bookstore/static_bookstore.html:277
+#: templates/bookstore/static_bookstore.html:278
 msgid "Email/SMS comunication system"
 msgstr "سیستم ارتباط ایمیل/پیامک"
 
-#: templates/bookstore/static_bookstore.html:283
+#: templates/bookstore/static_bookstore.html:284
 msgid ""
 "Don't hesitate to contact me for consulting or to know the price details"
 msgstr "برای دریافت جزییات بیشتر یا مشورت، می‌توانید با من تماس بگیرید"
 
-#: templates/bookstore/static_bookstore.html:284
+#: templates/bookstore/static_bookstore.html:285
 msgid "Prices and other details"
 msgstr "قیمت‌ها و سایر جزییات"
 
@@ -767,3 +851,72 @@ msgstr "من مسول برگزاری اولین کارگاه جنگو گرلز �
 #: templates/home.html:118
 msgid "Now responsible for Farsi translation of Django Girls tutorial"
 msgstr "هم‌اکنون مسول ترجمه بخش فارسی دوره آموزشی جنگو گرلز هستم"
+
+#: templates/quizes/my_quiz.html:13 templates/quizes/my_quiz_proccess.html:13
+#: templates/quizes/show_results.html:13
+msgid "Book quiz"
+msgstr "آزمون کتاب"
+
+#: templates/quizes/my_quiz.html:16
+msgid "Welcome to book quiz"
+msgstr "به آزمون کتاب خوش آمدید"
+
+#: templates/quizes/my_quiz.html:17
+msgid "How much do you know about books"
+msgstr "چقدر در مورد کتاب‌ها می‌دانید"
+
+#: templates/quizes/my_quiz.html:19
+msgid "Test yourself"
+msgstr "خودتان را بسنجید"
+
+#: templates/quizes/my_quiz_proccess.html:21
+#: templates/quizes/show_results.html:21
+#| msgid "Description"
+msgid "Question"
+msgstr "سوال"
+
+#: templates/quizes/my_quiz_proccess.html:39
+#: templates/quizes/show_results.html:23
+#| msgid "Resume"
+msgid "Result"
+msgstr "نتیجه"
+
+#: templates/quizes/question_create.html:19
+msgid "Save"
+msgstr "ذخیره"
+
+#: templates/quizes/question_list.html:13
+msgid "Question list"
+msgstr "لیست سوال‌ها"
+
+#: templates/quizes/question_list.html:16
+msgid "New question"
+msgstr "سوال جدید"
+
+#: templates/quizes/question_list.html:17
+msgid "New Quiz"
+msgstr "آزمون جدید"
+
+#: templates/quizes/show_results.html:16
+msgid "Your resluts"
+msgstr "نتایج شما"
+
+#: templates/quizes/show_results.html:22
+msgid "Answer"
+msgstr "پاسخ"
+
+#: templates/quizes/show_results.html:25
+msgid "The books we should read"
+msgstr "کتاب‌هایی که بهتر است بخوانیم"
+
+#: templates/quizes/show_results.html:38
+msgid "Your answer was"
+msgstr "پاسخ شما"
+
+#: templates/quizes/show_results.html:47
+msgid "You may need this book"
+msgstr "شاید این‌کتاب را لازم داشته باشید "
+
+#: templates/quizes/show_results.html:63
+msgid "Do another quiz"
+msgstr "یک آزمون جدید"
