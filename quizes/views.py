@@ -62,7 +62,14 @@ class QuestionListView(ListView):
 def MyQuizView(request, pk=None):
     # print(request.GET.get('start'), type(request.GET.get('start')))
     quiz = None
+
+    #  set the quiz difficulty
     quiz_difficulty = '1'
+    if request.GET.get('diff') == '2':
+        quiz_difficulty = '2'
+    elif request.GET.get('diff') == '3':
+        quiz_difficulty = '3'
+
     # if request.GET.get('start') == 'True' and request.session.get('quiz_completed', True):
     if request.GET.get('start') == 'True':
         questions_id = SelectQuestion(quiz_difficulty)

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-20 13:39+0330\n"
-"PO-Revision-Date: 2023-01-20 10:13+0000\n"
+"POT-Creation-Date: 2023-01-20 14:14+0330\n"
+"PO-Revision-Date: 2023-01-20 10:44+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -129,15 +129,15 @@ msgstr "به روزرسانی سوال"
 msgid "Questions list"
 msgstr "لیست سوال‌ها"
 
-#: quizes/views.py:99 quizes/views.py:155 quizes/views.py:267
+#: quizes/views.py:123 quizes/views.py:179 quizes/views.py:282
 msgid "My quiz"
 msgstr "آزمون من"
 
-#: quizes/views.py:117
+#: quizes/views.py:141
 msgid "Please choose one"
 msgstr "لطفاً یک گزینه را انتخاب کنید"
 
-#: quizes/views.py:213
+#: quizes/views.py:229
 msgid "Quiz results"
 msgstr "نتایج آزمون"
 
@@ -862,8 +862,8 @@ msgid "Welcome to book quiz"
 msgstr "به آزمون کتاب خوش آمدید"
 
 #: templates/quizes/my_quiz.html:17
-msgid "How much do you know about books"
-msgstr "چقدر در مورد کتاب‌ها می‌دانید"
+msgid "How much do you know about books?"
+msgstr "چقدر در مورد کتاب‌ها می‌دانید؟"
 
 #: templates/quizes/my_quiz.html:19
 msgid "Test yourself"
@@ -871,13 +871,11 @@ msgstr "خودتان را بسنجید"
 
 #: templates/quizes/my_quiz_proccess.html:21
 #: templates/quizes/show_results.html:21
-#| msgid "Description"
 msgid "Question"
 msgstr "سوال"
 
 #: templates/quizes/my_quiz_proccess.html:39
 #: templates/quizes/show_results.html:23
-#| msgid "Resume"
 msgid "Result"
 msgstr "نتیجه"
 
@@ -920,3 +918,12 @@ msgstr "شاید این‌کتاب را لازم داشته باشید "
 #: templates/quizes/show_results.html:63
 msgid "Do another quiz"
 msgstr "یک آزمون جدید"
+
+#: templates/quizes/show_results.html:64
+msgid "Do a little harder quiz"
+msgstr "یک آزمون کمی سخت تر"
+
+#: templates/quizes/show_results.html:65
+#| msgid "Do a hard quiz quiz"
+msgid "Do a hard quiz"
+msgstr "یک آزمون خیلی سخت"

@@ -61,6 +61,8 @@
                 </tfoot>
             </table> 
             <a href="{% url 'quizes:my_quiz' %}?start=True" class="btn btn-warning">{% trans "Do another quiz" %}</a>
+            <a href="{% url 'quizes:my_quiz' %}?start=True&diff=2" class="btn btn-warning ms-2">{% trans "Do a little harder quiz" %}</a>
+            <a href="{% url 'quizes:my_quiz' %}?start=True&diff=3" class="btn btn-danger ms-2">{% trans "Do a hard quiz" %}</a>
 
         </div>
     </div>

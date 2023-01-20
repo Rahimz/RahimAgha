@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-20 13:39+0330\n"
+"POT-Creation-Date: 2023-01-20 14:14+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,15 +128,15 @@ msgstr ""
 msgid "Questions list"
 msgstr ""
 
-#: quizes/views.py:99 quizes/views.py:155 quizes/views.py:267
+#: quizes/views.py:123 quizes/views.py:179 quizes/views.py:282
 msgid "My quiz"
 msgstr ""
 
-#: quizes/views.py:117
+#: quizes/views.py:141
 msgid "Please choose one"
 msgstr ""
 
-#: quizes/views.py:213
+#: quizes/views.py:229
 msgid "Quiz results"
 msgstr ""
 
@@ -803,7 +803,7 @@ msgid "Welcome to book quiz"
 msgstr ""
 
 #: templates/quizes/my_quiz.html:17
-msgid "How much do you know about books"
+msgid "How much do you know about books?"
 msgstr ""
 
 #: templates/quizes/my_quiz.html:19
@@ -858,4 +858,12 @@ msgstr ""
 
 #: templates/quizes/show_results.html:63
 msgid "Do another quiz"
+msgstr ""
+
+#: templates/quizes/show_results.html:64
+msgid "Do a little harder quiz"
+msgstr ""
+
+#: templates/quizes/show_results.html:65
+msgid "Do a hard quiz"
 msgstr ""
