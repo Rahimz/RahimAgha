@@ -81,10 +81,12 @@ def MyQuizView(request, pk=None):
             if not old_quiz.completed:
                 return redirect('quizes:my_quiz_proccess', old_quiz.pk, 1)
 
-        
+        # create quiz
+        ip = request.META.get('HTTP_X_FORWARDED_FOR', request.META.get('REMOTE_ADDR', '')).split(',')[0].strip()
         quiz = Quiz.objects.create(
             difficulty=quiz_difficulty,
             questions_id = questions_id,
+            ip = ip,
         )
         quiz.questions.add(*questions)
 

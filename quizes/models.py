@@ -150,6 +150,10 @@ class Quiz(TimeStampedModel):
     final_result = models.PositiveIntegerField(
         default=0
     )
+    ip = models.GenericIPAddressField(
+        null=True, 
+        blank=True
+    )
     class Meta:
         ordering = ('-created',)
     # we need time of quiz to be set
