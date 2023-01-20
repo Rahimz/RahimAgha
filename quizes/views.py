@@ -68,12 +68,27 @@ def MyQuizView(request, pk=None):
         questions_id = SelectQuestion(quiz_difficulty)
         questions = Question.objects.filter(id__in=questions_id)
         
+        # if any old and unfinished quiz be in the session it should be finished first
+        old_quiz_id = request.session.get('quiz_id', None)
+        old_quiz = None
+        if old_quiz_id:
+            try:
+                old_quiz = Quiz.objects.get(pk=old_quiz_id)
+            except:
+                pass
+        
+        if old_quiz:
+            if not old_quiz.completed:
+                return redirect('quizes:my_quiz_proccess', old_quiz.pk, 1)
+
+        
         quiz = Quiz.objects.create(
             difficulty=quiz_difficulty,
             questions_id = questions_id,
         )
         quiz.questions.add(*questions)
 
+        request.session['quiz_id'] = str(quiz.pk)
         # print(request.META.get('HTTP_X_FORWARDED_FOR', request.META.get('REMOTE_ADDR', '')).split(',')[0].strip())
         # make QuizResponse for every single question
         temp_step = 1
@@ -168,7 +183,7 @@ def QuizResultView(request, pk):
     responses = quiz.responses.all().order_by('step')
 
     responses_dict = {}
-    responses_list = []
+
     sum = 0
     for response in responses:
         src = None
@@ -189,22 +204,14 @@ def QuizResultView(request, pk):
             'correct': response.correct_answer, 
             'user_response': response.user_response, 
         }
-        # responses_list.append(
-        #     {
-        #     'question': response.question.description,
-        #     'result': response.result,
-        #     'book_link': response.question.link,
-        #     'src': src, 
-        #     'correct': response.correct_answer, 
-        #     'user_response': response.user_response, 
-        # })
+  
         if response.result:
             sum += 1
     
     quiz.final_result = sum 
     quiz.completed = True
     quiz.save(update_fields=['final_result', 'completed'])
-    responses_list.reverse()
+    request.session['quiz_id'] = None
     return render(
         request,
         'quizes/show_results.html',
@@ -213,7 +220,6 @@ def QuizResultView(request, pk):
             'page_title': _('Quiz results'),
             'responses': responses,
             'responses_dict': responses_dict,
-            # 'responses_list': responses_list,
             'sum': sum, 
         }
     )
