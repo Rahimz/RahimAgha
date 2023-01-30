@@ -20,7 +20,9 @@ class QuestionCreateView(CreateView):
         'description', 'correct', 'wrong_1', 'wrong_2', 'wrong_3',
         'difficulty', 'link', 'published' 
     ]
-    success_url = '/quizes/questions/list/'
+    # success_url = '/quizes/questions/list/'
+    def get_success_url(self):
+        return reverse ('quizes:questions_list')
         
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
