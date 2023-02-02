@@ -32,29 +32,37 @@
                     <tr>
                         <td>{{ respon.question }}</td>
                         <td>{{ respon.correct }}</td>
-                        <td><span>{% if respon.result %}1{% else %}0{% endif %}</span></td>
-                        {% if not respon.result %}
                         <td>
+                            {% if respon.result %}
+                            <span class="text-success bold fs-4">1</span>
+                            {% else %}
+                            <span class="text-danger bold fs-4">0</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                        {% if not respon.result %}
                             {% trans "Your answer was" %}: 
                             <span class="fw-bold text-danger">{{respon.user_response}}</span>
                             <br>
+                            <br>
                             {% if respon.book_link %}
+                            {% if respon.src %}
+                            <img src="{{ respon.src }}" class="rounded" alt="" width="100px" height="auto">               
+                            {% endif %}
+                            <br>
+                            <br>
                             <a href="{{ respon.book_link }}" target="_blank" class="btn-special">
-                                {% if respon.src %}
-                                    <img src="{{ respon.src }}" class="rounded" alt="" width="100px" height="auto">               
-                                {% endif %}
-                                <br>
                                 <span>{% trans "You may need this book" %} &#8599</span>
                             </a>
                             {% endif %}
+                            {% endif %}
                         </td>
-                      {% endif %}
                     </tr>
                     {% endfor %}
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="2"></td>
+                        <td colspan="2">{% trans "Your result" %}</td>
                         <td class="lead text-warning">{{ sum }}</td>
                         <td></td>
                     </tr>
