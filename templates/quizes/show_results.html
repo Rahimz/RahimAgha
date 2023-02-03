@@ -39,11 +39,13 @@
                             <span class="text-danger bold fs-4">0</span>
                             {% endif %}
                         </td>
-                        <td>
+                        <td >
                         {% if not respon.result %}
-                            {% trans "Your answer was" %}: 
-                            <span class="fw-bold text-danger">{{respon.user_response}}</span>
-                            <br>
+                            <div class="my-1">
+
+                                {% trans "Your answer was" %}: 
+                                <span class="fw-bold text-danger">{{respon.user_response}}</span>
+                                <br>
                             <br>
                             {% if respon.book_link %}
                             {% if respon.src %}
@@ -55,6 +57,7 @@
                                 <span>{% trans "You may need this book" %} &#8599</span>
                             </a>
                             {% endif %}
+                            </div>
                             {% endif %}
                         </td>
                     </tr>

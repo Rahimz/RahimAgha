@@ -10,7 +10,7 @@ class QuestionAdmin(admin.ModelAdmin):
 
 @admin.register(Quiz)
 class QuizAdmin(admin.ModelAdmin):
-    list_display = ['uuid', 'difficulty', 'result', 'completed']
+    list_display = ['uuid', 'difficulty', 'final_result', 'completed', 'ip', 'created']
 
 
 @admin.register(QuizResponse)
