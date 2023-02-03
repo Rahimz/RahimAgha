@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-02 20:00+0330\n"
+"POT-Creation-Date: 2023-02-04 00:08+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -697,7 +697,7 @@ msgid ""
 msgstr ""
 
 #: templates/home.html:52
-msgid "See more details on Bookstore solution"
+msgid "More details"
 msgstr ""
 
 #: templates/home.html:68
@@ -864,26 +864,26 @@ msgstr ""
 msgid "The books we should read"
 msgstr ""
 
-#: templates/quizes/show_results.html:44
+#: templates/quizes/show_results.html:46
 msgid "Your answer was"
 msgstr ""
 
-#: templates/quizes/show_results.html:55
+#: templates/quizes/show_results.html:57
 msgid "You may need this book"
 msgstr ""
 
-#: templates/quizes/show_results.html:65
+#: templates/quizes/show_results.html:68
 msgid "Your result"
 msgstr ""
 
-#: templates/quizes/show_results.html:71
+#: templates/quizes/show_results.html:74
 msgid "Do another quiz"
 msgstr ""
 
-#: templates/quizes/show_results.html:72
+#: templates/quizes/show_results.html:75
 msgid "Do a little harder quiz"
 msgstr ""
 
-#: templates/quizes/show_results.html:73
+#: templates/quizes/show_results.html:76
 msgid "Do a hard quiz"
 msgstr ""

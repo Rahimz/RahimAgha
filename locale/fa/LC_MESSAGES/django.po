@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-02 20:00+0330\n"
-"PO-Revision-Date: 2023-02-02 16:30+0000\n"
+"POT-Creation-Date: 2023-02-04 00:08+0330\n"
+"PO-Revision-Date: 2023-02-03 20:39+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -740,8 +740,8 @@ msgid ""
 msgstr "انواع دسترسی‌ها برای کارمندان در سطوح مختلف تعریف شده است"
 
 #: templates/home.html:52
-msgid "See more details on Bookstore solution"
-msgstr "جزییات بیشتر در مورد راهکار کتاب‌فروشی"
+msgid "More details"
+msgstr "جزییات بیشتر"
 
 #: templates/home.html:68
 msgid ""
@@ -924,27 +924,29 @@ msgstr "پاسخ"
 msgid "The books we should read"
 msgstr "کتاب‌هایی که بهتر است بخوانیم"
 
-#: templates/quizes/show_results.html:44
+#: templates/quizes/show_results.html:46
 msgid "Your answer was"
 msgstr "پاسخ شما"
 
-#: templates/quizes/show_results.html:55
+#: templates/quizes/show_results.html:57
 msgid "You may need this book"
 msgstr "شاید این‌کتاب را لازم داشته باشید "
 
-#: templates/quizes/show_results.html:65
-#| msgid "Your resluts"
+#: templates/quizes/show_results.html:68
 msgid "Your result"
 msgstr "نتیجه شما"
 
-#: templates/quizes/show_results.html:71
+#: templates/quizes/show_results.html:74
 msgid "Do another quiz"
 msgstr "یک آزمون جدید"
 
-#: templates/quizes/show_results.html:72
+#: templates/quizes/show_results.html:75
 msgid "Do a little harder quiz"
 msgstr "یک آزمون کمی سخت تر"
 
-#: templates/quizes/show_results.html:73
+#: templates/quizes/show_results.html:76
 msgid "Do a hard quiz"
 msgstr "یک آزمون خیلی سخت"
+
+#~ msgid "See more details on Bookstore solution"
+#~ msgstr "جزییات بیشتر در مورد راهکار کتاب‌فروشی"
