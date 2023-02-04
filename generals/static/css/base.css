@@ -80,3 +80,21 @@ form label {
         height: 15rem;
     }
 }
+
+.diff-meter {
+    width: 200px;
+    height: 20px;
+    padding: 0px 5px;
+    background-image: linear-gradient(to right, darkred , lightgreen);
+    display: flex;
+}
+.hard-text {
+    margin-right: 115px;
+}
+.diff-marker{
+    background-color: whitesmoke;
+    height: 20px;
+    width: 4px;
+    display: inline;
+    position: relative;
+}

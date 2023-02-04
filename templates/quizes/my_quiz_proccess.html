@@ -17,8 +17,31 @@
             <p class="lead text-danger bg-light">{{ required_msg }}</p>
               
             {% endif %}
-            {% for q in questions %}{% endfor %}
-            <p class="lead">{% trans "Question" %}: {{ step }}</p>
+            <div class="d-flex">
+                <p class="lead">{% trans "Question" %}: {{ step }}</p>
+                <div class="ms-3 fs-6 diff-meter rounded">
+                    <span class="rounded">ساده</span>
+                    <span class="diff-marker" 
+                    {% if question.difficulty == 1 %}
+                    style="right: 5px;"                      
+                    {% elif question.difficulty == 2 %}
+                    style="right: 30px;"                      
+                    {% elif question.difficulty == 3 %}
+                    style="right: 60px;"                      
+                    {% elif question.difficulty == 4 %}
+                    style="right: 90px;"                      
+                    {% elif question.difficulty == 5 %}
+                    style="right: 112px;"                      
+                    {% endif %}
+                    
+                    
+                    ></span>
+                    <span class="hard-text rounded text-light">سخت</span>
+                </div>
+            </div>
+                {% for item in '12345' %}
+                  
+                {% endfor %} 
             <p class="lead">{{ question.description }}</p>
             <form action="" method="POST">
                 {% csrf_token %}                
