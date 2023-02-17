@@ -88,6 +88,16 @@ class Question(TimeStampedModel):
     correct_responses = models.PositiveIntegerField(
         default=0
     )
+    image = models.ImageField(
+        upload_to='book-images/',
+        null=True, 
+        blank=True
+    )
+    image_alt = models.CharField(
+        max_length=350,
+        null=True,
+        blank=True
+    )
     uuid = models.UUIDField(
         default=uuid.uuid4, 
         editable=False,

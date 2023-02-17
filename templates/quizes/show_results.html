@@ -30,7 +30,7 @@
                     {% for id, respon in responses_dict.items %} 
                     {#  {% for respon in responses_list %} #}
                     <tr>
-                        <td>{{ respon.question }}</td>
+                        <td>{{ respon.question.description }}</td>
                         <td>{{ respon.correct }}</td>
                         <td>
                             {% if respon.result %}
@@ -40,6 +40,21 @@
                             {% endif %}
                         </td>
                         <td >
+                        {# if the image is availabel we show it#}
+
+                        {% if respon.question.link %}
+                            <a href="{{ respon.question.link }}" target="_blank" class="btn-special">                                
+                                {% if respon.question.image != '' %}                                
+                                <img src="{{ respon.question.image.url }}" class="rounded" alt="" width="100px" height="auto">
+
+                                {% elif respon.src %}
+                                <img src="{{ respon.src }}" class="rounded" alt="" width="100px" height="auto">
+                                {% else %}
+                                {% trans "See this book" %}
+                                {% endif %}
+                            </a>
+                        {% endif %}
+
                         {% if not respon.result %}
                             <div class="my-1">
 
@@ -47,18 +62,16 @@
                                 <span class="fw-bold text-danger">{{respon.user_response}}</span>
                                 <br>
                             <br>
-                            {% if respon.book_link %}
-                            {% if respon.src %}
-                            <img src="{{ respon.src }}" class="rounded" alt="" width="100px" height="auto">               
-                            {% endif %}
-                            <br>
-                            <br>
-                            <a href="{{ respon.book_link }}" target="_blank" class="btn-special">
-                                <span>{% trans "You may need this book" %} &#8599</span>
-                            </a>
+                            {% if respon.question.link %}
+                               
+                                <a href="{{ respon.question.link }}" target="_blank" class="btn-special">
+                                    <span>{% trans "You may need this book" %} &#8599</span>
+                                </a>
                             {% endif %}
                             </div>
-                            {% endif %}
+                        {% else %}
+
+                        {% endif %}
                         </td>
                     </tr>
                     {% endfor %}

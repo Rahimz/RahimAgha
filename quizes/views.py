@@ -7,6 +7,9 @@ from django.contrib.postgres.search import SearchVector
 from django.db.models import Sum
 import random 
 import requests
+from PIL import Image as IMG
+from io import BytesIO
+from django.core.files import File
 
 from bs4 import BeautifulSoup
 
@@ -213,20 +216,22 @@ def QuizResultView(request, pk):
     sum = 0
     for response in responses:
         src = None
-        if response.question.link:
-            try:
-                res = requests.get(response.question.link)
-            except:
-                res = None
-            if res:
-                soup = BeautifulSoup(res.text, 'html.parser')
-                src = f"https://ketabedamavand.com{soup.body.main.img['src']}"
-        
+        # if response.question.link:
+        #     try:
+        #         res = requests.get(response.question.link)
+        #     except:
+        #         res = None
+        #     if res:
+        #         soup = BeautifulSoup(res.text, 'html.parser')
+        #         src = f"https://ketabedamavand.com{soup.body.main.img['src']}"
+        if not response.question.image:
+            src = GrabBookData(response)
         responses_dict[response.id] = {
-            'question': response.question.description,
+            'question': response.question,
             'result': response.result,
-            'book_link': response.question.link,
+            # 'book_link': response.question.link,
             'src': src, 
+            # 'image': response.question.image.url,
             'correct': response.correct_answer, 
             'user_response': response.user_response, 
         }
@@ -251,6 +256,42 @@ def QuizResultView(request, pk):
     )
 
 
+def GrabBookData(response):
+    src = None
+    if response.question.link:
+        question = response.question
+        try:
+            res = requests.get(response.question.link)
+        except:
+            res = None
+        if res:
+            soup = BeautifulSoup(res.text, 'html.parser')
+            src = f"https://ketabedamavand.com{soup.body.main.img['src']}"
+            if 'no_image.png' in src:
+                src = None
+
+    if src:
+        im = IMG.open(requests.get(src, stream=True).raw)
+        extension = src.split('.')[-1]
+        if extension in ('jpg', 'jpeg'):
+            ext = 'JPEG'
+        elif extension in ('png', 'PNG'):
+            ext = 'PNG'
+        elif extension in ('webp', 'WEBP'):
+            ext = 'WEBP'
+        else:
+            ext = None
+        
+        if ext:
+            try:
+                blob = BytesIO()
+                im.save(blob, ext) 
+
+                question.image.save(f"test.{extension}", File(blob), save=True)
+            except:
+                pass
+    return src
+
 def MyQuizProccessView(request, pk, step=1):
     quiz = get_object_or_404(Quiz, pk=pk)
     questions = quiz.questions.all()
@@ -261,20 +302,20 @@ def MyQuizProccessView(request, pk, step=1):
             # print(f"{item}: ", request.POST.get(f"answer-{item}"))
             if request.POST.get(f"answer-{item}") == 'on':
                 user_answer = f"answer-{item}"
-        print(f'check {step} question ')
+        # print(f'check {step} question ')
         question = questions[step-1]
         request.session[str(question.id)]['response'] = user_answer
-        print(f'write {step} answer in session', user_answer)
+        # print(f'write {step} answer in session', user_answer)
         
 
         step = step + 1
         question = questions[step-1]
         answers = question.get_answers()
         request.session[str(question.id)] = {'answers': answers, 'response': None}
-        print(f'prepare {step} question')
+        # print(f'prepare {step} question')
 
         if step > 4:
-            print(f'if {step} >4 answer in session and redirect')
+            # print(f'if {step} >4 answer in session and redirect')
             request.session[str(questions[4].id)]['response'] = user_answer
             # print(user_answer)
             return redirect ('quizes:my_quiz_result', quiz.pk)
