@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-04 00:08+0330\n"
-"PO-Revision-Date: 2023-02-03 20:39+0000\n"
+"POT-Creation-Date: 2023-02-17 14:04+0330\n"
+"PO-Revision-Date: 2023-02-17 10:35+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -105,39 +105,39 @@ msgstr "پاسخ غلط ۲"
 msgid "Wrong answer 3"
 msgstr "پاسخ غلط ۳"
 
-#: quizes/models.py:112
+#: quizes/models.py:122
 msgid "Easy 1-3-1"
 msgstr "ساده ۱-۳-۱"
 
-#: quizes/models.py:113
+#: quizes/models.py:123
 msgid "Medium 1-2-2"
 msgstr "متوسط ۱-۲-۲"
 
-#: quizes/models.py:114
+#: quizes/models.py:124
 msgid "Hard 1-1-3"
 msgstr "سخت ۱-۱-۳"
 
-#: quizes/views.py:29 templates/quizes/question_create.html:13
+#: quizes/views.py:32 templates/quizes/question_create.html:13
 msgid "Create question"
 msgstr "ساختن سوال"
 
-#: quizes/views.py:48
+#: quizes/views.py:51
 msgid "Update question"
 msgstr "به روزرسانی سوال"
 
-#: quizes/views.py:71
+#: quizes/views.py:74
 msgid "Questions list"
 msgstr "لیست سوال‌ها"
 
-#: quizes/views.py:139 quizes/views.py:196 quizes/views.py:299
+#: quizes/views.py:142 quizes/views.py:199 quizes/views.py:340
 msgid "My quiz"
 msgstr "آزمون من"
 
-#: quizes/views.py:158
+#: quizes/views.py:161
 msgid "Please choose one"
 msgstr "لطفاً یک گزینه را انتخاب کنید"
 
-#: quizes/views.py:246
+#: quizes/views.py:251
 msgid "Quiz results"
 msgstr "نتایج آزمون"
 
@@ -215,7 +215,7 @@ msgstr "صفحه"
 msgid "of"
 msgstr "از"
 
-#: templates/_pagination.html:12 templates/quizes/my_quiz_proccess.html:37
+#: templates/_pagination.html:12 templates/quizes/my_quiz_proccess.html:60
 msgid "Next"
 msgstr "بعدی"
 
@@ -875,7 +875,7 @@ msgstr "خودتان را بسنجید"
 msgid "Question"
 msgstr "سوال"
 
-#: templates/quizes/my_quiz_proccess.html:39
+#: templates/quizes/my_quiz_proccess.html:62
 #: templates/quizes/show_results.html:23
 msgid "Result"
 msgstr "نتیجه"
@@ -924,27 +924,32 @@ msgstr "پاسخ"
 msgid "The books we should read"
 msgstr "کتاب‌هایی که بهتر است بخوانیم"
 
-#: templates/quizes/show_results.html:46
+#: templates/quizes/show_results.html:53
+#| msgid "You may need this book"
+msgid "See this book"
+msgstr "دیدن این کتاب"
+
+#: templates/quizes/show_results.html:61
 msgid "Your answer was"
 msgstr "پاسخ شما"
 
-#: templates/quizes/show_results.html:57
+#: templates/quizes/show_results.html:68
 msgid "You may need this book"
 msgstr "شاید این‌کتاب را لازم داشته باشید "
 
-#: templates/quizes/show_results.html:68
+#: templates/quizes/show_results.html:81
 msgid "Your result"
 msgstr "نتیجه شما"
 
-#: templates/quizes/show_results.html:74
+#: templates/quizes/show_results.html:87
 msgid "Do another quiz"
 msgstr "یک آزمون جدید"
 
-#: templates/quizes/show_results.html:75
+#: templates/quizes/show_results.html:88
 msgid "Do a little harder quiz"
 msgstr "یک آزمون کمی سخت تر"
 
-#: templates/quizes/show_results.html:76
+#: templates/quizes/show_results.html:89
 msgid "Do a hard quiz"
 msgstr "یک آزمون خیلی سخت"
 
