@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-17 14:04+0330\n"
-"PO-Revision-Date: 2023-02-17 10:35+0000\n"
+"POT-Creation-Date: 2023-02-18 11:17+0330\n"
+"PO-Revision-Date: 2023-02-18 07:48+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -48,11 +48,11 @@ msgstr "تماس‌ها"
 msgid "Thanks a lot, Your message is registered and I will contact you"
 msgstr "متشکرم، پیغام شما ثبت شد. به زودی با شما تماس خواهم گرفت"
 
-#: core/settings/base.py:126
+#: core/settings/base.py:127
 msgid "English"
 msgstr "انگلیسی"
 
-#: core/settings/base.py:127
+#: core/settings/base.py:128
 msgid "Farsi"
 msgstr "فارسی"
 
@@ -684,6 +684,11 @@ msgstr "فعالیت‌های من در گیتهاب"
 msgid "my older experiences and jobs"
 msgstr "تجربه‌های شغلی قبلی من"
 
+#: templates/django_social_share/templatetags/copy_to_clipboard.html:4
+#| msgid "Your result"
+msgid "Link of your results"
+msgstr "لینک نتیجه آزمون"
+
 #: templates/home.html:37
 msgid "What is bookstore solution?"
 msgstr "راهکار کتاب‌فروشی چیست؟"
@@ -853,7 +858,7 @@ msgid "Now responsible for Farsi translation of Django Girls tutorial"
 msgstr "هم‌اکنون مسول ترجمه بخش فارسی دوره آموزشی جنگو گرلز هستم"
 
 #: templates/quizes/my_quiz.html:13 templates/quizes/my_quiz_proccess.html:13
-#: templates/quizes/show_results.html:13
+#: templates/quizes/show_results.html:14
 msgid "Book quiz"
 msgstr "آزمون کتاب"
 
@@ -871,12 +876,12 @@ msgstr "خودتان را بسنجید"
 
 #: templates/quizes/my_quiz_proccess.html:21
 #: templates/quizes/question_list.html:41
-#: templates/quizes/show_results.html:21
+#: templates/quizes/show_results.html:22
 msgid "Question"
 msgstr "سوال"
 
 #: templates/quizes/my_quiz_proccess.html:62
-#: templates/quizes/show_results.html:23
+#: templates/quizes/show_results.html:24
 msgid "Result"
 msgstr "نتیجه"
 
@@ -912,44 +917,47 @@ msgstr "منتشر شده"
 msgid "Link"
 msgstr "لینک‌"
 
-#: templates/quizes/show_results.html:16
+#: templates/quizes/show_results.html:17
 msgid "Your resluts"
 msgstr "نتایج شما"
 
-#: templates/quizes/show_results.html:22
+#: templates/quizes/show_results.html:23
 msgid "Answer"
 msgstr "پاسخ"
 
-#: templates/quizes/show_results.html:25
+#: templates/quizes/show_results.html:26
 msgid "The books we should read"
 msgstr "کتاب‌هایی که بهتر است بخوانیم"
 
-#: templates/quizes/show_results.html:53
-#| msgid "You may need this book"
+#: templates/quizes/show_results.html:54
 msgid "See this book"
 msgstr "دیدن این کتاب"
 
-#: templates/quizes/show_results.html:61
+#: templates/quizes/show_results.html:62
 msgid "Your answer was"
 msgstr "پاسخ شما"
 
-#: templates/quizes/show_results.html:68
+#: templates/quizes/show_results.html:69
 msgid "You may need this book"
 msgstr "شاید این‌کتاب را لازم داشته باشید "
 
-#: templates/quizes/show_results.html:81
+#: templates/quizes/show_results.html:82
 msgid "Your result"
 msgstr "نتیجه شما"
 
-#: templates/quizes/show_results.html:87
+#: templates/quizes/show_results.html:99
+msgid "Invite your friends to the game"
+msgstr "دوستان خود را دعوت کنید"
+
+#: templates/quizes/show_results.html:114
 msgid "Do another quiz"
 msgstr "یک آزمون جدید"
 
-#: templates/quizes/show_results.html:88
+#: templates/quizes/show_results.html:115
 msgid "Do a little harder quiz"
 msgstr "یک آزمون کمی سخت تر"
 
-#: templates/quizes/show_results.html:89
+#: templates/quizes/show_results.html:116
 msgid "Do a hard quiz"
 msgstr "یک آزمون خیلی سخت"
 

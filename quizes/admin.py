@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Quiz, Question, QuizResponse
+from .models import Quiz, Question, QuizResponse, Compliment
 
 
 @admin.register(Question)
@@ -16,3 +16,8 @@ class QuizAdmin(admin.ModelAdmin):
 @admin.register(QuizResponse)
 class QuizResponseAdmin(admin.ModelAdmin):
     list_display = ['id', 'quiz', 'question', 'correct_answer', 'user_response']
+
+
+@admin.register(Compliment)
+class ComplimentAdmin(admin.ModelAdmin):
+    list_display = ['id', 'content', 'difficulty']

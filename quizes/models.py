@@ -40,15 +40,16 @@ class PublishedManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(published=True)
 
+DIFFICULTY_CHOICES = (
+    (1, _('1')),
+    (2, _('2')),
+    (3, _('3')),
+    (4, _('4')),
+    (5, _('5')),
+)
 
 class Question(TimeStampedModel):
-    DIFFICULTY_CHOICES = (
-        (1, _('1')),
-        (2, _('2')),
-        (3, _('3')),
-        (4, _('4')),
-        (5, _('5')),
-    )
+
     # quiz = models.ForeignKey(
     #     Quiz,
     #     on_delete=models.SET_NULL,
@@ -216,3 +217,25 @@ class QuizResponse(TimeStampedModel):
         if self.user_response == self.correct_answer:
             self.result = True
         return super().save(*args, **kwargs)
+    
+
+class Compliment(models.Model):
+    RESULT_DIFFICULTY_CHOICES = (
+        (0, _('0')),
+        (1, _('1')),
+        (2, _('2')),
+        (3, _('3')),
+        (4, _('4')),
+        (5, _('5')),
+    )
+    content = models.CharField(
+        max_length=300,
+        unique=True
+    )
+    # it sets by admin from 1-5 easy to hard
+    difficulty = models.IntegerField(
+        default=1,
+        choices=RESULT_DIFFICULTY_CHOICES
+    )
+    def __str__(self):
+        return self.content[:50]

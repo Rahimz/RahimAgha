@@ -14,7 +14,7 @@ from django.core.files import File
 from bs4 import BeautifulSoup
 
 
-from .models import Question, Quiz, QuizResponse
+from .models import Question, Quiz, QuizResponse, Compliment
 
 class QuestionCreateView(CreateView):
     model = Question
@@ -243,6 +243,11 @@ def QuizResultView(request, pk):
     quiz.completed = True
     quiz.save(update_fields=['final_result', 'completed'])
     request.session['quiz_id'] = None
+
+    compliment_qs = list(Compliment.objects.filter(difficulty=sum).values_list('content', flat=True))
+    compliment = random.sample(compliment_qs, 1)
+    if len(compliment) > 0:
+        compliment = compliment[0]
     return render(
         request,
         'quizes/show_results.html',
@@ -252,6 +257,7 @@ def QuizResultView(request, pk):
             'responses': responses,
             'responses_dict': responses_dict,
             'sum': sum, 
+            'compliment': compliment, 
         }
     )
 
@@ -366,3 +372,62 @@ def SelectQuestion(level):
     return questions
 
 
+class ComplimentCreateView(CreateView):
+    model = Compliment
+    template_name = 'quizes/question_create.html'
+    fields = [
+        'content', 'difficulty'
+    ]
+    # success_url = '/quizes/questions/list/'
+    def get_success_url(self):
+        return reverse ('quizes:compliment_list')
+        
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = _('Create compliment')
+        context['mainNavSection'] = 'quizes' 
+        return context
+
+
+class ComplimentUpdateView(UpdateView):
+    model = Question
+    template_name = 'quizes/question_create.html'
+    fields = [
+        'content', 'difficulty'        
+    ]
+    # success_url = '/quizes/questions/list/'
+    def get_success_url(self):
+        return reverse ('quizes:compliment_list')
+    
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = _('Update compliment')
+        context['mainNavSection'] = 'quizes' 
+        return context
+
+
+class ComplimentListView(ListView):
+    queryset = Compliment.objects.all()
+    model = Compliment
+    template_name = 'quizes/question_list.html'
+    ordering = ('difficulty', )
+
+    def get_queryset(self):
+        if self.request.GET.get('search'):
+
+            return super().get_queryset().annotate(
+            search=SearchVector('content'),
+                ).filter(search=self.request.GET.get('search'))
+
+        return super().get_queryset()
+       
+    def get_context_data(self, **kwargs):
+        
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = _('Compliment list')
+        context['mainNavSection'] = 'quizes'
+        if self.request.GET.get('search'):
+            context['query'] = self.request.GET.get('search')
+   
+        return context

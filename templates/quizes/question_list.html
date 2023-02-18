@@ -33,6 +33,9 @@
     <div class="row py-5" id="question-list">
         <div class="col">
             <a href="{% url 'quizes:question_create' %}" class="btn btn-warning my-2">{% trans "New question" %}</a>
+            <a href="{% url 'quizes:questions_list' %}" class="btn btn-warning my-2">{% trans "Question list" %}</a>
+            <a href="{% url 'quizes:compliment_create' %}" class="btn btn-warning my-2">{% trans "New compliment" %}</a>
+            <a href="{% url 'quizes:compliment_list' %}" class="btn btn-warning my-2">{% trans "Compliment list" %}</a>
             <a href="{% url 'quizes:my_quiz' %}" class="btn btn-warning my-2">{% trans "New Quiz" %}</a>
             <table class="table">
                 <thead>
