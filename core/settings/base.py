@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     'crispy_forms',
     'rosetta',
+    'django_social_share',
     
     'generals.apps.GeneralsConfig',
     'bookstore.apps.BookstoreConfig',

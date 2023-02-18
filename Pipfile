@@ -6,11 +6,12 @@ name = "pypi"
 [packages]
 django = "4.1.4"
 pillow = "*"
-django-crispy-forms = "*"mi
+django-crispy-forms = "*"
 django-rosetta = "0.9.3"
 gunicorn = "*"
 uvicorn = "*"
 psycopg2-binary = "*"
+django-social-share = "*"
 
 [dev-packages]
 

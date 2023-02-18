@@ -1,0 +1,11 @@
+{% load i18n %}
+
+<div class="copy-this">
+    <button data-copy-btn="buttonCopy" onclick="return aler()" data-copy-url="{{ copy_url }}" class="btn btn-outline-secondary {{ link_class }}">{% trans 'Link of your results' %}</button>
+</div>
+<script>
+    function aler() {
+        alert('Link copied');
+        return
+    }
+</script>

@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load social_share %}
 
 {% block head %}
 
@@ -80,10 +81,35 @@
                     <tr>
                         <td colspan="2">{% trans "Your result" %}</td>
                         <td class="lead text-warning">{{ sum }}</td>
-                        <td></td>
+                        <td> <div class="me-2">
+                            {% copy_to_clipboard request.get_absolute_path object_or_url  %}
+                        </div></td>
                     </tr>
                 </tfoot>
             </table> 
+            {% comment %}
+            
+            <!-- does not work -->
+            {% post_to_linkedin object_or_url %}
+            <!-- compose without body text -->
+            {% send_email "Book quiz" object_or_url %} 
+            {% endcomment %}
+            <div class="d-flex ">
+                <p class="me-2">{% trans "Invite your friends to the game" %}:</p>
+                <div class="me-2">
+                    {% post_to_twitter "My book quiz result is {{ sum }}! What is yours?" "https://rahimagha.ir/fa/quizes/my-quiz/"  %}
+                </div>
+                <div class="me-2">
+                    {% post_to_whatsapp "https://rahimagha.ir/fa/quizes/my-quiz/" %}
+                </div>
+                <div class="me-2">
+                    {% post_to_telegram "My book quiz result is {{ sum }}! What is yours?" "https://rahimagha.ir/fa/quizes/my-quiz/" object_or_url %}
+                </div>
+               
+
+                
+            </div>
+            
             <a href="{% url 'quizes:my_quiz' %}?start=True" class="btn btn-warning">{% trans "Do another quiz" %}</a>
             <a href="{% url 'quizes:my_quiz' %}?start=True&diff=2" class="btn btn-warning ms-2">{% trans "Do a little harder quiz" %}</a>
             <a href="{% url 'quizes:my_quiz' %}?start=True&diff=3" class="btn btn-danger ms-2">{% trans "Do a hard quiz" %}</a>
@@ -91,5 +117,5 @@
         </div>
     </div>
         
-</div>
+</div>{% add_copy_script %}
 {% endblock content %}
