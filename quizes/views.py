@@ -390,7 +390,7 @@ class ComplimentCreateView(CreateView):
 
 
 class ComplimentUpdateView(UpdateView):
-    model = Question
+    model = Compliment
     template_name = 'quizes/question_create.html'
     fields = [
         'content', 'difficulty'        
@@ -427,6 +427,7 @@ class ComplimentListView(ListView):
         context = super().get_context_data(**kwargs)
         context['page_title'] = _('Compliment list')
         context['mainNavSection'] = 'quizes'
+        context['compliment'] = True
         if self.request.GET.get('search'):
             context['query'] = self.request.GET.get('search')
    

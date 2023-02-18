@@ -22,12 +22,20 @@
         </div>
         {% if results %}
           {% for item in results %}
+          {% if compliment %}
+          <a href="{% url 'quizes:compliment_update' item.id %}" class="bg-light p-1 m-2">{{ item }}</a>
+            {% else %}
           <a href="{% url 'quizes:question_update' item.id %}" class="bg-light p-1 m-2">{{ item }}</a>
+          {% endif %}
           {% endfor %}
         {% endif %}      
     </form>
     {% if query %}
+    {% if compliment %}
+    <p>{{ query }} <a href="{% url 'quizes:compliment_list' %}" class="text-light fs-5 ms-3">&times;</a></p>
+    {% else %}
     <p>{{ query }} <a href="{% url 'quizes:questions_list' %}" class="text-light fs-5 ms-3">&times;</a></p>
+    {% endif %}
       
     {% endif %}
     <div class="row py-5" id="question-list">
@@ -52,7 +60,11 @@
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>
+                            {% if compliment %}
+                            <a href="{% url 'quizes:compliment_update' que.id %}">{{ que }}</a></td>
+                            {% else %}
                             <a href="{% url 'quizes:question_update' que.id %}">{{ que }}</a></td>
+                            {% endif %}
                         <td>{{ que.difficulty }}</td>                        
                         
                         {% if que.published %}
