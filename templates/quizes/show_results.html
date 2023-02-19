@@ -5,7 +5,40 @@
 {% load social_share %}
 
 {% block head %}
+<style>
+    
+.compliment {  
+  color:white;
+  /* font-size:6em; */
+  text-align:center;
+  animation: neonGlow 2s infinite alternate ;
+}
 
+@keyframes neonGlow {
+  0% {
+    text-shadow: 0 0 10px rgba(255,255,255,.8),
+                 0 0 20px rgba(255,255,255,.8),
+                 0 0 22px  rgba(255,255,255,.8),
+                 0 0 40px  rgba(66,220,219,.8),
+                 0 0 60px  rgba(66,220,219,.8),
+                 0 0 80px  rgba(66,220,219,.5),
+                 0 0 100px rgba(66,220,219,.5),
+                 0 0 140px rgba(66,220,219,.5),
+                 0 0 200px rgba(66,220,219,.5);
+  }
+  100% {
+    text-shadow: 0 0 2px rgba(255,255,255,.8),
+                 0 0 8px rgba(255,255,255,.8),
+                 0 0 10px rgba(255,255,255,.8),
+                 0 0 20px rgba(66,220,219,.8),
+                 0 0 30px rgba(66,220,219,.8),
+                 0 0 40px rgba(66,220,219,.8),
+                 0 0 50px rgba(66,220,219,.5),
+                 0 0 80px rgba(66,220,219,.5);
+  }
+}
+
+</style>
 {% endblock head %}
 {% block title %}{{ page_title }}{% endblock title %}
 
@@ -13,7 +46,7 @@
 <div class="container bg-brown" >
     <h2 class="pt-4">{% trans "Book quiz" %}</h2>
     {% if compliment %}
-    <h3 class="border border-danger rounded m-3 p-2 text-center">{{ compliment }}</h3>
+    <h3 class="border border-danger rounded m-3 p-2 text-center text-light compliment">{{ compliment }}</h3>
       
     {% endif %}
     <div class="row py-5" id="">
@@ -85,9 +118,7 @@
                     <tr>
                         <td colspan="2">{% trans "Your result" %}</td>
                         <td class="lead text-warning">{{ sum }}</td>
-                        <td> <div class="me-2">
-                            {% copy_to_clipboard request.get_absolute_path object_or_url  %}
-                        </div></td>
+                        <td></td>
                     </tr>
                 </tfoot>
             </table> 
@@ -98,7 +129,7 @@
             <!-- compose without body text -->
             {% send_email "Book quiz" object_or_url %} 
             {% endcomment %}
-            <div class="d-flex ">
+            <div class="d-flex my-1">
                 <p class="me-2">{% trans "Invite your friends to the game" %}:</p>
                 <div class="me-2">
                     {% post_to_twitter "My book quiz result is {{ sum }}! What is yours?" "https://rahimagha.ir/fa/quizes/my-quiz/"  %}
@@ -106,18 +137,19 @@
                 <div class="me-2">
                     {% post_to_whatsapp "https://rahimagha.ir/fa/quizes/my-quiz/" %}
                 </div>
-                <div class="me-2">
+                <div class="me-3">
                     {% post_to_telegram "My book quiz result is {{ sum }}! What is yours?" "https://rahimagha.ir/fa/quizes/my-quiz/" object_or_url %}
                 </div>
-               
-
-                
+                <div class="me-2">
+                    {% copy_to_clipboard request.get_absolute_path object_or_url  %}
+                </div>                
+            </div>
+            <div class="d-flex mt-3">
+                <a href="{% url 'quizes:my_quiz' %}?start=True" class="btn btn-warning mx-1">{% trans "Do another quiz" %}</a>
+                <a href="{% url 'quizes:my_quiz' %}?start=True&diff=2" class="btn btn-warning mx-1">{% trans "Do a little harder quiz" %}</a>
+                <a href="{% url 'quizes:my_quiz' %}?start=True&diff=3" class="btn btn-danger mx-1">{% trans "Do a hard quiz" %}</a>
             </div>
             
-            <a href="{% url 'quizes:my_quiz' %}?start=True" class="btn btn-warning">{% trans "Do another quiz" %}</a>
-            <a href="{% url 'quizes:my_quiz' %}?start=True&diff=2" class="btn btn-warning ms-2">{% trans "Do a little harder quiz" %}</a>
-            <a href="{% url 'quizes:my_quiz' %}?start=True&diff=3" class="btn btn-danger ms-2">{% trans "Do a hard quiz" %}</a>
-
         </div>
     </div>
         
