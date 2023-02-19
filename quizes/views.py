@@ -166,21 +166,22 @@ def NewMyQuizProccessView(request, quiz_pk, step=1, error=None):
     question = response.question
     answers = response.answers
     if request.method == 'POST':
-        user_answer = None
-        answer_list = response.answers 
-        user_answer_string = None
-        multiple = 0
-        for item in '1234':
-            # print(f"{item}: ", request.POST.get(f"answer-{item}"))
-            if request.POST.get(f"answer-{item}") == 'on':
-                user_answer = f"answer-{item}"
-                user_answer_string = response.answers[int(item) - 1]
-                multiple += 1
+        # user_answer = None
+        # answer_list = response.answers 
+        user_answer_string = request.POST.get('answer')
+        # multiple = 0
+        # print(request.POST.get('answer'))
+        # for item in '1234':
+        #     # print(f"{item}: ", request.POST.get(f"answer-{item}"))
+        #     if request.POST.get(f"answer-{item}") == 'on':
+        #         user_answer = f"answer-{item}"
+        #         user_answer_string = response.answers[int(item) - 1]
+        #         multiple += 1
         
-        if multiple > 1:
-            return redirect ('quizes:my_quiz_proccess_error', 'error', quiz_pk, current_step)
-        if not user_answer_string:
-            return redirect ('quizes:my_quiz_proccess_error', 'error', quiz_pk, current_step)
+        # if multiple > 1:
+        #     return redirect ('quizes:my_quiz_proccess_error', 'error', quiz_pk, current_step)
+        # if not user_answer_string:
+        #     return redirect ('quizes:my_quiz_proccess_error', 'error', quiz_pk, current_step)
         #  we want to write user response to the record
         response.user_response = user_answer_string
         response.done = True
@@ -298,59 +299,57 @@ def GrabBookData(response):
                 pass
     return src
 
-def MyQuizProccessView(request, pk, step=1):
-    quiz = get_object_or_404(Quiz, pk=pk)
-    questions = quiz.questions.all()
-    user_answer = None
+# def MyQuizProccessView(request, pk, step=1):
+#     quiz = get_object_or_404(Quiz, pk=pk)
+#     questions = quiz.questions.all()
+#     user_answer = None
    
-    if request.method == 'POST':
-        for item in '1234':
-            # print(f"{item}: ", request.POST.get(f"answer-{item}"))
-            if request.POST.get(f"answer-{item}") == 'on':
-                user_answer = f"answer-{item}"
-        # print(f'check {step} question ')
-        question = questions[step-1]
-        request.session[str(question.id)]['response'] = user_answer
-        # print(f'write {step} answer in session', user_answer)
+#     if request.method == 'POST':
+#         for item in '1234':
+#             # print(f"{item}: ", request.POST.get(f"answer-{item}"))
+#             if request.POST.get(f"answer-{item}") == 'on':
+#                 user_answer = f"answer-{item}"
+#         # print(f'check {step} question ')
+#         question = questions[step-1]
+#         request.session[str(question.id)]['response'] = user_answer
+#         # print(f'write {step} answer in session', user_answer)
         
 
-        step = step + 1
-        question = questions[step-1]
-        answers = question.get_answers()
-        request.session[str(question.id)] = {'answers': answers, 'response': None}
-        # print(f'prepare {step} question')
+#         step = step + 1
+#         question = questions[step-1]
+#         answers = question.get_answers()
+#         request.session[str(question.id)] = {'answers': answers, 'response': None}
+#         # print(f'prepare {step} question')
 
-        if step > 4:
-            # print(f'if {step} >4 answer in session and redirect')
-            request.session[str(questions[4].id)]['response'] = user_answer
-            # print(user_answer)
-            return redirect ('quizes:my_quiz_result', quiz.pk)
-
-
+#         if step > 4:
+#             # print(f'if {step} >4 answer in session and redirect')
+#             request.session[str(questions[4].id)]['response'] = user_answer
+#             # print(user_answer)
+#             return redirect ('quizes:my_quiz_result', quiz.pk)
         
 
-        return redirect ('quizes:my_quiz_proccess', quiz.pk, step)
+#         return redirect ('quizes:my_quiz_proccess', quiz.pk, step)
 
     
-    # make first question 
-    print(f'prepare {step} question')
-    question = questions[step-1]
-    answers = question.get_answers()
-    request.session[str(question.id)] = {'answers': answers, 'response': None}
+#     # make first question 
+#     print(f'prepare {step} question')
+#     question = questions[step-1]
+#     answers = question.get_answers()
+#     request.session[str(question.id)] = {'answers': answers, 'response': None}
    
 
-    return render(
-        request,
-        'quizes/my_quiz_proccess.html',
-        {
-            'page_title': _('My quiz'),
-            'quiz': quiz,
-            'question': question,
-            'answers': answers,
-            'step': step, 
-            # 'next_step': next_step, 
-        }
-    )
+#     return render(
+#         request,
+#         'quizes/my_quiz_proccess.html',
+#         {
+#             'page_title': _('My quiz'),
+#             'quiz': quiz,
+#             'question': question,
+#             'answers': answers,
+#             'step': step, 
+#             # 'next_step': next_step, 
+#         }
+#     )
 
 
 def SelectQuestion(level):
