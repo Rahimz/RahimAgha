@@ -10,3 +10,5 @@ ALLOWED_HOSTS = [
     ]
 
 CSRF_TRUSTED_ORIGINS = ['https://*.rahimagha.ir']
+
+SERVER_EMAIL = 'noreply@rahimagha.ir'
