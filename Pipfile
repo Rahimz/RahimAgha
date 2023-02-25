@@ -12,6 +12,7 @@ gunicorn = "*"
 uvicorn = "*"
 psycopg2-binary = "*"
 django-social-share = "*"
+djangorestframework = "*"
 
 [dev-packages]
 

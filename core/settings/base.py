@@ -42,6 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+        # 3rd part packages    
+    'rest_framework',
+    'rest_framework.authtoken',
+
     'crispy_forms',
     'rosetta',
     'django_social_share',
@@ -50,6 +54,7 @@ INSTALLED_APPS = [
     'bookstore.apps.BookstoreConfig',
     'contacts.apps.ContactsConfig',
     'quizes.apps.QuizesConfig',
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [
@@ -156,3 +161,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 GOOGLE_RECAPTCHA_SECRET_KEY = secret_key_for_recaptcha
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+# Emain settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST = email_host
+EMAIL_HOST_USER = email_host_user
+EMAIL_HOST_PASSWORD = email_host_password
+DEFAULT_FROM_EMAIL = 'noreply@rahimagha.ir'
+
+EMAIL_SUBJECT_PREFIX = '[RahimAgha] '
