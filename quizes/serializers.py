@@ -12,14 +12,14 @@ class QuestionSerializer(serializers.ModelSerializer):
         fields = [
             'description',
             # 'answers',
-            'correct', 
-            'wrong_1',
-            'wrong_2',
-            'wrong_3',
-            'link',
+            # 'correct', 
+            # 'wrong_1',
+            # 'wrong_2',
+            # 'wrong_3',
+            # 'link',
             'difficulty',
-            'image',
-            'image_alt',
+            # 'image',
+            # 'image_alt',
             'uuid',
         ]
 

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
         # 3rd part packages    
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_yasg',
 
     'crispy_forms',
     'rosetta',
@@ -173,3 +174,9 @@ EMAIL_HOST_PASSWORD = email_host_password
 DEFAULT_FROM_EMAIL = 'noreply@rahimagha.ir'
 
 EMAIL_SUBJECT_PREFIX = '[RahimAgha] '
+
+# REST_FRAMEWORK = {  
+#   'DEFAULT_SCHEMA_CLASS': 'drf_yasg.inspectors.SwaggerAutoSchema',
+# }
+
+ 

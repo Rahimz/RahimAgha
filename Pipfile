@@ -13,6 +13,7 @@ uvicorn = "*"
 psycopg2-binary = "*"
 django-social-share = "*"
 djangorestframework = "*"
+drf-yasg = "*"
 
 [dev-packages]
 
