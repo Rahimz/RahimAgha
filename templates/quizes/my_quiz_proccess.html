@@ -57,9 +57,9 @@
                 </div>
                 {% endfor %}
                 {% if step < 6 %}
-                <input type="submit" name="next" value="{% trans 'Next' %}" class="btn btn-warning my-3">
+                <input type="submit" name="next" value="{% trans 'Next' %}" id="subButton" disables="disabled" class="btn btn-warning my-3">
                 {% else %}
-                <input type="submit" name="result" value="{% trans 'Result' %}" class="btn btn-warning my-3">
+                <input type="submit" name="result" value="{% trans 'Result' %}" id="subButton" disables="disabled" class="btn btn-warning my-3">
                 {% endif %}
                   
             </form>
@@ -69,3 +69,11 @@
         
 </div>
 {% endblock content %}
+
+{% block script %}
+<script>
+window.addEventListener("load", function() {
+  document.getElementById("subButton").disabled=false; // or removeAttribute("disabled")
+</script>
+  
+{% endblock script %}
