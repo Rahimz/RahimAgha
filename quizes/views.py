@@ -154,12 +154,16 @@ def NewMyQuizProccessView(request, quiz_pk, step=1, error=None):
     responses = quiz.responses.all().order_by('step')
     #  we always select the first step from the remaining steps
     remain_step = list(responses.filter(done=False).values_list('step', flat=True))
-    current_step = remain_step[0]
+    if len(remain_step) > 0:
+        current_step = remain_step[0]
+    else:       
+        return redirect('quizes:my_quiz_result', quiz_pk)
+    
     required_msg = None
 
     if error == 'error':
         required_msg =  _('Please choose one')
-    
+
 
     # print('responses is created', responses.count())
     response = responses.get(step=current_step)
