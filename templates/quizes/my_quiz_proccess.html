@@ -43,7 +43,7 @@
                   
                 {% endfor %} 
             <p class="lead">{{ question.description }}</p>
-            <form action="" method="POST" onsubmit="answer.disabled = true; return true;">
+            <form action="" method="POST" onsubmit="subButton.disabled = true; return true;">
                 {% csrf_token %}                
                 {% for ans in answers %}
                 <div class="form-check" action="">
