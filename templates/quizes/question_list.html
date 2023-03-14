@@ -44,6 +44,7 @@
             <a href="{% url 'quizes:questions_list' %}" class="btn btn-warning my-2">{% trans "Question list" %}</a>
             <a href="{% url 'quizes:compliment_create' %}" class="btn btn-warning my-2">{% trans "New compliment" %}</a>
             <a href="{% url 'quizes:compliment_list' %}" class="btn btn-warning my-2">{% trans "Compliment list" %}</a>
+            <a href="{% url 'quizes:update_question_report' %}" class="btn btn-warning my-2">{% trans "Update question report" %}</a>
             <a href="{% url 'quizes:my_quiz' %}" class="btn btn-warning my-2">{% trans "New Quiz" %}</a>
             <table class="table">
                 <thead>
@@ -53,6 +54,10 @@
                         <th>{% trans "Difficulty" %}</th>
                         <th>{% trans "Published" %}</th>
                         <th>{% trans "Link" %}</th>
+                        <th>{% trans "Uses" %}</th>
+                        <th>{% trans "Correct" %}</th>
+                        <th>{% trans "Wrong" %}</th>
+                        <th>{% trans "Correct percent" %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -78,7 +83,10 @@
                         {% else %}
                         <td class="text-danger fs-5">&times;</td>                        
                         {% endif %}
-
+                        <td>{% if que.uses %}{{ que.uses }}{% endif %}</td>
+                        <td>{% if que.correct_responses %}{{ que.correct_responses }}{% endif %}</td>
+                        <td>{% if que.no_response %}{{ que.no_response }}{% endif %}</td>
+                        <td>{{ que.get_correct_percent }}</td>
                     </tr>
                     {% endfor %}
                     

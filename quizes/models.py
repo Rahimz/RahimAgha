@@ -89,6 +89,9 @@ class Question(TimeStampedModel):
     correct_responses = models.PositiveIntegerField(
         default=0
     )
+    no_response = models.PositiveIntegerField(
+        default=0
+    )
     image = models.ImageField(
         upload_to='book-images/',
         null=True, 
@@ -111,6 +114,11 @@ class Question(TimeStampedModel):
     objects = models.Manager()
     get_published = PublishedManager()
 
+    @property
+    def get_correct_percent(self):
+        if self.uses != 0:
+            return round(self.correct_responses / self.uses * 100, 1)
+        return 0
     def __str__(self):        
         return self.description[:35]    
     

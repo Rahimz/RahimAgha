@@ -1,22 +1,24 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.postgres.search import SearchVector
-from django.db.models import Sum
+from django.db.models import Sum, Count
 import random 
 import requests
 from PIL import Image as IMG
 from io import BytesIO
 from django.core.files import File
+from django.contrib.admin.views.decorators import staff_member_required
 
 from bs4 import BeautifulSoup
 
 
 from .models import Question, Quiz, QuizResponse, Compliment
 
-class QuestionCreateView(CreateView):
+class QuestionCreateView(LoginRequiredMixin, CreateView):
     model = Question
     template_name = 'quizes/question_create.html'
     fields = [
@@ -34,7 +36,7 @@ class QuestionCreateView(CreateView):
         return context
 
 
-class QuestionUpdateView(UpdateView):
+class QuestionUpdateView(LoginRequiredMixin, UpdateView):
     model = Question
     template_name = 'quizes/question_create.html'
     fields = [
@@ -53,7 +55,7 @@ class QuestionUpdateView(UpdateView):
         return context
 
 
-class QuestionListView(ListView):
+class QuestionListView(LoginRequiredMixin, ListView):
     queryset = Question.objects.all()
     model = Question
     template_name = 'quizes/question_list.html'
@@ -375,7 +377,7 @@ def SelectQuestion(level):
     return questions
 
 
-class ComplimentCreateView(CreateView):
+class ComplimentCreateView(LoginRequiredMixin, CreateView):
     model = Compliment
     template_name = 'quizes/question_create.html'
     fields = [
@@ -392,7 +394,7 @@ class ComplimentCreateView(CreateView):
         return context
 
 
-class ComplimentUpdateView(UpdateView):
+class ComplimentUpdateView(LoginRequiredMixin, UpdateView):
     model = Compliment
     template_name = 'quizes/question_create.html'
     fields = [
@@ -410,7 +412,7 @@ class ComplimentUpdateView(UpdateView):
         return context
 
 
-class ComplimentListView(ListView):
+class ComplimentListView(LoginRequiredMixin, ListView):
     queryset = Compliment.objects.all()
     model = Compliment
     template_name = 'quizes/question_list.html'
@@ -435,3 +437,18 @@ class ComplimentListView(ListView):
             context['query'] = self.request.GET.get('search')
    
         return context
+    
+
+@staff_member_required
+def QuestionCorrectRateUpdate(request):
+    questions = Question.objects.all()
+    for item in questions.iterator():
+        uses = item.question_uses.all().count()
+        corrects = item.question_uses.filter(result=True).count()
+        no_responses = uses - corrects
+        item.uses = uses
+        item.correct_responses = corrects
+        item.no_response = no_responses
+        item.save()
+        print(uses, corrects, no_responses, item.get_correct_percent)
+    return redirect('quizes:questions_list')

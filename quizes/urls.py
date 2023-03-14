@@ -18,4 +18,7 @@ urlpatterns = [
     path('my-quiz/<uuid:quiz_pk>/<int:step>/', views.NewMyQuizProccessView, name='my_quiz_proccess' ),
     path('my-quiz/', views.MyQuizView, name='my_quiz' ), #also uses for start a quiz
 
+    # reports
+    path('questions/update-report/', views.QuestionCorrectRateUpdate, name="update_question_report"),
+
 ]
