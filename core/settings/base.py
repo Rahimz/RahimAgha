@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'bookstore.apps.BookstoreConfig',
     'contacts.apps.ContactsConfig',
     'quizes.apps.QuizesConfig',
+    'accounting.apps.AccountingConfig',
     'api.apps.ApiConfig',
 ]
 

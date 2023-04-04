@@ -24,6 +24,7 @@ urlpatterns = i18n_patterns(
     path('bookstore/', include('bookstore.urls', namespace='bookstore')),
     path('contacts/', include('contacts.urls', namespace='contacts')),
     path('quizes/', include('quizes.urls', namespace='quizes')),
+    path('accounting/', include('accounting.urls', namespace='accounting')),
     path('api/', include('api.urls', namespace='api')),
     path('admin/', admin.site.urls),
     path('rosetta/', include('rosetta.urls')),

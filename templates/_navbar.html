@@ -45,6 +45,9 @@
 
           {% if request.user.is_superuser %}
           <li class="nav-item">
+            <a href="{% url 'accounting:accounting_dashboard' %}" class="nav-link {% if mainNavSection == 'accounting' %}active{% endif %}">{% trans 'Accounting' %}</a>
+          </li>
+          <li class="nav-item">
             <a href="{% url 'admin:index' %}" class="nav-link ">{% trans 'Admin' %}</a>
           </li>
           <li class="nav-item">
