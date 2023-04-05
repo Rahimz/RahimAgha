@@ -6,7 +6,7 @@ from .models import Transaction, BankAccount, TransactionSubject
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
     list_display = [
-        'pk', 'description', 'amount_pay', 'amount_rec', 'created', 'subject',
+        'pk', 'description', 'amount_pay', 'amount_rec', 'account_level', 'created', 'subject',
     ]
     list_filter = ['amount_pay', 'amount_rec']
     search_fields = ['description', 'amount_pay', 'amount_rec', 'subject__title', 'bank_account__title']
@@ -16,7 +16,7 @@ class TransactionAdmin(admin.ModelAdmin):
 @admin.register(BankAccount)
 class BankAccountAdmin(admin.ModelAdmin):
     list_display = [
-        'title', 'bank_name', 'card_number', 'initial_level'
+        'title', 'current_level', 'initial_level', 'bank_name', 'card_number', 
     ]
 
 

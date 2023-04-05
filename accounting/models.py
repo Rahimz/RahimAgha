@@ -46,6 +46,11 @@ class BankAccount(TimeStampedModel):
         decimal_places=0, 
         default=0
     )
+    current_level = models.DecimalField(
+        max_digits=settings.DEFAULT_MAX_DIGIT,
+        decimal_places=0, 
+        default=0
+    )
 
     class Meta:
         verbose_name = _('Bank account')
@@ -54,7 +59,13 @@ class BankAccount(TimeStampedModel):
     
     def __str__(self):
         return self.title
-
+    
+    def get_transactions_sum(self):
+        return sum(t.amount_rec - t.amount_pay for t in self.transactions.all())
+    
+    def save(self, *args, **kwargs):        
+        self.current_level = self.initial_level - self.get_transactions_sum() 
+        return super().save(*args, **kwargs) 
 
 class TransactionSubject(TimeStampedModel):
     title = models.CharField(
@@ -96,6 +107,7 @@ class Transaction(TimeStampedModel):
         decimal_places=0, 
         default=0
     )
+    # show the bank account at the time of transaction
     account_level = models.DecimalField(
         _('Account level'),
         max_digits=settings.DEFAULT_MAX_DIGIT,
@@ -156,7 +168,12 @@ class Transaction(TimeStampedModel):
         elif self.amount_rec:
             return f"{str(self.amount_rec)} {desc}"         
     
+    def update_account_level(self):
+        return self.account_level + self.bank_account.initial_level
+
     def save(self, *args, **kwargs):
         if not self.date:
             self.date = self.created
+        # this one should be calculated in the view not in the model
+        # self.account_level = self.bank_account.current_level - self.amount_pay + self.amount_rec
         return super().save(*args, **kwargs)    
