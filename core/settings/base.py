@@ -175,4 +175,10 @@ EMAIL_HOST_PASSWORD = email_host_password
 DEFAULT_FROM_EMAIL = 'noreply@rahimagha.ir'
 
 EMAIL_SUBJECT_PREFIX = '[RahimAgha] '
- 
+
+
+### Accounting
+DEFAULT_MAX_DIGIT = 20
+
+# ### accounts
+# AUTH_USER_MODEL = 'accounts.CustomUser'
