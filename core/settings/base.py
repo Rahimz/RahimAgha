@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'contacts.apps.ContactsConfig',
     'quizes.apps.QuizesConfig',
     'accounting.apps.AccountingConfig',
+    'accounts.apps.AccountsConfig',
     'api.apps.ApiConfig',
 ]
 
@@ -179,6 +180,3 @@ EMAIL_SUBJECT_PREFIX = '[RahimAgha] '
 
 ### Accounting
 DEFAULT_MAX_DIGIT = 20
-
-# ### accounts
-# AUTH_USER_MODEL = 'accounts.CustomUser'

@@ -51,6 +51,9 @@ class BankAccount(TimeStampedModel):
         verbose_name = _('Bank account')
         verbose_name_plural = _('Bank accounts')
         ordering = ('-title', )
+    
+    def __str__(self):
+        return self.title
 
 
 class TransactionSubject(TimeStampedModel):
@@ -73,6 +76,8 @@ class TransactionSubject(TimeStampedModel):
         verbose_name_plural = _('Transaction subjects')
         ordering = ('-pk', )
 
+    def __str__(self):
+        return self.title
 
 class Transaction(TimeStampedModel):
     uuid = models.UUIDField(		
@@ -109,8 +114,12 @@ class Transaction(TimeStampedModel):
         blank=True,
         related_name='transactions'
     )
-    #registrar =
-    #reciever =
+    registrar = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True, 
+        blank=True
+    )    
     subject = models.ForeignKey(
         TransactionSubject,
         on_delete=models.SET_NULL,                
@@ -140,6 +149,13 @@ class Transaction(TimeStampedModel):
         verbose_name_plural = _('Transactions')
         ordering = ('-pk', )
 
+    def __str__(self):
+        desc = self.description if self.description else ''
+        if self.amount_pay:
+            return f"{str(self.amount_pay)} {desc}" 
+        elif self.amount_rec:
+            return f"{str(self.amount_rec)} {desc}"         
+    
     def save(self, *args, **kwargs):
         if not self.date:
             self.date = self.created
