@@ -30,6 +30,7 @@ class TransactionsListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['page_title'] = _('Transactions')
         context['mainNavSection'] = 'accounting' 
+        context['accSection'] = 'transaction' 
         return context
 
 
@@ -41,7 +42,8 @@ class TransactionSubjectsListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page_title'] = _('Transaction subjects')
-        context['mainNavSection'] = 'accounting' 
+        context['mainNavSection'] = 'accounting'
+        context['accSection'] = 'subject' 
         return context
 
 
@@ -53,7 +55,8 @@ class BankAccountListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page_title'] = _('Bank accounts')
-        context['mainNavSection'] = 'accounting' 
+        context['mainNavSection'] = 'accounting'
+        context['accSection'] = 'bank' 
         return context
 
 
@@ -75,7 +78,8 @@ class AddPayment(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page_title'] = _('Add payment')
-        context['mainNavSection'] = 'accounting' 
+        context['mainNavSection'] = 'accounting'
+        context['accSection'] = 'pay' 
         return context
 
 
@@ -96,7 +100,8 @@ class AddRecieve(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page_title'] = _('Add recieve')
-        context['mainNavSection'] = 'accounting' 
+        context['mainNavSection'] = 'accounting'
+        context['accSection'] = 'rec' 
         return context
 
 
@@ -111,7 +116,8 @@ class AddTransactionSubject(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page_title'] = _('Add transaction subject')
-        context['mainNavSection'] = 'accounting' 
+        context['mainNavSection'] = 'accounting'
+        context['accSection'] = 'subject' 
         return context
 
 
@@ -127,6 +133,7 @@ class UpdateTransactionSubject(LoginRequiredMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context['page_title'] = _('Update transaction subject')
         context['mainNavSection'] = 'accounting' 
+        context['accSection'] = 'subject' 
         return context
     
 
