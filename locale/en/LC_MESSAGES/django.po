@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-18 11:17+0330\n"
+"POT-Creation-Date: 2023-04-06 11:24+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,103 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: accounting/models.py:12
+msgid "Account title"
+msgstr ""
+
+#: accounting/models.py:22 templates/accounting/bank_accounts_list.html:27
+msgid "Card number"
+msgstr ""
+
+#: accounting/models.py:28 templates/accounting/bank_accounts_list.html:28
+msgid "Account number"
+msgstr ""
+
+#: accounting/models.py:56
+msgid "Bank account"
+msgstr ""
+
+#: accounting/models.py:57 accounting/views.py:55
+#: templates/accounting/_accounting_header.html:6
+msgid "Bank accounts"
+msgstr ""
+
+#: accounting/models.py:77 templates/accounting/_accounting_header.html:3
+#: templates/accounting/_transactions_list.html:9
+msgid "Payment"
+msgstr ""
+
+#: accounting/models.py:78
+msgid "Receive"
+msgstr ""
+
+#: accounting/models.py:86
+msgid "Transaction subject"
+msgstr ""
+
+#: accounting/models.py:87 accounting/views.py:43
+#: templates/accounting/_accounting_header.html:7
+msgid "Transaction subjects"
+msgstr ""
+
+#: accounting/models.py:99
+msgid "Pay amount"
+msgstr ""
+
+#: accounting/models.py:105
+msgid "Receive amount"
+msgstr ""
+
+#: accounting/models.py:112 templates/accounting/_transactions_list.html:11
+msgid "Account level"
+msgstr ""
+
+#: accounting/models.py:118
+msgid "Transaction date"
+msgstr ""
+
+#: accounting/models.py:142 contacts/forms.py:13
+#: templates/accounting/_transactions_list.html:8
+msgid "Description"
+msgstr ""
+
+#: accounting/models.py:147
+msgid "Receipt image"
+msgstr ""
+
+#: accounting/models.py:153
+msgid "Receipt file"
+msgstr ""
+
+#: accounting/models.py:160
+msgid "Transaction"
+msgstr ""
+
+#: accounting/models.py:161 accounting/views.py:31
+#: templates/accounting/_accounting_header.html:5
+msgid "Transactions"
+msgstr ""
+
+#: accounting/views.py:16
+msgid "Accounting dashboard"
+msgstr ""
+
+#: accounting/views.py:77
+msgid "Add payment"
+msgstr ""
+
+#: accounting/views.py:98
+msgid "Add recieve"
+msgstr ""
+
+#: accounting/views.py:113
+msgid "Add transaction subject"
+msgstr ""
+
+#: accounting/views.py:128
+msgid "Update transaction subject"
+msgstr ""
+
 #: bookstore/views.py:13 templates/bookstore/bookstore.html:9
 #: templates/bookstore/static_bookstore.html:9 templates/home.html:28
 msgid "Bookstore solution"
@@ -25,10 +122,6 @@ msgstr ""
 
 #: contacts/forms.py:12
 msgid "Tilte"
-msgstr ""
-
-#: contacts/forms.py:13
-msgid "Description"
 msgstr ""
 
 #: contacts/forms.py:14 templates/contacts/contacts.html:40
@@ -47,11 +140,11 @@ msgstr ""
 msgid "Thanks a lot, Your message is registered and I will contact you"
 msgstr ""
 
-#: core/settings/base.py:127
+#: core/settings/base.py:136
 msgid "English"
 msgstr ""
 
-#: core/settings/base.py:128
+#: core/settings/base.py:137
 msgid "Farsi"
 msgstr ""
 
@@ -68,76 +161,92 @@ msgstr ""
 msgid "modified"
 msgstr ""
 
-#: quizes/models.py:46
+#: quizes/models.py:44 quizes/models.py:233
 msgid "1"
 msgstr ""
 
-#: quizes/models.py:47
+#: quizes/models.py:45 quizes/models.py:234
 msgid "2"
 msgstr ""
 
-#: quizes/models.py:48
+#: quizes/models.py:46 quizes/models.py:235
 msgid "3"
 msgstr ""
 
-#: quizes/models.py:49
+#: quizes/models.py:47 quizes/models.py:236
 msgid "4"
 msgstr ""
 
-#: quizes/models.py:50
+#: quizes/models.py:48 quizes/models.py:237
 msgid "5"
 msgstr ""
 
-#: quizes/models.py:61
+#: quizes/models.py:62
 msgid "Correct answer"
 msgstr ""
 
-#: quizes/models.py:65
+#: quizes/models.py:66
 msgid "Wrong answer 1"
 msgstr ""
 
-#: quizes/models.py:69
+#: quizes/models.py:70
 msgid "Wrong answer 2"
 msgstr ""
 
-#: quizes/models.py:73
+#: quizes/models.py:74
 msgid "Wrong answer 3"
 msgstr ""
 
-#: quizes/models.py:122
+#: quizes/models.py:131
 msgid "Easy 1-3-1"
 msgstr ""
 
-#: quizes/models.py:123
+#: quizes/models.py:132
 msgid "Medium 1-2-2"
 msgstr ""
 
-#: quizes/models.py:124
+#: quizes/models.py:133
 msgid "Hard 1-1-3"
 msgstr ""
 
-#: quizes/views.py:32 templates/quizes/question_create.html:13
+#: quizes/models.py:232
+msgid "0"
+msgstr ""
+
+#: quizes/views.py:34 templates/quizes/question_create.html:13
 msgid "Create question"
 msgstr ""
 
-#: quizes/views.py:51
+#: quizes/views.py:53
 msgid "Update question"
 msgstr ""
 
-#: quizes/views.py:74
+#: quizes/views.py:76
 msgid "Questions list"
 msgstr ""
 
-#: quizes/views.py:142 quizes/views.py:199 quizes/views.py:340
+#: quizes/views.py:144 quizes/views.py:206
 msgid "My quiz"
 msgstr ""
 
-#: quizes/views.py:161
+#: quizes/views.py:167
 msgid "Please choose one"
 msgstr ""
 
-#: quizes/views.py:251
+#: quizes/views.py:263
 msgid "Quiz results"
+msgstr ""
+
+#: quizes/views.py:392
+msgid "Create compliment"
+msgstr ""
+
+#: quizes/views.py:410
+msgid "Update compliment"
+msgstr ""
+
+#: quizes/views.py:433 templates/quizes/question_list.html:46
+msgid "Compliment list"
 msgstr ""
 
 #: templates/404.html:6 templates/500.html:6
@@ -196,6 +305,14 @@ msgstr ""
 msgid "Quizes"
 msgstr ""
 
+#: templates/_navbar.html:49
+msgid "Accounting"
+msgstr ""
+
+#: templates/_navbar.html:52
+msgid "Admin"
+msgstr ""
+
 #: templates/_pagination.html:5
 msgid "first"
 msgstr ""
@@ -218,6 +335,52 @@ msgstr ""
 
 #: templates/_pagination.html:13
 msgid "last"
+msgstr ""
+
+#: templates/accounting/_accounting_header.html:4
+#: templates/accounting/_transactions_list.html:10
+msgid "Recieve"
+msgstr ""
+
+#: templates/accounting/_transactions_list.html:7
+msgid "Date/Time"
+msgstr ""
+
+#: templates/accounting/_transactions_list.html:12
+msgid "Babnk account"
+msgstr ""
+
+#: templates/accounting/add_payment.html:22
+#: templates/quizes/question_create.html:19
+msgid "Save"
+msgstr ""
+
+#: templates/accounting/bank_accounts_list.html:23
+msgid "Title"
+msgstr ""
+
+#: templates/accounting/bank_accounts_list.html:24
+msgid "Current level"
+msgstr ""
+
+#: templates/accounting/bank_accounts_list.html:25
+msgid "Initial level"
+msgstr ""
+
+#: templates/accounting/bank_accounts_list.html:26
+msgid "Bank name"
+msgstr ""
+
+#: templates/accounting/transaction_subjects_list.html:19
+msgid "Add subject"
+msgstr ""
+
+#: templates/accounting/transaction_subjects_list.html:25
+msgid "Subject"
+msgstr ""
+
+#: templates/accounting/transaction_subjects_list.html:26
+msgid "Transaction kind"
 msgstr ""
 
 #: templates/bookstore/static_bookstore.html:18
@@ -798,7 +961,7 @@ msgid "Now responsible for Farsi translation of Django Girls tutorial"
 msgstr ""
 
 #: templates/quizes/my_quiz.html:13 templates/quizes/my_quiz_proccess.html:13
-#: templates/quizes/show_results.html:14
+#: templates/quizes/show_results.html:47
 msgid "Book quiz"
 msgstr ""
 
@@ -815,20 +978,17 @@ msgid "Test yourself"
 msgstr ""
 
 #: templates/quizes/my_quiz_proccess.html:21
-#: templates/quizes/question_list.html:41 templates/quizes/show_results.html:22
+#: templates/quizes/question_list.html:53 templates/quizes/show_results.html:59
 msgid "Question"
 msgstr ""
 
 #: templates/quizes/my_quiz_proccess.html:62
-#: templates/quizes/show_results.html:24
+#: templates/quizes/show_results.html:61
 msgid "Result"
 msgstr ""
 
-#: templates/quizes/question_create.html:19
-msgid "Save"
-msgstr ""
-
 #: templates/quizes/question_list.html:13
+#: templates/quizes/question_list.html:44
 msgid "Question list"
 msgstr ""
 
@@ -836,66 +996,90 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: templates/quizes/question_list.html:35
+#: templates/quizes/question_list.html:43
 msgid "New question"
 msgstr ""
 
-#: templates/quizes/question_list.html:36
+#: templates/quizes/question_list.html:45
+msgid "New compliment"
+msgstr ""
+
+#: templates/quizes/question_list.html:47
+msgid "Update question report"
+msgstr ""
+
+#: templates/quizes/question_list.html:48
 msgid "New Quiz"
 msgstr ""
 
-#: templates/quizes/question_list.html:42
+#: templates/quizes/question_list.html:54
 msgid "Difficulty"
 msgstr ""
 
-#: templates/quizes/question_list.html:43
+#: templates/quizes/question_list.html:55
 msgid "Published"
 msgstr ""
 
-#: templates/quizes/question_list.html:44
+#: templates/quizes/question_list.html:56
 msgid "Link"
 msgstr ""
 
-#: templates/quizes/show_results.html:17
-msgid "Your resluts"
+#: templates/quizes/question_list.html:57
+msgid "Uses"
 msgstr ""
 
-#: templates/quizes/show_results.html:23
-msgid "Answer"
+#: templates/quizes/question_list.html:58
+msgid "Correct"
 msgstr ""
 
-#: templates/quizes/show_results.html:26
-msgid "The books we should read"
+#: templates/quizes/question_list.html:59
+msgid "Wrong"
+msgstr ""
+
+#: templates/quizes/question_list.html:60
+msgid "Correct percent"
 msgstr ""
 
 #: templates/quizes/show_results.html:54
+msgid "Your resluts"
+msgstr ""
+
+#: templates/quizes/show_results.html:60
+msgid "Answer"
+msgstr ""
+
+#: templates/quizes/show_results.html:63
+msgid "The books we should read"
+msgstr ""
+
+#: templates/quizes/show_results.html:91
 msgid "See this book"
 msgstr ""
 
-#: templates/quizes/show_results.html:62
+#: templates/quizes/show_results.html:99
 msgid "Your answer was"
 msgstr ""
 
-#: templates/quizes/show_results.html:69
+#: templates/quizes/show_results.html:106
 msgid "You may need this book"
 msgstr ""
 
-#: templates/quizes/show_results.html:82
+#: templates/quizes/show_results.html:119
 msgid "Your result"
 msgstr ""
 
-#: templates/quizes/show_results.html:99
+#: templates/quizes/show_results.html:134
 msgid "Invite your friends to the game"
 msgstr ""
 
-#: templates/quizes/show_results.html:114
+#: templates/quizes/show_results.html:149
 msgid "Do another quiz"
 msgstr ""
 
-#: templates/quizes/show_results.html:115
+#: templates/quizes/show_results.html:150
 msgid "Do a little harder quiz"
 msgstr ""
 
-#: templates/quizes/show_results.html:116
+#: templates/quizes/show_results.html:151
 msgid "Do a hard quiz"
 msgstr ""
