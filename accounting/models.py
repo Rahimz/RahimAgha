@@ -85,6 +85,12 @@ class TransactionSubject(TimeStampedModel):
         choices=TransactionKind.choices,
         default=TransactionKind.PAYMENT,
     )
+    @property
+    def get_subject_sum_pay(self):
+        return sum(t.amount_pay for t in self.transaction_set.filter(active=True))
+    @property
+    def get_subject_sum_rec(self):
+        return sum(t.amount_rec for t in self.transaction_set.filter(active=True))
 
     class Meta:
         verbose_name = _('Transaction subject')

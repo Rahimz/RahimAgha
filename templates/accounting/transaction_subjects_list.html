@@ -1,7 +1,5 @@
 {% extends '_base.html' %}
-{% load i18n %}
-{% load static %}
-{% load crispy_forms_tags %}
+{% load static i18n crispy_forms_tags humanize %}
 
 {% block head %}
 
@@ -24,6 +22,8 @@
                         <th>#</th>
                         <th>{% trans "Subject" %}</th>
                         <th>{% trans "Transaction kind" %}</th>
+                        <th>{% trans "Payment" %}</th>
+                        <th>{% trans "Receive" %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +34,8 @@
                             <a href="{% url 'accounting:update_transaction_subject' s.id %}">{{ s.title }}</a>
                         </td>
                         <td>{{ s.get_transaction_kind_display }}</td>
+                        <td>{{ s.get_subject_sum_pay | intcomma:False }}</td>
+                        <td>{{ s.get_subject_sum_rec | intcomma:False }}</td>
                     </tr>
                       
                     {% endfor %}
