@@ -1,0 +1,51 @@
+{% extends '_base.html' %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+
+{% endblock head %}
+{% block title %}{{ page_title }}{% endblock title %}
+
+{% block content %}
+<div class="container bg-brown " >
+    <h2 class="pt-4">{{ page_title }}</h2>  
+      
+    {% include "accounting/_accounting_header.html" %}
+
+    <div class="row ">
+       <div class="col">
+        <a href="{% url 'accounting:add_transaction_subject' %}" class="btn btn-light">{% trans "Add subject" %}</a>
+        <div class="table-responsive">
+            <table class="table table-stripped table-dark">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>{% trans "Subject" %}</th>
+                        <th>{% trans "Transaction kind" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for s in object_list %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            <a href="{% url 'accounting:update_transaction_subject' s.id %}">{{ s.title }}</a>
+                        </td>
+                        <td>{{ s.get_transaction_kind_display }}</td>
+                    </tr>
+                      
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+       </div>
+         
+         
+       </div>
+    </div>
+        
+</div>
+{% endblock content %}

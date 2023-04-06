@@ -1,0 +1,53 @@
+{% extends '_base.html' %}
+{% load static i18n crispy_forms_tags %}
+{% load humanize %}
+
+{% block head %}
+
+{% endblock head %}
+{% block title %}{{ page_title }}{% endblock title %}
+
+{% block content %}
+<div class="container bg-brown " >
+    <h2 class="pt-4">{{ page_title }}</h2>  
+
+    {% include "accounting/_accounting_header.html" %}
+
+    <div class="row ">
+       <div class="col">
+            <div class="table-responsive">  
+                <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{% trans "Title" %}</th>
+                            <th>{% trans "Current level" %}</th>
+                            <th>{% trans "Initial level" %}</th>
+                            <th>{% trans "Bank name" %}</th>
+                            <th>{% trans "Card number" %}</th>
+                            <th>{% trans "Account number" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for b in object_list %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ b.title }}</td>
+                            <td><span dir="ltr">{{ b.current_level | intcomma:False }}</span></td>
+                            <td><span dir="ltr">{{ b.initial_level | intcomma:False }}</span></td>
+                            <td>{{ b.bank_name }}</td>
+                            <td>{{ b.card_number }}</td>
+                            <td>{{ b.account_number }}</td>
+                            
+                        </tr>
+                        
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+       </div>
+    </div>
+        
+</div>
+{% endblock content %}

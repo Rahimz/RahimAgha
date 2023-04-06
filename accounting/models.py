@@ -63,9 +63,9 @@ class BankAccount(TimeStampedModel):
     def get_transactions_sum(self):
         return sum(t.amount_rec - t.amount_pay for t in self.transactions.all())
     
-    def save(self, *args, **kwargs):        
-        self.current_level = self.initial_level - self.get_transactions_sum() 
-        return super().save(*args, **kwargs) 
+    # def save(self, *args, **kwargs):        
+    #     self.current_level = self.initial_level - self.get_transactions_sum() 
+    #     return super().save(*args, **kwargs) 
 
 class TransactionSubject(TimeStampedModel):
     title = models.CharField(

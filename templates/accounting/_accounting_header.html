@@ -1,0 +1,8 @@
+{% load i18n %}
+<div class="col">
+    <a href="{% url 'accounting:add_payment' %}" class="btn btn-outline-warning my-2">{% trans "Payment" %}</a>        
+    <a href="{% url 'accounting:add_receive' %}" class="btn btn-outline-warning my-2">{% trans "Recieve" %}</a>
+    <a href="{% url 'accounting:transactions_list' %}" class="btn btn-outline-warning my-2">{% trans "Transactions" %}</a>
+    <a href="{% url 'accounting:bank_accounts_list' %}" class="btn btn-outline-warning my-2">{% trans "Bank accounts" %}</a>
+    <a href="{% url 'accounting:transaction_subjects_list' %}" class="btn btn-outline-warning my-2">{% trans "Transaction subjects" %}</a>
+</div>

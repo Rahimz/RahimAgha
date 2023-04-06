@@ -1,0 +1,36 @@
+{% load i18n humanize %}
+<div class="table-responsive">
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>{% trans "Date/Time" %}</th>
+            <th>{% trans "Description" %}</th>
+            <th>{% trans "Payment" %}</th>
+            <th>{% trans "Recieve" %}</th>
+            <th>{% trans "Account level" %}</th>
+            <th>{% trans "Babnk account" %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for t in object_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>
+                {% if t.date %}
+                {{ t.date }}
+                {% else %}
+                {{ t.created }}
+                {% endif %}</td>
+            <td>{{ t.description }}</td>
+            <td><span class="text-danger" dir="ltr">{{ t.amount_pay | intcomma:False }}</span></td>
+            <td><span class="text-success" dir="ltr">{{ t.amount_rec | intcomma:False }}</span></td>
+            <td><span class="text-light" dir="ltr">{{ t.account_level | intcomma:False }}</span></td>
+            <td>{{ t.bank_account }}</td>
+        </tr>
+          
+        {% endfor %}
+    </tbody>
+
+</table>
+</div>
