@@ -10,6 +10,7 @@
             <th>{% trans "Recieve" %}</th>
             <th>{% trans "Account level" %}</th>
             <th>{% trans "Babnk account" %}</th>
+            <th>{% trans "Remove" %}</th>
         </tr>
     </thead>
     <tbody>
@@ -27,6 +28,7 @@
             <td><span class="text-success" dir="ltr">{{ t.amount_rec | intcomma:False }}</span></td>
             <td><span class="text-light" dir="ltr">{{ t.account_level | intcomma:False }}</span></td>
             <td>{{ t.bank_account }}</td>
+            <td><a href="{% url 'accounting:remove_transaction' t.id %}" class="fs-6 text-danger" style="text-decoration: none;">&times;</a></td>
         </tr>
           
         {% endfor %}

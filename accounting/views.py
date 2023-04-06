@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.contrib.admin.views.decorators import staff_member_required
@@ -12,7 +12,7 @@ from .forms import PayForm, RecForm
 @staff_member_required
 def AccountingDashboardView(request):
     context = {}
-    context["object_list"] = Transaction.objects.all().select_related('bank_account', 'subject')
+    context["object_list"] = Transaction.active_trans.all().select_related('bank_account', 'subject')
     context["page_title"] = _('Accounting dashboard')
     context["mainNavSection"] = 'accounting'
     return render(
@@ -24,7 +24,7 @@ def AccountingDashboardView(request):
 class TransactionsListView(LoginRequiredMixin, ListView):
     model = Transaction
     template_name = 'accounting/transactions_list.html'
-    queryset = Transaction.objects.all()
+    queryset = Transaction.active_trans.all()
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -130,3 +130,11 @@ class UpdateTransactionSubject(LoginRequiredMixin, UpdateView):
         return context
     
 
+def RemoveTransactionView(request, pk):
+    transaction = get_object_or_404(Transaction, pk=pk)    
+    if transaction.bank_account:
+        transaction.bank_account.current_level = transaction.bank_account.current_level + transaction.amount_pay - transaction.amount_rec
+        transaction.bank_account.save()
+    transaction.active = False
+    transaction.save()
+    return redirect(request.META['HTTP_REFERER'])

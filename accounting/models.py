@@ -6,6 +6,10 @@ from django.conf import settings
 from quizes.models import TimeStampedModel
 
 
+class TransactionActiveManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(active=True)
+    
 
 class BankAccount(TimeStampedModel):
     title = models.CharField(
@@ -155,6 +159,13 @@ class Transaction(TimeStampedModel):
         null=True, 
         blank=True
     )
+    active = models.BooleanField(
+        default=True
+    )
+
+    # managers
+    objects = models.Manager()
+    active_trans = TransactionActiveManager()
 
     class Meta:
         verbose_name = _('Transaction')
