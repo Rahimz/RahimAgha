@@ -144,4 +144,4 @@ def RemoveTransactionView(request, pk):
         transaction.bank_account.save()
     transaction.active = False
     transaction.save()
-    return redirect(request.META['HTTP_REFERER'])
+    return redirect('accounting:accounting_dashboard')
