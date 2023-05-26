@@ -14,6 +14,7 @@ psycopg2-binary = "*"
 django-social-share = "*"
 djangorestframework = "*"
 drf-yasg = "*"
+sentry-sdk = "*"
 
 [dev-packages]
 
