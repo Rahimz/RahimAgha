@@ -6,8 +6,16 @@
             <th>#</th>
             <th>{% trans "Date/Time" %}</th>
             <th>{% trans "Description" %}</th>
-            <th>{% trans "Payment" %}</th>
-            <th>{% trans "Recieve" %}</th>
+            <th>
+                {% trans "Payment" %}
+                <br>
+                <span class="bg-light text-danger px-2 rounded">{{ pay_sum | intcomma:False }}</span>
+            </th>
+            <th>
+                {% trans "Recieve" %}
+                <br>
+                <span class="bg-light text-success px-2 rounded">{{ rec_sum | intcomma:False }}</span>
+            </th>
             <th>{% trans "Account level" %}</th>
             <th>{% trans "Babnk account" %}</th>
             <th>{% trans "Remove" %}</th>

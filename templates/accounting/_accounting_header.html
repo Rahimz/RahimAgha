@@ -1,8 +1,17 @@
-{% load i18n %}
+{% load i18n crispy_forms_tags %}
 <div class="col">
     <a href="{% url 'accounting:add_payment' %}" class="btn {% if accSection == 'pay' %}btn-warning{% else %}btn-outline-warning{% endif %} my-2">{% trans "Payment" %}</a>        
     <a href="{% url 'accounting:add_receive' %}" class="btn {% if accSection == 'rec' %}btn-warning{% else %}btn-outline-warning{% endif %} my-2">{% trans "Recieve" %}</a>
     <a href="{% url 'accounting:transactions_list' %}" class="btn {% if accSection == 'transaction' %}btn-warning{% else %}btn-outline-warning{% endif %} my-2">{% trans "Transactions" %}</a>
     <a href="{% url 'accounting:bank_accounts_list' %}" class="btn {% if accSection == 'bank' %}btn-warning{% else %}btn-outline-warning{% endif %} my-2">{% trans "Bank accounts" %}</a>
     <a href="{% url 'accounting:transaction_subjects_list' %}" class="btn {% if accSection == 'subject' %}btn-warning{% else %}btn-outline-warning{% endif %} my-2">{% trans "Transaction subjects" %}</a>
+    {% if accSection == 'transaction' %}
+    <form action="" class="d-inline ms-3">
+        <span class="text-light">{% trans "From date" %}: </span>       
+        {{ from_date }}
+        <span class="text-light">{% trans "To date" %}: </span>       
+        {{ to_date }}
+        <input type="submit" value="{% trans 'Submit' %}" class="btn btn-warning btn-sm ms-3">
+      </form>
+    {% endif %}
 </div>

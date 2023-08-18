@@ -1,12 +1,15 @@
+# from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+# from django.utils import timezone
+from datetime import datetime
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, ListView, UpdateView
-
+from django.db.models import Sum
 from .models import Transaction, BankAccount, TransactionSubject
-from .forms import PayForm, RecForm
+from .forms import PayForm, RecForm, DateForm
 
 
 @staff_member_required
@@ -24,15 +27,80 @@ def AccountingDashboardView(request):
 class TransactionsListView(LoginRequiredMixin, ListView):
     model = Transaction
     template_name = 'accounting/transactions_list.html'
+    form_class = DateForm
     queryset = Transaction.active_trans.all()
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page_title'] = _('Transactions')
         context['mainNavSection'] = 'accounting' 
-        context['accSection'] = 'transaction' 
-        return context
+        context['accSection'] = 'transaction'
+        context['from_date'] = DateForm(auto_id="from_%s", prefix='from')
+        context['to_date'] = DateForm(auto_id="to_%s", prefix='to')
+        context['pay_sum'] = self.get_queryset().aggregate(sum=Sum('amount_pay'))['sum']
+        context['rec_sum'] = self.get_queryset().aggregate(sum=Sum('amount_rec'))['sum']
 
+        context["from_day"] = int(self.request.GET.get('from-day', '1'))
+        context["from_month"] = int(self.request.GET.get('from-month', '1'))
+        context["from_year"] = int(self.request.GET.get('from-year', '2023'))
+        context["to_day"] = int(self.request.GET.get('to-day', '1'))
+        context["to_month"] = int(self.request.GET.get('to-month', '1'))
+        context["to_year"] = int(self.request.GET.get('to-year', '2023'))
+        
+        from_date = datetime(context["from_year"], context["from_month"], context["from_day"])
+        to_date = datetime(context["to_year"], context["to_month"], context["to_day"])
+        if from_date == datetime(2023, 1, 1) and to_date == datetime(2023, 1, 1):
+            context['from_date_date'] = None 
+            context['to_date_date'] = None 
+        else:
+            context['from_date_date'] = from_date 
+            context['to_date_date'] = to_date
+            # TODO: these two lines does not work to initial form of date
+            context['from_date'] = DateForm(auto_id="from_%s", prefix='from', initial={'from-day': context["from_day"], 'from-month': context["from_month"], 'from-year': context["from_year"]})
+            context['to_date'] = DateForm(auto_id="to_%s", prefix='to', initial={'to-day': context["to_day"], 'to-month': context["to_month"], 'to-year': context["to_year"]})
+            
+        
+        link_temp = "?from-day={}&from-month={}&from-year={}&to-day={}&to-month={}&to-year={}"
+        context['monthes'] = [
+            {'name': _('Farvardin'), 
+            'link': link_temp.format('21', '3', '2023', '20', '4', '2023')},
+            {'name': _('Ordibehesht'), 
+            'link': link_temp.format('21', '4', '2023', '21', '5', '2023')},
+            {'name': _('Khordad'), 
+            'link': link_temp.format('22', '5', '2023', '21', '6', '2023')},
+            {'name': _('Tir'), 
+            'link': link_temp.format('22', '6', '2023', '22', '7', '2023')},
+            {'name': _('Mordad'), 
+            'link': link_temp.format('23', '7', '2023', '22', '8', '2023')},
+            {'name': _('Shahrivar'), 
+            'link': link_temp.format('23', '8', '2023', '22', '9', '2023')},
+        ]
+
+            
+        return context
+    
+    def get_queryset(self):
+        from_day= None
+        queryset =  super().get_queryset()
+        if self.request.GET.get('from-day'):
+            from_day = int(self.request.GET.get('from-day'))
+            to_day = int(self.request.GET.get('to-day'))
+            from_month = int(self.request.GET.get('from-month'))
+            to_month = int(self.request.GET.get('to-month'))
+            from_year = int(self.request.GET.get('from-year'))
+            to_year = int(self.request.GET.get('to-year'))
+
+
+        if from_day:
+            from_date = datetime(from_year, from_month, from_day)
+            to_date = datetime(to_year, to_month, to_day)
+            # print(from_date, to_date)
+            try:
+                queryset = queryset.filter(created__range=(from_date, to_date))
+                # print('hi')
+            except:
+                pass
+        return queryset    
 
 class TransactionSubjectsListView(LoginRequiredMixin, ListView):
     model = TransactionSubject

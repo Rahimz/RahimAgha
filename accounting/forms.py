@@ -32,3 +32,25 @@ class RecForm(forms.ModelForm):
         widgets = {
             'amount_rec': forms.TextInput(attrs={'autofocus': 'autofocus'}),
         }
+
+
+
+PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 5)]
+
+class DateForm(forms.Form):
+    day = forms.TypedChoiceField(
+        choices=[(i, str(i)) for i in range(1, 32)],
+        coerce=int,
+        label=''
+    )
+    month = forms.TypedChoiceField(
+        choices=[(i, str(i)) for i in range(1, 13)],
+        coerce=int,
+        label=''
+    )
+    year = forms.TypedChoiceField(
+        choices=[(i, str(i)) for i in range(2023, 2024)],
+        coerce=int,
+        label=''
+    )
+    
