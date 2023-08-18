@@ -15,7 +15,11 @@
     {% include "accounting/_accounting_header.html" %}
     <div>
       {% for month in monthes %}
+      {% if subject %}
+      <a href="{% url 'accounting:transactions_list_subject' subject=subject %}{{ month.link }}" class="btn btn-sm btn-light py-0">{{ month.name }}</a>        
+      {% else %}
       <a href="{% url 'accounting:transactions_list' %}{{ month.link }}" class="btn btn-sm btn-light py-0">{{ month.name }}</a>        
+      {% endif %}
       {% endfor %}
       
 

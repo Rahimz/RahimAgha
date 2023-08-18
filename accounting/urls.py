@@ -7,6 +7,7 @@ app_name = 'accounting'
 urlpatterns = [
     path('', views.AccountingDashboardView, name="accounting_dashboard"),
     path('transactions/', views.TransactionsListView.as_view(), name="transactions_list"),
+    path('transactions/subject/<str:subject>/', views.TransactionsListView.as_view(), name="transactions_list_subject"),
     path('add-payment/', views.AddPayment.as_view(), name="add_payment"),
     path('add-receive/', views.AddRecieve.as_view(), name="add_receive"),
     path('remove-transaction/<int:pk>/', views.RemoveTransactionView, name="remove_transaction"),

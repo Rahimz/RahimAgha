@@ -6,6 +6,7 @@
             <th>#</th>
             <th>{% trans "Date/Time" %}</th>
             <th>{% trans "Description" %}</th>
+            <th>{% trans "Subject" %}</th>
             <th>
                 {% trans "Payment" %}
                 <br>
@@ -32,6 +33,13 @@
                 {{ t.created }}
                 {% endif %}</td>
             <td>{{ t.description }}</td>
+            <td>
+                {% if from_date_date %}
+                <a href="{% url 'accounting:transactions_list_subject' subject=t.subject.title %}?from-day={{ from_day }}&from-month={{from_month}}&from-year={{from_year}}&to-day={{to_day}}&to-month={{to_month}}&to-year={{to_year}}">{{ t.subject }}</a>                  
+                {% else %}
+                <a href="{% url 'accounting:transactions_list_subject' subject=t.subject.title %}">{{ t.subject }}</a>
+                {% endif %}
+            </td>
             <td><span class="text-danger" dir="ltr">{{ t.amount_pay | intcomma:False }}</span></td>
             <td><span class="text-success" dir="ltr">{{ t.amount_rec | intcomma:False }}</span></td>
             <td><span class="text-light" dir="ltr">{{ t.account_level | intcomma:False }}</span></td>

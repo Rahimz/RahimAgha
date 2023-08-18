@@ -75,6 +75,9 @@ class TransactionsListView(LoginRequiredMixin, ListView):
             {'name': _('Shahrivar'), 
             'link': link_temp.format('23', '8', '2023', '22', '9', '2023')},
         ]
+        
+        if self.kwargs.get('subject'):
+            context["subject"] = self.kwargs.get('subject')
 
             
         return context
@@ -82,6 +85,7 @@ class TransactionsListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         from_day= None
         queryset =  super().get_queryset()
+        
         if self.request.GET.get('from-day'):
             from_day = int(self.request.GET.get('from-day'))
             to_day = int(self.request.GET.get('to-day'))
@@ -100,6 +104,10 @@ class TransactionsListView(LoginRequiredMixin, ListView):
                 # print('hi')
             except:
                 pass
+        if self.kwargs.get('subject'):
+            subject = self.kwargs.get('subject')
+            queryset = queryset.filter(subject__title=subject)
+            # print(subject)
         return queryset    
 
 class TransactionSubjectsListView(LoginRequiredMixin, ListView):
