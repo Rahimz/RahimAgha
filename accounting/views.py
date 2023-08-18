@@ -79,7 +79,9 @@ class TransactionsListView(LoginRequiredMixin, ListView):
         if self.kwargs.get('subject'):
             context["subject"] = self.kwargs.get('subject')
 
-            
+        if self.request.GET.get('search'):
+            context["search"] =  self.request.GET.get('search')
+
         return context
     
     def get_queryset(self):
@@ -108,6 +110,9 @@ class TransactionsListView(LoginRequiredMixin, ListView):
             subject = self.kwargs.get('subject')
             queryset = queryset.filter(subject__title=subject)
             # print(subject)
+        if self.request.GET.get('search'):
+            search =  self.request.GET.get('search')
+            queryset = queryset.filter(description__icontains=search)
         return queryset    
 
 class TransactionSubjectsListView(LoginRequiredMixin, ListView):

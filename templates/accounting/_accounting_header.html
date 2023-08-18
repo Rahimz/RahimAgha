@@ -1,17 +1,30 @@
 {% load i18n crispy_forms_tags %}
-<div class="col">
-    <a href="{% url 'accounting:add_payment' %}" class="btn {% if accSection == 'pay' %}btn-warning{% else %}btn-outline-warning{% endif %} my-2">{% trans "Payment" %}</a>        
-    <a href="{% url 'accounting:add_receive' %}" class="btn {% if accSection == 'rec' %}btn-warning{% else %}btn-outline-warning{% endif %} my-2">{% trans "Recieve" %}</a>
-    <a href="{% url 'accounting:transactions_list' %}" class="btn {% if accSection == 'transaction' %}btn-warning{% else %}btn-outline-warning{% endif %} my-2">{% trans "Transactions" %}</a>
-    <a href="{% url 'accounting:bank_accounts_list' %}" class="btn {% if accSection == 'bank' %}btn-warning{% else %}btn-outline-warning{% endif %} my-2">{% trans "Bank accounts" %}</a>
-    <a href="{% url 'accounting:transaction_subjects_list' %}" class="btn {% if accSection == 'subject' %}btn-warning{% else %}btn-outline-warning{% endif %} my-2">{% trans "Transaction subjects" %}</a>
-    {% if accSection == 'transaction' %}
-    <form action="" class="d-inline ms-3">
-        <span class="text-light">{% trans "From date" %}: </span>       
-        {{ from_date }}
-        <span class="text-light">{% trans "To date" %}: </span>       
-        {{ to_date }}
-        <input type="submit" value="{% trans 'Submit' %}" class="btn btn-warning btn-sm ms-3">
-      </form>
-    {% endif %}
+<div class="row">
+  <div class="col-md-4">
+    <a href="{% url 'accounting:add_payment' %}" class="btn btn-sm {% if accSection == 'pay' %}btn-warning{% else %}btn-outline-warning{% endif %} my-2">{% trans "Payment" %}</a>        
+    <a href="{% url 'accounting:add_receive' %}" class="btn btn-sm ms-2 {% if accSection == 'rec' %}btn-warning{% else %}btn-outline-warning{% endif %} my-2">{% trans "Recieve" %}</a>
+    <a href="{% url 'accounting:transactions_list' %}" class="btn btn-sm ms-2 {% if accSection == 'transaction' %}btn-warning{% else %}btn-outline-warning{% endif %} my-2">{% trans "Transactions" %}</a>
+    <a href="{% url 'accounting:bank_accounts_list' %}" class="btn btn-sm  {% if accSection == 'bank' %}btn-warning{% else %}btn-outline-warning{% endif %} my-2">{% trans "Accounts" %}</a>
+    <a href="{% url 'accounting:transaction_subjects_list' %}" class="btn btn-sm  {% if accSection == 'subject' %}btn-warning{% else %}btn-outline-warning{% endif %} my-2">{% trans "Subjects" %}</a>
+    {% if accSection == 'transaction' %}    
+  </div>
+  <div class="col-md-6">
+      <span class="text-light">{% trans "From" %}: </span>       
+      {{ from_date }}
+      <span class="text-light">{% trans "To" %}: </span>       
+      {{ to_date }}
+      <input type="submit" value="{% trans 'Submit' %}" class="btn btn-warning btn-sm ms-3">
+    </form>
+  </div>
+  <div class="col-md-2">    
+    <form class="" action="." method="get">
+      <span class="input-group ">
+        <input type="text" class="form-control" placeholder="" name="search" aria-label="Search" aria-describedby="button-addon1">
+        <button class="btn btn-outline-secondary" type="submit"  id="button-addon1">{% trans "Search" %}</button>
+      </span>
+    </form>
+  </div>  
+  
+  {% endif %}
 </div>
+  

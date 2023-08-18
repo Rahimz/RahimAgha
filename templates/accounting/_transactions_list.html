@@ -35,9 +35,9 @@
             <td>{{ t.description }}</td>
             <td>
                 {% if from_date_date %}
-                <a href="{% url 'accounting:transactions_list_subject' subject=t.subject.title %}?from-day={{ from_day }}&from-month={{from_month}}&from-year={{from_year}}&to-day={{to_day}}&to-month={{to_month}}&to-year={{to_year}}">{{ t.subject }}</a>                  
+                <a href="{% url 'accounting:transactions_list_subject' subject=t.subject.title %}?from-day={{ from_day }}&from-month={{from_month}}&from-year={{from_year}}&to-day={{to_day}}&to-month={{to_month}}&to-year={{to_year}}{% if search %}&search={{search}}{% endif %}">{{ t.subject }}</a>                  
                 {% else %}
-                <a href="{% url 'accounting:transactions_list_subject' subject=t.subject.title %}">{{ t.subject }}</a>
+                <a href="{% url 'accounting:transactions_list_subject' subject=t.subject.title %}{% if search %}?search={{search}}{% endif %}">{{ t.subject }}</a>
                 {% endif %}
             </td>
             <td><span class="text-danger" dir="ltr">{{ t.amount_pay | intcomma:False }}</span></td>

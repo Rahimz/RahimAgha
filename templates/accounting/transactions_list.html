@@ -13,12 +13,17 @@
     <h2 class="pt-4">{{ page_title }}</h2>  
       
     {% include "accounting/_accounting_header.html" %}
-    <div>
+    <div class="my-1">
+      {% if subject %}
+      <a href="{% url 'accounting:transactions_list_subject' subject=subject %}{% if search %}?search={{search}}{% endif %}" class="btn btn-sm btn-light py-0">{% trans "All" %}</a>        
+      {% else %}
+      <a href="{% url 'accounting:transactions_list' %}{% if search %}?search={{search}}{% endif %}" class="btn btn-sm btn-light py-0">{% trans "All" %}</a>        
+      {% endif %}
       {% for month in monthes %}
       {% if subject %}
-      <a href="{% url 'accounting:transactions_list_subject' subject=subject %}{{ month.link }}" class="btn btn-sm btn-light py-0">{{ month.name }}</a>        
+      <a href="{% url 'accounting:transactions_list_subject' subject=subject %}{{ month.link }}{% if search %}&search={{search}}{% endif %}" class="btn btn-sm btn-light py-0">{{ month.name }}</a>        
       {% else %}
-      <a href="{% url 'accounting:transactions_list' %}{{ month.link }}" class="btn btn-sm btn-light py-0">{{ month.name }}</a>        
+      <a href="{% url 'accounting:transactions_list' %}{{ month.link }}{% if search %}&search={{search}}{% endif %}" class="btn btn-sm btn-light py-0">{{ month.name }}</a>        
       {% endif %}
       {% endfor %}
       
@@ -27,7 +32,13 @@
         <span class="bg-secondary rounded px-1 ms-3">{{ from_date_date | date }}</span>
       {% endif %}
       {% if to_date_date %}
-        <span class="bg-secondary rounded px-1">{{ to_date_date | date }}</span>
+      <span class="bg-secondary rounded px-1">{{ to_date_date | date }}</span>
+      {% endif %}
+      {% if subject %}
+        <span class="bg-secondary text-warning rounded px-1 ms-3">{{ subject }}</span>
+      {% endif %}
+      {% if search %}
+        <span class="bg-secondary text-warning rounded px-1 ms-3">{{ search }}</span>
       {% endif %}
     
     </div>
