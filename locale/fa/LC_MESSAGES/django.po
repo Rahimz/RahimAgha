@@ -8,111 +8,137 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-06 11:24+0330\n"
-"PO-Revision-Date: 2023-04-06 11:33+0330\n"
-"Last-Translator:   <>\n"
+"POT-Creation-Date: 2023-08-18 13:36+0330\n"
+"PO-Revision-Date: 2023-08-18 13:37+0330\n"
+"Last-Translator:   <rahim.aghareb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Translated-Using: django-rosetta 0.9.8\n"
+"X-Translated-Using: django-rosetta 0.9.9\n"
 
-#: accounting/models.py:12
+#: accounting/models.py:16
 msgid "Account title"
 msgstr "عنوان حساب"
 
-#: accounting/models.py:22 templates/accounting/bank_accounts_list.html:27
+#: accounting/models.py:26 templates/accounting/bank_accounts_list.html:27
 msgid "Card number"
 msgstr "شماره کارت"
 
-#: accounting/models.py:28 templates/accounting/bank_accounts_list.html:28
+#: accounting/models.py:32 templates/accounting/bank_accounts_list.html:28
 msgid "Account number"
 msgstr "شماره حساب"
 
-#: accounting/models.py:56
+#: accounting/models.py:60
 msgid "Bank account"
 msgstr "حساب بانکی"
 
-#: accounting/models.py:57 accounting/views.py:55
+#: accounting/models.py:61 accounting/views.py:125
 #: templates/accounting/_accounting_header.html:6
 msgid "Bank accounts"
 msgstr "حساب‌های بانکی"
 
-#: accounting/models.py:77 templates/accounting/_accounting_header.html:3
-#: templates/accounting/_transactions_list.html:9
+#: accounting/models.py:81 templates/accounting/_accounting_header.html:3
+#: templates/accounting/_transactions_list.html:10
+#: templates/accounting/transaction_subjects_list.html:25
 msgid "Payment"
 msgstr "پرداخت"
 
-#: accounting/models.py:78
+#: accounting/models.py:82
+#: templates/accounting/transaction_subjects_list.html:26
 msgid "Receive"
 msgstr "دریافت"
 
-#: accounting/models.py:86
+#: accounting/models.py:96
 msgid "Transaction subject"
 msgstr "موضوع تراکنش"
 
-#: accounting/models.py:87 accounting/views.py:43
+#: accounting/models.py:97 accounting/views.py:112
 #: templates/accounting/_accounting_header.html:7
 msgid "Transaction subjects"
 msgstr "موضوعات تراکنش"
 
-#: accounting/models.py:99
+#: accounting/models.py:109
 msgid "Pay amount"
 msgstr "مقدار پرداخت"
 
-#: accounting/models.py:105
+#: accounting/models.py:115
 msgid "Receive amount"
 msgstr "مقدار دریافت"
 
-#: accounting/models.py:112 templates/accounting/_transactions_list.html:11
+#: accounting/models.py:122 templates/accounting/_transactions_list.html:19
 msgid "Account level"
 msgstr "تراز حساب"
 
-#: accounting/models.py:118
+#: accounting/models.py:128
 msgid "Transaction date"
 msgstr "تاریخ تراکنیش"
 
-#: accounting/models.py:142 contacts/forms.py:13
+#: accounting/models.py:152 contacts/forms.py:13
 #: templates/accounting/_transactions_list.html:8
 msgid "Description"
 msgstr "توضیحات"
 
-#: accounting/models.py:147
+#: accounting/models.py:157
 msgid "Receipt image"
 msgstr "تصویر رسید"
 
-#: accounting/models.py:153
+#: accounting/models.py:163
 msgid "Receipt file"
 msgstr "فایل رسید"
 
-#: accounting/models.py:160
+#: accounting/models.py:177
 msgid "Transaction"
 msgstr "تراکنش"
 
-#: accounting/models.py:161 accounting/views.py:31
+#: accounting/models.py:178 accounting/views.py:35
 #: templates/accounting/_accounting_header.html:5
 msgid "Transactions"
 msgstr "تراکنش‌ها"
 
-#: accounting/views.py:16
+#: accounting/views.py:19
 msgid "Accounting dashboard"
 msgstr "داشبورد حسابداری"
 
-#: accounting/views.py:77
+#: accounting/views.py:65
+msgid "Farvardin"
+msgstr "فروردین"
+
+#: accounting/views.py:67
+msgid "Ordibehesht"
+msgstr "اردیبهشت"
+
+#: accounting/views.py:69
+msgid "Khordad"
+msgstr "خرداد"
+
+#: accounting/views.py:71
+msgid "Tir"
+msgstr "تیر"
+
+#: accounting/views.py:73
+msgid "Mordad"
+msgstr "مرداد"
+
+#: accounting/views.py:75
+msgid "Shahrivar"
+msgstr "شهریور"
+
+#: accounting/views.py:148
 msgid "Add payment"
 msgstr "پرداخت جدید"
 
-#: accounting/views.py:98
+#: accounting/views.py:170
 msgid "Add recieve"
 msgstr "دریافت جدید"
 
-#: accounting/views.py:113
+#: accounting/views.py:186
 msgid "Add transaction subject"
 msgstr "اضافه کردن موضوع تراکنش"
 
-#: accounting/views.py:128
+#: accounting/views.py:202
 msgid "Update transaction subject"
 msgstr "به‌روزرسانی موضوع تراکنش"
 
@@ -341,17 +367,34 @@ msgid "last"
 msgstr "قبلی"
 
 #: templates/accounting/_accounting_header.html:4
-#: templates/accounting/_transactions_list.html:10
+#: templates/accounting/_transactions_list.html:15
 msgid "Recieve"
 msgstr "دریافت"
+
+#: templates/accounting/_accounting_header.html:10
+msgid "From date"
+msgstr "ازتاریخ"
+
+#: templates/accounting/_accounting_header.html:12
+msgid "To date"
+msgstr "تا تاریخ"
+
+#: templates/accounting/_accounting_header.html:14
+#: templates/contacts/contacts.html:34
+msgid "Submit"
+msgstr "تایید "
 
 #: templates/accounting/_transactions_list.html:7
 msgid "Date/Time"
 msgstr "تاریخ/زمان"
 
-#: templates/accounting/_transactions_list.html:12
+#: templates/accounting/_transactions_list.html:20
 msgid "Babnk account"
 msgstr "حساب بانکی"
+
+#: templates/accounting/_transactions_list.html:21
+msgid "Remove"
+msgstr ""
 
 #: templates/accounting/add_payment.html:22
 #: templates/quizes/question_create.html:19
@@ -374,15 +417,15 @@ msgstr "تراز اولیه"
 msgid "Bank name"
 msgstr "نام بانک"
 
-#: templates/accounting/transaction_subjects_list.html:19
+#: templates/accounting/transaction_subjects_list.html:17
 msgid "Add subject"
 msgstr "اضافه کردن موضوع"
 
-#: templates/accounting/transaction_subjects_list.html:25
+#: templates/accounting/transaction_subjects_list.html:23
 msgid "Subject"
 msgstr "موضوع"
 
-#: templates/accounting/transaction_subjects_list.html:26
+#: templates/accounting/transaction_subjects_list.html:24
 msgid "Transaction kind"
 msgstr "نوع تراکنش"
 
@@ -831,10 +874,6 @@ msgstr "قیمت‌ها نیاز دارید"
 msgid "Please let me know how could I help you"
 msgstr "لطفا بنویسید که من چطور می‌توانم به شما کمک کنم "
 
-#: templates/contacts/contacts.html:34
-msgid "Submit"
-msgstr "تایید "
-
 #: templates/contacts/contacts.html:38
 msgid "You can also contact me with"
 msgstr "همچنین می‌توانید از روش‌‌های زیر با من تماس بگیرید"
@@ -1065,7 +1104,6 @@ msgid "New compliment"
 msgstr "تشویق جدید"
 
 #: templates/quizes/question_list.html:47
-#| msgid "Update question"
 msgid "Update question report"
 msgstr "به روزرسانی گزارش سوال"
 
@@ -1090,7 +1128,6 @@ msgid "Uses"
 msgstr "استفاده شده"
 
 #: templates/quizes/question_list.html:58
-#| msgid "Correct answer"
 msgid "Correct"
 msgstr "درست"
 
@@ -1099,7 +1136,6 @@ msgid "Wrong"
 msgstr "غلط"
 
 #: templates/quizes/question_list.html:60
-#| msgid "Correct answer"
 msgid "Correct percent"
 msgstr "درصد درست"
 
