@@ -12,7 +12,7 @@ class PayForm(forms.ModelForm):
     class Meta:
         model = Transaction
         fields = [
-            'amount_pay', 'description', 'subject', 'bank_account', 'date', 'receipt_image', 'receipt_file'
+            'amount_pay', 'description', 'subject', 'bank_account', # 'date', 'receipt_image', 'receipt_file'
         ]
         widgets = {
             'amount_pay': forms.TextInput(attrs={'autofocus': 'autofocus'}),
@@ -27,7 +27,7 @@ class RecForm(forms.ModelForm):
     class Meta:
         model = Transaction
         fields = [
-            'amount_rec', 'description', 'subject', 'bank_account', 'date', 'receipt_image', 'receipt_file'
+            'amount_rec', 'description', 'subject', 'bank_account', #'date', 'receipt_image', 'receipt_file'
         ]
         widgets = {
             'amount_rec': forms.TextInput(attrs={'autofocus': 'autofocus'}),

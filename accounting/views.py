@@ -12,17 +12,17 @@ from .models import Transaction, BankAccount, TransactionSubject
 from .forms import PayForm, RecForm, DateForm
 
 
-@staff_member_required
-def AccountingDashboardView(request):
-    context = {}
-    context["object_list"] = Transaction.active_trans.all().select_related('bank_account', 'subject')
-    context["page_title"] = _('Accounting dashboard')
-    context["mainNavSection"] = 'accounting'
-    return render(
-        request, 
-        'accounting/dashboard.html',
-        context
-    )
+# @staff_member_required
+# def AccountingDashboardView(request):
+#     context = {}
+#     context["object_list"] = Transaction.active_trans.all().select_related('bank_account', 'subject')
+#     context["page_title"] = _('Accounting dashboard')
+#     context["mainNavSection"] = 'accounting'
+#     return render(
+#         request, 
+#         'accounting/dashboard.html',
+#         context
+#     )
 
 class TransactionsListView(LoginRequiredMixin, ListView):
     model = Transaction
@@ -171,7 +171,7 @@ class AddPayment(LoginRequiredMixin, CreateView):
     template_name = 'accounting/add_payment.html'
 
     def get_success_url(self):
-        return reverse ('accounting:accounting_dashboard')
+        return reverse ('accounting:transactions_list')
     
     def form_valid(self, form):
         # form.instance.bank_account.current_level -= form.instance.amount_pay   
@@ -249,4 +249,4 @@ def RemoveTransactionView(request, pk):
         transaction.bank_account.save()
     transaction.active = False
     transaction.save()
-    return redirect('accounting:accounting_dashboard')
+    return redirect('accounting:transactions_list')
