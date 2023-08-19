@@ -78,6 +78,16 @@ class TransactionsListView(LoginRequiredMixin, ListView):
         
         if self.kwargs.get('subject'):
             context["subject"] = self.kwargs.get('subject')
+        else:
+            context["subject"] = 'all'
+
+        
+
+        if self.kwargs.get('bank'):
+            context["bank"] = self.kwargs.get('bank')
+        else:
+            context["bank"] = 'all'
+        
 
         if self.request.GET.get('search'):
             context["search"] =  self.request.GET.get('search')
@@ -106,13 +116,27 @@ class TransactionsListView(LoginRequiredMixin, ListView):
                 # print('hi')
             except:
                 pass
+        
         if self.kwargs.get('subject'):
             subject = self.kwargs.get('subject')
-            queryset = queryset.filter(subject__title=subject)
-            # print(subject)
+            subjects = TransactionSubject.objects.all().values_list('title', flat=True)
+            if subject == 'all':
+                queryset = queryset.filter(subject__title__in=subjects)                
+            else:
+                queryset = queryset.filter(subject__title=subject)
+        
+        if self.kwargs.get('bank'):
+            bank = self.kwargs.get('bank')
+            banks = BankAccount.objects.values_list('title', flat=True)
+            if bank == 'all':
+                queryset = queryset.filter(bank_account__title__in=banks)
+            else:
+                queryset = queryset.filter(bank_account__title=bank)            
+        
         if self.request.GET.get('search'):
             search =  self.request.GET.get('search')
             queryset = queryset.filter(description__icontains=search)
+        
         return queryset    
 
 class TransactionSubjectsListView(LoginRequiredMixin, ListView):

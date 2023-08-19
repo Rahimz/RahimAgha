@@ -14,14 +14,14 @@
       
     {% include "accounting/_accounting_header.html" %}
     <div class="my-1">
-      {% if subject %}
-      <a href="{% url 'accounting:transactions_list_subject' subject=subject %}{% if search %}?search={{search}}{% endif %}" class="btn btn-sm btn-light py-0">{% trans "All" %}</a>        
+      {% if subject %}      
+      <a href="{% url 'accounting:transactions_list_subject_bank' subject=subject bank=bank %}{% if search %}?search={{search}}{% endif %}" class="btn btn-sm btn-light py-0">{% trans "All" %}</a>        
       {% else %}
       <a href="{% url 'accounting:transactions_list' %}{% if search %}?search={{search}}{% endif %}" class="btn btn-sm btn-light py-0">{% trans "All" %}</a>        
       {% endif %}
       {% for month in monthes %}
-      {% if subject %}
-      <a href="{% url 'accounting:transactions_list_subject' subject=subject %}{{ month.link }}{% if search %}&search={{search}}{% endif %}" class="btn btn-sm btn-light py-0">{{ month.name }}</a>        
+      {% if subject %}      
+      <a href="{% url 'accounting:transactions_list_subject_bank' subject=subject bank=bank %}{{ month.link }}{% if search %}&search={{search}}{% endif %}" class="btn btn-sm btn-light py-0">{{ month.name }}</a>        
       {% else %}
       <a href="{% url 'accounting:transactions_list' %}{{ month.link }}{% if search %}&search={{search}}{% endif %}" class="btn btn-sm btn-light py-0">{{ month.name }}</a>        
       {% endif %}
@@ -35,10 +35,13 @@
       <span class="bg-secondary rounded px-1">{{ to_date_date | date }}</span>
       {% endif %}
       {% if subject %}
-        <span class="bg-secondary text-warning rounded px-1 ms-3">{{ subject }}</span>
+        <span class="bg-secondary text-warning rounded px-1 ms-3">{% trans "Subject" %}: {{ subject }}</span>
       {% endif %}
-      {% if search %}
-        <span class="bg-secondary text-warning rounded px-1 ms-3">{{ search }}</span>
+      {% if bank %}
+        <span class="bg-secondary text-warning rounded px-1 ms-3">{% trans "Bank" %}: {{ bank }}</span>
+      {% endif %}
+      {% if search %}      
+          <a href="{% url 'accounting:transactions_list_subject_bank' subject=subject bank=bank %}{% if from_date_date %}?from-day={{ from_day }}&from-month={{from_month}}&from-year={{from_year}}&to-day={{to_day}}&to-month={{to_month}}&to-year={{to_year}}{% endif %}" class="bg-secondary text-warning rounded px-1 ms-3" style="text-decoration: none;">{% trans "Search" %}: {{ search }} &times;</a>        
       {% endif %}
     
     </div>

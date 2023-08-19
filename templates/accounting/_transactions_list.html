@@ -35,15 +35,23 @@
             <td>{{ t.description }}</td>
             <td>
                 {% if from_date_date %}
-                <a href="{% url 'accounting:transactions_list_subject' subject=t.subject.title %}?from-day={{ from_day }}&from-month={{from_month}}&from-year={{from_year}}&to-day={{to_day}}&to-month={{to_month}}&to-year={{to_year}}{% if search %}&search={{search}}{% endif %}">{{ t.subject }}</a>                  
+                <a href="{% url 'accounting:transactions_list_subject_bank' subject=t.subject.title bank=bank %}?from-day={{ from_day }}&from-month={{from_month}}&from-year={{from_year}}&to-day={{to_day}}&to-month={{to_month}}&to-year={{to_year}}{% if search %}&search={{search}}{% endif %}">{{ t.subject }}</a>                  
                 {% else %}
-                <a href="{% url 'accounting:transactions_list_subject' subject=t.subject.title %}{% if search %}?search={{search}}{% endif %}">{{ t.subject }}</a>
+                <a href="{% url 'accounting:transactions_list_subject_bank' subject=t.subject.title bank=bank %}{% if search %}?search={{search}}{% endif %}">{{ t.subject }}</a>
                 {% endif %}
             </td>
             <td><span class="text-danger" dir="ltr">{{ t.amount_pay | intcomma:False }}</span></td>
             <td><span class="text-success" dir="ltr">{{ t.amount_rec | intcomma:False }}</span></td>
             <td><span class="text-light" dir="ltr">{{ t.account_level | intcomma:False }}</span></td>
-            <td>{{ t.bank_account }}</td>
+            <td>
+                {% if from_date_date %}
+                <a href="{% url 'accounting:transactions_list_subject_bank' subject=subject bank=t.bank_account.title %}?from-day={{ from_day }}&from-month={{from_month}}&from-year={{from_year}}&to-day={{to_day}}&to-month={{to_month}}&to-year={{to_year}}{% if search %}&search={{search}}{% endif %}">{{ t.bank_account }}</a>                  
+                {% else %}
+                <a href="{% url 'accounting:transactions_list_subject_bank' subject=subject bank=t.bank_account.title %}{% if search %}?search={{search}}{% endif %}">{{ t.bank_account }}</a>
+                {% endif %}
+
+                
+            </td>
             <td><a href="{% url 'accounting:remove_transaction' t.id %}" class="fs-6 text-danger" style="text-decoration: none;">&times;</a></td>
         </tr>
           
