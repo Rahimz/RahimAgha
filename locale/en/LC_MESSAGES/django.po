@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-18 13:36+0330\n"
+"POT-Creation-Date: 2023-08-19 09:29+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,13 +34,12 @@ msgstr ""
 msgid "Bank account"
 msgstr ""
 
-#: accounting/models.py:61 accounting/views.py:125
-#: templates/accounting/_accounting_header.html:6
+#: accounting/models.py:61 accounting/views.py:162
 msgid "Bank accounts"
 msgstr ""
 
-#: accounting/models.py:81 templates/accounting/_accounting_header.html:3
-#: templates/accounting/_transactions_list.html:10
+#: accounting/models.py:81 templates/accounting/_accounting_header.html:4
+#: templates/accounting/_transactions_list.html:11
 #: templates/accounting/transaction_subjects_list.html:25
 msgid "Payment"
 msgstr ""
@@ -54,8 +53,7 @@ msgstr ""
 msgid "Transaction subject"
 msgstr ""
 
-#: accounting/models.py:97 accounting/views.py:112
-#: templates/accounting/_accounting_header.html:7
+#: accounting/models.py:97 accounting/views.py:149
 msgid "Transaction subjects"
 msgstr ""
 
@@ -67,7 +65,7 @@ msgstr ""
 msgid "Receive amount"
 msgstr ""
 
-#: accounting/models.py:122 templates/accounting/_transactions_list.html:19
+#: accounting/models.py:122 templates/accounting/_transactions_list.html:20
 msgid "Account level"
 msgstr ""
 
@@ -93,7 +91,7 @@ msgid "Transaction"
 msgstr ""
 
 #: accounting/models.py:178 accounting/views.py:35
-#: templates/accounting/_accounting_header.html:5
+#: templates/accounting/_accounting_header.html:6
 msgid "Transactions"
 msgstr ""
 
@@ -125,19 +123,19 @@ msgstr ""
 msgid "Shahrivar"
 msgstr ""
 
-#: accounting/views.py:148
+#: accounting/views.py:185
 msgid "Add payment"
 msgstr ""
 
-#: accounting/views.py:170
+#: accounting/views.py:207
 msgid "Add recieve"
 msgstr ""
 
-#: accounting/views.py:186
+#: accounting/views.py:223
 msgid "Add transaction subject"
 msgstr ""
 
-#: accounting/views.py:202
+#: accounting/views.py:239
 msgid "Update transaction subject"
 msgstr ""
 
@@ -363,33 +361,53 @@ msgstr ""
 msgid "last"
 msgstr ""
 
-#: templates/accounting/_accounting_header.html:4
-#: templates/accounting/_transactions_list.html:15
+#: templates/accounting/_accounting_header.html:5
+#: templates/accounting/_transactions_list.html:16
 msgid "Recieve"
 msgstr ""
 
-#: templates/accounting/_accounting_header.html:10
-msgid "From date"
+#: templates/accounting/_accounting_header.html:7
+msgid "Accounts"
+msgstr ""
+
+#: templates/accounting/_accounting_header.html:8
+msgid "Subjects"
 msgstr ""
 
 #: templates/accounting/_accounting_header.html:12
-msgid "To date"
+msgid "From"
 msgstr ""
 
 #: templates/accounting/_accounting_header.html:14
+msgid "To"
+msgstr ""
+
+#: templates/accounting/_accounting_header.html:16
 #: templates/contacts/contacts.html:34
 msgid "Submit"
+msgstr ""
+
+#: templates/accounting/_accounting_header.html:23
+#: templates/accounting/transactions_list.html:44
+#: templates/quizes/question_list.html:20
+msgid "Search"
 msgstr ""
 
 #: templates/accounting/_transactions_list.html:7
 msgid "Date/Time"
 msgstr ""
 
-#: templates/accounting/_transactions_list.html:20
-msgid "Babnk account"
+#: templates/accounting/_transactions_list.html:9
+#: templates/accounting/transaction_subjects_list.html:23
+#: templates/accounting/transactions_list.html:38
+msgid "Subject"
 msgstr ""
 
 #: templates/accounting/_transactions_list.html:21
+msgid "Babnk account"
+msgstr ""
+
+#: templates/accounting/_transactions_list.html:22
 msgid "Remove"
 msgstr ""
 
@@ -418,12 +436,17 @@ msgstr ""
 msgid "Add subject"
 msgstr ""
 
-#: templates/accounting/transaction_subjects_list.html:23
-msgid "Subject"
-msgstr ""
-
 #: templates/accounting/transaction_subjects_list.html:24
 msgid "Transaction kind"
+msgstr ""
+
+#: templates/accounting/transactions_list.html:18
+#: templates/accounting/transactions_list.html:20
+msgid "All"
+msgstr ""
+
+#: templates/accounting/transactions_list.html:41
+msgid "Bank"
 msgstr ""
 
 #: templates/bookstore/static_bookstore.html:18
@@ -1029,10 +1052,6 @@ msgstr ""
 #: templates/quizes/question_list.html:13
 #: templates/quizes/question_list.html:44
 msgid "Question list"
-msgstr ""
-
-#: templates/quizes/question_list.html:20
-msgid "Search"
 msgstr ""
 
 #: templates/quizes/question_list.html:43
