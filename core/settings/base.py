@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'accounting.apps.AccountingConfig',
     'accounts.apps.AccountsConfig',
     'api.apps.ApiConfig',
+    'videos.apps.VideosConfig',
 ]
 
 MIDDLEWARE = [
