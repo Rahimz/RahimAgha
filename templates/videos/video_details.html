@@ -1,0 +1,16 @@
+{% extends "videos/_video_base.html" %}
+
+
+{% block content %}
+{% comment %}
+<video src="{% url 'videos:video_details' video.id %}" controls>
+  {{ video.id }}
+</video>  
+{% endcomment %}
+<video controls>
+  <source src="{{ video.video_file.url }}" type="video/mp4">
+  <source src="{{ video.video_file.url }}" type="video/ogg">
+  <source src="{{ video.video_file.url }}" type="video/webm">
+</video>
+
+{% endblock content %}
