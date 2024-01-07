@@ -154,7 +154,7 @@ def NewFileUploader(request):
             # handle_uploaded_file(file)
             new_video.save()
             # upload_file.delay(new_video.video_file, new_video.name, new_video.category)
-            # add sample comment
+            # add sample comments
             return redirect ('videos:video_list')
     else:
         form = VideoUploadNewForm()
