@@ -157,7 +157,7 @@ def NewFileUploader(request):
     return render(
         request, 
         'videos/video_upload.html', 
-        {'form': form}        
+        {'form': form},     
     )
 
 
