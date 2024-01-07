@@ -1,5 +1,12 @@
+{% extends "videos/_video_base.html" %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h1>Video uploader </h1>
 <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form }}
+    {{ form | crispy }}
     <input type="submit">
 </form>
+{% endblock content %}

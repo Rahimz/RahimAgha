@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseForbidden, HttpResponse
 from django.views.generic import View
 from django.conf import settings
@@ -10,7 +10,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 from .serializers import YourFileSerializer
-from .forms import VideoUploadForm
+from .forms import VideoUploadForm, VideoUploadNewForm
 
 from django.http import StreamingHttpResponse
 from django.core.files.storage import default_storage
@@ -140,3 +140,18 @@ class FileUploader(APIView):
         # print(response)
         # print(response.items())
         return Response(file_serializer.errors)
+    
+
+def NewFileUploader(request):
+    if request.method == 'POST':
+        form = VideoUploadNewForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect ('videos:video_list')
+    else:
+        form = VideoUploadNewForm()
+    return render(
+        request, 
+        'videos/video_upload.html', 
+        {'form': form}        
+    )

@@ -1,15 +1,29 @@
 {% extends "videos/_video_base.html" %}
 
-
 {% block content %}
 <h1>Hi</h1>
+<div>
+    <a href="{% url 'videos:file_upload' %}" class="btn btn-outline-success">rest</a>
+    <a href="{% url 'videos:new_file_upload' %}" class="btn btn-outline-success">normal</a>
+</div>
 <table class="table table-stripped">
+    <thead>
+        <th>#</th>
+        <th>name</th>
+        <th>id</th>
+        <th>Download</th>
+        <th>Stream</th>
+        <th>category</th>
+    </thead>
     <tbody>
         {% for video in videos %}
         <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ video.name }}</td>
             <td><a href="{% url 'videos:video_details' video.id %}" target="_blank">{{ video.id }}</a></td>
             <td><a href="{% url 'videos:video_download' video.id  %}">Download</a></td>
             <td><a href="{% url 'videos:video_stream' video.id  %}">Stream</a></td>
+            <td>{{ video.category }}</td>
         </tr>
         {% endfor %}
     </tbody>
