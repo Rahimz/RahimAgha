@@ -20,6 +20,8 @@ import mimetypes
 
 
 from .models import Video
+from .tasks import upload_file
+
 
 def VideoListView(request):
     videos = Video.objects.all()
@@ -147,10 +149,12 @@ def NewFileUploader(request):
         form = VideoUploadNewForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             new_video = form.save(commit=False)
-            file =new_video.video_file
+            file = new_video.video_file
             # it wirtes file in root of project
             # handle_uploaded_file(file)
             new_video.save()
+            # upload_file.delay(new_video.video_file, new_video.name, new_video.category)
+
             return redirect ('videos:video_list')
     else:
         form = VideoUploadNewForm()
