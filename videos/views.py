@@ -146,7 +146,11 @@ def NewFileUploader(request):
     if request.method == 'POST':
         form = VideoUploadNewForm(data=request.POST, files=request.FILES)
         if form.is_valid():
-            form.save()
+            new_video = form.save(commit=False)
+            file =new_video.video_file
+            # it wirtes file in root of project
+            # handle_uploaded_file(file)
+            new_video.save()
             return redirect ('videos:video_list')
     else:
         form = VideoUploadNewForm()
@@ -155,3 +159,9 @@ def NewFileUploader(request):
         'videos/video_upload.html', 
         {'form': form}        
     )
+
+
+def handle_uploaded_file(f):
+    with open(f.name, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
