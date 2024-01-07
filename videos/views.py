@@ -5,6 +5,13 @@ from django.conf import settings
 import os
 
 
+from rest_framework.parsers import FileUploadParser
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
+from .serializers import YourFileSerializer
+from .forms import VideoUploadForm
+
 from django.http import StreamingHttpResponse
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
@@ -79,3 +86,57 @@ class VideoStreamView(View):
                 if not data:
                     break
                 yield data
+
+
+
+class FileUploader(APIView):
+    parser_classes = (FileUploadParser,)
+    def get(self, request, *args, **kwargs):
+        form = VideoUploadForm()
+        return render (request, 'videos/video_upload.html', {'form': form})
+    def post(self, request, *args, **kwargs):
+        file_serializer = YourFileSerializer(data=request.data)
+
+        if file_serializer.is_valid():
+            new_file = file_serializer.validated_data['your_file']
+            
+            vid = Video.objects.create(
+                video_file=new_file,
+                name=new_file.name
+            )
+            response = Response({'video_id': vid.id}, status=status.HTTP_201_CREATED)
+            response['Content-Disposition'] = f'attachment; filename="{new_file.name}"'
+            # response['Content-Disposition'] = f'attachment; filename="{your_file.name}"'
+            return response
+        return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+
+class FileUploader(APIView):
+    parser_classes = (FileUploadParser,)
+
+    def get(self, request, *args, **kwargs):
+        form = VideoUploadForm()
+        return render(request, 'videos/video_upload.html', {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        file_serializer = YourFileSerializer(data=request.data)
+        print(file_serializer)
+        # print (request.data)
+        if file_serializer.is_valid():
+            print('hi')
+            new_file = file_serializer.validated_data['your_file']
+            name = file_serializer.validated_data['name']
+            print(name, new_file.name)
+            vid = Video.objects.create(
+                video_file=new_file,
+                name=new_file.name
+            )
+            response = Response({'video_id': vid.id}, status=status.HTTP_201_CREATED)
+            response['Content-Disposition'] = f'attachment; filename="{name}"'
+            return response
+        else: 
+            print(file_serializer.errors)
+        # print(response)
+        # print(response.items())
+        return Response(file_serializer.errors)

@@ -27,6 +27,10 @@ class Video(TimeStampedModel):
         upload_to='videos/',
 
     )
+    name = models.CharField(
+        max_length=10,
+        default='test'
+    )
 
     def get_download_info(self):
         _file = self.video_file
