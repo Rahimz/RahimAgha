@@ -45,7 +45,7 @@
             </td>
 
             <td>
-                <textarea id="{{ video.video_file.name }}"><iframe src="{{ request.META.HTTP_HOST }}{{ video.video_file.url }}" title="{{ video.name }}" autoplay sandbox="allow-scripts"></iframe></textarea>
+                <textarea id="{{ video.video_file.name }}"><iframe src="https://rahimagha.ir{{ video.video_file.url }}" title="{{ video.name }}" autoplay="false" allow="fullscreen"  referrerpolicy="no-referrer" height="600px" width="800px" style="border:none;"></iframe></textarea>
             </td>
             <td>
                 <!-- The button used to copy the text -->
@@ -53,6 +53,7 @@
                     <i class="fa-regular fa-copy"></i>
                 </button>
             </td>
+            
         </tr>
         {% endfor %}
     </tbody>
