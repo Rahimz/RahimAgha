@@ -1,29 +1,46 @@
 {% extends "videos/_video_base.html" %}
 
+{% load humanize %}
+
 {% block content %}
 <h1>Hi</h1>
 <div>
-    <a href="{% url 'videos:file_upload' %}" class="btn btn-outline-success">rest</a>
-    <a href="{% url 'videos:new_file_upload' %}" class="btn btn-outline-success">normal</a>
+    <a href="{% url 'videos:new_file_upload' %}" class="btn btn-outline-success">Upload video</a>
+    
+    {% if request.user.is_superuser %}
+    <a href="{% url 'videos:file_upload' %}" class="btn btn-outline-success">rest</a>      
+    {% endif %}
 </div>
 <table class="table table-stripped">
     <thead>
         <th>#</th>
         <th>name</th>
-        <th>id</th>
+        
         <th>Download</th>
+        <th>Size</th>
         <th>Stream</th>
         <th>category</th>
+        <th>iFrame</th>
     </thead>
     <tbody>
         {% for video in videos %}
         <tr>
             <td>{{ forloop.counter }}</td>
             <td>{{ video.name }}</td>
-            <td><a href="{% url 'videos:video_details' video.id %}" target="_blank">{{ video.id }}</a></td>
-            <td><a href="{% url 'videos:video_download' video.id  %}">Download</a></td>
-            <td><a href="{% url 'videos:video_stream' video.id  %}">Stream</a></td>
+            {#<td><a href="{% url 'videos:video_details' video.id %}" target="_blank">{{ video.id }}</a></td>#}
+            <td><a href="{{ video.video_file.url  }}" download="">{{ video.video_file.name }}</a></td>
+            <td><span>{{ video.video_file.size | filesizeformat }}</span></td>
+            <td><a href="{% url 'videos:video_stream' video.id  %}" target="_blank">Stream</a></td>
             <td>{{ video.category }}</td>
+            <td>
+                <textarea id="{{ video.video_file.name }}"><iframe src="https://rahimagha.ir/media/videos/The_Evolution_of_Animation_1833_-_2017.mp4" title="{{ video.name }}" autoplay ></iframe></textarea>
+            </td>
+            <td>
+                <!-- The button used to copy the text -->
+                <button onclick="myFunction(`{{ video.video_file.name }}`)" class="btn btn-sm btn-secondary">
+                    <i class="fa-regular fa-copy"></i>
+                </button>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
@@ -31,3 +48,23 @@
 
 
 {% endblock content %}
+
+{% block script %} 
+<script>
+function myFunction(v_name) {
+    // Get the text field
+    var copyText = document.getElementById(v_name);
+    
+    // Select the text field
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+    
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(copyText.value);
+    
+    // Alert the copied text
+    alert("iFrame code copied: " + v_name);
+} 
+
+</script>
+{% endblock script %} 

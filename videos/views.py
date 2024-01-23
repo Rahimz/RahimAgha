@@ -41,10 +41,11 @@ class ProtectedMediaView(View):
         if not request.user.has_perm('can_access_media'):
             return HttpResponseForbidden("You don't have permission to access this media.")
 
-        # Construct the full path to the media file
-        media_path = os.path.join(settings.MEDIA_ROOT, str(uuid))
-
         video = Video.objects.get(id=uuid)
+
+        # Construct the full path to the media file
+        media_path = os.path.join(settings.MEDIA_ROOT, video.name)
+
 
         # Serve the file
         with open(video.video_file.path, 'rb') as file:
