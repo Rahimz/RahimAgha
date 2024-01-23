@@ -1,11 +1,15 @@
 {% extends "videos/_video_base.html" %}
 
-{% load humanize %}
+{% load humanize i18n %}
 
 {% block content %}
-<h1>Hi</h1>
+
+<h1>{{ page_title }}</h1>
+
 <div>
+    <a href="{% url 'videos:video_list' %}" class="btn btn-outline-success">Video list</a>
     <a href="{% url 'videos:new_file_upload' %}" class="btn btn-outline-success">Upload video</a>
+    <a href="{% url 'videos:add_category' %}" class="btn btn-outline-success">Add category</a>
     
     {% if request.user.is_superuser %}
     <a href="{% url 'videos:file_upload' %}" class="btn btn-outline-success">rest</a>      
@@ -31,9 +35,17 @@
             <td><a href="{{ video.video_file.url  }}" download="">{{ video.video_file.name }}</a></td>
             <td><span>{{ video.video_file.size | filesizeformat }}</span></td>
             <td><a href="{% url 'videos:video_stream' video.id  %}" target="_blank">Stream</a></td>
-            <td>{{ video.category }}</td>
             <td>
-                <textarea id="{{ video.video_file.name }}"><iframe src="https://rahimagha.ir/media/videos/The_Evolution_of_Animation_1833_-_2017.mp4" title="{{ video.name }}" autoplay ></iframe></textarea>
+                {% if video.category %}
+                  
+                <a href="{% url 'videos:category_view' video.category.id %}">
+                    {{ video.category }}
+                </a>
+                {% endif %}
+            </td>
+
+            <td>
+                <textarea id="{{ video.video_file.name }}"><iframe src="{{ request.META.HTTP_HOST }}{{ video.video_file.url }}" title="{{ video.name }}" autoplay sandbox="allow-scripts"></iframe></textarea>
             </td>
             <td>
                 <!-- The button used to copy the text -->

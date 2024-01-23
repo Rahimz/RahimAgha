@@ -3,6 +3,7 @@ from django.http import HttpResponseForbidden, HttpResponse
 from django.views.generic import View
 from django.conf import settings
 import os
+from django.contrib.admin.views.decorators import staff_member_required
 
 
 from rest_framework.parsers import FileUploadParser
@@ -10,7 +11,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 from .serializers import YourFileSerializer
-from .forms import VideoUploadForm, VideoUploadNewForm
+from .forms import VideoUploadForm, VideoUploadNewForm, CategoryForm
 
 from django.http import StreamingHttpResponse
 from django.core.files.storage import default_storage
@@ -19,18 +20,30 @@ from django.views import View
 import mimetypes
 
 
-from .models import Video
+from .models import Video, Category
 from .tasks import upload_file
 
-
-def VideoListView(request):
+@staff_member_required
+def VideoListView(request, category_id=None):
+    category = None
+    context = dict(
+        page_title='All videos'
+    )
     videos = Video.objects.all()
+    if category_id:
+        try:
+            category = Category.objects.get(id=category_id)
+        except: 
+            pass
+    if category:
+        videos = videos.filter(category=category)
+        context['page_title'] = f"Category: {category.name}"
+
+    context['videos'] = videos
     return render (
         request,
         'videos/videos_list.html',
-        {
-            'videos':videos,
-        }
+        context
     )
 
 
@@ -54,6 +67,7 @@ class ProtectedMediaView(View):
         return response
 
 
+@staff_member_required
 def video_details(request, uuid):
     video = Video.objects.get(id=uuid)
     return render(
@@ -145,6 +159,7 @@ class FileUploader(APIView):
         return Response(file_serializer.errors)
     
 
+@staff_member_required
 def NewFileUploader(request):
     if request.method == 'POST':
         form = VideoUploadNewForm(data=request.POST, files=request.FILES)
@@ -170,3 +185,25 @@ def handle_uploaded_file(f):
     with open(f.name, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
+
+
+@staff_member_required
+def AddCategoryView(request):
+    if request.method == 'POST':
+        form = CategoryForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect ('videos:video_list')
+    else:
+        form = CategoryForm()
+
+    context = dict(
+        form=form
+    )
+    return render(
+        request,
+        'videos/add_category.html',
+        context
+    )
+
+

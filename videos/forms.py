@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Video
+from .models import Video, Category
 
 class VideoUploadForm(forms.Form):
     your_file = forms.FileField()
@@ -10,3 +10,9 @@ class VideoUploadNewForm(forms.ModelForm):
     class Meta:
         model = Video
         fields = ['name', 'video_file', 'category']
+
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name']

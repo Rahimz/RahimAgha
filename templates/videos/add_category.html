@@ -1,0 +1,15 @@
+{% extends "videos/_video_base.html" %}
+
+{% load crispy_forms_tags i18n %}
+
+{% block content %}
+<h1>{% trans "Add category" %}</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form | crispy }}
+    <input type="submit" name="" id="" class="btn btn-success my-2" value="{% trans 'Submit' %}">
+</form>
+
+
+{% endblock content %}
+

@@ -1,12 +1,12 @@
 {% extends "videos/_video_base.html" %}
 
-{% load crispy_forms_tags %}
+{% load crispy_forms_tags i18n %}
 {% block content %}
 
 <h1>Video uploader </h1>
 <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form | crispy }}
-    <input type="submit">
+    <input type="submit" value="{% trans 'Upload' %}" class="btn btn-success my-2">
 </form>
 {% endblock content %}

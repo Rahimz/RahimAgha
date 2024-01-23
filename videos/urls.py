@@ -9,6 +9,9 @@ urlpatterns = [
     path('stream/<uuid:uuid>/', views.VideoStreamView.as_view(), name='video_stream'),
     path('upload/', views.FileUploader.as_view(), name='file_upload'), 
     path('new-upload/', views.NewFileUploader, name='new_file_upload'), 
-    path('', views.VideoListView, name='video_list'),
 
+    path('add-category/', views.AddCategoryView, name='add_category'),
+    path('category/<int:category_id>/', views.VideoListView, name='category_view'),
+
+    path('', views.VideoListView, name='video_list'),
 ]
