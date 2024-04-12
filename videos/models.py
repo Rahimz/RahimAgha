@@ -51,7 +51,8 @@ class Video(TimeStampedModel):
     is_protected = models.BooleanField(default=False)
     website_header = models.CharField(
         max_length=200,
-        default='',        
+        default='',
+        blank=True,
     )
     def __str__(self):
         return self.name
@@ -63,6 +64,8 @@ class Video(TimeStampedModel):
             return self.video_file.size
         
     def save(self, *args, **kwargs):
+        if self.website_header:
+            self.is_protected = True
         if self.is_protected:
             self.video_file.storage = custom_storage
         super().save(*args, **kwargs)
