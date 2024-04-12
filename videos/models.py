@@ -53,7 +53,9 @@ class Video(TimeStampedModel):
         max_length=200,
         default='',        
     )
-        
+    def __str__(self):
+        return self.name
+    
     def save(self, *args, **kwargs):
         if self.is_protected:
             self.video_file.storage = custom_storage

@@ -19,6 +19,8 @@
     <thead>
         <th>#</th>
         <th>name</th>
+        <th>Is protected</th>
+        <th>Website</th>
         
         <th>Download</th>
         <th>Size</th>
@@ -31,6 +33,8 @@
         <tr>
             <td>{{ forloop.counter }}</td>
             <td>{{ video.name }}</td>
+            <td>{{ video.is_protected }}</td>
+            <td>{{ video.website_header }}</td>
             {#<td><a href="{% url 'videos:video_details' video.id %}" target="_blank">{{ video.id }}</a></td>#}
             <td><a href="{{ video.video_file.url  }}" download="">{{ video.video_file.name }}</a></td>
             <td><span>{{ video.video_file.size | filesizeformat }}</span></td>
