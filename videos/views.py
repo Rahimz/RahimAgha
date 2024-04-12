@@ -23,6 +23,27 @@ import mimetypes
 from .models import Video, Category
 from .tasks import upload_file
 
+
+def restrict_referer(request, website):
+    # Check if the request has a referer
+    referer = request.META.get('HTTP_REFERER')
+    
+    # Define the allowed website
+    allowed_website = website
+    if website == '':
+        return True
+    
+    # Check if the referer matches the allowed website
+    if referer and referer.startswith(allowed_website):
+        # If the referer matches, allow the request to continue
+        return True
+    else:
+        # If the referer doesn't match, return a forbidden response
+        return False
+
+
+
+
 @staff_member_required
 def VideoListView(request, category_id=None):
     category = None
@@ -82,19 +103,30 @@ def video_details(request, uuid):
 
 class VideoStreamView(View):
     def get(self, request, *args, **kwargs):
-        # Get your video file path or content
-        # video_path = "path/to/your/video.mp4"  # Replace with your actual file path or content retrieval logic
         video = Video.objects.get(id=kwargs['uuid'])
-        video_path = video.video_file.path
-        # Set the correct content type
-        content_type, encoding = mimetypes.guess_type(video_path)
-        content_type = content_type or 'application/octet-stream'
+        website = video.website_header
 
-        # Set response headers to prevent direct download
-        response = StreamingHttpResponse(self.file_iterator(video_path), content_type=content_type)
-        response['Content-Disposition'] = 'inline; filename="video.mp4"'  # Set filename for inline display
+        
+        if restrict_referer(request, website):
+            # Process the request normally
+            # Get your video file path or content
+            # video_path = "path/to/your/video.mp4"  # Replace with your actual file path or content retrieval logic
 
-        return response
+            video_path = video.video_file.path
+            # Set the correct content type
+            content_type, encoding = mimetypes.guess_type(video_path)
+            content_type = content_type or 'application/octet-stream'
+
+            # Set response headers to prevent direct download
+            response = StreamingHttpResponse(self.file_iterator(video_path), content_type=content_type)
+            response['Content-Disposition'] = 'inline; filename="video.mp4"'  # Set filename for inline display
+
+            return response
+            # return HttpResponse("Allowed")
+        else:
+            # Return a forbidden response
+            return HttpResponseForbidden()
+
 
     def file_iterator(self, file_path, chunk_size=8192):
         with default_storage.open(file_path, 'rb') as f:

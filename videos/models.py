@@ -1,9 +1,17 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.core.files.storage import FileSystemStorage
 import uuid 
 
 from quizes.models import TimeStampedModel
 
+class CustomStorage(FileSystemStorage):
+    def get_available_name(self, name, max_length=None):
+        # Customize the file name if needed
+        return super().get_available_name(name, max_length)
+
+custom_storage = CustomStorage(location='private_media/videos/')
+    
 
 class Category(TimeStampedModel):
     name = models.CharField(
@@ -40,8 +48,15 @@ class Video(TimeStampedModel):
         # content_type = "audio/mp3"
         # download_name = self.name + ".mp3"
         return _file # content_type, download_name, 
-
-    
-
-
+    is_protected = models.BooleanField(default=False)
+    website_header = models.CharField(
+        max_length=200,
+        default='',        
+    )
+        
+    def save(self, *args, **kwargs):
+        if self.is_protected:
+            self.video_file.storage = custom_storage
+        super().save(*args, **kwargs)
+  
 

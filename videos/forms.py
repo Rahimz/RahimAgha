@@ -9,7 +9,7 @@ class VideoUploadForm(forms.Form):
 class VideoUploadNewForm(forms.ModelForm):
     class Meta:
         model = Video
-        fields = ['name', 'video_file', 'category']
+        fields = ['name', 'video_file', 'category', 'is_protected']
 
 
 class CategoryForm(forms.ModelForm):
