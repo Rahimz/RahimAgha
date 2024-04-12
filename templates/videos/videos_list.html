@@ -25,6 +25,7 @@
         <th>Download</th>
         <th>Size</th>
         <th>Stream</th>
+        <th>Stream 2</th>
         <th>category</th>
         <th>iFrame</th>
     </thead>
@@ -39,6 +40,7 @@
             <td>{% if not video.is_protect %}<a href="{{ video.video_file.url  }}" download="">{{ video.video_file.name }}</a>{% endif %}</td>
             <td><span>{{ video.get_size | filesizeformat }}</span></td>
             <td><a href="{% url 'videos:video_stream' video.id  %}" target="_blank">Stream</a></td>
+            <td><a href="{% url 'videos:video_stream_atman' video.id  %}" target="_blank">Stream atman</a></td>
             <td>
                 {% if video.category %}
                   

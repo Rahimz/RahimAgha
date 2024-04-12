@@ -108,11 +108,7 @@ class VideoStreamView(View):
 
         
         if restrict_referer(request, website):
-            # Process the request normally
-            # Get your video file path or content
-            # video_path = "path/to/your/video.mp4"  # Replace with your actual file path or content retrieval logic
-
-            video_path = video.video_file.path
+            video_path = video.get_path()
             # Set the correct content type
             content_type, encoding = mimetypes.guess_type(video_path)
             content_type = content_type or 'application/octet-stream'
@@ -136,15 +132,16 @@ class VideoStreamView(View):
                     break
                 yield data
 
-class VideoStreamView(View):
+class AtmanVideoStreamView(View):
     def get(self, request, *args, **kwargs):
         video = Video.objects.get(id=kwargs['uuid'])
         website = video.website_header
 
+        referer = request.META.get('HTTP_REFERER')
+        if referer and referer.startswith('https://atmancenter.org/'):
         
-        if restrict_referer(request, website):
-
             video_path = video.get_path()
+            # print(video_path)
             # Set the correct content type
             content_type, encoding = mimetypes.guess_type(video_path)
             content_type = content_type or 'application/octet-stream'
