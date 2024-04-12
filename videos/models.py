@@ -39,7 +39,7 @@ class Video(TimeStampedModel):
 
     )
     name = models.CharField(
-        max_length=10,
+        max_length=200,
         default='test'
     )
 
@@ -56,6 +56,12 @@ class Video(TimeStampedModel):
     def __str__(self):
         return self.name
     
+    def get_size(self):
+        if self.is_protected:
+            return custom_storage.size(self.video_file.name)
+        else:
+            return self.video_file.size
+        
     def save(self, *args, **kwargs):
         if self.is_protected:
             self.video_file.storage = custom_storage

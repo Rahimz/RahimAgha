@@ -36,8 +36,8 @@
             <td>{{ video.is_protected }}</td>
             <td>{{ video.website_header }}</td>
             {#<td><a href="{% url 'videos:video_details' video.id %}" target="_blank">{{ video.id }}</a></td>#}
-            <td>{% if video.video_file %}<a href="{{ video.video_file.url  }}" download="">{{ video.video_file.name }}</a>{% endif %}</td>
-            <td><span>{% if video.video_file.size %}{{ video.video_file.size | filesizeformat }}{% endif %}</span></td>
+            <td>{% if not video.is_protect %}<a href="{{ video.video_file.url  }}" download="">{{ video.video_file.name }}</a>{% endif %}</td>
+            <td><span>{{ video.get_size | filesizeformat }}</span></td>
             <td><a href="{% url 'videos:video_stream' video.id  %}" target="_blank">Stream</a></td>
             <td>
                 {% if video.category %}
