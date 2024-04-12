@@ -136,6 +136,38 @@ class VideoStreamView(View):
                     break
                 yield data
 
+class VideoStreamView(View):
+    def get(self, request, *args, **kwargs):
+        video = Video.objects.get(id=kwargs['uuid'])
+        website = video.website_header
+
+        
+        if restrict_referer(request, website):
+
+            video_path = video.get_path()
+            # Set the correct content type
+            content_type, encoding = mimetypes.guess_type(video_path)
+            content_type = content_type or 'application/octet-stream'
+
+            # Set response headers to prevent direct download
+            response = StreamingHttpResponse(self.file_iterator(video_path), content_type=content_type)
+            response['Content-Disposition'] = 'inline; filename="video.mp4"'  # Set filename for inline display
+
+            return response
+            # return HttpResponse("Allowed")
+        else:
+            # Return a forbidden response
+            return HttpResponseForbidden()
+
+
+    def file_iterator(self, file_path, chunk_size=8192):
+        with default_storage.open(file_path, 'rb') as f:
+            while True:
+                data = f.read(chunk_size)
+                if not data:
+                    break
+                yield data
+
 
 
 class FileUploader(APIView):

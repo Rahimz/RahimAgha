@@ -42,18 +42,19 @@ class Video(TimeStampedModel):
         max_length=200,
         default='test'
     )
-
-    def get_download_info(self):
-        _file = self.video_file
-        # content_type = "audio/mp3"
-        # download_name = self.name + ".mp3"
-        return _file # content_type, download_name, 
     is_protected = models.BooleanField(default=False)
     website_header = models.CharField(
         max_length=200,
         default='',
         blank=True,
     )
+
+    def get_download_info(self):
+        _file = self.video_file
+        # content_type = "audio/mp3"
+        # download_name = self.name + ".mp3"
+        return _file # content_type, download_name, 
+    
     def __str__(self):
         return self.name
     
@@ -62,6 +63,12 @@ class Video(TimeStampedModel):
             return custom_storage.size(self.video_file.name)
         else:
             return self.video_file.size
+    
+    def get_path(self):
+        if self.is_protected:
+            return custom_storage.path(self.video_file.name)
+        else:
+            return self.video_file.path
         
     def save(self, *args, **kwargs):
         if self.website_header:
