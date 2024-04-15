@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'drf_yasg',
+    'corsheaders'
 
     'crispy_forms',
     'rosetta',
@@ -213,3 +214,12 @@ REST_FRAMEWORK = {
 # Celery settings
 CELERY_BROKER_URL = "redis://localhost:6379"
 CELERY_RESULT_BACKEND = "redis://localhost:6379"
+
+# cors header
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:8000",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+     "http://127.0.0.1:8000",
+]
