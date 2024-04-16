@@ -108,6 +108,8 @@ class VideoStreamView(View):
 
         
         if restrict_referer(request, website):
+            referer = request.META.get('HTTP_REFERER')
+
             video_path = video.get_path()
             # Set the correct content type
             content_type, encoding = mimetypes.guess_type(video_path)
@@ -116,7 +118,8 @@ class VideoStreamView(View):
             # Set response headers to prevent direct download
             response = StreamingHttpResponse(self.file_iterator(video_path), content_type=content_type)
             response['Content-Disposition'] = 'inline; filename="video.mp4"'  # Set filename for inline display
-
+            if 'computermuseum.ir' in referer or 'atmancenter.org' in referer:
+                response['X-Frame-Options'] = 'ALLOW-FROM ' + referer
             return response
             # return HttpResponse("Allowed")
         else:
