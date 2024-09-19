@@ -12,12 +12,12 @@ ALLOWED_HOSTS = [
 
 CSRF_TRUSTED_ORIGINS = [
     'https://*.rahimagha.ir',
-    'https://computermuseum.ir/',
-    'https://atmancenter.org/'
+    'https://computermuseum.ir',
+    'https://atmancenter.org'
 ]
 CORS_ALLOWED_ORIGINS = [
-    'https://computermuseum.ir/',
-    'https://atmancenter.org/'
+    'https://computermuseum.ir',
+    'https://atmancenter.org'
 ]
 
 
