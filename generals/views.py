@@ -5,6 +5,8 @@ import requests
 from django.http import JsonResponse
 from django.views import View
 
+from .models import GeoRecord
+
 def HomeView(request):
     # if request.GET.get('SwitchNight') == 'on':
     #     print (request.GET. get('SwitchNight'))
@@ -34,6 +36,15 @@ class GetCountryFromIP(View):
 
             # Extract country information
             country = response.json().get('country')
+
+            try:
+                record = GeoRecord.objects.create(
+                    ip=ip,
+                    country=country
+                )
+            except:
+                pass
+
 
             # Return the country in a JSON response
             return JsonResponse({'country': country})

@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import GeoRecord
+
+
+@admin.register(GeoRecord)
+class GeoRecordAdmin(admin.ModelAdmin):
+    list_display = ['id', 'country', 'ip', 'created']
