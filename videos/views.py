@@ -24,22 +24,7 @@ from .models import Video, Category
 from .tasks import upload_file
 
 
-def restrict_referer(request, website):
-    # Check if the request has a referer
-    referer = request.META.get('HTTP_REFERER')
-    
-    # Define the allowed website
-    allowed_website = website
-    if website == '':
-        return True
-    
-    # Check if the referer matches the allowed website
-    if referer and referer.startswith(allowed_website):
-        # If the referer matches, allow the request to continue
-        return True
-    else:
-        # If the referer doesn't match, return a forbidden response
-        return False
+
 
 
 
@@ -101,6 +86,25 @@ def video_details(request, uuid):
 
 
 
+
+def restrict_referer(request, website):
+    # Check if the request has a referer
+    referer = request.META.get('HTTP_REFERER')
+    
+    # Define the allowed website
+    allowed_website = website
+    if website == '':
+        return True
+    
+    # Check if the referer matches the allowed website
+    if referer and referer.startswith(allowed_website):
+        # If the referer matches, allow the request to continue
+        return True
+    else:
+        # If the referer doesn't match, return a forbidden response
+        return False
+
+
 class VideoStreamView(View):
     def get(self, request, *args, **kwargs):
         video = Video.objects.get(id=kwargs['uuid'])
@@ -152,7 +156,7 @@ class AtmanVideoStreamView(View):
             # Set response headers to prevent direct download
             response = StreamingHttpResponse(self.file_iterator(video_path), content_type=content_type)
             response['Content-Disposition'] = 'inline; filename="video.mp4"'  # Set filename for inline display
-
+            response['X-Frame-Options'] = 'ALLOW-FROM ' + referer
             return response
             # return HttpResponse("Allowed")
         else:
