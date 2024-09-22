@@ -156,7 +156,16 @@ class AtmanVideoStreamView(View):
             # Set response headers to prevent direct download
             response = StreamingHttpResponse(self.file_iterator(video_path), content_type=content_type)
             response['Content-Disposition'] = 'inline; filename="video.mp4"'  # Set filename for inline display
-            response['X-Frame-Options'] = 'ALLOW-FROM ' + referer
+            # set the header for request from specific origin
+            response['X-Frame-Options'] = 'ALLOW-FROM https://atmancenter.org'
+            # This will only allow requests from atmancenter.org to access your video content.
+            response['Access-Control-Allow-Origin'] = 'https://atmancenter.org'
+            # allow methods
+            response['Access-Control-Allow-Methods'] = 'GET, OPTIONS'
+            # specifies the allowed headers for the request
+            response['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Range'
+            # specifies the headers that are exposed to the client.
+            response['Access-Control-Expose-Headers'] = 'Content-Length, Content-Range'
             return response
             # return HttpResponse("Allowed")
         else:
