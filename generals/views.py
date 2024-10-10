@@ -26,6 +26,8 @@ def HomeView(request):
 class GetCountryFromIP(View):
     def get(self, request, ip):
         # Validate the IP address format (optional, but recommended)
+        if ip == '127.0.0.1':
+            return 'IR'
         if not self.is_valid_ip(ip):
             return JsonResponse({'error': 'Invalid IP address'}, status=400)
 
