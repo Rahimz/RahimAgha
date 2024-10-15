@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.utils.translation import gettext_lazy as _
+from django.conf import settings
 
 import requests
 from django.http import JsonResponse
@@ -30,10 +31,18 @@ class GetCountryFromIP(View):
             return JsonResponse({'country': 'IR'})
         if not self.is_valid_ip(ip):
             return JsonResponse({'error': 'Invalid IP address'}, status=400)
-
+        
+        if GeoRecord.objects.filter(ip=ip).exists():
+            record = GeoRecord.objects.filter(ip=ip).lastest('created')
+            record.count += 1 
+            record.save()
+            return JsonResponse({'country': record.country}, status=200)
+            
         # Make a request to the ipinfo.io API
         try:
-            response = requests.get(f"https://ipinfo.io/{ip}/json")
+            # response = requests.get(f"https://ipinfo.io/{ip}/json")
+
+            response = requests.get(f"https://api.ip2location.io/?key={settings.IPLocation_KEY}&ip={ip}")
             response.raise_for_status()  # Raise an error for bad responses
 
             # Extract country information
@@ -49,7 +58,7 @@ class GetCountryFromIP(View):
 
 
             # Return the country in a JSON response
-            return JsonResponse({'country': country})
+            return JsonResponse({'country': country}, status=200)
 
         except requests.RequestException as e:
             return JsonResponse({'error': str(e)}, status=500)

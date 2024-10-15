@@ -8,6 +8,9 @@ class GeoRecord(models.Model):
     country= models.CharField(
         max_length=10
     )
+    count = models.PositiveIntegerField(
+        default=1
+    )
 
     def __str__(self):
         return f"{self.country}-{self.ip}"
