@@ -33,7 +33,7 @@ class GetCountryFromIP(View):
             return JsonResponse({'error': 'Invalid IP address'}, status=400)
         
         if GeoRecord.objects.filter(ip=ip).exists():
-            record = GeoRecord.objects.filter(ip=ip).lastest('created')
+            record = GeoRecord.objects.filter(ip=ip).latest('created')
             record.count += 1 
             record.save()
             return JsonResponse({'country': record.country}, status=200)
