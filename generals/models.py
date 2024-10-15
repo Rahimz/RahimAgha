@@ -4,7 +4,8 @@ from django.db import models
 
 class GeoRecord(models.Model):
     ip = models.GenericIPAddressField()
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)    
+    updated = models.DateTimeField(auto_now=True)    
     country= models.CharField(
         max_length=10
     )
