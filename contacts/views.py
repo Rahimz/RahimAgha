@@ -38,9 +38,9 @@ def contacts(request):
                             Q(email=new_form.email) |
                             Q(title__icontains=new_form.title) |
                             Q(phone=new_form.phone) |
-                            Q(description__icontains=new_form.description) |
+                            # Q(description__icontains=new_form.description) |
                             Q(description=new_form.description)
-                        ).exists():                            
+                        ).exists():                                                        
                             messages.warning(request, _("It seems you write spam messages"))
                             return redirect('home')
                 if require:
