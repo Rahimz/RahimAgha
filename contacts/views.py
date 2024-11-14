@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.utils.translation import gettext_lazy as _
+from django.contrib import messages 
+from django.db.models import Q
 import urllib
 import json
 from django.conf import settings 
@@ -29,8 +31,21 @@ def contacts(request):
             ''' End reCAPTCHA validation '''
             if result['success']:
                 new_form = form.save(commit=False)
+                # spam control
+                spams = Contact.objects.filter(is_spam=True)
+                print(spams)
+                if spams.filter(
+                            Q(email=new_form.email) |
+                            Q(title__icontains=new_form.title) |
+                            Q(phone=new_form.phone) |
+                            Q(description__icontains=new_form.description) |
+                            Q(description=new_form.description)
+                        ).exists():                            
+                            messages.warning(request, _("It seems you write spam messages"))
+                            return redirect('home')
                 if require:
                     new_form.require = require
+                    
                 new_form.save()
                 return render( 
                     request, 

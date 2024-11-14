@@ -25,3 +25,6 @@ class Contact(models.Model):
     is_checked = models.BooleanField(
         default=False
     )
+    is_spam = models.BooleanField(
+        default=False
+    )
