@@ -33,14 +33,21 @@ def contacts(request):
                 new_form = form.save(commit=False)
                 # spam control
                 spams = Contact.objects.filter(is_spam=True)
-                print(spams)
+                # print(spams)
                 if spams.filter(
-                            Q(email=new_form.email) |
+                            Q(email=new_form.email) & Q(email__isnull=False) |
                             Q(title__icontains=new_form.title) |
-                            Q(phone=new_form.phone) |
-                            # Q(description__icontains=new_form.description) |
+                            Q(phone=new_form.phone) & Q(phone__isnull=False) |
+                            Q(description__icontains=new_form.description) |
                             Q(description=new_form.description)
-                        ).exists():                                                        
+                        ).exists():
+                            # print(spams.filter(
+                            #     Q(email=new_form.email) & Q(email__isnull=False) |
+                            #     Q(title__icontains=new_form.title) |
+                            #     Q(phone=new_form.phone) & Q(phone__isnull=False) |
+                            #     Q(description__icontains=new_form.description) |
+                            #     Q(description=new_form.description)
+                            # ))                                                        
                             messages.warning(request, _("It seems you write spam messages"))
                             return redirect('home')
                 if require:
