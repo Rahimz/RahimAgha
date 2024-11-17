@@ -1,0 +1,61 @@
+{% if request.user.is_superuser %}
+<span style="color:gray;">[{{ attachment.get_type_display }}]</span>      
+{% endif %}
+<br>
+{% if attachment.type == 'title' %}
+<h5>{{ attachment.title }}</h5>
+{% endif %}
+
+{% if attachment.type == 'text' %}
+<p>{{ attachment.text | linebreaksbr }}</p>        
+{% endif %}
+
+{% if attachment.type == 'link' %}                
+<a href="{{ attachment.url }}" target="_blank">{{ attachment.title }}</a> 
+{% endif %}
+
+{% if attachment.type == 'PDF' %}
+{% if attachment.file %}
+<a href="{{ attachment.file.url }}" target="_blank">{{ attachment.title }}</a>            
+{% endif %}
+{% endif %}
+
+{% if attachment.type == 'DOCS' %}
+{% if attachment.file %}
+<a href="{{ attachment.file.url }}" target="_blank">{{ attachment.title }}</a>            
+{% endif %}
+{% endif %}           
+
+{% if attachment.type == 'script' %}
+{{ attachment.script | safe }}
+{% endif %}
+
+{% if attachment.type == 'code' %}
+<pre>
+    <code class="language-{{attachment.title}}">
+{{ attachment.code }}
+    </code>
+</pre>
+{% endif %}    
+
+{% if attachment.type == 'image' %}
+{% if attachment.file %}
+<a href="{{ attachment.file.url }}" target="_blank">
+    <img src="{{ attachment.file.url }}" alt="{{ attachment.title }}" width="100%" height="auto">
+</a>
+{% endif %}
+{% endif %}
+
+{% if attachment.type == 'video_file' %}
+<p class="video-container">
+        {% if attachment.file %}
+        <video controls>
+            <source src="{{ attachment.file.url }}" type="video/mp4">
+            <source src="{{ attachment.file.url }}" type="video/webm">
+            <source src="{{ attachment.file.url }}" type="video/ogg">
+            <source src="{{ attachment.file.url }}" type="video/quicktime">
+            Your browser does not support the video tag.
+        </video>
+        {% endif %}
+    </p>
+{% endif %}
