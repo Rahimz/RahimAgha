@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.core.files.storage import FileSystemStorage
+from django.core.files.storage import FileSystemStorage, default_storage
 import uuid 
 
 from quizes.models import TimeStampedModel
@@ -75,6 +75,8 @@ class Video(TimeStampedModel):
         #     self.is_protected = True
         if self.is_protected:
             self.video_file.storage = custom_storage
+        else:
+            self.video_file.storage = default_storage
         super().save(*args, **kwargs)
   
 
