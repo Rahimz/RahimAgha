@@ -21,6 +21,7 @@
         <th>name</th>
         <th>Is protected</th>
         <th>Website</th>
+        <th>Date</th>
         
         <th>Download</th>
         <th>Size</th>
@@ -36,6 +37,7 @@
             <td>{{ video.name }}</td>
             <td>{{ video.is_protected }}</td>
             <td>{{ video.website_header }}</td>
+            <td>{{ video.created }}</td>
             {#<td><a href="{% url 'videos:video_details' video.id %}" target="_blank">{{ video.id }}</a></td>#}
             <td>{% if not video.is_protect %}<a href="{{ video.video_file.url  }}" download="">{{ video.video_file.name }}</a>{% endif %}</td>
             <td><span>{{ video.get_size | filesizeformat }}</span></td>

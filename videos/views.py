@@ -35,7 +35,7 @@ def VideoListView(request, category_id=None):
     context = dict(
         page_title='All videos'
     )
-    videos = Video.objects.all()
+    videos = Video.objects.all().order_by('-1d')
     if category_id:
         try:
             category = Category.objects.get(id=category_id)
