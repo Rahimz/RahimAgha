@@ -6,6 +6,7 @@
 
 <h1>{{ page_title }}</h1>
 
+
 <div>
     <a href="{% url 'videos:video_list' %}" class="btn btn-outline-success">Video list</a>
     <a href="{% url 'videos:new_file_upload' %}" class="btn btn-outline-success">Upload video</a>
@@ -15,20 +16,22 @@
     <a href="{% url 'videos:file_upload' %}" class="btn btn-outline-success">rest</a>      
     {% endif %}
 </div>
-<table class="table table-stripped">
-    <thead>
-        <th>#</th>
-        <th>name</th>
-        <th>Is protected</th>
-        <th>Website</th>
-        <th>Date</th>
-        
-        <th>Download</th>
-        <th>Size</th>
-        <th>Stream</th>
-        <th>Stream 2</th>
-        <th>category</th>
-        <th>iFrame</th>
+<div class="table-responsive">
+    
+    <table class="table table-stripped">
+        <thead>
+            <th>#</th>
+            <th>name</th>
+            <th>Is protected</th>
+            <th>Website</th>
+            <th>Date</th>
+            
+            <th>Download</th>
+            <th>Size</th>
+            <th>Stream</th>
+            <th>Stream 2</th>
+            <th>category</th>
+            <thead>iFrame</th>
     </thead>
     <tbody>
         {% for video in videos %}
@@ -45,13 +48,13 @@
             <td><a href="{% url 'videos:video_stream_atman' video.id  %}" target="_blank">Stream atman</a></td>
             <td>
                 {% if video.category %}
-                  
+                
                 <a href="{% url 'videos:category_view' video.category.id %}">
                     {{ video.category }}
                 </a>
                 {% endif %}
             </td>
-
+            
             <td>
                 <textarea id="{{ video.video_file.name }}"><iframe src="https://rahimagha.ir{{ video.video_file.url }}" title="{{ video.name }}" autoplay="false" allow="fullscreen"  referrerpolicy="no-referrer" height="600px" width="800px" style="border:none;"></iframe></textarea>
             </td>
@@ -66,6 +69,7 @@
         {% endfor %}
     </tbody>
 </table>
+</div>
 
 
 {% endblock content %}
