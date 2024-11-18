@@ -71,8 +71,8 @@ class Video(TimeStampedModel):
             return self.video_file.path
         
     def save(self, *args, **kwargs):
-        if self.website_header:
-            self.is_protected = True
+        # if self.website_header:
+        #     self.is_protected = True
         if self.is_protected:
             self.video_file.storage = custom_storage
         super().save(*args, **kwargs)
