@@ -157,7 +157,9 @@ class AtmanVideoStreamView(View):
             response = StreamingHttpResponse(self.file_iterator(video_path), content_type=content_type)
             response['Content-Disposition'] = 'inline; filename="video.mp4"'  # Set filename for inline display
             # set the header for request from specific origin
-            # response['X-Frame-Options'] = 'ALLOW-FROM https://atmancenter.org' # we set it in nginx
+            response['X-Frame-Options'] = 'ALLOW-FROM https://atmancenter.org'
+            
+            response['X-Content-Type-Options'] = 'nosniff'
             # This will only allow requests from atmancenter.org to access your video content.
             response['Access-Control-Allow-Origin'] = 'https://atmancenter.org'
             # allow methods
