@@ -12,6 +12,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from .serializers import YourFileSerializer
 from .forms import VideoUploadForm, VideoUploadNewForm, CategoryForm
+import logging
 
 from django.http import StreamingHttpResponse
 from django.core.files.storage import default_storage
@@ -26,7 +27,7 @@ from .tasks import upload_file
 
 
 
-
+logger = logging.getLogger('videos')  # Use the logger name defined in LOGGING
 
 
 @staff_member_required
@@ -145,6 +146,10 @@ class AtmanVideoStreamView(View):
         website = video.website_header
 
         referer = request.META.get('HTTP_REFERER')
+        
+        # Log the referer
+        logger.debug(f"HTTP_REFERER: {referer}")
+        
         if referer and referer.startswith('https://atmancenter.org/'):
         
             video_path = video.get_path()
