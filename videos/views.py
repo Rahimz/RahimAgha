@@ -150,7 +150,10 @@ class AtmanVideoStreamView(View):
         # Log the referer
         logger.debug(f"HTTP_REFERER: {referer}")
         
-        if referer and referer.startswith('https://atmancenter.org/'):
+        if referer and (
+            referer.startswith('https://atmancenter.org/') or 
+            referer.startswith('https://rahimagha.ir/')
+        ):
         
             video_path = video.get_path()
             # print(video_path)
