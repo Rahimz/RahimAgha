@@ -49,12 +49,25 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'simple',
         },
+        'debug_file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(BASE_DIR, 'django_debug.log'),
+            'maxBytes': 1024 * 1024 * 5,  # 5 MB
+            'backupCount': 10,  # Keep 10 backup files
+            'formatter': 'verbose',
+        },
     },
     'loggers': {
         'django': {
             'handlers': ['rotating_file', 'console'],
             'level': 'ERROR',
             'propagate': True,
+        },
+        'videos': {  # Replace 'myapp' with your actual app name
+            'handlers': ['debug_file', 'console'],
+            'level': 'DEBUG',
+            'propagate': False,
         },
     },
 }
