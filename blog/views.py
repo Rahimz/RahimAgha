@@ -31,11 +31,10 @@ def BlogPostView(request, slug, attach_type=None):
     if not post.active:
         raise Http404        
     
-    if type and not request.user.is_superuser:
+    if attach_type and not request.user.is_superuser:
         messages.warning(request,_("You do not have permission"))
         return redirect('blog:blog_post', post.slug)
     
-    # print('-----: ', [item for item, name in Attachment.AttachType.choices])
     if attach_type in [item for item, name in Attachment.AttachType.choices]:
                 
         form_class = dict_form[attach_type]
