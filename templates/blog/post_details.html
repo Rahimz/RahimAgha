@@ -19,8 +19,11 @@
     {% include "blog/_attachment_show.html" %}
   {% endfor %}
 
-{% comment %}
-  
+  {% if request.user.is_superuser %}
+    {% include "blog/_add_attachment.html" %}
+  {% endif %}
+
+{% comment %}  
 <pre><code class="language-javascript">
   function greet() {
     console.log('Hello, World!');

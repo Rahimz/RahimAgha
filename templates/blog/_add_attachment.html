@@ -1,0 +1,14 @@
+{% load crispy_forms_tags i18n %}
+<div class="text-dark">    
+    {% for type, value in dict_form.items %}
+    <a href="{% url 'blog:blog_post_type' post.slug type %}#create-form" class="btn {% if type == attach_type %}btn-success{% else %}btn-secondary{% endif %}">{{ type }}</a>
+    {% endfor %}
+</div>
+
+{% if attach_type %}  
+<form action="{% url 'blog:blog_post_type' post.slug attach_type %}" method="post" enctype="multipart/form-data" id="create-form">
+    {% csrf_token %}
+    {{ form | crispy }}
+    <input type="submit" value="{% trans 'Add' %}" class="my-2">
+</form>
+{% endif %}
