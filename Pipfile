@@ -19,6 +19,7 @@ celery = "==5.3.6"
 redis = "*"
 django-cors-headers = "*"
 markdown = "*"
+beautifulsoup4 = "*"
 
 [dev-packages]
 
