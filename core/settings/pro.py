@@ -5,8 +5,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     'rahimagha.ir',
-    'www.rahimagha.ir',
-     server_ip,     
+    'www.rahimagha.ir',    
     'localhost'
     ]
 
