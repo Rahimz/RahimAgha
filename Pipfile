@@ -18,8 +18,9 @@ sentry-sdk = "*"
 celery = "==5.3.6"
 redis = "*"
 django-cors-headers = "*"
+markdown = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.10"
+python_version = "3.12"
