@@ -3,7 +3,13 @@ from tools.models import TimeStampedModel
 from django.utils.translation import gettext_lazy as _
 
 
-class Chat(TimeStampedModel):    
+
+class Chat(TimeStampedModel):
+    # user = models.ForeignKey(
+    #     User,
+    #     on_delete=models.CASCADE,
+    #     related_name='chat',
+    # )
     model_name= models.CharField(
         max_length=120,
     )
@@ -17,7 +23,10 @@ class Chat(TimeStampedModel):
     def __str__(self):
         return self.chat_id
     
-
+    def get_first_message(self):
+        if self.messages.all():
+            return self.messages.first().content[:40]
+        
 class Message(TimeStampedModel):
     class RoleChoices(models.TextChoices):
         USER = 'user', _("User")
