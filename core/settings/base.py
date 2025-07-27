@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'videos.apps.VideosConfig',
     'blog.apps.BlogConfig',
     'tools.apps.ToolsConfig',
+    'ai.apps.AiConfig',
 ]
 
 MIDDLEWARE = [
