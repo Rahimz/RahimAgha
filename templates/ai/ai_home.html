@@ -3,8 +3,24 @@
 
 {% block content %}
 <div class="container text-light">
-
-    Hi
+    <table class="table">
+        <tr>
+            <td>{{ model_name }}</td>
+            {% for message in messages %}
+                <td> {{ message.content }} </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td>
+                {{ai_message.content }}
+            </td>
+        </tr>
+        
+    </table>
+    <code>
+        {{ai_message }}
+    </code>
+    
 </div>
   
 {% endblock content %}
