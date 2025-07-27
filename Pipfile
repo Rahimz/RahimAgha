@@ -20,6 +20,9 @@ redis = "*"
 django-cors-headers = "*"
 markdown = "*"
 beautifulsoup4 = "*"
+openai = "*"
+langchain = "*"
+langchain-openai = "*"
 
 [dev-packages]
 
