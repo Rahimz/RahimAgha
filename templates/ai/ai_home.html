@@ -1,8 +1,14 @@
 {% extends "_base.html" %}
-
+{% load crispy_forms_tags %}
+{% load markdown_extras %} 
 
 {% block content %}
 <div class="container text-light">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
     <table class="table">
         <tr>
             <td>{{ model_name }}</td>
@@ -11,14 +17,27 @@
             {% endfor %}
         </tr>
         <tr>
+            <td>{{ai_message.usage_metadata}}</td>
+
+        </tr>
+        <tr>
+            <td>{{ ai_message.id}}</td>
+            <td>{{ ai_message.response_metadata.model_name}}</td>
+            <td>{{ ai_message.response_metadata.completion_tokens}}</td>
+            <td>{{ ai_message.response_metadata.prompt_tokens}}</td>
+            <td>{{ ai_message.response_metadata.total_token}}</td>
+
             <td>
-                {{ai_message.content }}
+                {{ai_message.content|markdown|safe  }}
             </td>
         </tr>
         
     </table>
     <code>
-        {{ai_message }}
+        {% for item, value in ai_message %}
+        {{ item }} | {{ value }}
+          <hr>
+        {% endfor %}
     </code>
     
 </div>
