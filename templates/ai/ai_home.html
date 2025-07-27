@@ -4,6 +4,7 @@
 
 {% block content %}
 <div class="container text-light">
+    {% include "ai/chat_header.html" %}
     <form action="" method="post">
         {% csrf_token %}
         {{ form }}
@@ -22,10 +23,10 @@
         </tr>
         <tr>
             <td>{{ ai_message.id}}</td>
-            <td>{{ ai_message.response_metadata.model_name}}</td>
-            <td>{{ ai_message.response_metadata.completion_tokens}}</td>
-            <td>{{ ai_message.response_metadata.prompt_tokens}}</td>
-            <td>{{ ai_message.response_metadata.total_token}}</td>
+            <td>{{ ai_message.response_metadata.model_name }}</td>
+            <td>{{ ai_message.response_metadata.completion_tokens }}</td>
+            <td>{{ ai_message.response_metadata.prompt_tokens }}</td>
+            <td>{{ ai_message.response_metadata.total_token }}</td>
 
             <td>
                 {{ai_message.content|markdown|safe  }}

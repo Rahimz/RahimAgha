@@ -1,0 +1,88 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+{% load markdown_extras %} 
+
+{% block content %}
+<div class="container text-light">
+    <div class="row">
+        <div class="col-md-3">
+            <table>
+                {% for chat in chats %}
+                <tr>
+                    <td>
+                        <a href="{% url 'ai:ai_continue_chat' chat.chat_id %}">{{ chat }}</a>
+                    </td>
+                </tr>
+                  
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-md-9">
+             <table class="table table-striped">
+            {% for message in ai_messages %}
+                {% if message.role == 'user' %}
+                <tr>
+                    <td>
+                        {{ message.content }}
+                    </td>
+                    <td></td>
+                </tr>
+                {% endif %}
+                {% if message.role == 'assistant' %}
+                <tr>
+                    <td></td>
+                    <td>
+                        {{ message.content|markdown|safe }}
+                    </td>
+                </tr>
+                {% endif %}
+            
+            {% endfor %}
+             </table>
+
+            </div>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
+    </div>
+    {% include "ai/chat_header.html" %}
+   
+    {% comment %}
+      
+    <table class="table">
+        <tr>
+            <td>{{ model_name }}</td>
+            {% for message in messages %}
+            <td> {{ message.content }} </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td>{{ai_message.usage_metadata}}</td>
+            
+        </tr>
+        <tr>
+            <td>{{ ai_message.id}}</td>
+            <td>{{ ai_message.response_metadata.model_name }}</td>
+            <td>{{ ai_message.response_metadata.completion_tokens }}</td>
+            <td>{{ ai_message.response_metadata.prompt_tokens }}</td>
+            <td>{{ ai_message.response_metadata.total_token }}</td>
+            
+            <td>
+                {{ai_message.content|markdown|safe  }}
+            </td>
+        </tr>
+        
+    </table>
+    <code>
+        {% for item, value in ai_message %}
+        {{ item }} | {{ value }}
+        <hr>
+        {% endfor %}
+    </code>
+    {% endcomment %}
+    
+</div>
+  
+{% endblock content %}
