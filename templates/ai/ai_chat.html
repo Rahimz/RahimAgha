@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container text-light">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <table>
                 {% for chat in chats %}
                 <tr>
@@ -17,9 +17,13 @@
                 {% endfor %}
             </table>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
+            {% if chat %}
+              <h2>{{ chat.model_name}}</h2>
+              <h4>{{ chat.chat_id}}</h4>
+            {% endif %}
              <table class="table table-striped">
-            {% for message in ai_messages %}
+            {% for message in all_messages %}
                 {% if message.role == 'user' %}
                 <tr>
                     <td>
@@ -40,12 +44,12 @@
             {% endfor %}
              </table>
 
-            </div>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit">
-    </form>
+             <form action="" method="post">
+                 {% csrf_token %}
+                 {{ form }}
+                 <input type="submit" value="Submit">
+                </form>
+        </div>
     </div>
     {% include "ai/chat_header.html" %}
    

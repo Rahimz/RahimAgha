@@ -5,7 +5,7 @@ from django.contrib import messages
 
 from langchain_openai import ChatOpenAI
 
-from .forms import ChatForm
+from .forms import ChatForm, ChatModelForm
 from .models import Chat, Message
 
 API_KEY = settings.AVAL_API_KEY
@@ -15,7 +15,7 @@ def AiView(request):
     context = dict(
         page_title = 'ai'
     )
-    ai_messages = None
+    all_messages = None
     ai_message = None
     # Initialize the ChatOpenAI model
     model_name = "gpt-4o-mini"
@@ -27,22 +27,22 @@ def AiView(request):
         form = ChatForm(data=request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            # Initialize ai_messages list with system and user prompts
-            ai_messages = [        
+            # Initialize all_messages list with system and user prompts
+            all_messages = [        
                 {"role": "user", "content": cd['prompt']},
             ]
-            # Initialize ai_messages list with system and user prompts
-            # ai_messages = [        
+            # Initialize all_messages list with system and user prompts
+            # all_messages = [        
             #     {"role": "user", "content": "in less than 30 words define django rest framework serializer"},
             # ]
             
-            # ai_message = llm.invoke(ai_messages)
+            # ai_message = llm.invoke(all_messages)
             form = ChatForm()
     else: 
         form = ChatForm()
     context.update(
         model_name=model_name,
-        ai_messages=ai_messages,
+        all_messages=all_messages,
         ai_message=ai_message,
         form=form
     )
@@ -58,64 +58,74 @@ def AiCreateNewChatView(request, chat_id=None):
         page_title = 'create ai chat',
         chats=Chat.objects.all().order_by('-id'),
     )
-    ai_messages = None
-    ai_message = None
+    all_messages = None
+    ai_message = []
     chat=None
+    ai_response = None    
     if chat_id:
         try:
             chat=get_object_or_404(Chat, chat_id=chat_id)
-            ai_messages = Message.objects.filter(chat=chat)
+            all_messages = Message.objects.filter(chat=chat)
+            for item in all_messages:
+                ai_message.append({"role": item.role, "content": item.content})            
         except:
             pass
-    
+    form_class = ChatForm if chat else ChatModelForm
     
     # Initialize the ChatOpenAI model
-    model_name = "gpt-4o-mini"
+    model_name = "gpt-4o-mini" if not chat else chat.model_name
     # model_name = "claude-3-opus"
     
     llm = ChatOpenAI(
         model=model_name, base_url="https://api.avalai.ir/v1", api_key=API_KEY
     )
     
-    if request.method == 'POST':
-        form = ChatForm(data=request.POST)
+    if request.method == 'POST':        
+        form = form_class(data=request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            # Initialize ai_messages list with system and user prompts
-            ai_messages = [        
-                {"role": "user", "content": cd['prompt']},
-            ]
-            chat = Chat.objects.create(
-                chat_id='working',
-                model_name=model_name,
-                input_token=0,
-                output_token=0,
-                total_token=0,
-            )
-            print('.. create chat body')
-            message = Message.objects.create(
+            # Initialize all_messages list with system and user prompts
+            prompt = {"role": "user", "content": cd['prompt']}
+            if chat:
+                pass
+            else:
+                chat = Chat.objects.create(
+                    chat_id='working',
+                    model_name=cd['model'],
+                    input_token=0,
+                    output_token=0,
+                    total_token=0,
+                )
+                print('.. create chat body new')
+            
+            # jsut for record
+            new_message = Message.objects.create(
                 chat=chat,
                 role='user',
                 content=cd['prompt']
             )
-            print('.. create first chat')
+            print('.. add prompt')
+                
+            ai_message.append(prompt)
+            
             try:
-                ai_message = llm.invoke(ai_messages)
+                
+                ai_response = llm.invoke(ai_message)
                 pass
             except Exception as e:
                 print(str(e))
             
-            # ai_message = llm.invoke(ai_messages)
+            # ai_message = llm.invoke(all_messages)
             
-            if ai_message:
+            if ai_response:
                 print('.. get ai response')
-                chat.chat_id = ai_message.id
-                chat.input_token=ai_message.usage_metadata["input_tokens"]
-                chat.output_token=ai_message.usage_metadata["output_tokens"]
-                chat.total_token=ai_message.usage_metadata["total_tokens"]
+                chat.chat_id = ai_response.id
+                chat.input_token=ai_response.usage_metadata["input_tokens"]
+                chat.output_token=ai_response.usage_metadata["output_tokens"]
+                chat.total_token=ai_response.usage_metadata["total_tokens"]
                 chat.save()
                 
-                prompt_content = ai_message.content
+                prompt_content = ai_response.content
                 answer_message = Message.objects.create(
                     chat=chat,
                     role='assistant',
@@ -126,10 +136,12 @@ def AiCreateNewChatView(request, chat_id=None):
                 return redirect('ai:ai_continue_chat', chat.chat_id)
             
     else: 
-        form = ChatForm()
+        form = form_class()
+    for index,item in enumerate(ai_message):
+        print(f"{index}:{item}")
     context.update(
         model_name=model_name,
-        ai_messages=ai_messages,
+        all_messages=all_messages,
         ai_message=ai_message,
         form=form,
         chat=chat,
