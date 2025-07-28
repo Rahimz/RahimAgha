@@ -23,6 +23,7 @@ beautifulsoup4 = "*"
 openai = "*"
 langchain = "*"
 langchain-openai = "*"
+pygments = "*"
 
 [dev-packages]
 

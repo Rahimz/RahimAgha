@@ -60,7 +60,7 @@
         <tr>
             <td>{{ model_name }}</td>
             {% for message in messages %}
-            <td> {{ message.content }} </td>
+            <td> {{ message.content|markdown|safe }} </td>
             {% endfor %}
         </tr>
         <tr>
