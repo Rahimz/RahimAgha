@@ -24,6 +24,7 @@ openai = "*"
 langchain = "*"
 langchain-openai = "*"
 pygments = "*"
+crispy-bootstrap4 = "*"
 
 [dev-packages]
 
