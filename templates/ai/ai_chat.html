@@ -3,9 +3,9 @@
 {% load markdown_extras %} 
 
 {% block content %}
-<div class="container text-light">
+<div class="container-fluid text-light">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-1">
             {% include "ai/chat_header.html" %}
             <table>
                 {% for chat in chats %}
@@ -18,7 +18,7 @@
                 {% endfor %}
             </table>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-11">
             {% if chat %}
               <h2>{{ chat.model_name}}</h2>
               <h4>{{ chat.chat_id}}</h4>
@@ -27,15 +27,15 @@
             {% for message in all_messages %}
                 {% if message.role == 'user' %}
                 <tr>
-                    <td>
-                        {{ message.content }}
+                    <td class="bg-light text-dark rounded">Prompt</td>
+                    <td class="bg-light text-dark rounded">
+                        {{ message.content|markdown|safe  }}
                     </td>
-                    <td></td>
                 </tr>
                 {% endif %}
                 {% if message.role == 'assistant' %}
                 <tr>
-                    <td></td>
+                    <td>Response</td>
                     <td>
                         {{ message.content|markdown|safe }}
                     </td>
@@ -47,7 +47,7 @@
 
              <form action="" method="post">
                  {% csrf_token %}
-                 {{ form }}
+                 {{ form |crispy}}
                  <input type="submit" value="Submit">
                 </form>
         </div>
