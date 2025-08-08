@@ -30,6 +30,10 @@
                     <td class="bg-light text-dark rounded">Prompt</td>
                     <td class="bg-light text-dark rounded">
                         {{ message.content|markdown|safe  }}
+                        {% if message.file %}
+                        <br>
+                          <i class="fas fa-paperclip text-dark"></i> {{ message.get_file_type_display }}: <a href="{{ message.file.url }}" download target="_blank">{{ message.file.name }}</a>
+                        {% endif %}
                     </td>
                 </tr>
                 {% endif %}
@@ -45,7 +49,7 @@
             {% endfor %}
              </table>
 
-             <form action="" method="post">
+             <form action="" method="post" enctype="multipart/form-data">
                  {% csrf_token %}
                  {{ form |crispy}}
                  <input type="submit" value="Submit">

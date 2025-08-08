@@ -32,11 +32,12 @@ class Message(TimeStampedModel):
         USER = 'user', _("User")
         ASSISTANT = 'assistant', _("Assistant")
         
-    # class FileChoices(models.TextChoices):
-        # IMAGE = 'image', _("Image")
-        # AUDIO = 'audio', _("Audio")
-        # VIDEO = 'video', _("Video")
-        # DOC = 'doc', _('Document')
+    class FileChoices(models.TextChoices):
+        NA = '', _("Not Applied")
+        IMAGE = 'image', _("Image")
+        AUDIO = 'audio', _("Audio")
+        VIDEO = 'video', _("Video")
+        DOC = 'doc', _('Document')
         
     chat = models.ForeignKey(
         Chat,
@@ -49,15 +50,21 @@ class Message(TimeStampedModel):
         default=RoleChoices.USER
     )
     content = models.TextField()
-    # file_type = models.CharField(
-    #     max_length=12,
-    #     choices=FileChoices.choices,
-    # )
-    # file = models.FileField(
-    #     upload_to='ai/prompts/'
-    # )
+    file_type = models.CharField(
+        max_length=12,
+        choices=FileChoices.choices,
+        default=FileChoices.NA,
+    )
+    file = models.FileField(
+        upload_to='ai/prompts/',
+        null=True, 
+        blank=True,
+    )
     
     def __str__(self):
         return str(self.id)
+    
+    def get_message_title(self):
+        return self.content[:40]
     
     

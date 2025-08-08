@@ -61,7 +61,9 @@ def AiCreateNewChatView(request, chat_id=None):
     all_messages = None
     ai_message = []
     chat=None
-    ai_response = None    
+    ai_response = None   
+    uploaded_file = ''
+     
     if chat_id:
         try:
             chat=get_object_or_404(Chat, chat_id=chat_id)
@@ -81,11 +83,17 @@ def AiCreateNewChatView(request, chat_id=None):
     )
     
     if request.method == 'POST':        
-        form = form_class(data=request.POST)
+        form = form_class(data=request.POST, files=request.FILES)
         if form.is_valid():
             cd = form.cleaned_data
+            uploaded_file = cd['file']
+            
+            # Read the file content
+            file_content = uploaded_file.read().decode('utf-8') if uploaded_file else ''
             # Initialize all_messages list with system and user prompts
-            prompt = {"role": "user", "content": cd['prompt']}
+            prompt = {"role": "user", "content": f"{cd['prompt']}\n{file_content if file_content else ''}"}
+            
+            # Make a chat body if it is not exists
             if chat:
                 pass
             else:
@@ -102,7 +110,9 @@ def AiCreateNewChatView(request, chat_id=None):
             new_message = Message.objects.create(
                 chat=chat,
                 role='user',
-                content=cd['prompt']
+                content=cd['prompt'],
+                file = cd['file'],
+                file_type=cd['file_type'],
             )
             print('.. add prompt')
                 

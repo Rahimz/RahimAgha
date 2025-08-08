@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'crispy_forms',
+    'crispy_bootstrap4',
     'rosetta',
     'django_social_share',
     
