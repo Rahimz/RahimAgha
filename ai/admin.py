@@ -2,13 +2,15 @@ from django.contrib import admin
 
 from .models import Chat, Message
 
-
+class MessageInline(admin.TabularInline):
+    model = Message
+    raw_id_fields = ['chat']
 
 
 @admin.register(Chat)
 class ChatAdmin(admin.ModelAdmin):
     list_display = ['id', 'chat_id', 'first_message', 'created', 'model_name', 'input_token', 'output_token', 'total_token']
-    
+    inlines = [MessageInline]
     def first_message(self, obj):
         """Get a preview of the first message, limited to 100 characters."""
         if obj.messages.exists():

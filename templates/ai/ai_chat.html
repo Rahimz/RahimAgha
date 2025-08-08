@@ -19,46 +19,87 @@
             </table>
         </div>
         <div class="col-md-11">
-            {% if chat %}
-              <h2>{{ chat.model_name}}</h2>
-              <h4>{{ chat.chat_id}}</h4>
-            {% endif %}
-             <table class="table table-striped">
-            {% for message in all_messages %}
-                {% if message.role == 'user' %}
-                <tr>
-                    <td class="bg-light text-dark rounded">Prompt</td>
-                    <td class="bg-light text-dark rounded">
-                        {{ message.content|markdown|safe  }}
+            <div class="">
+                {% if chat %}
+                <h2>{{ chat.model_name}}</h2>
+                <h4>{{ chat.chat_id}}</h4>
+                {% endif %}
+            </div>
+
+            <div class="">
+                {% for message in all_messages %}
+                <div class="rounded">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            {% if message.role == 'user' %}
+                                Prompt
+                            {% else %}
+                                Response
+                            {% endif %}
+                        </div>
+                        <div style="flex-grow: 1; margin-left: 10px;">
+                            <hr style="border: 0; border-top: 1px solid #fff;">
+                        </div>
+                    </div>
+
+                    <div>
+                        {% if message.role == 'user' %}                            
+
+                        {{ message.content|linebreaksbr|truncatechars:700 }}
+                        
                         {% if message.file %}
                         <br>
-                          <i class="fas fa-paperclip text-dark"></i> {{ message.get_file_type_display }}: <a href="{{ message.file.url }}" download target="_blank">{{ message.file.name }}</a>
-                        {% endif %}
-                    </td>
-                </tr>
-                {% endif %}
-                {% if message.role == 'assistant' %}
-                <tr>
-                    <td>Response</td>
-                    <td>
-                        {{ message.content|markdown|safe }}
-                    </td>
-                </tr>
-                {% endif %}
-            
-            {% endfor %}
-             </table>
+                        <i class="fas fa-paperclip text-dark"></i> {{ message.get_file_type_display }}: <a href="{{ message.file.url }}" download target="_blank">{{ message.file.name }}</a>
+                        {% endif %}                            
+                        <br>
+                        <p class="gap-1">
+                            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapse{{ message.id }}" role="button" aria-expanded="false" aria-controls="collapse{{ message.id }}">
+                                ...
+                            </a>                        
+                        </p>
+                        <div class="collapse" id="collapse{{ message.id }}">
+                            <div class="card card-body text-dark">
+                                {{ message.content|linebreaksbr }}
+                            </div>
+                        </div>
 
-             <form action="" method="post" enctype="multipart/form-data">
-                 {% csrf_token %}
-                 {{ form |crispy}}
-                 <input type="submit" value="Submit">
-                </form>
+                        {% elif message.role == 'assistant' %}
+                            
+                        {{ message.content|markdown|safe }}
+                        <br>
+                        <p class="gap-1">
+                            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapse{{ message.id }}" role="button" aria-expanded="false" aria-controls="collapse{{ message.id }}">
+                                ...
+                            </a>                        
+                        </p>
+                        <div class="collapse" id="collapse{{ message.id }}">
+                            <div class="">
+                                {{ message.content|linebreaksbr }}
+                            </div>
+                        </div>
+                        
+                        {% else %}
+                        --
+                        {% endif %}
+                    </div>
+                </div>                    
+            {% endfor %}
+            
         </div>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form |crispy}}
+            <input type="submit" value="Submit" class="btn btn-light my-2">
+        </form>
+        
     </div>
     
-   
-    {% comment %}
+</div>
+  
+{% endblock content %}
+
+
+{% comment %}
       
     <table class="table">
         <tr>
@@ -90,8 +131,4 @@
         <hr>
         {% endfor %}
     </code>
-    {% endcomment %}
-    
-</div>
-  
-{% endblock content %}
+{% endcomment %}

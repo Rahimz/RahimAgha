@@ -67,7 +67,7 @@ def AiCreateNewChatView(request, chat_id=None):
     if chat_id:
         try:
             chat=get_object_or_404(Chat, chat_id=chat_id)
-            all_messages = Message.objects.filter(chat=chat)
+            all_messages = Message.objects.filter(chat=chat).order_by('created')
             for item in all_messages:
                 ai_message.append({"role": item.role, "content": item.content})            
         except:

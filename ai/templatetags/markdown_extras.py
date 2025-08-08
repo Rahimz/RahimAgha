@@ -19,3 +19,16 @@ def markdown_to_html(text):
         }
     }
     return markdown.markdown(text, extensions=extensions, extension_configs=extension_configs)
+
+@register.filter(name='escape_django_tags')
+def escape_django_tags(text):
+    if text:
+        # text = text.replace("{%", "&#123;%")  # Replace "{%" with a safe equivalent
+        # text = text.replace("%}", "%&#125;")  # Replace "%}" with a safe equivalent
+        # text = text.replace("{{", "&#123;&#123;")  # Replace "{{" with a safe equivalent
+        # text = text.replace("}}", "&#125;&#125;")  # Replace "}}" with a safe equivalent
+        text = text.replace("{%", "**")  # Replace "{%" with a safe equivalent
+        text = text.replace("%}", "**")  # Replace "%}" with a safe equivalent
+        text = text.replace("{{", "**")  # Replace "{{" with a safe equivalent
+        text = text.replace("}}", "**")  # Replace "}}" with a safe equivalent
+    return text
