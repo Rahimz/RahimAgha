@@ -101,7 +101,7 @@ def AiCreateNewChatView(request, chat_id=None):
             else:
                 chat = Chat.objects.create(
                     chat_id='working',
-                    model_name=cd['model'],
+                    model_name=cd['model'].name,
                     input_token=0,
                     output_token=0,
                     total_token=0,
