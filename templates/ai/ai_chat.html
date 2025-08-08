@@ -30,7 +30,7 @@
                 {% for message in all_messages %}
                 <div class="rounded">
                     <div class="d-flex justify-content-between align-items-center">
-                        <div>
+                        <div id="{{ message.id }}">
                             {% if message.role == 'user' %}
                                 Prompt
                             {% else %}
@@ -42,7 +42,7 @@
                         </div>
                     </div>
 
-                    <div>
+                    <div >
                         {% if message.role == 'user' %}                            
 
                         {{ message.content|linebreaksbr|truncatechars:700 }}
@@ -64,8 +64,9 @@
                         </div>
 
                         {% elif message.role == 'assistant' %}
-                            
-                        {{ message.content|markdown|safe }}
+                        <div class="response-container">
+                            {{ message.content|markdown|safe }}
+                        </div> 
                         <br>
                         <p class="gap-1">
                             <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapse{{ message.id }}" role="button" aria-expanded="false" aria-controls="collapse{{ message.id }}">
@@ -93,12 +94,137 @@
         </form>
         
     </div>
+     <!-- Scroll to top button -->
+    <button onclick="scrollToTop()" id="scrollToTopBtn">&#8593;</button>
     
 </div>
   
 {% endblock content %}
 
+{% block script %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var lastMessageId = "{{ last_message_id }}"; // Get the value from the Django template
 
+        if (lastMessageId) {
+            // Scroll to the element with the specified ID
+            $('html, body').animate({ // Animate the scroll
+                scrollTop: $("#" + lastMessageId).offset().top
+            }, 500); // Adjust the duration (in milliseconds) for the animation
+        }
+    });
+
+    // JavaScript to show/hide and handle the scroll-to-top button
+        window.onscroll = function() {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {                scrollToTopBtn.style.display = "block"; // Show the button
+            } else {
+                scrollToTopBtn.style.display = "none";  // Hide the button
+            }
+        }
+
+        function scrollToTop() {
+            // For modern browsers
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+
+             // Optional: Add a smooth scrolling animation (using requestAnimationFrame for better performance)
+            // function smoothScroll() {
+            //     let currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
+            //     if (currentPosition > 0) {
+            //         window.requestAnimationFrame(smoothScroll); // Request next animation frame
+            //         window.scrollTo(0, currentPosition - currentPosition / 8); // Adjust scroll speed
+            //     }
+            // }
+            // smoothScroll();
+        }
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Select the container that holds the LLM responses
+    const responseContainer = document.querySelector('.response-container');
+    // const responseContainer = document.querySelector('.codehilite');
+    console.log('Response container:', responseContainer);
+    // Find all <pre> and <code> tags in the container
+    const pres = responseContainer.querySelectorAll('pre');
+    console.log('Find pres', pres.length)
+    pres.forEach(pre => {
+        // Create a copy button
+        const button = document.createElement('button');
+        // button.textContent = 'Copy to clipbaord';
+        button.innerHTML = `<i class='fas fa-clipboard'></i>`;
+        button.className = 'btn btn-primary'; // Add Bootstrap classes
+
+        // Append the button next to the <pre> tag
+        pre.parentNode.insertBefore(button, pre.nextSibling);
+
+        // Add click event to the button
+        button.addEventListener('click', function() {
+            const codeContent = pre.innerText; // Get the content of the <pre>
+
+            // Create a temporary textarea to copy from
+            const tempInput = document.createElement('textarea');
+            tempInput.value = codeContent;
+            document.body.appendChild(tempInput);
+
+            // Select the text and copy it
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand('copy'); // Copy the text to clipboard
+
+            // Clean up by removing the temporary element
+            document.body.removeChild(tempInput);
+
+            // Optionally, alert the user
+            alert('Copied to clipboard!');
+        });
+    });
+});
+</script>
+
+<style>
+    /* Optional styles for the button */
+    .btn {
+        margin-top: 5px;
+        margin-left: 5px;
+        display: inline-block;
+    }
+    .response-container pre {
+        border: #fff 1px solid;
+        padding: 20px;
+    }
+    /* Style for the scroll-to-top button */
+    #scrollToTopBtn {
+        display: none; /* Initially hide the button */
+        position: fixed; /* Fixed position (relative to the viewport) */
+        bottom: 20px;   /* Distance from the bottom of the viewport */
+        right: 20px;    /* Distance from the right of the viewport */
+        background-color: #007bff; /* Example background color */
+        color: white;             /* Example text color */
+        border: none;              /* Remove border */
+        border-radius: 50%;        /* Make it round */
+        width: 50px;               /* Button size */
+        height: 50px;              /* Button size */
+        text-align: center;       /* Center text horizontally */
+        line-height: 50px;        /* Center text vertically */
+        cursor: pointer;            /* Change cursor to a pointer on hover */
+        z-index: 1000;             /* Ensure it's above other content */
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    #scrollToTopBtn:hover {
+        background-color: #0056b3; /* Darken the background on hover */
+    }
+</style>
+  
+{% endblock script %}
 {% comment %}
       
     <table class="table">

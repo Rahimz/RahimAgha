@@ -63,6 +63,7 @@ def AiCreateNewChatView(request, chat_id=None):
     chat=None
     ai_response = None   
     uploaded_file = ''
+    last_message_id = None
      
     if chat_id:
         try:
@@ -70,6 +71,7 @@ def AiCreateNewChatView(request, chat_id=None):
             all_messages = Message.objects.filter(chat=chat).order_by('created')
             for item in all_messages:
                 ai_message.append({"role": item.role, "content": item.content})            
+            last_message_id = all_messages.last().id
         except:
             pass
     form_class = ChatForm if chat else ChatModelForm
@@ -155,6 +157,7 @@ def AiCreateNewChatView(request, chat_id=None):
         ai_message=ai_message,
         form=form,
         chat=chat,
+        last_message_id=last_message_id,
     )
     return render(
         request,
