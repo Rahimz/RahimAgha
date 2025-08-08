@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Chat, Message
+from .models import Chat, Message, ChatModel
 
 class MessageInline(admin.TabularInline):
     model = Message
@@ -29,3 +29,8 @@ class MessageAdmin(admin.ModelAdmin):
     def get_message_title(self, obj):
         return obj.get_message_title()
     get_message_title.short_description = 'Message Title'
+    
+    
+@admin.register(ChatModel)
+class ChatModelAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'label', 'company']

@@ -3,6 +3,23 @@ from tools.models import TimeStampedModel
 from django.utils.translation import gettext_lazy as _
 
 
+class ChatModel(TimeStampedModel):
+    name = models.CharField(
+        max_length=150,
+        unique=True
+    )
+    label = models.CharField(
+        max_length=150,
+    )
+    company = models.CharField(
+        max_length=150,
+    )
+    
+    def __str__(self):
+        return self.name
+    class Meta:
+        ordering = ('name',)
+
 
 class Chat(TimeStampedModel):
     # user = models.ForeignKey(
