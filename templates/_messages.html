@@ -12,7 +12,12 @@
 
 
 {% endif %}
-{% block script %}
 
-{% comment %} setTimeout(function(){$('.alert').alert('close')}, 2000) {% endcomment %}
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $("#alert").fadeTo(4000, 500).slideUp(500, function(){
+        $("#success-alert").slideUp(500);
+    });
+</script>
 {% endblock script %}
