@@ -28,6 +28,12 @@
           <li class="nav-item">
             <a class="nav-link {% if mainNavSection == 'contacts' %}active{% endif %}" href="{% url 'contacts:contacts' %}">{% trans "Contact me" %}</a>
           </li>
+          {% if request.user.is_authenticated %}
+          <li>
+            <a class="nav-link {% if mainNavSection == 'ai' %}active{% endif %}" href="{% url 'ai:ai_create' %}">{% trans "AI" %}</a>
+          </li>
+            
+          {% endif %}
           {% comment %} Show the quiz tab in farsi {% endcomment %}
           {% if LANGUAGE_CODE == 'fa' %}
           <li class="nav-item">

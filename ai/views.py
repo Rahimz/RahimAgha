@@ -158,6 +158,7 @@ def AiCreateNewChatView(request, chat_id=None):
         form=form,
         chat=chat,
         last_message_id=last_message_id,
+        mainNavSection='ai',
     )
     return render(
         request,
