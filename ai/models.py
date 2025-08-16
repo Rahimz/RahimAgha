@@ -14,11 +14,21 @@ class ChatModel(TimeStampedModel):
     company = models.CharField(
         max_length=150,
     )
+    level = models.IntegerField(
+        default=0
+    )
+    output_token = models.FloatField(
+        default=0.0
+    )
+    usage_count = models.IntegerField(
+        default=0
+    )
+    
     
     def __str__(self):
-        return self.name
+        return f"{self.level}-{self.name}-{self.output_token}"
     class Meta:
-        ordering = ('name',)
+        ordering = ('-usage_count', 'level', 'name')
 
 
 class Chat(TimeStampedModel):
