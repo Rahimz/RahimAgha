@@ -6,7 +6,7 @@ from django.contrib import messages
 from langchain_openai import ChatOpenAI
 
 from .forms import ChatForm, ChatModelForm
-from .models import Chat, Message
+from .models import Chat, Message, ChatModel
 
 API_KEY = settings.AVAL_API_KEY
 
@@ -99,13 +99,17 @@ def AiCreateNewChatView(request, chat_id=None):
             if chat:
                 pass
             else:
+                model_name = cd['model'].name
                 chat = Chat.objects.create(
                     chat_id='working',
-                    model_name=cd['model'].name,
+                    model_name=model_name,
                     input_token=0,
                     output_token=0,
                     total_token=0,
                 )
+                chat_model = ChatModel.objects.get(name=model_name)
+                chat_model.usage_count += 1
+                chat_model.save(update_fields=['usage_count'])
                 print('.. create chat body new')
             
             # jsut for record
