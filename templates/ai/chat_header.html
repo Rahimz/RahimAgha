@@ -1,4 +1,7 @@
 <div class="my-3">
+    {% if request.user.is_superuser %}
     <a href="{% url 'ai:ai' %}" class="btn btn-light m-1">Test</a>
+    <a href="{% url 'ai:ai_models_list' %}" class="btn btn-light m-1">Models list</a>
+    {% endif %}
     <a href="{% url 'ai:ai_create' %}" class="btn btn-light m-1">New chat</a>
 </div>

@@ -4,6 +4,8 @@ from . import views
 app_name = 'ai'
 
 urlpatterns = [
+    path('models-list/add/', views.AiModelAddView, name='add_model'),
+    path('models-list/', views.AiModelsListView, name='ai_models_list'),
     path('test/', views.AiView, name='ai'),
     path('<str:chat_id>/', views.AiCreateNewChatView, name='ai_continue_chat'),
     path('', views.AiCreateNewChatView, name='ai_create'),

@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.admin.views.decorators import staff_member_required
 from django.conf import settings
 from django.contrib import messages
+import requests
 
 from langchain_openai import ChatOpenAI
 
-from .forms import ChatForm, ChatModelForm
+from .forms import ChatForm, ChatModelForm, CreateChatModelForm
 from .models import Chat, Message, ChatModel
 
 API_KEY = settings.AVAL_API_KEY
@@ -169,8 +170,50 @@ def AiCreateNewChatView(request, chat_id=None):
         'ai/ai_chat.html',
         context
     )
+
+@staff_member_required
+def AiModelsListView(request):
+    url = "https://api.avalai.ir/v1/models"
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {API_KEY}"
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()['data']
+    sorted_data = sorted(data, key=lambda item: (item.get('min_tier'), item.get('owned_by', '')))
     
+    context = dict(
+        page_title = 'ai models list',
+        models_added=ChatModel.objects.all().values_list('name', flat=True),
+        sorted_data=sorted_data,
+    )
+    return render(
+        request,
+        'ai/ai_models_list.html',
+        context
+    )    
+
+@staff_member_required
+def AiModelAddView(request):
+    if request.method == 'POST':
+        form = CreateChatModelForm(request.POST)
+        print(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'New model added')
+            return redirect('ai:ai_models_list')
+        else:
+            messages.warning(request, 'Model does not added, check the form')
+            return redirect('ai:ai_models_list')
+    else:
+        form = CreateChatModelForm()
     
-
-
-
+    context = dict(
+        page_title = 'add ai model',
+        form=form,
+    )
+    return render(
+        request,
+        'ai/ai_model_add.html',
+        context
+    )   

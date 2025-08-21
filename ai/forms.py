@@ -21,3 +21,10 @@ class ChatModelForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(ChatModelForm, self).__init__(*args, **kwargs)
         self.fields['model'].initial = ChatModel.objects.first()
+
+
+class CreateChatModelForm(forms.ModelForm):
+    class Meta:
+        model = ChatModel
+        fields = ['name', 'label', 'company', 'level', 'output_token']
+        
