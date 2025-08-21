@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.contrib import messages
 import requests
 
 from langchain_openai import ChatOpenAI
 
+from accounts.permissions import ai_access_required
 from .forms import ChatForm, ChatModelForm, CreateChatModelForm
 from .models import Chat, Message, ChatModel
 
@@ -53,7 +55,8 @@ def AiView(request):
         context
     )
 
-
+@login_required
+@ai_access_required
 def AiCreateNewChatView(request, chat_id=None):
     context = dict(
         page_title = 'create ai chat',
