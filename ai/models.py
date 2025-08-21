@@ -17,6 +17,9 @@ class ChatModel(TimeStampedModel):
     level = models.IntegerField(
         default=0
     )
+    input_token = models.FloatField(
+        default=0.0
+    )
     output_token = models.FloatField(
         default=0.0
     )

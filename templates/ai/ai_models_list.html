@@ -42,7 +42,7 @@
                                 {% if model.id in models_added %}
                                 &#10004;
                                 {% else %}
-                                <button class="btn btn-light add-model-btn" data-model-id="{{ model.id }}" data-model-name="{{ model.object }}" data-company="{{ model.owned_by }}" data-level="{{ model.min_tier }}" data-output="{{ model.pricing.output }}" onclick="addModel(this)">
+                                <button class="btn btn-light add-model-btn" data-model-id="{{ model.id }}" data-model-name="{{ model.object }}" data-company="{{ model.owned_by }}" data-level="{{ model.min_tier }}" data-input-token="{{ model.pricing.input }}" data-output-token="{{ model.pricing.output }}" onclick="addModel(this)">
                                     &#10010;
                                 </button>
                                 {% endif %}
@@ -75,6 +75,7 @@
             <input type="text" name="label" id="modelLabel">
             <input type="text" name="company" id="modelCompany">
             <input type="number" name="level" id="modelLevel">
+            <input type="number" name="input_token" id="modelInputToken">
             <input type="number" name="output_token" id="modelOutputToken">
             <input type="submit" value="Add Model" class="btn btn-primary">
         </form>
@@ -93,14 +94,16 @@
         const modelName = button.getAttribute('data-model-name');
         const company = button.getAttribute('data-company');
         const level = button.getAttribute('data-level');
-        const output = button.getAttribute('data-output');
+        const input_token = button.getAttribute('data-input-token'); // Assuming input_token is defined somewhere
+        const output_token = button.getAttribute('data-output-token');
 
         // Populate the hidden form with the data
         document.getElementById('modelName').value = modelId;
         document.getElementById('modelLabel').value = modelId;
         document.getElementById('modelCompany').value = company;
         document.getElementById('modelLevel').value = level;
-        document.getElementById('modelOutputToken').value = output;
+        document.getElementById('modelInputToken').value = input_token; // Assuming input_token is defined somewhere
+        document.getElementById('modelOutputToken').value = output_token;
 
         // Submit the form
         document.getElementById('modelForm').submit();

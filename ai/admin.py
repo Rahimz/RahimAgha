@@ -33,5 +33,5 @@ class MessageAdmin(admin.ModelAdmin):
     
 @admin.register(ChatModel)
 class ChatModelAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'label', 'level', 'output_token', 'usage_count', 'company']
-    list_editable = ['output_token', 'level']
+    list_display = ['id', 'name', 'label', 'level', 'input_token', 'output_token', 'usage_count', 'company']
+    list_editable = ['input_token', 'output_token', 'level']

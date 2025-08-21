@@ -203,7 +203,8 @@ def AiModelAddView(request):
             messages.success(request, 'New model added')
             return redirect('ai:ai_models_list')
         else:
-            messages.warning(request, 'Model does not added, check the form')
+            messages.warning(request, 'Model does not added, check the form')            
+            print(form.errors)
             return redirect('ai:ai_models_list')
     else:
         form = CreateChatModelForm()

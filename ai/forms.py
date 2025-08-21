@@ -26,5 +26,5 @@ class ChatModelForm(forms.Form):
 class CreateChatModelForm(forms.ModelForm):
     class Meta:
         model = ChatModel
-        fields = ['name', 'label', 'company', 'level', 'output_token']
+        fields = ['name', 'label', 'company', 'level', 'input_token', 'output_token']
         
