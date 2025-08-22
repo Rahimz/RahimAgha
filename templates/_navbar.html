@@ -84,7 +84,7 @@
       <div class="ms-3">
         {% if request.user.is_authenticated %}
         <div>
-          <form action="{% url 'accounts:logout' %}" method="post">
+          <form action="{% url 'logout' %}" method="post">
             {% csrf_token %}
             <button type="submit" class="btn"><i class="fas fa-sign-out text-light"></i></button>
           </form>
