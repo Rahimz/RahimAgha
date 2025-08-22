@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from functools import wraps
 from rest_framework import permissions
 
 class IsSuperUser(permissions.BasePermission):
     """
     Custom permission to only allow superusers to access certain views.
+    it does not work in generic views and we should use `IsAdminUser` instead.
     """
 
     def has_permission(self, request, view):
@@ -29,7 +30,7 @@ def ai_access_required(template_name="ai_access_denied.html", status=403):
     # Support usage without parentheses
     if callable(template_name):
         func = template_name
-        template_name = "ai/ai_access_denied.html"
+        template_name = "access_denied.html"
         return ai_access_required(template_name)(func)
 
     def decorator(view_func):
@@ -37,9 +38,9 @@ def ai_access_required(template_name="ai_access_denied.html", status=403):
         def _wrapped(request, *args, **kwargs):
             user = getattr(request, "user", None)
             if not (user and user.is_authenticated and getattr(user.profile, "ai_access", False)):
-                # optionally provide context data to template
-                context = {"next": request.get_full_path(), "user": user}
-                return render(request, template_name, context=context, status=status)
+                # # optionally provide context data to template
+                # context = {"next": request.get_full_path(), "user": user}
+                return redirect('generals:no_access')
             return view_func(request, *args, **kwargs)
         return _wrapped
     return decorator
@@ -54,7 +55,7 @@ def accounting_access_required(template_name="ai_access_denied.html", status=403
     # Support usage without parentheses
     if callable(template_name):
         func = template_name
-        template_name = "ai/ai_access_denied.html"
+        template_name = "access_denied.html"
         return accounting_access_required(template_name)(func)
 
     def decorator(view_func):
@@ -62,9 +63,9 @@ def accounting_access_required(template_name="ai_access_denied.html", status=403
         def _wrapped(request, *args, **kwargs):
             user = getattr(request, "user", None)
             if not (user and user.is_authenticated and getattr(user.profile, "accounting_access", False)):
-                # optionally provide context data to template
-                context = {"next": request.get_full_path(), "user": user}
-                return render(request, template_name, context=context, status=status)
+                # # optionally provide context data to template
+                # context = {"next": request.get_full_path(), "user": user}
+                return redirect('generals:no_access')
             return view_func(request, *args, **kwargs)
         return _wrapped
     return decorator
@@ -80,7 +81,7 @@ class AccountingAccessRequiredMixin:
     """
 
     # defaults — override on your view if needed
-    access_denied_template = "ai/ai_access_denied.html"
+    access_denied_template = "access_denied.html"
     access_denied_status = 403
 
     def get_access_denied_template(self):
@@ -122,7 +123,7 @@ class ApiAccessRequiredMixin:
     """
 
     # defaults — override on your view if needed
-    access_denied_template = "ai/ai_access_denied.html"
+    access_denied_template = "access_denied.html"
     access_denied_status = 403
 
     def get_access_denied_template(self):

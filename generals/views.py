@@ -73,3 +73,14 @@ class GetCountryFromIP(View):
         ipv4_pattern = r'^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$'
         ipv6_pattern = r'^[0-9a-fA-F:]+$'
         return re.match(ipv4_pattern, ip) or re.match(ipv6_pattern, ip)
+    
+    
+def NoAccessView(request):
+    return render(
+        request,
+        'access_denied.html',
+        {
+            'page_title': _('No Access'),
+            'mainNavSection': 'home'
+        }
+    )

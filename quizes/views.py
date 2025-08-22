@@ -5,19 +5,20 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.postgres.search import SearchVector
-from django.db.models import Sum, Count
+# from django.db.models import Sum, Count
+from django.contrib.auth.decorators import login_required
 import random 
 import requests
 from PIL import Image as IMG
 from io import BytesIO
 from django.core.files import File
 from django.contrib.admin.views.decorators import staff_member_required
-
 from bs4 import BeautifulSoup
 
 
 from .models import Question, Quiz, QuizResponse, Compliment
 
+# staff access
 class QuestionCreateView(LoginRequiredMixin, CreateView):
     model = Question
     template_name = 'quizes/question_create.html'
@@ -25,6 +26,12 @@ class QuestionCreateView(LoginRequiredMixin, CreateView):
         'description', 'correct', 'wrong_1', 'wrong_2', 'wrong_3',
         'difficulty', 'link', 'published' 
     ]
+    
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('generals:no_access')
+        return super().dispatch(request, *args, **kwargs)
+
     # success_url = '/quizes/questions/list/'
     def get_success_url(self):
         return reverse ('quizes:questions_list')
@@ -43,6 +50,12 @@ class QuestionUpdateView(LoginRequiredMixin, UpdateView):
         'description', 'correct', 'wrong_1', 'wrong_2', 'wrong_3',
         'difficulty', 'link', 'published'           
     ]
+    # superuser access
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('generals:no_access')
+        return super().dispatch(request, *args, **kwargs)
+    
     # success_url = '/quizes/questions/list/'
     def get_success_url(self):
         return reverse ('quizes:questions_list')
@@ -61,6 +74,12 @@ class QuestionListView(LoginRequiredMixin, ListView):
     template_name = 'quizes/question_list.html'
     ordering = ('difficulty', )
 
+    # superuser access
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('generals:no_access')
+        return super().dispatch(request, *args, **kwargs)
+    
     def get_queryset(self):
         if self.request.GET.get('search'):
 
@@ -305,58 +324,6 @@ def GrabBookData(response):
                 pass
     return src
 
-# def MyQuizProccessView(request, pk, step=1):
-#     quiz = get_object_or_404(Quiz, pk=pk)
-#     questions = quiz.questions.all()
-#     user_answer = None
-   
-#     if request.method == 'POST':
-#         for item in '1234':
-#             # print(f"{item}: ", request.POST.get(f"answer-{item}"))
-#             if request.POST.get(f"answer-{item}") == 'on':
-#                 user_answer = f"answer-{item}"
-#         # print(f'check {step} question ')
-#         question = questions[step-1]
-#         request.session[str(question.id)]['response'] = user_answer
-#         # print(f'write {step} answer in session', user_answer)
-        
-
-#         step = step + 1
-#         question = questions[step-1]
-#         answers = question.get_answers()
-#         request.session[str(question.id)] = {'answers': answers, 'response': None}
-#         # print(f'prepare {step} question')
-
-#         if step > 4:
-#             # print(f'if {step} >4 answer in session and redirect')
-#             request.session[str(questions[4].id)]['response'] = user_answer
-#             # print(user_answer)
-#             return redirect ('quizes:my_quiz_result', quiz.pk)
-        
-
-#         return redirect ('quizes:my_quiz_proccess', quiz.pk, step)
-
-    
-#     # make first question 
-#     print(f'prepare {step} question')
-#     question = questions[step-1]
-#     answers = question.get_answers()
-#     request.session[str(question.id)] = {'answers': answers, 'response': None}
-   
-
-#     return render(
-#         request,
-#         'quizes/my_quiz_proccess.html',
-#         {
-#             'page_title': _('My quiz'),
-#             'quiz': quiz,
-#             'question': question,
-#             'answers': answers,
-#             'step': step, 
-#             # 'next_step': next_step, 
-#         }
-#     )
-
 
 def SelectQuestion(level):
     """
@@ -383,6 +350,13 @@ class ComplimentCreateView(LoginRequiredMixin, CreateView):
     fields = [
         'content', 'difficulty'
     ]
+    
+    # superuser access
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('generals:no_access')
+        return super().dispatch(request, *args, **kwargs)
+    
     # success_url = '/quizes/questions/list/'
     def get_success_url(self):
         return reverse ('quizes:compliment_list')
@@ -400,6 +374,12 @@ class ComplimentUpdateView(LoginRequiredMixin, UpdateView):
     fields = [
         'content', 'difficulty'        
     ]
+    # superuser access
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('generals:no_access')
+        return super().dispatch(request, *args, **kwargs)
+    
     # success_url = '/quizes/questions/list/'
     def get_success_url(self):
         return reverse ('quizes:compliment_list')
@@ -418,6 +398,13 @@ class ComplimentListView(LoginRequiredMixin, ListView):
     template_name = 'quizes/question_list.html'
     ordering = ('difficulty', )
 
+    
+    # superuser access
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('generals:no_access')
+        return super().dispatch(request, *args, **kwargs)
+    
     def get_queryset(self):
         if self.request.GET.get('search'):
 
@@ -439,8 +426,11 @@ class ComplimentListView(LoginRequiredMixin, ListView):
         return context
     
 
-@staff_member_required
+# @staff_member_required
+@login_required
 def QuestionCorrectRateUpdate(request):
+    if not request.user.is_superuser:
+        return redirect('generals:no_access')
     questions = Question.objects.all()
     for item in questions.iterator():
         uses = item.question_uses.all().count()
