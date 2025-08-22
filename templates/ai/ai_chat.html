@@ -3,22 +3,38 @@
 {% load markdown_extras %} 
 
 {% block content %}
-<div class="container-fluid text-light">
+<div class="container text-light">
     <div class="row">
-        <div class="col-12 col-sm-3 col-md-2">
-            {% include "ai/chat_header.html" %}
-            <table>
+        <div class="col">
+            <div class="d-flex justify-left align-items-center my-3">
+                {% include "ai/chat_header.html" %}
+                
+                <!-- Left column: button that opens offcanvas -->
+                <!-- Toggle button (small tab / icon) -->
+                <button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#chatListOffcanvas" aria-controls="chatListOffcanvas" aria-expanded="false" aria-label="Open chats">
+                    <i class="fas fa-comments"></i> Chats
+                </button>
+            </div>
+            <!-- Offcanvas panel containing chat list -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="chatListOffcanvas" aria-labelledby="chatListOffcanvasLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="chatListOffcanvasLabel">Chats</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <!-- Make the list scrollable and constrain height -->
+                <div class="list-group" style="max-height: calc(100vh - 140px); overflow:auto;">
                 {% for chat in chats %}
-                <tr>
-                    <td class="border p-2 border-secondary">
-                        <a href="{% url 'ai:ai_continue_chat' chat.chat_id %}" >{{ chat.get_first_message }}</a>
-                    </td>
-                </tr>
-                  
+                    <a class="list-group-item list-group-item-action" href="{% url 'ai:ai_continue_chat' chat.chat_id %}">
+                    {{ chat.get_first_message }}
+                    </a>
+                {% empty %}
+                    <div class="list-group-item">No chats</div>
                 {% endfor %}
-            </table>
-        </div>
-        <div class="col-12 col-sm-9 col-md-10">
+                </div>
+            </div>
+            </div>
+
             <!-- chat title -->
             <div class="">
                 {% if chat %}
