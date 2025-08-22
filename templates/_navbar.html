@@ -3,7 +3,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-brown border-bottom shadow" id="top">
   <div class="container-fluid py-1">
-    <a class="navbar-brand" href="{% url 'home' %}">
+    <a class="navbar-brand" href="{% url 'generals:home' %}">
       <img src="{% static 'img/rahimagha_logo_sq.png' %}" alt="RahimAgha logo" width="70px" height="auto">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,14 +13,14 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
-          <a class="nav-link {% if mainNavSection == 'home' %}active{% endif %}" href="{% url 'home' %}">{% trans "Home" %}</a>
+          <a class="nav-link {% if mainNavSection == 'home' %}active{% endif %}" href="{% url 'generals:home' %}">{% trans "Home" %}</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link {% if mainNavSection == 'projects' %}active{% endif %}" href="{% url 'home' %}#projects">{% trans "Projects" %}</a>
+          <a class="nav-link {% if mainNavSection == 'projects' %}active{% endif %}" href="{% url 'generals:home' %}#projects">{% trans "Projects" %}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if mainNavSection == 'resume' %}active{% endif %}" href="{% url 'home' %}#resume">{% trans "Resume" %}</a>
+          <a class="nav-link {% if mainNavSection == 'resume' %}active{% endif %}" href="{% url 'generals:home' %}#resume">{% trans "Resume" %}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {% if mainNavSection == 'services' %}active{% endif %}" href="{% url 'bookstore:bookstore' %}">{% trans "Bookstore" %}</a>
@@ -90,7 +90,7 @@
           </form>
         </div>
         {% else %}
-        <a href="{% url 'accounts:login' %}" class="btn"><i class="fas fa-sign-in-alt text-light"></i></a>
+        <a href="{% url 'login' %}" class="btn"><i class="fas fa-sign-in-alt text-light"></i></a>
         {% endif %}        
         
       </div>
