@@ -2,91 +2,105 @@
 {% load static %}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-brown border-bottom shadow" id="top">
-    <div class="container-fluid py-1">
-      <a class="navbar-brand" href="{% url 'home' %}">
-        <img src="{% static 'img/rahimagha_logo_sq.png' %}" alt="RahimAgha logo" width="70px" height="auto">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          
-          <li class="nav-item">
-            <a class="nav-link {% if mainNavSection == 'home' %}active{% endif %}" href="{% url 'home' %}">{% trans "Home" %}</a>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link {% if mainNavSection == 'projects' %}active{% endif %}" href="{% url 'home' %}#projects">{% trans "Projects" %}</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if mainNavSection == 'resume' %}active{% endif %}" href="{% url 'home' %}#resume">{% trans "Resume" %}</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if mainNavSection == 'services' %}active{% endif %}" href="{% url 'bookstore:bookstore' %}">{% trans "Bookstore" %}</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if mainNavSection == 'contacts' %}active{% endif %}" href="{% url 'contacts:contacts' %}">{% trans "Contact me" %}</a>
-          </li>
-          {% if request.user.is_authenticated %}
-          <li>
-            <a class="nav-link {% if mainNavSection == 'ai' %}active{% endif %}" href="{% url 'ai:ai_create' %}">{% trans "AI" %}</a>
-          </li>
-            
-          {% endif %}
-          {% comment %} Show the quiz tab in farsi {% endcomment %}
-          {% if LANGUAGE_CODE == 'fa' %}
-          <li class="nav-item">
-            <a class="nav-link {% if mainNavSection == 'quizes' %}active{% endif %}" 
-            {% if request.user.is_superuser %}
-            href="{% url 'quizes:questions_list' %}"
-            {% else %}
-            href="{% url 'quizes:my_quiz' %}"
-            {% endif %}
-            >
-            {% trans "Quizes" %}
-          </a>
-          </li>          
-          {% endif %}
+  <div class="container-fluid py-1">
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <img src="{% static 'img/rahimagha_logo_sq.png' %}" alt="RahimAgha logo" width="70px" height="auto">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
+        <li class="nav-item">
+          <a class="nav-link {% if mainNavSection == 'home' %}active{% endif %}" href="{% url 'home' %}">{% trans "Home" %}</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link {% if mainNavSection == 'projects' %}active{% endif %}" href="{% url 'home' %}#projects">{% trans "Projects" %}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if mainNavSection == 'resume' %}active{% endif %}" href="{% url 'home' %}#resume">{% trans "Resume" %}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if mainNavSection == 'services' %}active{% endif %}" href="{% url 'bookstore:bookstore' %}">{% trans "Bookstore" %}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if mainNavSection == 'contacts' %}active{% endif %}" href="{% url 'contacts:contacts' %}">{% trans "Contact me" %}</a>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li>
+          <a class="nav-link {% if mainNavSection == 'ai' %}active{% endif %}" href="{% url 'ai:ai_create' %}">{% trans "AI" %}</a>
+        </li>
+
+        {% endif %}
+        {% comment %} Show the quiz tab in farsi {% endcomment %}
+        {% if LANGUAGE_CODE == 'fa' %}
+        <li class="nav-item">
+          <a class="nav-link {% if mainNavSection == 'quizes' %}active{% endif %}"
           {% if request.user.is_superuser %}
-          <li class="nav-item">
-            <a href="{% url 'accounting:transactions_list' %}" class="nav-link {% if mainNavSection == 'accounting' %}active{% endif %}">{% trans 'Accounting' %}</a>
-          </li>
-          <li class="nav-item">
-            <a href="{% url 'admin:index' %}" class="nav-link ">{% trans 'Admin' %}</a>
-          </li>
-          <li class="nav-item">
-            <a href="{% url 'rosetta-old-home-redirect' %}" class="nav-link ">Rosetta</a>          
-          </li>
-
-          {% endif  %}
-
-          {% get_current_language as LANGUAGE_CODE %}
-          {% get_available_languages as LANGUAGES %}
-          {% get_language_info_list for LANGUAGES as languages %}
-          <li class="nav-item">
-            {% if LANGUAGE_CODE == 'en' %}
-              <a href="/fa/" class="nav-link ms-4">fa</a>
-              {% else %}
-              <a href="/en/" class="nav-link ms-4">en</a>
-              {% endif %}
-          </li>
-
-          
-          {% comment %}
-        <div class="ms-3">
-          {% if request.user.is_authenticated %}
-          <div><a href="{% url 'logout' %}"><i class="fas fa-sign-out text-dark"></i></a></div>          
+          href="{% url 'quizes:questions_list' %}"
+          {% else %}
+          href="{% url 'quizes:my_quiz' %}"
           {% endif %}
+          >
+          {% trans "Quizes" %}
+        </a>
+        </li>
+        {% endif %}
+
+        {% if request.user.is_superuser %}
+        <li class="nav-item">
+          <a href="{% url 'accounting:transactions_list' %}" class="nav-link {% if mainNavSection == 'accounting' %}active{% endif %}">{% trans 'Accounting' %}</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'admin:index' %}" class="nav-link ">{% trans 'Admin' %}</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'rosetta-old-home-redirect' %}" class="nav-link ">Rosetta</a>
+        </li>
+
+        {% endif  %}
+
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% get_language_info_list for LANGUAGES as languages %}
+        <li class="nav-item">
+          {% if LANGUAGE_CODE == 'en' %}
+            <a href="/fa/" class="nav-link ms-4">fa</a>
+            {% else %}
+            <a href="/en/" class="nav-link ms-4">en</a>
+            {% endif %}
+        </li>
+      </ul>
+      {% if request.user.is_authenticated %}
+        <span class="navbar-text text-white ms-2">
+            Welcome, {{ request.user.username }}!
+        </span>
+      {% endif %}
+
+
+        
+      <div class="ms-3">
+        {% if request.user.is_authenticated %}
+        <div>
+          <form action="{% url 'accounts:logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn"><i class="fas fa-sign-out text-light"></i></button>
+          </form>
         </div>
-      {% endcomment %}
-      </div> 
+        {% else %}
+        <a href="{% url 'accounts:login' %}" class="btn"><i class="fas fa-sign-in-alt text-light"></i></a>
+        {% endif %}        
+        
+      </div>
+    
     </div>
-  </nav>
+  </div>
+</nav>
 
   {% block script %}
   <script>
-   
+
     </script>
   {% endblock script %}
