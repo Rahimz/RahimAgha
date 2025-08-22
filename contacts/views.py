@@ -49,7 +49,7 @@ def contacts(request):
                             #     Q(description=new_form.description)
                             # ))                                                        
                             messages.warning(request, _("It seems you write spam messages"))
-                            return redirect('home')
+                            return redirect('generals:home')
                 if require:
                     new_form.require = require
                     
