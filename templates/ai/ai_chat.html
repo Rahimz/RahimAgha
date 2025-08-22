@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container-fluid text-light">
     <div class="row">
-        <div class="col-md-1">
+        <div class="col-12 col-sm-3 col-md-2">
             {% include "ai/chat_header.html" %}
             <table>
                 {% for chat in chats %}
@@ -18,14 +18,15 @@
                 {% endfor %}
             </table>
         </div>
-        <div class="col-md-11">
+        <div class="col-12 col-sm-9 col-md-10">
+            <!-- chat title -->
             <div class="">
                 {% if chat %}
-                <h2>{{ chat.model_name}}</h2>
-                <h4>{{ chat.chat_id}}</h4>
+                <h2>{{ chat.model_name }}</h2>
+                <h4>{{ chat.chat_id }}</h4>
                 {% endif %}
             </div>
-
+            <!-- chat messages -->
             <div class="">
                 {% for message in all_messages %}
                 <div class="rounded">
@@ -86,13 +87,12 @@
                 </div>                    
             {% endfor %}
             
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form |crispy}}
+                <input type="submit" value="Submit" class="btn btn-light my-2">
+            </form>
         </div>
-        <form action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form |crispy}}
-            <input type="submit" value="Submit" class="btn btn-light my-2">
-        </form>
-        
     </div>
      <!-- Scroll to top button -->
     <button onclick="scrollToTop()" id="scrollToTopBtn">&#8593;</button>
