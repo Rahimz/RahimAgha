@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseForbidden, HttpResponse
 from django.views.generic import View
 from django.conf import settings
+from rest_framework.permissions import IsAdminUser
 import os
 from django.contrib.admin.views.decorators import staff_member_required
 
@@ -194,6 +195,7 @@ class AtmanVideoStreamView(View):
 
 
 class FileUploader(APIView):
+    permission_classes = [IsAdminUser]
     parser_classes = (FileUploadParser,)
     def get(self, request, *args, **kwargs):
         form = VideoUploadForm()
@@ -217,6 +219,7 @@ class FileUploader(APIView):
 
 
 class FileUploader(APIView):
+    permission_classes = [IsAdminUser]
     parser_classes = (FileUploadParser,)
 
     def get(self, request, *args, **kwargs):

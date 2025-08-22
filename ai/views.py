@@ -60,7 +60,7 @@ def AiView(request):
 def AiCreateNewChatView(request, chat_id=None):
     context = dict(
         page_title = 'create ai chat',
-        chats=Chat.objects.all().order_by('-id'),
+        chats=Chat.objects.filter(user=request.user).order_by('-id'),
     )
     all_messages = None
     ai_message = []
@@ -71,13 +71,15 @@ def AiCreateNewChatView(request, chat_id=None):
      
     if chat_id:
         try:
-            chat=get_object_or_404(Chat, chat_id=chat_id)
+            chat=get_object_or_404(Chat, chat_id=chat_id, user=request.user)
             all_messages = Message.objects.filter(chat=chat).order_by('created')
             for item in all_messages:
                 ai_message.append({"role": item.role, "content": item.content})            
             last_message_id = all_messages.last().id
         except:
-            pass
+            messages.warning(request, 'Chat not found')
+            return redirect('ai:ai_create')
+            
     form_class = ChatForm if chat else ChatModelForm
     
     # Initialize the ChatOpenAI model
@@ -88,7 +90,7 @@ def AiCreateNewChatView(request, chat_id=None):
         model=model_name, base_url="https://api.avalai.ir/v1", api_key=API_KEY
     )
     
-    if request.method == 'POST':        
+    if request.method == 'POST':
         form = form_class(data=request.POST, files=request.FILES)
         if form.is_valid():
             cd = form.cleaned_data
@@ -105,6 +107,7 @@ def AiCreateNewChatView(request, chat_id=None):
             else:
                 model_name = cd['model'].name
                 chat = Chat.objects.create(
+                    user=request.user,
                     chat_id='working',
                     model_name=model_name,
                     input_token=0,
@@ -157,8 +160,8 @@ def AiCreateNewChatView(request, chat_id=None):
             
     else: 
         form = form_class()
-    for index,item in enumerate(ai_message):
-        print(f"{index}:{item}")
+    # for index,item in enumerate(ai_message):
+    #     print(f"{index}:{item}")
     context.update(
         model_name=model_name,
         all_messages=all_messages,
