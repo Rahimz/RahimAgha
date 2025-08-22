@@ -34,3 +34,71 @@ def ai_access_required(template_name="ai_access_denied.html", status=403):
             return view_func(request, *args, **kwargs)
         return _wrapped
     return decorator
+
+def accounting_access_required(template_name="ai_access_denied.html", status=403):
+    """
+    Can be used as:
+      @accounting_access_required
+      @accounting_access_required()
+      @accounting_access_required("custom_template.html")
+    """
+    # Support usage without parentheses
+    if callable(template_name):
+        func = template_name
+        template_name = "ai/ai_access_denied.html"
+        return accounting_access_required(template_name)(func)
+
+    def decorator(view_func):
+        @wraps(view_func)
+        def _wrapped(request, *args, **kwargs):
+            user = getattr(request, "user", None)
+            if not (user and user.is_authenticated and getattr(user.profile, "accounting_access", False)):
+                # optionally provide context data to template
+                context = {"next": request.get_full_path(), "user": user}
+                return render(request, template_name, context=context, status=status)
+            return view_func(request, *args, **kwargs)
+        return _wrapped
+    return decorator
+
+
+class AccountingAccessRequiredMixin:
+    """
+    Mixin for class-based views that requires `user.profile.accounting_access`.
+    Usage:
+    class MyView(LoginRequiredMixin, AccountingAccessRequiredMixin, View):
+    access_denied_template = "ai/custom_access_denied.html" # optional
+    access_denied_status = 403 # optional
+    """
+
+    # defaults — override on your view if needed
+    access_denied_template = "ai/ai_access_denied.html"
+    access_denied_status = 403
+
+    def get_access_denied_template(self):
+        return self.access_denied_template
+
+    def get_access_denied_status(self):
+        return self.access_denied_status
+
+    def get_access_denied_context(self):
+        # provide context for the template; override if you need custom context
+        return {"next": self.request.get_full_path(), "user": getattr(self.request, "user", None)}
+
+    def user_has_accounting_access(self):
+        user = getattr(self.request, "user", None)
+        if not (user and user.is_authenticated):
+            return False
+        profile = getattr(user, "profile", None)
+        return bool(getattr(profile, "accounting_access", False))
+
+    def dispatch(self, request, *args, **kwargs):
+        # If the user doesn't have accounting access, render the template and don't proceed.
+        if not self.user_has_accounting_access():
+            context = self.get_access_denied_context()
+            return render(
+                request,
+                self.get_access_denied_template(),
+                context=context,
+                status=self.get_access_denied_status(),
+            )
+        return super().dispatch(request, *args, **kwargs)

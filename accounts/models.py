@@ -9,6 +9,7 @@ class Profile(models.Model):
     # Add any other fields you want for your user here
     bio = models.TextField(max_length=500, blank=True)
     ai_access = models.BooleanField(default=False)
+    accounting_access = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

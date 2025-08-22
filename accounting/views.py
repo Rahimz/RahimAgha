@@ -8,9 +8,10 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, ListView, UpdateView
 from django.db.models import Sum
+
 from .models import Transaction, BankAccount, TransactionSubject
 from .forms import PayForm, RecForm, DateForm
-
+from accounts.permissions import accounting_access_required, AccountingAccessRequiredMixin
 
 # @staff_member_required
 # def AccountingDashboardView(request):
@@ -24,7 +25,7 @@ from .forms import PayForm, RecForm, DateForm
 #         context
 #     )
 
-class TransactionsListView(LoginRequiredMixin, ListView):
+class TransactionsListView(LoginRequiredMixin, AccountingAccessRequiredMixin, ListView):
     model = Transaction
     template_name = 'accounting/transactions_list.html'
     form_class = DateForm
@@ -139,7 +140,7 @@ class TransactionsListView(LoginRequiredMixin, ListView):
         
         return queryset    
 
-class TransactionSubjectsListView(LoginRequiredMixin, ListView):
+class TransactionSubjectsListView(LoginRequiredMixin, AccountingAccessRequiredMixin, ListView):
     model = TransactionSubject
     template_name = 'accounting/transaction_subjects_list.html'
     queryset = TransactionSubject.objects.all()
@@ -152,7 +153,7 @@ class TransactionSubjectsListView(LoginRequiredMixin, ListView):
         return context
 
 
-class BankAccountListView(LoginRequiredMixin, ListView):
+class BankAccountListView(LoginRequiredMixin, AccountingAccessRequiredMixin, ListView):
     model = BankAccount
     template_name = 'accounting/bank_accounts_list.html'
     queryset = BankAccount.objects.all()
@@ -165,7 +166,7 @@ class BankAccountListView(LoginRequiredMixin, ListView):
         return context
 
 
-class AddPayment(LoginRequiredMixin, CreateView):
+class AddPayment(LoginRequiredMixin, AccountingAccessRequiredMixin, CreateView):
     model = Transaction
     form_class = PayForm
     template_name = 'accounting/add_payment.html'
@@ -188,7 +189,7 @@ class AddPayment(LoginRequiredMixin, CreateView):
         return context
 
 
-class AddRecieve(LoginRequiredMixin, CreateView):
+class AddRecieve(LoginRequiredMixin, AccountingAccessRequiredMixin, CreateView):
     model = Transaction
     form_class = RecForm
     template_name = 'accounting/add_payment.html'
@@ -210,7 +211,7 @@ class AddRecieve(LoginRequiredMixin, CreateView):
         return context
 
 
-class AddTransactionSubject(LoginRequiredMixin, CreateView):
+class AddTransactionSubject(LoginRequiredMixin, AccountingAccessRequiredMixin, CreateView):
     model = TransactionSubject
     fields = ['title', 'transaction_kind']
     template_name = 'accounting/add_payment.html'
@@ -226,7 +227,7 @@ class AddTransactionSubject(LoginRequiredMixin, CreateView):
         return context
 
 
-class UpdateTransactionSubject(LoginRequiredMixin, UpdateView):
+class UpdateTransactionSubject(LoginRequiredMixin, AccountingAccessRequiredMixin, UpdateView):
     model = TransactionSubject
     fields = ['title', 'transaction_kind']
     template_name = 'accounting/add_payment.html'
@@ -241,7 +242,7 @@ class UpdateTransactionSubject(LoginRequiredMixin, UpdateView):
         context['accSection'] = 'subject' 
         return context
     
-
+@accounting_access_required
 def RemoveTransactionView(request, pk):
     transaction = get_object_or_404(Transaction, pk=pk)    
     if transaction.bank_account:
