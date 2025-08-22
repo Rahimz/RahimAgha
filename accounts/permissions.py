@@ -1,6 +1,15 @@
 from django.shortcuts import render
 from functools import wraps
+from rest_framework import permissions
 
+class IsSuperUser(permissions.BasePermission):
+    """
+    Custom permission to only allow superusers to access certain views.
+    """
+
+    def has_permission(self, request, view):
+        return request.user and request.user.is_superuser
+    
 # def ai_access_required(view_func):
 #     @wraps(view_func)
 #     def _wrapped_view(request, *args, **kwargs):
@@ -94,6 +103,48 @@ class AccountingAccessRequiredMixin:
     def dispatch(self, request, *args, **kwargs):
         # If the user doesn't have accounting access, render the template and don't proceed.
         if not self.user_has_accounting_access():
+            context = self.get_access_denied_context()
+            return render(
+                request,
+                self.get_access_denied_template(),
+                context=context,
+                status=self.get_access_denied_status(),
+            )
+        return super().dispatch(request, *args, **kwargs)
+
+class ApiAccessRequiredMixin:
+    """
+    Mixin for class-based views that requires `user.profile.api_access`.
+    Usage:
+    class MyView(LoginRequiredMixin, ApiAccessRequiredMixin, View):
+    access_denied_template = "ai/custom_access_denied.html" # optional
+    access_denied_status = 403 # optional
+    """
+
+    # defaults — override on your view if needed
+    access_denied_template = "ai/ai_access_denied.html"
+    access_denied_status = 403
+
+    def get_access_denied_template(self):
+        return self.access_denied_template
+
+    def get_access_denied_status(self):
+        return self.access_denied_status
+
+    def get_access_denied_context(self):
+        # provide context for the template; override if you need custom context
+        return {"next": self.request.get_full_path(), "user": getattr(self.request, "user", None)}
+
+    def user_has_api_access(self):
+        user = getattr(self.request, "user", None)
+        if not (user and user.is_authenticated):
+            return False
+        profile = getattr(user, "profile", None)
+        return bool(getattr(profile, "api_access", False))
+
+    def dispatch(self, request, *args, **kwargs):
+        # If the user doesn't have api access, render the template and don't proceed.
+        if not self.user_has_api_access():
             context = self.get_access_denied_context()
             return render(
                 request,
