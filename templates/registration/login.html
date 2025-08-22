@@ -23,8 +23,11 @@
                 {{ form.as_p }}
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ next }}" />
-                <p><input type="submit" value="Log-in"></p>
+                <p><input type="submit" value="Log-in" class="btn btn-light"></p>
             </form>
+            <p>
+                If you don't have an account <a href="{% url 'register' %}">register here</a>
+            </p>
             {% comment %}
             <p>
                 <a href="{% url 'password_reset' %}">
@@ -33,7 +36,8 @@
             </p>
             {% endcomment %}
         </div>
-    
+        
+    </div>
 </div>
   
 {% endblock content %}
