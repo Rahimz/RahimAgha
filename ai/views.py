@@ -5,11 +5,12 @@ from django.conf import settings
 from django.contrib import messages
 import requests
 
+
 from langchain_openai import ChatOpenAI
 
 from accounts.permissions import ai_access_required
 from .forms import ChatForm, ChatModelForm, CreateChatModelForm
-from .models import Chat, Message, ChatModel
+from .models import Chat, Message, ChatModel, FileTypeDetermine
 
 API_KEY = settings.AVAL_API_KEY
 
@@ -96,10 +97,23 @@ def AiCreateNewChatView(request, chat_id=None):
             cd = form.cleaned_data
             uploaded_file = cd['file']
             
+            # if there is no file it returns NA
+            file_type = FileTypeDetermine(uploaded_file)
+            
             # Read the file content
-            file_content = uploaded_file.read().decode('utf-8') if uploaded_file else ''
-            # Initialize all_messages list with system and user prompts
-            prompt = {"role": "user", "content": f"{cd['prompt']}\n{file_content if file_content else ''}"}
+            if file_type == Message.FileChoices.DOC:
+                # just read text files
+                file_content = uploaded_file.read().decode('utf-8') if uploaded_file else ''
+                # Initialize all_messages list with system and user prompts
+                prompt = {"role": "user", "content": f"{cd['prompt']}\n{file_content if file_content else ''}"}
+            else:
+                file_content = ''
+                if file_type:
+                    messages.warning(request, f'File type is {file_type}, the content is not read')
+                    
+                    # try to load the file content as a link
+                # Initialize all_messages list with system and user prompts
+                prompt = {"role": "user", "content": f"{cd['prompt']}\n{file_content if file_content else ''}"}
             
             # Make a chat body if it is not exists
             if chat:
@@ -125,7 +139,8 @@ def AiCreateNewChatView(request, chat_id=None):
                 role='user',
                 content=cd['prompt'],
                 file = cd['file'],
-                file_type=cd['file_type'],
+                # file_type=cd['file_type'],
+                file_type=file_type,
             )
             print('.. add prompt')
                 
@@ -224,3 +239,4 @@ def AiModelAddView(request):
         'ai/ai_model_add.html',
         context
     )   
+
