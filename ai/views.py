@@ -4,7 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.contrib import messages
 import requests
-
+import base64
+import mimetypes
+from pathlib import Path
 
 from langchain_openai import ChatOpenAI
 
@@ -100,20 +102,57 @@ def AiCreateNewChatView(request, chat_id=None):
             # if there is no file it returns NA
             file_type = FileTypeDetermine(uploaded_file)
             
+            # This list will hold the parts of our message (text and/or image)
+            message_content_parts = [
+                {"type": "text", "text": cd['prompt']}
+            ]
+            
             # Read the file content
             if file_type == Message.FileChoices.DOC:
                 # just read text files
                 file_content = uploaded_file.read().decode('utf-8') if uploaded_file else ''
                 # Initialize all_messages list with system and user prompts
                 prompt = {"role": "user", "content": f"{cd['prompt']}\n{file_content if file_content else ''}"}
+            elif file_type == Message.FileChoices.IMAGE:
+                try:
+                    # just work with image for now
+                    # Get the MIME type (e.g., 'image/png', 'application/pdf')
+                    mime_type, _ = mimetypes.guess_type(uploaded_file.name)
+                    if not mime_type:
+                        # Provide a fallback if MIME type can't be guessed
+                        mime_type = "application/octet-stream"
+
+                    # Read binary content and encode to Base64
+                    file_content_bytes = uploaded_file.read()
+                    base64_encoded_content = base64.b64encode(file_content_bytes).decode('utf-8')
+
+                    data_url = f"data:{mime_type};base64,{base64_encoded_content}"
+
+                    # Add the image/file part to our message content
+                    message_content_parts.append({
+                        "type": "image_url",
+                        "image_url": {"url": data_url}
+                    })
+
+                    # IMPORTANT: Reset file pointer so Django can save it
+                    uploaded_file.seek(0)
+                except Exception as e:
+                    print(f"Error encoding file for LLM: {e}")
+                    # Optionally, add an error message to the prompt
+                    message_content_parts[0]['text'] += "\n\n[System: Error processing uploaded file.]"
             else:
                 file_content = ''
                 if file_type:
                     messages.warning(request, f'File type is {file_type}, the content is not read')
                     
                     # try to load the file content as a link
-                # Initialize all_messages list with system and user prompts
-                prompt = {"role": "user", "content": f"{cd['prompt']}\n{file_content if file_content else ''}"}
+                    # Encode the file for the API call
+                    
+                # # Initialize all_messages list with system and user prompts
+                # prompt = {"role": "user", "content": f"{cd['prompt']}\n{file_content if file_content else ''}"}
+            # The final prompt object for the LLM
+            prompt = {"role": "user", "content": message_content_parts}
+
             
             # Make a chat body if it is not exists
             if chat:
