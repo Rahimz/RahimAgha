@@ -7,14 +7,28 @@ import requests
 import base64
 import mimetypes
 from pathlib import Path
-
+import datetime
 from langchain_openai import ChatOpenAI
+from openai import OpenAI
+from django.core.files.base import ContentFile
+import random
 
 from accounts.permissions import ai_access_required
 from .forms import ChatForm, ChatModelForm, CreateChatModelForm
 from .models import Chat, Message, ChatModel, FileTypeDetermine
 
 API_KEY = settings.AVAL_API_KEY
+
+
+def generate_unique_random_number():
+    while True:
+        # Generate a random number between 1 and 9999999 (7 digits)
+        random_number = random.randint(1, 9999999)
+        
+        # Check if the number is unique in the database
+        if not Chat.objects.filter(chat_id=f"working-{random_number}").exists():
+            return random_number
+
 
 @staff_member_required
 def AiView(request):
@@ -161,7 +175,7 @@ def AiCreateNewChatView(request, chat_id=None):
                 model_name = cd['model'].name
                 chat = Chat.objects.create(
                     user=request.user,
-                    chat_id='working',
+                    chat_id=f"working-{generate_unique_random_number()}",
                     model_name=model_name,
                     input_token=0,
                     output_token=0,
@@ -279,3 +293,119 @@ def AiModelAddView(request):
         context
     )   
 
+
+
+def generate_image(prompt, chat):
+    # client = OpenAI(base_url="https://api.avalai.ir/v1/images/generations/", api_key=API_KEY)
+    # client = OpenAI(base_url="https://api.avalapis.ir/v1/", api_key=API_KEY) # iran access
+    client = OpenAI(base_url="https://api.avalai.ir/v1/", api_key=API_KEY)
+    response = None
+    image_url = None
+    error = ''
+    try:
+        response = client.images.generate(
+        # response = client.chat.completions.create( # for google flash
+            model=chat.model_name,
+            prompt=prompt,
+            size="1024x1024",
+            quality="standard",
+            n=1,
+        )
+    except Exception as e:
+        error = str(e)
+    
+    if response:
+        image_url = response.data[0].url
+    
+    # Replace with actual API call to generate image
+    return {"url": image_url, "error": error}
+
+@login_required
+@ai_access_required
+def AiImageView(request, chat_id=None):
+    context = {
+        'page_title': 'AI Chat',
+        'chats': Chat.objects.filter(user=request.user).order_by('-id'),
+    }
+
+    all_messages = None
+    ai_message = []
+    chat = None
+    model_name = "dall-e-3"  # Default model for image generation
+
+    if chat_id:
+        chat = get_object_or_404(Chat, chat_id=chat_id, user=request.user)
+        all_messages = Message.objects.filter(chat=chat).order_by('created')
+        for item in all_messages:
+            ai_message.append({"role": item.role, "content": item.content})
+    else:
+        # Create a new chat instance for new chats
+        chat = Chat.objects.create(
+            user=request.user,
+            chat_id=f"working-{generate_unique_random_number()}",
+            model_name=model_name,  # Default model for image generation
+            input_token=0,
+            output_token=0,
+            total_token=0,
+        )
+    # Check if this is a new chat or an existing one
+    if request.method == 'POST':
+        prompt = request.POST.get('prompt')
+        model_name = request.POST.get('model', model_name)
+        if chat.model_name != model_name:
+            chat.model_name = model_name
+            chat.save(update_fields=['model_name']) 
+            
+        if prompt:
+            # Generate an image based on the prompt
+            response = generate_image(prompt, chat)  # Your method to generate image            
+            image_url = response['url']
+            error = response["error"]
+            # print(error)
+            if image_url:
+                # Download the image and save it to the database
+                image_response = requests.get(image_url) if image_url else None
+            
+                if image_response.status_code == 200:
+                    # Generate a timestamp for the filename
+                    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                    filename = f"generated_image_{timestamp}.png"
+
+                    # Save the image to Message as a FileField
+                    message = Message.objects.create(
+                        chat=chat,
+                        role='assistant',
+                        content=prompt,
+                    )
+                    message.file.save(filename, ContentFile(image_response.content)) 
+                    message.file_type = Message.FileChoices.IMAGE
+                    message.save()
+
+                    messages.success(request, 'Image generated and saved successfully.')
+            if error:
+                print(error)
+                # Save the image to Message as a FileField
+                message = Message.objects.create(
+                    chat=chat,
+                    role='assistant',
+                    content=prompt,
+                    error=error,
+                )
+                messages.warning(request, 'Image is not generated.')
+            # Redirect or render with success message
+            return redirect('ai:ai_image_continue_chat', chat.chat_id)  # Adjust according to your URL structure
+
+    else:
+        # If it's a GET request, show the form or existing chat
+        form = ChatModelForm()
+        # form.fields['model'].queryset = ChatModel.objects.filter(model_type='image')
+        context['form'] = form
+        context['all_messages'] = all_messages
+        context['ai_message'] = ai_message
+        context['chat'] = chat
+
+    return render(
+        request, 
+        'ai/ai_chat.html', 
+        context
+        )

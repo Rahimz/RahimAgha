@@ -81,8 +81,18 @@
                         </div>
 
                         {% elif message.role == 'assistant' %}
+                        <div>
+                            {% if message.file_type == image %}
+                              <img src="{{ message.file.url }}" alt="" width="100%" height="auto">
+                            {% endif %}
+                        </div>
                         <div class="response-container">
                             {{ message.content|markdown|safe }}
+                        </div>
+                        <div class="text-danger">
+                            {% if message.error %}
+                              {{ message.error|safe }}
+                            {% endif %}
                         </div> 
                         <br>
                         <p class="gap-1">

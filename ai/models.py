@@ -35,12 +35,22 @@ def FileTypeDetermine(uploaded_file):
 
 
 class ChatModel(TimeStampedModel):
+    class ModelType(models.TextChoices):
+        CHAT = 'chat', _("Chat")
+        IMAGE = 'image', _("Image generator")
+        
     name = models.CharField(
         max_length=150,
         unique=True
     )
     label = models.CharField(
         max_length=150,
+    )
+    model_type = models.CharField(
+        _("Model type"),
+        max_length=10,
+        default=ModelType.CHAT,
+        choices=ModelType.choices
     )
     company = models.CharField(
         max_length=150,
@@ -121,6 +131,9 @@ class Message(TimeStampedModel):
         upload_to='ai/prompts/',
         null=True, 
         blank=True,
+    )
+    error = models.TextField(
+        blank=True
     )
     
     def __str__(self):
