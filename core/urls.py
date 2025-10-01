@@ -29,6 +29,7 @@ urlpatterns = i18n_patterns(
     path('videos/', include('videos.urls', namespace='videos')),
     path('blog/', include('blog.urls', namespace='blog')),
     path('ai/', include('ai.urls', namespace='ai')),
+    path('restaurants/', include('restaurants.urls', namespace='restaurants')),
     path('accounts/', include('accounts.urls',)),
     path('admin/', admin.site.urls),
     path('rosetta/', include('rosetta.urls')),

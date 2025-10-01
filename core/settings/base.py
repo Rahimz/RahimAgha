@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'tools.apps.ToolsConfig',
     'ai.apps.AiConfig',
+    'restaurants.apps.RestaurantsConfig',
 ]
 
 MIDDLEWARE = [
