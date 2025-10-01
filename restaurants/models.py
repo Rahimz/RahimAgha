@@ -4,11 +4,25 @@ from django.utils.text import slugify
 import uuid
 from decimal import Decimal, ROUND_HALF_UP
 
+from taggit.models import GenericUUIDTaggedItemBase, TaggedItemBase
 from taggit.managers import TaggableManager
 
 
 from tools.models import TimeStampedModel, ActiveManager
 
+
+# This is the custom "through" model
+class UUIDTaggedItem(GenericUUIDTaggedItemBase, TaggedItemBase):
+    """
+    Because Place PK is UUid it could work with stndart through model of Tag system"""
+    # If you need to add any extra fields to the relationship, you can do it here
+    class Meta:
+        verbose_name = "Tag"
+        verbose_name_plural = "Tags"
+        # The following two lines are important for Django 5.0+ and avoid clashes
+        # with the default taggit models if you use both integer and UUID PKs.
+        app_label = "restaurants" # Or whatever your app is called
+        db_table = "restaurants_tagged_items" # Choose a unique table name
 
 class Place(TimeStampedModel):
     uuid = models.UUIDField(
@@ -57,7 +71,8 @@ class Place(TimeStampedModel):
     )
     
     tags = TaggableManager(
-        _("Tags"),        
+        _("Tags"),
+        through=UUIDTaggedItem,
         blank=True
     )
     
@@ -92,3 +107,5 @@ class Place(TimeStampedModel):
 # images 
 # features service option, dinning option, facilities, wc, parking, crowded, 
 # reviews
+
+
