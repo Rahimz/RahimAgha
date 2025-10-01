@@ -12,11 +12,18 @@
             <h1>{% trans "My Favorite places" %}</h1>            
             <div>
                 {% for citi in cities %}
-                <!-- {# <a href="{% url 'generals:tags' tag.slug %}"> </a>#} -->
                   <a href="{% url 'restaurants:res_home' %}?city={{ citi }}" class="btn btn-sm {% if city == citi %}btn-info{% else %}btn-outline-secondary{% endif %}">{{ citi }}</a>
                 {% endfor %}
                 {% if city %}
                   <a href="{% url 'restaurants:res_home' %}" class="text-danger ms-3 lead" style="text-decoration: none;">x</a>
+                {% endif %}
+            </div>
+            <div class="mt-2">
+                {% for taag in tags %}                    
+                    <a href="{% url 'restaurants:res_home' %}?tag={{ taag.slug }}" class="badge rounded border {% if tag == taag.slug %}bg-success text-light{% else %}border-success text-secondary{% endif %}" style="text-decoration: none;">{{ taag.name }}</a>
+                {% endfor %}
+                {% if tag %}
+                    <a href="{% url 'restaurants:res_home' %}" class="text-danger ms-3 lead" style="text-decoration: none;">x</a>
                 {% endif %}
             </div>
         </div>
@@ -29,7 +36,7 @@
                     <h2>{{ place.name }}</h2>
                     <div>
                         {% for taag in place.tags.all %}                    
-                           <a href="{% url 'restaurants:res_home' %}?tag={{ taag.slug }}" class="badge rounded border {% if tag == taag.slug %}bg-success text-light{% else %}border-success text-dark{% endif %}">{{ taag.name }}</a>
+                           <a href="{% url 'restaurants:res_home' %}?tag={{ taag.slug }}" class="badge rounded border {% if tag == taag.slug %}bg-success text-light{% else %}border-success text-secondary{% endif %}" style="text-decoration: none;">{{ taag.name }}</a>
                         {% endfor %}
                         {% if tag %}
                           <a href="{% url 'restaurants:res_home' %}" class="text-danger ms-3 lead" style="text-decoration: none;">x</a>

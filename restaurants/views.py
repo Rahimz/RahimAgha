@@ -28,6 +28,7 @@ def ResHomeView(request):
         cities=Place.actives.order_by('city').distinct('city').values_list('city', flat=True),
         city=city,
         tag=tag,
+        tags=Tag.objects.all(),
     )
     return render(
         request,
