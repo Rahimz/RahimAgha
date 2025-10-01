@@ -24,6 +24,31 @@ class UUIDTaggedItem(GenericUUIDTaggedItemBase, TaggedItemBase):
         app_label = "restaurants" # Or whatever your app is called
         db_table = "restaurants_tagged_items" # Choose a unique table name
 
+
+class Category(models.Model):
+    name = models.CharField(
+        _("Name"),
+        max_length=300
+    )
+    slug = models.SlugField(
+        allow_unicode=True
+    )
+    order = models.PositiveSmallIntegerField(
+        default=1
+    )
+    
+    class Meta:
+        ordering = ['order']
+        verbose_name = _("Category")
+        verbose_name_plural = _("Categories")
+        
+    def __str__(self):
+        return self.name
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name, allow_unicode=True)
+        return super().save(*args, **kwargs)
+    
 class Place(TimeStampedModel):
     uuid = models.UUIDField(
         default=uuid.uuid4,
@@ -41,7 +66,14 @@ class Place(TimeStampedModel):
     description = models.TextField(
         blank=True,
     )
-    
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='places',
+        verbose_name=_("category"),
+    )    
     
     city = models.CharField(
         _("City"),

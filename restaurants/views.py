@@ -1,27 +1,38 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.utils.translation import gettext_lazy as _
 from taggit.models import Tag
 
-from restaurants.models import Place
+from restaurants.models import Place, Category
 
 
 def ResHomeView(request):
     city = request.GET.get('city', None)
     tag = request.GET.get('tag', None)
-    places = Place.actives.all()
+    category = request.GET.get('category', None)
+    places = Place.actives.select_related('category').all()
+    categories = Category.objects.values_list('slug', flat=True)
+    
     if city:
         places = places.filter(city=city)
-        print('... gett city', city)
+        # print('... gett city', city)
         
     if tag:
-        print('... gett tag', tag)
+        # print('... gett tag', tag)
         try:
             tag_obj = Tag.objects.get(slug=tag)
-            print('... gett tag object', tag_obj)
+            # print('... gett tag object', tag_obj)
         except:
             tag_obj = None
         if tag_obj:
             places= places.filter(tags__in=[tag_obj])        
+    
+    if category:
+        try:
+            category_obj = Category.objects.get(slug=category)        
+            places = places.filter(category=category_obj)
+        except:
+            category = ''
+            
     context = dict(
         page_title = _("Restaurants"),
         places=places,
@@ -29,6 +40,8 @@ def ResHomeView(request):
         city=city,
         tag=tag,
         tags=Tag.objects.all(),
+        category=category,
+        categories=categories,
     )
     return render(
         request,
