@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'rosetta',
     'django_social_share',
+    'taggit',
     
     'generals.apps.GeneralsConfig',
     'bookstore.apps.BookstoreConfig',
