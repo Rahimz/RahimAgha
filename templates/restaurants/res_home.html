@@ -52,14 +52,14 @@
         <div class="col">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="d-flex flex-row align-items-center">                        
-                        <h2>{{ place.name }}</h2>
-                        {% if place.category %}
-                          <a href="{% url 'restaurants:res_home' %}?category={{ place.category.slug }}{% if tag %}&tag={{ tag }}{% endif %}{% if city %}&city={{ city }}{% endif %}" class="ms-3">[ {{ place.category.name }} ]</a>
-                        {% endif %}
-                        
-                          <a href="{% url 'restaurants:res_home' %}?city={{ place.city }}{% if tag %}&tag={{ tag }}{% endif %}{% if category %}&category={{ category }}{% endif %}" class="ms-3">[ {{ place.city }} ]</a>
-                        
+                    <div class="row">
+                        <div class="col">
+                            <h2 class="">{{ place.name }}</h2>
+                            {% if place.category %}
+                            <a href="{% url 'restaurants:res_home' %}?category={{ place.category.slug }}{% if tag %}&tag={{ tag }}{% endif %}{% if city %}&city={{ city }}{% endif %}" class="text-secondary">[ {{ place.category.name }} ]</a>
+                            {% endif %}                        
+                            <a href="{% url 'restaurants:res_home' %}?city={{ place.city }}{% if tag %}&tag={{ tag }}{% endif %}{% if category %}&category={{ category }}{% endif %}" class="ms-1 text-secondary">[ {{ place.city }} ]</a>
+                        </div>
                     </div>
                     <div>
                         {% for taag in place.tags.all %}                    
