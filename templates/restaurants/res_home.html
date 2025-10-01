@@ -1,5 +1,5 @@
 {% extends "_base_restaurants.html" %}
- {% load i18n %}
+ {% load i18n static %}
 
 {% block title %}
   {{ page_title }}
@@ -37,6 +37,14 @@
                     </div>
                     {% if place.description %}
                       {{ place.description | linebreaksbr }}
+                    {% endif %}
+                    <!-- Drive Link -->
+                    {% if place.latitude and place.longitude %}
+                    <div class="mt-3">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination={{ place.latitude }},{{ place.longitude }}" target="_blank" class="btn btn-sm btn-primary">
+                            Direction <img src="{% static 'img/arrows.png' %}" alt="" class="ms-2" width="20x" height="auto">
+                        </a>
+                    </div>
                     {% endif %}
                 </div>
                 {% if place.latitude and place.longitude %}
