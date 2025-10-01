@@ -1,4 +1,5 @@
 {% extends "_base_restaurants.html" %}
+ {% load i18n %}
 
 {% block title %}
   {{ page_title }}
@@ -8,8 +9,92 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1>hi</h1>
+            <h1>{% trans "My Favorite places" %}</h1>            
+            <div>
+                {% for citi in cities %}
+                <!-- {# <a href="{% url 'generals:tags' tag.slug %}"> </a>#} -->
+                  <a href="{% url 'restaurants:res_home' %}?city={{ citi }}" class="btn btn-sm {% if city == citi %}btn-info{% else %}btn-outline-secondary{% endif %}">{{ citi }}</a>
+                {% endfor %}
+                {% if city %}
+                  <a href="{% url 'restaurants:res_home' %}" class="text-danger ms-3 lead" style="text-decoration: none;">x</a>
+                {% endif %}
+            </div>
         </div>
     </div>
+    {% for place in places %}
+    <div class="row border rounded my-4">
+        <div class="col">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>{{ place.name }}</h2>
+                    <div>
+                        {% for taag in place.tags.all %}                    
+                           <a href="{% url 'restaurants:res_home' %}?tag={{ taag.slug }}" class="badge rounded border {% if tag == taag.slug %}bg-success text-light{% else %}border-success text-dark{% endif %}">{{ taag.name }}</a>
+                        {% endfor %}
+                        {% if tag %}
+                          <a href="{% url 'restaurants:res_home' %}" class="text-danger ms-3 lead" style="text-decoration: none;">x</a>
+                        {% endif %}
+                    </div>
+                    {% if place.description %}
+                      {{ place.description | linebreaksbr }}
+                    {% endif %}
+                </div>
+                {% if place.latitude and place.longitude %}
+                <div class="col-md-6 pe-md-0">
+                    <!-- 
+                      MAP CONTAINER:
+                      - The ID must be unique for each map.
+                      - data-* attributes hold the coordinates for our script.
+                      - It MUST have a height to be visible.
+                    -->
+                    <div id="map-{{ place.uuid }}" 
+                         data-lat="{{ place.latitude }}" 
+                         data-lon="{{ place.longitude }}"
+                         data-name="{{ place.name }}"
+                         class="map-container" 
+                         style="height: 300px; width: 100%; border-radius: 8px;">
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+      
+    {% endfor %}
 </div>
 {% endblock content %}
+
+{% block script %}
+<script>
+// This script will run after the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function () {
+    // Find all the map containers on the page
+    const mapElements = document.querySelectorAll('.map-container');
+
+    // Loop through each map container
+    mapElements.forEach(function(mapDiv) {
+        // Get the coordinates and name from the data-* attributes
+        const lat = parseFloat(mapDiv.dataset.lat);
+        const lon = parseFloat(mapDiv.dataset.lon);
+        const name = mapDiv.dataset.name;
+        const mapId = mapDiv.id;
+
+        // 1. Create the map and set the initial view
+        const map = L.map(mapId).setView([lat, lon], 15); // Zoom level 15 is good for city-level views
+
+        // 2. Add the tile layer (the map background)
+        // Using OpenStreetMap. It's free and open.
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        // 3. Add a marker to the map
+        const marker = L.marker([lat, lon]).addTo(map);
+
+        // 4. (Optional) Add a popup to the marker
+        marker.bindPopup(`<b>${name}</b>`).openPopup();
+    });
+});
+</script>  
+{% endblock script %}
