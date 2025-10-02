@@ -9,15 +9,27 @@
             </div>
             
             {% include "ai/_ai_offcanvas.html" %}
+            <div>
+                <form action="">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="q" id="searchQuery" placeholder="Search" aria-label="Search Query" autofocus>
+                        <button type="submit"  class="btn btn-light">Search</button>
+                    </div>
+                </form>                
+                {% if query %}
+                <div class="my-2">
+                    {{ query }} <a href="{% url 'ai:ai_chats_list' %}" class="ms-3 d-inline btn btn-outline-danger">x</a>
+                </div>
+                                  
+                {% endif %}
+            </div>
 
-            <div>                
+            <div class="table-responsive">                
                 <table class="table table-ight">
                     <thead>
                         <th scope="col">#</th>
                         <th scope="col">Chat</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">User</th>
-                        <th scope="col">Assistant</th>
+                        <th scope="col">Messages</th>
                         <th scope="col">Date</th>
                     </thead>
                     <tbody>
@@ -25,9 +37,7 @@
                           <tr>
                             <td>{{ forloop.counter }}</td>
                             <td><a class="" href="{% url 'ai:ai_continue_chat' chat.chat_id %}">{{ chat.get_first_message }}</a></td>
-                            <td>{{ chat.total_messages }}</td>
-                            <td>{{ chat.user_messages }}</td>
-                            <td>{{ chat.assistant_messages }}</td>
+                            <td>{{ chat.total_messages }} (u:{{ chat.user_messages }}, a:{{ chat.assistant_messages }}) </td>
                             <td>{{ chat.created }}</td>
                           </tr>
                         {% endfor %}

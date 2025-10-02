@@ -12,7 +12,7 @@ from langchain_openai import ChatOpenAI
 from openai import OpenAI
 from django.core.files.base import ContentFile
 import random
-from django.db.models import Count, Case, When, IntegerField
+from django.db.models import Count, Case, When, IntegerField, Q
 
 from accounts.permissions import ai_access_required
 from .forms import ChatForm, ChatModelForm, CreateChatModelForm
@@ -413,7 +413,9 @@ def AiImageView(request, chat_id=None):
 
 @login_required
 def ChatListView(request):
-    chats = Chat.objects.filter(user=request.user).annotate(
+    query = request.GET.get('q')
+    
+    chats = Chat.objects.filter(user=request.user).prefetch_related('messages').annotate(
         total_messages=Count('messages'),
         user_messages=Count(Case(
             When(messages__role='user', then=1),
@@ -424,10 +426,14 @@ def ChatListView(request):
             output_field=IntegerField(),
         )),
     ).order_by('-id')
-    context = {
-        'page_title': 'AI Chats list',
-        'chats': chats,
-    }
+    if query:
+        chats = chats.filter(messages__content__icontains=query.strip())
+    
+    context = dict(        
+        page_title= 'AI Chats list',
+        chats= chats,
+        query=query,
+    )
     return render(
         request,
         'ai/ai_chats_list.html',
