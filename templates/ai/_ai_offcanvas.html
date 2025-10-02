@@ -1,0 +1,20 @@
+<!-- Offcanvas panel containing chat list -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="chatListOffcanvas" aria-labelledby="chatListOffcanvasLabel">
+<div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="chatListOffcanvasLabel">Chats</h5>
+    <a href="{% url 'ai:ai_chats_list' %}" class="btn btn-sm btn-outline-secondary">All chats</a>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+</div>
+<div class="offcanvas-body">
+    <!-- Make the list scrollable and constrain height -->
+    <div class="list-group" style="max-height: calc(100vh - 140px); overflow:auto;">
+    {% for chat in chats %}
+        <a class="list-group-item list-group-item-action" href="{% url 'ai:ai_continue_chat' chat.chat_id %}">
+        {{ chat.get_first_message }}
+        </a>
+    {% empty %}
+        <div class="list-group-item">No chats</div>
+    {% endfor %}
+    </div>
+</div>
+</div>

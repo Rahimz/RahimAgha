@@ -1,0 +1,17 @@
+<div class="my-3">
+    {% if request.user.is_superuser %}
+    <a href="{% url 'ai:ai' %}" class="btn btn-light">Test</a>
+    <a href="{% url 'ai:ai_models_list' %}" class="btn btn-light">Models list</a>
+    {% endif %}
+    <a href="{% url 'ai:ai_create' %}" class="btn btn-light">New chat</a>
+    <a href="{% url 'ai:ai_image_new_chat' %}" class="btn btn-light">Image generator</a>
+
+    <!-- Left column: button that opens offcanvas -->
+    <!-- Toggle button (small tab / icon) -->
+     {% if chats %}
+       
+     <button class="btn btn-secondary ms-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#chatListOffcanvas" aria-controls="chatListOffcanvas" aria-expanded="false" aria-label="Open chats">
+         <i class="fas fa-comments"></i> Chats
+    </button>
+    {% endif %}
+</div>
