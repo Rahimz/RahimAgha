@@ -47,41 +47,54 @@
             
         </div>
         <div class="col-md-6">
+            <p>
+            
+            </p>
+            
+
+
             <div class="row my-4 p-3 border rounded bg-light">
                 <div class="col">
                     <h3>{% trans "Find Places Near a Point" %}</h3>
-                    <p class="text-muted">{% trans "Click on the map to select a location or use the button to find your current position" %}.</p>
+                    <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseUserMap" role="button" aria-expanded="true" aria-controls="collapseUserMap">
+                        -
+                    </a>
+                    <div class="show" id="collapseUserMap">
+            
+                    
+                        <p class="text-muted">{% trans "Click on the map to select a location or use the button to find your current position" %}.</p>
 
-                    <!-- Map for user interaction -->
-                    <div id="interactive-map" 
-                        style="height: 400px; width: 100%; border-radius: 8px; cursor: pointer;"
-                        {% if selected_lat and selected_lon %}
-                            data-initial-lat="{{ selected_lat|floatformat:'-5' }}"
-                            data-initial-lon="{{ selected_lon|floatformat:'-5' }}"
-                        {% endif %}
-                    ></div>
+                        <!-- Map for user interaction -->
+                        <div id="interactive-map" 
+                            style="height: 250px; width: 100%; border-radius: 8px; cursor: pointer;"
+                            {% if selected_lat and selected_lon %}
+                                data-initial-lat="{{ selected_lat|floatformat:'-5' }}"
+                                data-initial-lon="{{ selected_lon|floatformat:'-5' }}"
+                            {% endif %}
+                        ></div>
 
-                    <!-- Form to submit the location -->
-                    <form action="{% url 'restaurants:res_home' %}" method="get" class="mt-3">
-                        <!-- Keep existing filters if they are set -->
-                        {% if category %}<input type="hidden" name="category" value="{{ category }}">{% endif %}
-                        {% if tag %}<input type="hidden" name="tag" value="{{ tag }}">{% endif %}
-                        {% if city %}<input type="hidden" name="city" value="{{ city }}">{% endif %}
+                        <!-- Form to submit the location -->
+                        <form action="{% url 'restaurants:res_home' %}" method="get" class="mt-3">
+                            <!-- Keep existing filters if they are set -->
+                            {% if category %}<input type="hidden" name="category" value="{{ category }}">{% endif %}
+                            {% if tag %}<input type="hidden" name="tag" value="{{ tag }}">{% endif %}
+                            {% if city %}<input type="hidden" name="city" value="{{ city }}">{% endif %}
 
-                        <input type="hidden" id="selected-lat" name="lat">
-                        <input type="hidden" id="selected-lon" name="lon">
+                            <input type="hidden" id="selected-lat" name="lat">
+                            <input type="hidden" id="selected-lon" name="lon">
 
-                        <div class="d-flex align-items-center">
-                            <button type="button" id="get-location-btn" class="btn btn-primary">
-                                <i class="bi bi-geo-alt-fill"></i>current Location
-                            </button>
-                            <button type="submit" id="search-location-btn" class="btn btn-success ms-2" disabled>
-                                Search
-                            </button>
-                            <span id="selected-coords" class="ms-3 text-secondary"></span>
-                            
-                        </div>
-                    </form>
+                            <div class="d-flex align-items-center">
+                                <button type="button" id="get-location-btn" class="btn btn-outline-secondary">
+                                    <i class="bi bi-geo-alt-fill"></i>My Location
+                                </button>
+                                <button type="submit" id="search-location-btn" class="btn btn-success ms-2" disabled>
+                                    Search
+                                </button>
+                                <span id="selected-coords" class="ms-3 text-secondary"></span>
+                                
+                            </div>
+                        </form>
+                    </div>    
                 </div>
             </div>
 
@@ -89,16 +102,14 @@
     </div>
     <div>
         <div class="col">
+            <h2 class="h2" id="search-results">Places</h2>
             {% if selected_lat and selected_lon %}
             <p>{% trans "Your seleceted location" %}</p>
             <span class="ms-3 text-secondary">
                 Lat:{{ selected_lat }}, Lon:{{ selected_lon }}
             </span>
             <a href="{% url 'restaurants:res_home' %}" class="btn btn-outline-danger btn-sm ms-3">X</a>
-            {% endif %}
-            {% if places %}
-              <h3>Search results</h3>
-            {% else %}
+            {% elif selected_lat and selected_lon and not places %}
             <p class="text-danger lead">{% trans "No place is available near you" %}</p>
             {% endif %}
         </div>
@@ -221,6 +232,18 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!isNaN(lat) && !isNaN(lon)) {
             mapInitialView = [lat, lon];
             mapInitialZoom = 13; // Zoom in closer on a specific point
+
+            // We wrap it in a small timeout to let the map initialize
+            // and the page settle before scrolling. This feels smoother.
+            setTimeout(() => {
+                const resultsHeader = document.getElementById('search-results');
+                if (resultsHeader) {
+                    resultsHeader.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }
+            }, 200);
         }
     }
 
