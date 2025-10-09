@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.utils.translation import gettext_lazy as _
 from taggit.models import Tag
+from decimal import Decimal
 
 from restaurants.models import Place, Category
 
@@ -11,6 +12,20 @@ def ResHomeView(request):
     category = request.GET.get('category', None)
     places = Place.actives.select_related('category').all()
     categories = Category.objects.values_list('slug', flat=True)
+    
+    
+    # Check if latitude and longitude are in the request
+    lat = request.GET.get('lat')
+    lon = request.GET.get('lon')
+
+    if lat and lon:
+        lat = Decimal(lat)
+        lon = Decimal(lon)
+        # Here you can implement the logic to find locations around lat/lon
+        places = places.filter(
+            latitude__range=(lat - Decimal(0.01), lat + Decimal(0.01)), # about 2.22 kilometer
+            longitude__range=(lon - Decimal(0.01), lon + Decimal(0.01)))
+        # print("... nearby_places", places)
     
     if city:
         places = places.filter(city=city)
@@ -42,6 +57,8 @@ def ResHomeView(request):
         tags=Tag.objects.all(),
         category=category,
         categories=categories,
+        selected_lat=lat,
+        selected_lon=lon,
     )
     return render(
         request,
