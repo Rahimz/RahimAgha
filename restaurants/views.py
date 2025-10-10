@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import gettext_lazy as _
 from taggit.models import Tag
 from decimal import Decimal
@@ -70,7 +70,8 @@ def ResHomeView(request):
 
 
 @login_required
-def ReviewView(request):
+def ReviewView(request, place_uuid):
+    place = get_object_or_404(Place, uuid=place_uuid)
     # Get the latest active review to vote on
     review = Review.objects.filter(active=True).prefetch_related('items').last()
 
@@ -79,15 +80,16 @@ def ReviewView(request):
         messages.warning(request, _("There are no active reviews at the moment."))
         return redirect('restaurants:res_home') # or some other appropriate page
 
-    # TODO: ADD for production Check if user has already voted on this review
-    # if review.votes.filter(user=request.user).exists():
-    #     messages.info(request, _("You have already submitted a review for this place."))
-    #     return redirect('restaurants:res_home') # or some other appropriate page
+    # ADD for production Check if user has already voted on this review
+    if Vote.objects.filter(user=request.user, review=review, place=place).exists():
+        messages.info(request, _("You have already submitted a review for this place."))
+        return redirect('restaurants:res_home')
+    
 
     if request.method == 'POST':
         form = ReviewSubmissionForm(request.POST, review=review)
         if form.is_valid():
-            form.save(user=request.user)
+            form.save(user=request.user, place=place)
             messages.success(request, _("Thank you! Your review has been submitted successfully."))
             return redirect('restaurants:res_home') # Redirect to a success page
     else:
@@ -95,7 +97,7 @@ def ReviewView(request):
 
     context = {
         # 'page_title': _("Review Restaurants"),
-        'page_title': _("Review ") + review.name,
+        'page_title': _("Review ") + place.name,
         'review': review,
         'form': form
     }

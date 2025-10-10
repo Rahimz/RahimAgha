@@ -11,9 +11,6 @@
         <div class="col">
             <div class="d-flex align-items-center justify-content-between">
                 <h1>{% trans "My Favorite places" %}</h1>
-                {% if request.user.is_superuser %}
-                <a href="{% url 'restaurants:review' %}" class="btn btn-light">{% trans "Review" %}</a>
-                {% endif %}
             </div>
         </div>
     </div>
@@ -148,6 +145,9 @@
                             Direction <img src="{% static 'img/arrows.png' %}" alt="" class="ms-2" width="20x" height="auto">
                         </a>
                     </div>
+                    {% endif %}
+                    {% if request.user.is_superuser %}
+                        <a href="{% url 'restaurants:review' place.uuid %}" class="btn btn-sm btn-dark">{% trans "Review" %}</a>
                     {% endif %}
                 </div>
                 {% if place.latitude and place.longitude %}

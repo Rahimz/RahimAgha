@@ -5,5 +5,5 @@ app_name = 'restaurants'
 
 urlpatterns = [
     path('', views.ResHomeView, name='res_home'),
-    path('review/', views.ReviewView, name='review'),
+    path('review/<uuid:place_uuid>/', views.ReviewView, name='review'),
 ]

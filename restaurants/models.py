@@ -233,6 +233,12 @@ class Vote(TimeStampedModel):
         related_name='votes',
         verbose_name=_("Review"),
     )
+    place = models.ForeignKey(
+        Place,
+        on_delete=models.CASCADE,
+        related_name='votes',
+        verbose_name=_("Place"),
+    )
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -241,7 +247,8 @@ class Vote(TimeStampedModel):
     )
 
     class Meta:
-        unique_together = ('user', 'review')  # Ensure a user only votes once per review
+        unique_together = ('user', 'review', 'place')  # Ensure a user only votes once per review
+        # unique_together = ('user', 'review', 'place')  # Ensure a user only votes once per review
 
     def __str__(self):
         return f'Vote by {self.user.username} on {self.review.name}'

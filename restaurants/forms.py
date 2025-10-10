@@ -61,13 +61,14 @@ class ReviewSubmissionForm(forms.Form):
                 required=False
             )
 
-    def save(self, user):
+    def save(self, user, place):
         # Create the Vote and VoteResponse objects when the form is saved
 
         # 1. Create the main Vote object
         vote = Vote.objects.create(
             user=user,
-            review=self.review
+            review=self.review,
+            place=place
         )
 
         # 2. Create a VoteResponse for each ReviewItem

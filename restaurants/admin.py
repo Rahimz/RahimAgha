@@ -29,7 +29,7 @@ class ReviewItemAdmin(admin.ModelAdmin):
 
 @admin.register(Vote)
 class VoteAdmin(admin.ModelAdmin):
-    list_display = ['uuid', 'review', 'user',]    
+    list_display = ['uuid', 'review', 'user', 'place', 'created']    
     
 
 
