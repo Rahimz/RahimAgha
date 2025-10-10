@@ -14,12 +14,31 @@
     </div>
     <div class="row">
         <div class="col">
-            {% for item in review.items.all %}
-              <div>
-                {{ forloop.counter }}. {{ item }}
-                <p>{{ item.description | linebreaksbr }}</p>
-              </div>
-            {% endfor %}
+            <form method="post" novalidate>
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div class="mb-4 p-3 border rounded">
+                        <p class="fw-bold">{{ field.label_tag }}</p>
+
+                        {% if field.help_text %}
+                            <p class="text-muted small">{{ field.help_text }}</p>
+                        {% endif %}
+
+                        {{ field }}
+
+                        {% if field.errors %}
+                            <div class="alert alert-danger mt-2">
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">{% trans "Submit Review" %}</button>
+                </div>
+            </form>
         </div>
 
     </div>

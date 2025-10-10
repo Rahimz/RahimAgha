@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Place, Category, Review, ReviewItem
+from .models import Place, Category, Review, ReviewItem, Vote , VoteResponse
 from .forms import PlaceAdminForm
 
 @admin.register(Place)
@@ -25,3 +25,15 @@ class ReviewAdmin(admin.ModelAdmin):
 @admin.register(ReviewItem)
 class ReviewItemAdmin(admin.ModelAdmin):
     list_display = ['id', 'review', 'item_type', 'is_applicable']    
+
+
+@admin.register(Vote)
+class VoteAdmin(admin.ModelAdmin):
+    list_display = ['uuid', 'review', 'user',]    
+    
+
+
+@admin.register(VoteResponse)
+class VoteResponseAdmin(admin.ModelAdmin):
+    list_display = ['id', 'vote', 'review_item', 'score',]    
+    

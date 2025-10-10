@@ -142,9 +142,6 @@ class Place(TimeStampedModel):
 # features service option, dinning option, facilities, wc, parking, crowded, 
 # reviews
 
-
-
-
 class Review(TimeStampedModel):
     """
     We could add category relation here but we dont
@@ -212,14 +209,6 @@ class ReviewItem(models.Model):
         ("Description"),
         blank=True,
     )
-    # score = models.IntegerField( # zero means it does not has that item
-    #     _("Score"),
-    #     validators=[
-    #         MinValueValidator(1), 
-    #         MaxValueValidator(5)
-    #         ],
-    #     help_text=_("One means at least and 5 menas the most")
-    #     )
     
     class Meta:
         ordering = ('order', )
@@ -231,64 +220,69 @@ class ReviewItem(models.Model):
         return f'{self.get_item_type_display()} Review'
 
 
-# class Vote(models.Model):
-#     uuid = models.UUIDField(
-#         default=uuid.uuid4,
-#         editable=False,
-#         unique=True,
-#         primary_key=True,
-#     )
-#     review = models.ForeignKey(
-#         Review,
-#         on_delete=models.CASCADE,
-#         related_name='votes',
-#         verbose_name=_("Review"),
-#     )
-#     user = models.ForeignKey(
-#         User,
-#         on_delete=models.CASCADE,
-#         related_name='votes',
-#         verbose_name=_("User"),
-#     )
+class Vote(TimeStampedModel):
+    uuid = models.UUIDField(
+        default=uuid.uuid4,
+        editable=False,
+        unique=True,
+        primary_key=True,
+    )
+    review = models.ForeignKey(
+        Review,
+        on_delete=models.CASCADE,
+        related_name='votes',
+        verbose_name=_("Review"),
+    )
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='votes',
+        verbose_name=_("User"),
+    )
 
-#     class Meta:
-#         unique_together = ('user', 'review')  # Ensure a user only votes once per review
+    class Meta:
+        unique_together = ('user', 'review')  # Ensure a user only votes once per review
 
-#     def __str__(self):
-#         return f'Vote by {self.user.username} on {self.review.name}'
+    def __str__(self):
+        return f'Vote by {self.user.username} on {self.review.name}'
 
 
-# class Response(models.Model):
-#     vote = models.ForeignKey(
-#         Vote, 
-#         on_delete=models.CASCADE,
-#         related_name='responses',
-#         verbose_name=_("Vote"),
-#     )
-#     review_item = models.ForeignKey(
-#         ReviewItem, 
-#         on_delete=models.CASCADE,
-#         related_name='responses',
-#         verbose_name=_("Review Item"),
-#     )
-#     is_applicable = models.BooleanField(
-#         default=True,
-#         help_text=_("Uncheck this if the item is not applicable for this review (e.g., no coffee).")
-#     )
-#     score = models.PositiveSmallIntegerField(
-#         _("Score"),
-#         validators=[
-#             MinValueValidator(1), 
-#             MaxValueValidator(5)
-#             ],
-#          help_text=_("One means at least and 5 menas the most")
-#     )
-#     extra_notes = models.TextField(
-#         _("Extra notes"),
-#         blank=True
-#     )
+class VoteResponse(models.Model):
+    vote = models.ForeignKey(
+        Vote, 
+        on_delete=models.CASCADE,
+        related_name='responses',
+        verbose_name=_("Vote"),
+    )
+    review_item = models.ForeignKey(
+        ReviewItem, 
+        on_delete=models.CASCADE,
+        related_name='responses',
+        verbose_name=_("Review Item"),
+    )
+    is_applicable = models.BooleanField(
+        _("Is Applicable"),
+        default=True,
+        help_text=_("Uncheck this if the item is not applicable for this review (e.g., no coffee)")
+    )
+    score = models.PositiveSmallIntegerField(
+        _("Score"),
+        validators=[
+            MinValueValidator(1), 
+            MaxValueValidator(5)
+            ],
+    )
+    extra_notes = models.TextField(
+        _("Extra notes"),
+        blank=True,
+        help_text=_("If the item needs any extra details, mention them as short as possible")
+    )
     
-#     # in some cases we could let user edit their review by a boolean field
-
-#     def __str__(self):
-#         return f'Response for {self.vote} on {self.review_item}'
+    # in some cases we could let user edit their review by a boolean field
+    class Meta:
+        ordering = ('review_item__order',)
+        verbose_name = _("Vote Response")
+        verbose_name_plural = _("Vote Responses")
+        
+    def __str__(self):
+        return f'Response for {self.vote} on {self.review_item}'

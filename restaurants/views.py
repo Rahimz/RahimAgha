@@ -1,11 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils.translation import gettext_lazy as _
 from taggit.models import Tag
 from decimal import Decimal
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from restaurants.models import Place, Category, Review, ReviewItem
-
+from restaurants.models import Place, Category, Review, Vote, VoteResponse
+from .forms import ReviewSubmissionForm
 
 def ResHomeView(request):
     city = request.GET.get('city', None)
@@ -67,12 +68,37 @@ def ResHomeView(request):
         context
     )
 
+
 @login_required
 def ReviewView(request):
-    context = dict(
-        page_title = _("Review restaurants"),
-        review = Review.objects.filter(active=True).last()
-    )
+    # Get the latest active review to vote on
+    review = Review.objects.filter(active=True).prefetch_related('items').last()
+
+    # Handle case where there is no active review
+    if not review:
+        messages.warning(request, _("There are no active reviews at the moment."))
+        return redirect('restaurants:res_home') # or some other appropriate page
+
+    # TODO: ADD for production Check if user has already voted on this review
+    # if review.votes.filter(user=request.user).exists():
+    #     messages.info(request, _("You have already submitted a review for this place."))
+    #     return redirect('restaurants:res_home') # or some other appropriate page
+
+    if request.method == 'POST':
+        form = ReviewSubmissionForm(request.POST, review=review)
+        if form.is_valid():
+            form.save(user=request.user)
+            messages.success(request, _("Thank you! Your review has been submitted successfully."))
+            return redirect('restaurants:res_home') # Redirect to a success page
+    else:
+        form = ReviewSubmissionForm(review=review)
+
+    context = {
+        # 'page_title': _("Review Restaurants"),
+        'page_title': _("Review ") + review.name,
+        'review': review,
+        'form': form
+    }
     return render(
         request,
         'restaurants/review.html',
