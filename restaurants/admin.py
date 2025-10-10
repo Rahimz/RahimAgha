@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Place, Category, Review, ReviewItem, Vote , VoteResponse
+from .models import Place, Category, Review, ReviewItem, Vote , VoteResponse, PlaceVoteSummary
 from .forms import PlaceAdminForm
 
 class VoteResponseInline(admin.TabularInline):
@@ -40,5 +40,9 @@ class VoteAdmin(admin.ModelAdmin):
 
 @admin.register(VoteResponse)
 class VoteResponseAdmin(admin.ModelAdmin):
-    list_display = ['id', 'vote', 'review_item', 'score',]    
+    list_display = ['id', 'vote', 'vote__place',  'review_item', 'score',]    
+
+@admin.register(PlaceVoteSummary)
+class PlaceVoteSummaryAdmin(admin.ModelAdmin):
+    list_display = ['uuid', 'place', 'total_votes', 'average_score',]    
     

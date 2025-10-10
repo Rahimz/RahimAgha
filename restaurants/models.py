@@ -252,6 +252,12 @@ class Vote(TimeStampedModel):
 
     def __str__(self):
         return f'Vote by {self.user.username} on {self.review.name}'
+    
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)  # Save the Vote instance
+    #     # Update the PlaceVoteSummary for the related place
+    #     summary, created = PlaceVoteSummary.objects.get_or_create(place=self.place)
+    #     summary.update_summary()
 
 
 class VoteResponse(models.Model):
@@ -293,3 +299,54 @@ class VoteResponse(models.Model):
         
     def __str__(self):
         return f'Response for {self.vote} on {self.review_item}'
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)  # Save the VoteResponse instance
+        # Update the PlaceVoteSummary for the related place
+        summary, created = PlaceVoteSummary.objects.get_or_create(place=self.vote.place)
+        summary.update_summary()
+
+    
+class PlaceVoteSummary(TimeStampedModel):
+    uuid = models.UUIDField(
+        default=uuid.uuid4,
+        editable=False,
+        unique=True,
+        primary_key=True,
+    )
+    place = models.ForeignKey(
+        Place,
+        on_delete=models.CASCADE,
+        related_name='vote_summaries',
+        verbose_name=_("Place"),
+    )
+    total_votes = models.PositiveIntegerField(
+        _("Total Votes"),
+        default=0,
+    )
+    average_score = models.DecimalField(
+        _("Average Score"),
+        max_digits=3,
+        decimal_places=2,
+        default=0,
+    )
+
+    class Meta:
+        verbose_name = _("Place Vote Summary")
+        verbose_name_plural = _("Place Vote Summaries")
+
+    def __str__(self):
+        return f'Summary for {self.place.name}'
+
+    def update_summary(self):
+        """Updates the total_votes and average_score based on current VoteResponses."""        
+        votes_responses = VoteResponse.objects.filter(vote__place=self.place, is_applicable=True)
+        total_score = 0
+        self.total_votes = votes_responses.count()
+
+        if self.total_votes > 0:
+            total_score = votes_responses.aggregate(sum=models.Sum('score')).get('sum', 0)
+            self.average_score = total_score / self.total_votes
+            # print(self.average_score, total_score, self.total_votes)
+
+        self.save()
