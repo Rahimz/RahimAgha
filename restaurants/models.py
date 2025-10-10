@@ -3,12 +3,14 @@ from django.utils.translation import gettext_lazy as _
 from django.utils.text import slugify
 import uuid
 from decimal import Decimal, ROUND_HALF_UP
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 from taggit.models import GenericUUIDTaggedItemBase, TaggedItemBase
 from taggit.managers import TaggableManager
 
 
 from tools.models import TimeStampedModel, ActiveManager
+from accounts.models import User
 
 
 # This is the custom "through" model
@@ -141,3 +143,152 @@ class Place(TimeStampedModel):
 # reviews
 
 
+
+
+class Review(TimeStampedModel):
+    """
+    We could add category relation here but we dont
+    because we want a same system of review for any type of place
+    """
+    uuid = models.UUIDField(
+        default=uuid.uuid4,
+        unique=True,
+        editable=False,
+        primary_key=True
+    )
+    name = models.CharField(
+        _("Name"),
+        max_length=150
+    )
+    active = models.BooleanField(
+        _("Active"),
+        default=True
+    )
+    
+    def __str__(self):
+        return self.name
+
+
+class ReviewItem(models.Model):
+    class ItemTypeChoice(models.TextChoices):
+        FOOD = 'food', _("Food Quality")
+        COFFEE = 'coffee', _("Coffee Quality")
+        DRINKS = 'drinks', _("Drinks Quality") # tea, juice, cocktail, ..
+        MENU_VARIETY = 'menu_variety', _("Menu Variety")
+        SERVICE = 'service', _("Service") # staff friendliness, attentiveness, speed, and professionalism 
+        AMBIANCE = 'ambiance', _("Ambiance & Atmosphere")
+        VALUE = 'value', _("Value for Money") # if the price was fair for the quality of the food and experience
+        
+        # --- Logistics & Facilities ---
+        CLEANLINESS = 'cleanliness', _("Cleanliness Quality")
+        LOCATION = 'location', _("Location & Accessibility")
+        PARKING = 'parking', _("Parking Availability")
+        FACILITY = 'facility', _("Comfort & Facilities Quality") # wc, disabled, ...
+        FAMILY_FRIENDLY = 'family_friendly', _("Family Friendliness")
+        SUITABILITY_FOR_GROUPS = 'groups', _("Suitability for Groups")
+        SUITABILITY_FOR_WORK = 'work', _("Suitability for Working/Studying")
+            
+    review = models.ForeignKey(        
+        Review, 
+        on_delete=models.CASCADE,
+        related_name='items',
+        verbose_name=_("Review"),
+    )
+    item_type = models.CharField(
+        _("Item Type"),
+        max_length=35,
+        choices=ItemTypeChoice.choices,
+    )
+    order = models.PositiveSmallIntegerField(
+        _("Order"),
+        default=1
+    )
+    is_applicable = models.BooleanField(
+        _("Is Applicable"),
+        default=True,
+        help_text=_("Uncheck this if the item is not applicable for this review (e.g., no coffee).")
+    )
+    description = models.TextField(
+        ("Description"),
+        blank=True,
+    )
+    # score = models.IntegerField( # zero means it does not has that item
+    #     _("Score"),
+    #     validators=[
+    #         MinValueValidator(1), 
+    #         MaxValueValidator(5)
+    #         ],
+    #     help_text=_("One means at least and 5 menas the most")
+    #     )
+    
+    class Meta:
+        ordering = ('order', )
+        unique_together = ('review', 'item_type')
+        verbose_name=_("Review Item")
+        verbose_name_plural=_("Review Items")
+        
+    def __str__(self):
+        return f'{self.get_item_type_display()} Review'
+
+
+# class Vote(models.Model):
+#     uuid = models.UUIDField(
+#         default=uuid.uuid4,
+#         editable=False,
+#         unique=True,
+#         primary_key=True,
+#     )
+#     review = models.ForeignKey(
+#         Review,
+#         on_delete=models.CASCADE,
+#         related_name='votes',
+#         verbose_name=_("Review"),
+#     )
+#     user = models.ForeignKey(
+#         User,
+#         on_delete=models.CASCADE,
+#         related_name='votes',
+#         verbose_name=_("User"),
+#     )
+
+#     class Meta:
+#         unique_together = ('user', 'review')  # Ensure a user only votes once per review
+
+#     def __str__(self):
+#         return f'Vote by {self.user.username} on {self.review.name}'
+
+
+# class Response(models.Model):
+#     vote = models.ForeignKey(
+#         Vote, 
+#         on_delete=models.CASCADE,
+#         related_name='responses',
+#         verbose_name=_("Vote"),
+#     )
+#     review_item = models.ForeignKey(
+#         ReviewItem, 
+#         on_delete=models.CASCADE,
+#         related_name='responses',
+#         verbose_name=_("Review Item"),
+#     )
+#     is_applicable = models.BooleanField(
+#         default=True,
+#         help_text=_("Uncheck this if the item is not applicable for this review (e.g., no coffee).")
+#     )
+#     score = models.PositiveSmallIntegerField(
+#         _("Score"),
+#         validators=[
+#             MinValueValidator(1), 
+#             MaxValueValidator(5)
+#             ],
+#          help_text=_("One means at least and 5 menas the most")
+#     )
+#     extra_notes = models.TextField(
+#         _("Extra notes"),
+#         blank=True
+#     )
+    
+#     # in some cases we could let user edit their review by a boolean field
+
+#     def __str__(self):
+#         return f'Response for {self.vote} on {self.review_item}'

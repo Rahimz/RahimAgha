@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Place, Category
+from .models import Place, Category, Review, ReviewItem
 from .forms import PlaceAdminForm
 
 @admin.register(Place)
@@ -16,3 +16,12 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'order',]
     list_editable = ['order']
     prepopulated_fields = {'slug': ['name']}
+
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ['uuid', 'name', 'active',]    
+
+@admin.register(ReviewItem)
+class ReviewItemAdmin(admin.ModelAdmin):
+    list_display = ['id', 'review', 'item_type', 'is_applicable']    

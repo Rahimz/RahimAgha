@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.utils.translation import gettext_lazy as _
 from taggit.models import Tag
 from decimal import Decimal
+from django.contrib.auth.decorators import login_required
 
-from restaurants.models import Place, Category
+from restaurants.models import Place, Category, Review, ReviewItem
 
 
 def ResHomeView(request):
@@ -65,3 +66,16 @@ def ResHomeView(request):
         'restaurants/res_home.html',
         context
     )
+
+@login_required
+def ReviewView(request):
+    context = dict(
+        page_title = _("Review restaurants"),
+        review = Review.objects.filter(active=True).last()
+    )
+    return render(
+        request,
+        'restaurants/review.html',
+        context
+    )
+    

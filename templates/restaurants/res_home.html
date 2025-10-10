@@ -9,7 +9,12 @@
 <div class="container">
     <div class="row mb-2 bg-dark text-light">
         <div class="col">
-            <h1>{% trans "My Favorite places" %}</h1>
+            <div class="d-flex align-items-center justify-content-between">
+                <h1>{% trans "My Favorite places" %}</h1>
+                {% if request.user.is_superuser %}
+                <a href="{% url 'restaurants:review' %}" class="btn btn-light">{% trans "Review" %}</a>
+                {% endif %}
+            </div>
         </div>
     </div>
     <div class="row">
