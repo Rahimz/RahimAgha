@@ -3,6 +3,11 @@ from django.contrib import admin
 from .models import Place, Category, Review, ReviewItem, Vote , VoteResponse
 from .forms import PlaceAdminForm
 
+class VoteResponseInline(admin.TabularInline):
+    model = VoteResponse
+    raw_id_fields = ['vote']
+    extra = 0
+
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
     form = PlaceAdminForm
@@ -30,7 +35,7 @@ class ReviewItemAdmin(admin.ModelAdmin):
 @admin.register(Vote)
 class VoteAdmin(admin.ModelAdmin):
     list_display = ['uuid', 'review', 'user', 'place', 'created']    
-    
+    inlines = [VoteResponseInline]
 
 
 @admin.register(VoteResponse)
