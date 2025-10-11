@@ -44,16 +44,24 @@ class ReviewSubmissionForm(forms.Form):
         # A choice widget for the score
         SCORE_CHOICES = [(i, str(i)) for i in range(1, 6)]
 
+        # This list will hold our grouped fields for easy rendering in the template
+        self.grouped_fields = []
+        
         # Dynamically create fields for each ReviewItem
         for item in self.review.items.all():
-            self.fields[f'is_applicable_{item.id}'] = forms.BooleanField(
+            # Create the field names
+            is_applicable_name = f'is_applicable_{item.id}'
+            score_name = f'score_{item.id}'
+            extra_notes_name = f'extra_notes_{item.id}'
+            
+            self.fields[is_applicable_name] = forms.BooleanField(
                 initial=True,
                 label=_("Is Applicable"),
                 required=False,
                 help_text=_("Uncheck this if the item is not applicable for this review (e.g., no coffee)")
             )
             # A field for the score (1-5) using radio buttons
-            self.fields[f'score_{item.id}'] = forms.ChoiceField(
+            self.fields[score_name] = forms.ChoiceField(
                 label=item.get_item_type_display(),
                 choices=SCORE_CHOICES,
                 widget=forms.RadioSelect,
@@ -61,11 +69,19 @@ class ReviewSubmissionForm(forms.Form):
                 help_text=item.description
             )
             # A field for the optional notes
-            self.fields[f'extra_notes_{item.id}'] = forms.CharField(
+            self.fields[extra_notes_name] = forms.CharField(
                 label=_("Extra Notes"),
                 widget=forms.Textarea(attrs={'rows': 2, 'placeholder': _("Optional notes...")}),
                 required=False
             )
+            # **This is the key part:** Group the BoundField objects for the template
+            # We access `self[field_name]` to get the BoundField, which is what templates render
+            self.grouped_fields.append({
+                'item': item,
+                'is_applicable': self[is_applicable_name],
+                'score': self[score_name],
+                'extra_notes': self[extra_notes_name],
+            })
     
     
     def clean(self):
@@ -87,6 +103,9 @@ class ReviewSubmissionForm(forms.Form):
 
                 # 2. Set the score in cleaned_data to None for the save method.
                 cleaned_data[score_field_name] = None
+                
+        # Always return the full cleaned_data dictionary.
+        return cleaned_data
                 
     def save(self, user, place):
         # Create the Vote and VoteResponse objects when the form is saved

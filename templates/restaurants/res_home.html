@@ -155,10 +155,13 @@
                         {% endif %}
                         </div>
                         <div class="col-md-6">
-                            <span class="badge bg-dark text-light rounded">{{ place.vote_summary.average_score }} ☆ </span>
+                            <span class="badge bg-dark text-light rounded">{{ place.vote_summary.average_score }}
+                                {#<span style="color: yellow;">☆</span>#}
+                                <span>&#11088;</span>
+                            </span>
                             <a href=""><span class="badge rounded-circle bg-secondary text-light ">i</span></a>
                             {% for item in place.vote_summary.item_summaries.all %}
-                            <br>{{item.get_item_type_display }}: {{ item.average_score }}
+                            <br>{{item.get_item_type_display }}: {{ item.average_score }} ({{ item.total_votes }})
                             {% if item.concatenated_notes %}
                             <br>{{ item.concatenated_notes }}
                               
