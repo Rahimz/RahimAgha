@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-19 09:29+0330\n"
-"PO-Revision-Date: 2023-08-19 09:30+0330\n"
+"POT-Creation-Date: 2025-10-11 09:25+0330\n"
+"PO-Revision-Date: 2025-10-11 09:50+0330\n"
 "Last-Translator:   <rahim.aghareb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Translated-Using: django-rosetta 0.9.9\n"
+"X-Translated-Using: django-rosetta 0.10.2\n"
 
 #: accounting/models.py:16
 msgid "Account title"
@@ -35,7 +35,7 @@ msgstr "شماره حساب"
 msgid "Bank account"
 msgstr "حساب بانکی"
 
-#: accounting/models.py:61 accounting/views.py:162
+#: accounting/models.py:61 accounting/views.py:163
 msgid "Bank accounts"
 msgstr "حساب‌های بانکی"
 
@@ -54,7 +54,7 @@ msgstr "دریافت"
 msgid "Transaction subject"
 msgstr "موضوع تراکنش"
 
-#: accounting/models.py:97 accounting/views.py:149
+#: accounting/models.py:97 accounting/views.py:150
 msgid "Transaction subjects"
 msgstr "موضوعات تراکنش"
 
@@ -74,7 +74,7 @@ msgstr "تراز حساب"
 msgid "Transaction date"
 msgstr "تاریخ تراکنیش"
 
-#: accounting/models.py:152 contacts/forms.py:13
+#: accounting/models.py:152 contacts/forms.py:16
 #: templates/accounting/_transactions_list.html:8
 msgid "Description"
 msgstr "توضیحات"
@@ -91,92 +91,232 @@ msgstr "فایل رسید"
 msgid "Transaction"
 msgstr "تراکنش"
 
-#: accounting/models.py:178 accounting/views.py:35
+#: accounting/models.py:178 accounting/views.py:36
 #: templates/accounting/_accounting_header.html:6
 msgid "Transactions"
 msgstr "تراکنش‌ها"
 
-#: accounting/views.py:19
-msgid "Accounting dashboard"
-msgstr "داشبورد حسابداری"
-
-#: accounting/views.py:65
+#: accounting/views.py:66
 msgid "Farvardin"
 msgstr "فروردین"
 
-#: accounting/views.py:67
+#: accounting/views.py:68
 msgid "Ordibehesht"
 msgstr "اردیبهشت"
 
-#: accounting/views.py:69
+#: accounting/views.py:70
 msgid "Khordad"
 msgstr "خرداد"
 
-#: accounting/views.py:71
+#: accounting/views.py:72
 msgid "Tir"
 msgstr "تیر"
 
-#: accounting/views.py:73
+#: accounting/views.py:74
 msgid "Mordad"
 msgstr "مرداد"
 
-#: accounting/views.py:75
+#: accounting/views.py:76
 msgid "Shahrivar"
 msgstr "شهریور"
 
-#: accounting/views.py:185
+#: accounting/views.py:186
 msgid "Add payment"
 msgstr "پرداخت جدید"
 
-#: accounting/views.py:207
+#: accounting/views.py:208
 msgid "Add recieve"
 msgstr "دریافت جدید"
 
-#: accounting/views.py:223
+#: accounting/views.py:224
 msgid "Add transaction subject"
 msgstr "اضافه کردن موضوع تراکنش"
 
-#: accounting/views.py:239
+#: accounting/views.py:240
 msgid "Update transaction subject"
 msgstr "به‌روزرسانی موضوع تراکنش"
+
+#: ai/models.py:39
+msgid "Chat"
+msgstr "گفت‌وگو"
+
+#: ai/models.py:40
+msgid "Image generator"
+msgstr "تصویرساز"
+
+#: ai/models.py:50
+msgid "Model type"
+msgstr "نوع مدل"
+
+#: ai/models.py:88
+msgid "Chat ID"
+msgstr "شناسه گفت‌وگو"
+
+#: ai/models.py:90
+msgid "Input token"
+msgstr "توکن ورودی"
+
+#: ai/models.py:91
+msgid "Output token"
+msgstr "توکن خروجی"
+
+#: ai/models.py:92
+msgid "Total token"
+msgstr "مجموع توکن"
+
+#: ai/models.py:103 restaurants/models.py:246
+msgid "User"
+msgstr "کاربر"
+
+#: ai/models.py:104
+msgid "Assistant"
+msgstr "دستیار"
+
+#: ai/models.py:107
+msgid "Not Applied"
+msgstr "تعیین‌نشده"
+
+#: ai/models.py:108 blog/models.py:115
+msgid "Image"
+msgstr "تصویر"
+
+#: ai/models.py:109
+msgid "Audio"
+msgstr "صدا"
+
+#: ai/models.py:110
+msgid "Video"
+msgstr "ویدئو"
+
+#: ai/models.py:111
+msgid "Document"
+msgstr "مستند"
+
+#: ai/models.py:112 blog/models.py:113
+msgid "PDF"
+msgstr "پی‌دی‌اف"
+
+#: ai/models.py:120
+msgid "Role"
+msgstr "نقش"
+
+#: blog/models.py:13
+msgid "Parent category"
+msgstr "دسته‌بندی والد"
+
+#: blog/models.py:19 restaurants/models.py:32 restaurants/models.py:62
+#: restaurants/models.py:157 videos/models.py:18
+msgid "Name"
+msgstr "نام"
+
+#: blog/models.py:46 restaurants/models.py:44
+#: templates/restaurants/res_home.html:21
+msgid "Category"
+msgstr "دسته‌بندی"
+
+#: blog/models.py:110 blog/models.py:121
+#: templates/accounting/bank_accounts_list.html:23
+msgid "Title"
+msgstr "عنوان"
+
+#: blog/models.py:111 blog/models.py:143
+msgid "Text"
+msgstr "متن"
+
+#: blog/models.py:112 blog/models.py:164
+msgid "Code"
+msgstr "کد"
+
+#: blog/models.py:114
+msgid "DOCS"
+msgstr "مستندات"
+
+#: blog/models.py:116 blog/models.py:154
+#: templates/quizes/question_list.html:56
+msgid "Link"
+msgstr "لینک‌"
+
+#: blog/models.py:117 videos/models.py:37
+msgid "Video file"
+msgstr "فایل وبدئو"
+
+#: blog/models.py:118 blog/models.py:159
+msgid "Script"
+msgstr "اسکریپت"
+
+#: blog/models.py:131
+msgid "Post"
+msgstr "پست"
+
+#: blog/models.py:148
+msgid "File"
+msgstr "فایل"
+
+#: blog/models.py:169
+msgid "Rank"
+msgstr "رتبه"
+
+#: blog/models.py:175 restaurants/models.py:114 restaurants/models.py:161
+msgid "Active"
+msgstr "فعال"
+
+#: blog/views.py:35
+msgid "You do not have permission"
+msgstr "شما مجوز دسترسی ندارید"
+
+#: blog/views.py:50
+msgid "Attachment added"
+msgstr "ضمیمه اضافه شد"
+
+#: blog/views.py:86 templates/bookstore/static_bookstore.html:71
+msgid "Blog"
+msgstr "وبلاگ"
 
 #: bookstore/views.py:13 templates/bookstore/bookstore.html:9
 #: templates/bookstore/static_bookstore.html:9 templates/home.html:28
 msgid "Bookstore solution"
 msgstr "راهکار کتابفروشی"
 
-#: contacts/forms.py:12
+#: contacts/forms.py:15
 msgid "Tilte"
 msgstr "عنوان"
 
-#: contacts/forms.py:14 templates/contacts/contacts.html:40
+#: contacts/forms.py:17 templates/contacts/contacts.html:40
 msgid "Email"
 msgstr "ایمیل"
 
-#: contacts/forms.py:15
+#: contacts/forms.py:18
 msgid "Phone"
 msgstr "تلفن"
 
-#: contacts/views.py:12
+#: contacts/views.py:14
 msgid "Contacts"
 msgstr "تماس‌ها"
 
-#: contacts/views.py:40
+#: contacts/views.py:51
+msgid "It seems you write spam messages"
+msgstr "به نظر می‌رسد که شما پیام‌های اسپم می‌فرستید"
+
+#: contacts/views.py:62
 msgid "Thanks a lot, Your message is registered and I will contact you"
 msgstr "متشکرم، پیغام شما ثبت شد. به زودی با شما تماس خواهم گرفت"
 
-#: core/settings/base.py:136
+#: core/settings/base.py:145
 msgid "English"
 msgstr "انگلیسی"
 
-#: core/settings/base.py:137
+#: core/settings/base.py:146
 msgid "Farsi"
 msgstr "فارسی"
 
-#: generals/views.py:13 templates/404.html:17 templates/500.html:17
+#: generals/views.py:19 templates/404.html:17 templates/500.html:17
 #: templates/_navbar.html:16
 msgid "Home"
 msgstr "خانه"
+
+#: generals/views.py:83
+msgid "No Access"
+msgstr "دسترسی وجود ندارد"
 
 #: quizes/models.py:15
 msgid "created"
@@ -236,43 +376,274 @@ msgstr "سخت ۱-۱-۳"
 
 #: quizes/models.py:232
 msgid "0"
-msgstr ""
+msgstr "0"
 
-#: quizes/views.py:34 templates/quizes/question_create.html:13
+#: quizes/views.py:41 templates/quizes/question_create.html:13
 msgid "Create question"
 msgstr "ساختن سوال"
 
-#: quizes/views.py:53
+#: quizes/views.py:66
 msgid "Update question"
 msgstr "به روزرسانی سوال"
 
-#: quizes/views.py:76
+#: quizes/views.py:95
 msgid "Questions list"
 msgstr "لیست سوال‌ها"
 
-#: quizes/views.py:144 quizes/views.py:206
+#: quizes/views.py:163 quizes/views.py:225
 msgid "My quiz"
 msgstr "آزمون من"
 
-#: quizes/views.py:167
+#: quizes/views.py:186
 msgid "Please choose one"
 msgstr "لطفاً یک گزینه را انتخاب کنید"
 
-#: quizes/views.py:263
+#: quizes/views.py:282
 msgid "Quiz results"
 msgstr "نتایج آزمون"
 
-#: quizes/views.py:392
+#: quizes/views.py:366
 msgid "Create compliment"
 msgstr "ایجاد یک تشویق"
 
-#: quizes/views.py:410
+#: quizes/views.py:390
 msgid "Update compliment"
 msgstr "به‌روزرسانی تشویق"
 
-#: quizes/views.py:433 templates/quizes/question_list.html:46
+#: quizes/views.py:420 templates/quizes/question_list.html:46
 msgid "Compliment list"
 msgstr "لیست تشویق‌ها"
+
+#: restaurants/forms.py:20 restaurants/forms.py:31
+msgid "The value is not valid"
+msgstr "این مقدار معتبر نیست"
+
+#: restaurants/forms.py:59
+msgid "Extra Notes"
+msgstr "یادداشت‌های اضافه"
+
+#: restaurants/forms.py:60
+msgid "Optional notes..."
+msgstr "یادداشت‌های اضافه"
+
+#: restaurants/models.py:45
+msgid "Categories"
+msgstr "دسته‌بندی‌ها"
+
+#: restaurants/models.py:77
+msgid "category"
+msgstr "دسته‌بندی"
+
+#: restaurants/models.py:81 templates/restaurants/res_home.html:31
+msgid "City"
+msgstr "شهر"
+
+#: restaurants/models.py:85
+msgid "Address"
+msgstr "آدرس"
+
+#: restaurants/models.py:91
+msgid "Latitude in decimal degrees (e.g., -90.000000 to 90.000000)"
+msgstr "عرض جغرافیایی به صورت درجه اعشاری (بین -90.000000 و  90.000000)"
+
+#: restaurants/models.py:98
+msgid "Longitude in decimal degrees (e.g., -180.000000 to 180.000000)"
+msgstr "طول جغرافیایی به صورت درجه اعشاری (بین -180.000000 و  180.000000)"
+
+#: restaurants/models.py:103 restaurants/models.py:282
+msgid "Score"
+msgstr "امتیاز"
+
+#: restaurants/models.py:108 templates/restaurants/res_home.html:41
+msgid "Tags"
+msgstr "برچسب‌ها"
+
+#: restaurants/models.py:121 restaurants/models.py:240
+#: restaurants/models.py:317 restaurants/models.py:373
+msgid "Place"
+msgstr "مکان"
+
+#: restaurants/models.py:122 templates/restaurants/res_home.html:107
+msgid "Places"
+msgstr "مکان‌ها"
+
+#: restaurants/models.py:171
+msgid "Food Quality"
+msgstr "کیفیت غذا"
+
+#: restaurants/models.py:172
+msgid "Coffee Quality"
+msgstr "کیفیت قهوه"
+
+#: restaurants/models.py:173
+msgid "Drinks Quality"
+msgstr "کیفیت نوشیدنی‌ها"
+
+#: restaurants/models.py:174
+msgid "Menu Variety"
+msgstr "تنوع منو"
+
+#: restaurants/models.py:175
+msgid "Service"
+msgstr "سرویس"
+
+#: restaurants/models.py:176
+msgid "Ambiance & Atmosphere"
+msgstr "محیط و اتمسفر"
+
+#: restaurants/models.py:177
+msgid "Value for Money"
+msgstr "ارزش نسبت به قیمت"
+
+#: restaurants/models.py:180
+msgid "Cleanliness Quality"
+msgstr "کیفیت تمیزی"
+
+#: restaurants/models.py:181
+msgid "Location & Accessibility"
+msgstr "موقعیت و دسترسی"
+
+#: restaurants/models.py:182
+msgid "Parking Availability"
+msgstr "در دسترس بودن پارکینگ"
+
+#: restaurants/models.py:183
+msgid "Comfort & Facilities Quality"
+msgstr "کیفیت راحتی وامکانات"
+
+#: restaurants/models.py:184
+msgid "Family Friendliness"
+msgstr "مناسب برای خانواده‌ها"
+
+#: restaurants/models.py:185
+msgid "Suitability for Groups"
+msgstr "مناسب برای گروه‌ها"
+
+#: restaurants/models.py:186
+msgid "Suitability for Working/Studying"
+msgstr "مناسب برای کارکردن/درس خواندن"
+
+#: restaurants/models.py:192 restaurants/models.py:234
+#: templates/restaurants/res_home.html:154
+msgid "Review"
+msgstr "نقد"
+
+#: restaurants/models.py:195 restaurants/models.py:376
+msgid "Item Type"
+msgstr "نوع آیتم"
+
+#: restaurants/models.py:200
+msgid "Order"
+msgstr "ترتیب"
+
+#: restaurants/models.py:204 restaurants/models.py:277
+msgid "Is Applicable"
+msgstr "این ویژگی وجود دارد"
+
+#: restaurants/models.py:206
+msgid ""
+"Uncheck this if the item is not applicable for this review (e.g., no "
+"coffee)."
+msgstr ""
+"اگر این آیتم در این مکان قابل دسترسی نیست یا ارائه نمی‌شود این تیک را حذف "
+"کنید"
+
+#: restaurants/models.py:216 restaurants/models.py:274
+msgid "Review Item"
+msgstr "آیتم نقد"
+
+#: restaurants/models.py:217
+msgid "Review Items"
+msgstr "آیتم‌های نقد"
+
+#: restaurants/models.py:268
+msgid "Vote"
+msgstr "رای"
+
+#: restaurants/models.py:279
+msgid ""
+"Uncheck this if the item is not applicable for this review (e.g., no coffee)"
+msgstr ""
+"اگر این آیتم در این مکان قابل دسترسی نیست یا ارائه نمی‌شود این تیک را حذف "
+"کنید"
+
+#: restaurants/models.py:289
+msgid "Extra notes"
+msgstr "توضیح بیشتر"
+
+#: restaurants/models.py:291
+msgid "If the item needs any extra details, mention them as short as possible"
+msgstr ""
+"اگر این آیتم به توضیح بیشتری نیاز دارد به کوتاه‌ترین حالت ممکن آن را ثبت "
+"کنید"
+
+#: restaurants/models.py:297
+msgid "Vote Response"
+msgstr "پاسخ رای"
+
+#: restaurants/models.py:298
+msgid "Vote Responses"
+msgstr "پاسخ‌های رای"
+
+#: restaurants/models.py:321
+msgid "Total Votes"
+msgstr "تعداد رای‌ها"
+
+#: restaurants/models.py:325 restaurants/models.py:385
+msgid "Average Score"
+msgstr "میانگین امتیاز"
+
+#: restaurants/models.py:332
+msgid "Place Vote Summary"
+msgstr "خلاصه رای مکان"
+
+#: restaurants/models.py:333
+msgid "Place Vote Summaries"
+msgstr "خلاصه‌های رای‌ مکان"
+
+#: restaurants/models.py:367
+msgid "Vote Summary"
+msgstr "خلاصه رای"
+
+#: restaurants/models.py:381
+msgid "Total Applicable Votes"
+msgstr "تعداد رای‌های قابل اعمال"
+
+#: restaurants/models.py:391
+msgid "All Notes"
+msgstr "تمام یادداشت‌ها"
+
+#: restaurants/models.py:393
+msgid "A compilation of all extra notes provided for this item."
+msgstr "تجمیعی از همه یادداشت‌های اضافه برای این آیتم"
+
+#: restaurants/models.py:397
+msgid "Place Review Item Summary"
+msgstr "خلاصه نقد آیتم‌های مکان"
+
+#: restaurants/models.py:398
+msgid "Place Review Item Summaries"
+msgstr "خلاصه‌های نقد آیتم‌های مکان"
+
+#: restaurants/views.py:54 templates/_navbar.html:64
+msgid "Restaurants"
+msgstr "رستوران‌ها"
+
+#: restaurants/views.py:80
+msgid "There are no active reviews at the moment."
+msgstr "هیچ نقد فعالی وجود ندارد"
+
+#: restaurants/views.py:85
+msgid "You have already submitted a review for this place."
+msgstr "شما یک نقد برای این مکان ثبت کرده‌اید"
+
+#: restaurants/views.py:93
+msgid "Thank you! Your review has been submitted successfully."
+msgstr "متشکریم!‌نقد شما با موفقیت ثبت شد"
+
+#: restaurants/views.py:100
+msgid "Review "
+msgstr "نقد"
 
 #: templates/404.html:6 templates/500.html:6
 msgid "Error"
@@ -328,17 +699,21 @@ msgstr "رزومه"
 msgid "Bookstore"
 msgstr "کتاب‌فروشی"
 
-#: templates/_navbar.html:42
+#: templates/_navbar.html:33
+msgid "AI"
+msgstr "هوش‌مصنوعی"
+
+#: templates/_navbar.html:48
 msgid "Quizes"
 msgstr "آزمون‌ها"
 
-#: templates/_navbar.html:49
+#: templates/_navbar.html:55
 msgid "Accounting"
 msgstr "حسابداری"
 
-#: templates/_navbar.html:52
+#: templates/_navbar.html:58
 msgid "Admin"
-msgstr ""
+msgstr "ادمین"
 
 #: templates/_pagination.html:5
 msgid "first"
@@ -370,17 +745,14 @@ msgid "Recieve"
 msgstr "دریافت"
 
 #: templates/accounting/_accounting_header.html:7
-#| msgid "Accounting"
 msgid "Accounts"
 msgstr "حساب‌ها"
 
 #: templates/accounting/_accounting_header.html:8
-#| msgid "Subject"
 msgid "Subjects"
 msgstr "موضوعات"
 
 #: templates/accounting/_accounting_header.html:12
-#| msgid "From date"
 msgid "From"
 msgstr "از"
 
@@ -389,13 +761,14 @@ msgid "To"
 msgstr "تا"
 
 #: templates/accounting/_accounting_header.html:16
-#: templates/contacts/contacts.html:34
+#: templates/contacts/contacts.html:34 templates/videos/add_category.html:10
 msgid "Submit"
 msgstr "تایید "
 
 #: templates/accounting/_accounting_header.html:23
 #: templates/accounting/transactions_list.html:44
 #: templates/quizes/question_list.html:20
+#: templates/restaurants/res_home.html:93
 msgid "Search"
 msgstr "جستجو"
 
@@ -415,16 +788,12 @@ msgstr "حساب بانکی"
 
 #: templates/accounting/_transactions_list.html:22
 msgid "Remove"
-msgstr ""
+msgstr "حذف"
 
 #: templates/accounting/add_payment.html:22
 #: templates/quizes/question_create.html:19
 msgid "Save"
 msgstr "ذخیره"
-
-#: templates/accounting/bank_accounts_list.html:23
-msgid "Title"
-msgstr "عنوان"
 
 #: templates/accounting/bank_accounts_list.html:24
 msgid "Current level"
@@ -452,9 +821,21 @@ msgid "All"
 msgstr "همه"
 
 #: templates/accounting/transactions_list.html:41
-#| msgid "Bank name"
 msgid "Bank"
 msgstr "بانک"
+
+#: templates/accounts/register.html:5 templates/registration/login.html:5
+#: templates/registration/logout.html:5
+msgid "Login"
+msgstr "ورود"
+
+#: templates/accounts/register_done.html:5
+msgid "Register Completed"
+msgstr "ثبت نام کامل شد"
+
+#: templates/blog/_add_attachment.html:12
+msgid "Add"
+msgstr "اضافه کردن"
 
 #: templates/bookstore/static_bookstore.html:18
 msgid "What is it"
@@ -573,10 +954,6 @@ msgstr "وبلاگ"
 #: templates/bookstore/static_bookstore.html:68
 msgid "And also"
 msgstr "و هنمچنین"
-
-#: templates/bookstore/static_bookstore.html:71
-msgid "Blog"
-msgstr "وبلاگ"
 
 #: templates/bookstore/static_bookstore.html:79
 msgid "What is the main features"
@@ -1142,10 +1519,6 @@ msgstr "سختی"
 msgid "Published"
 msgstr "منتشر شده"
 
-#: templates/quizes/question_list.html:56
-msgid "Link"
-msgstr "لینک‌"
-
 #: templates/quizes/question_list.html:57
 msgid "Uses"
 msgstr "استفاده شده"
@@ -1205,6 +1578,57 @@ msgstr "یک آزمون کمی سخت تر"
 #: templates/quizes/show_results.html:151
 msgid "Do a hard quiz"
 msgstr "یک آزمون خیلی سخت"
+
+#: templates/restaurants/res_home.html:13
+msgid "My Favorite places"
+msgstr "مکان‌های محبوب من"
+
+#: templates/restaurants/res_home.html:60
+msgid "Find Places Near a Point"
+msgstr "پیدا کردن مکان‌های نزدیک یک موقعیت"
+
+#: templates/restaurants/res_home.html:67
+msgid ""
+"Click on the map to select a location or use the button to find your current"
+" position"
+msgstr ""
+"روی نقشه کلیک کنید تا یک موقعیت را انتخاب کنید یا از دکمه موقعیت من استفاده "
+"کنید تا موقعیت فغلی شما در نظر گرفته شود"
+
+#: templates/restaurants/res_home.html:90
+msgid "My Location"
+msgstr "موقعیت من"
+
+#: templates/restaurants/res_home.html:109
+msgid "Your seleceted location"
+msgstr "موقعیت انتخاب شده شما"
+
+#: templates/restaurants/res_home.html:115
+msgid "No place is available near you"
+msgstr "هیچ‌مکانی نزدیک به این موقعیت پیدا نشد"
+
+#: templates/restaurants/res_home.html:149
+msgid "Direction"
+msgstr "جهت‌یابی"
+
+#: templates/restaurants/res_home.html:193
+msgid "There is not any results"
+msgstr "نتیجه‌ای وجود ندارد"
+
+#: templates/restaurants/review.html:39
+msgid "Submit Review"
+msgstr "ثبت نقد"
+
+#: templates/videos/add_category.html:6
+msgid "Add category"
+msgstr "اضافه کردن دسته‌بندی"
+
+#: templates/videos/video_upload.html:10
+msgid "Upload"
+msgstr "آپلود"
+
+#~ msgid "Accounting dashboard"
+#~ msgstr "داشبورد حسابداری"
 
 #~ msgid "To date"
 #~ msgstr "تا تاریخ"

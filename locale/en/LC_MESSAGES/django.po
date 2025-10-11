@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-19 09:29+0330\n"
+"POT-Creation-Date: 2025-10-11 09:25+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,7 @@ msgstr ""
 msgid "Bank account"
 msgstr ""
 
-#: accounting/models.py:61 accounting/views.py:162
+#: accounting/models.py:61 accounting/views.py:163
 msgid "Bank accounts"
 msgstr ""
 
@@ -53,7 +53,7 @@ msgstr ""
 msgid "Transaction subject"
 msgstr ""
 
-#: accounting/models.py:97 accounting/views.py:149
+#: accounting/models.py:97 accounting/views.py:150
 msgid "Transaction subjects"
 msgstr ""
 
@@ -73,7 +73,7 @@ msgstr ""
 msgid "Transaction date"
 msgstr ""
 
-#: accounting/models.py:152 contacts/forms.py:13
+#: accounting/models.py:152 contacts/forms.py:16
 #: templates/accounting/_transactions_list.html:8
 msgid "Description"
 msgstr ""
@@ -90,53 +90,184 @@ msgstr ""
 msgid "Transaction"
 msgstr ""
 
-#: accounting/models.py:178 accounting/views.py:35
+#: accounting/models.py:178 accounting/views.py:36
 #: templates/accounting/_accounting_header.html:6
 msgid "Transactions"
 msgstr ""
 
-#: accounting/views.py:19
-msgid "Accounting dashboard"
-msgstr ""
-
-#: accounting/views.py:65
+#: accounting/views.py:66
 msgid "Farvardin"
 msgstr ""
 
-#: accounting/views.py:67
+#: accounting/views.py:68
 msgid "Ordibehesht"
 msgstr ""
 
-#: accounting/views.py:69
+#: accounting/views.py:70
 msgid "Khordad"
 msgstr ""
 
-#: accounting/views.py:71
+#: accounting/views.py:72
 msgid "Tir"
 msgstr ""
 
-#: accounting/views.py:73
+#: accounting/views.py:74
 msgid "Mordad"
 msgstr ""
 
-#: accounting/views.py:75
+#: accounting/views.py:76
 msgid "Shahrivar"
 msgstr ""
 
-#: accounting/views.py:185
+#: accounting/views.py:186
 msgid "Add payment"
 msgstr ""
 
-#: accounting/views.py:207
+#: accounting/views.py:208
 msgid "Add recieve"
 msgstr ""
 
-#: accounting/views.py:223
+#: accounting/views.py:224
 msgid "Add transaction subject"
 msgstr ""
 
-#: accounting/views.py:239
+#: accounting/views.py:240
 msgid "Update transaction subject"
+msgstr ""
+
+#: ai/models.py:39
+msgid "Chat"
+msgstr ""
+
+#: ai/models.py:40
+msgid "Image generator"
+msgstr ""
+
+#: ai/models.py:50
+msgid "Model type"
+msgstr ""
+
+#: ai/models.py:88
+msgid "Chat ID"
+msgstr ""
+
+#: ai/models.py:90
+msgid "Input token"
+msgstr ""
+
+#: ai/models.py:91
+msgid "Output token"
+msgstr ""
+
+#: ai/models.py:92
+msgid "Total token"
+msgstr ""
+
+#: ai/models.py:103 restaurants/models.py:246
+msgid "User"
+msgstr ""
+
+#: ai/models.py:104
+msgid "Assistant"
+msgstr ""
+
+#: ai/models.py:107
+msgid "Not Applied"
+msgstr ""
+
+#: ai/models.py:108 blog/models.py:115
+msgid "Image"
+msgstr ""
+
+#: ai/models.py:109
+msgid "Audio"
+msgstr ""
+
+#: ai/models.py:110
+msgid "Video"
+msgstr ""
+
+#: ai/models.py:111
+msgid "Document"
+msgstr ""
+
+#: ai/models.py:112 blog/models.py:113
+msgid "PDF"
+msgstr ""
+
+#: ai/models.py:120
+msgid "Role"
+msgstr ""
+
+#: blog/models.py:13
+msgid "Parent category"
+msgstr ""
+
+#: blog/models.py:19 restaurants/models.py:32 restaurants/models.py:62
+#: restaurants/models.py:157 videos/models.py:18
+msgid "Name"
+msgstr ""
+
+#: blog/models.py:46 restaurants/models.py:44
+#: templates/restaurants/res_home.html:21
+msgid "Category"
+msgstr ""
+
+#: blog/models.py:110 blog/models.py:121
+#: templates/accounting/bank_accounts_list.html:23
+msgid "Title"
+msgstr ""
+
+#: blog/models.py:111 blog/models.py:143
+msgid "Text"
+msgstr ""
+
+#: blog/models.py:112 blog/models.py:164
+msgid "Code"
+msgstr ""
+
+#: blog/models.py:114
+msgid "DOCS"
+msgstr ""
+
+#: blog/models.py:116 blog/models.py:154 templates/quizes/question_list.html:56
+msgid "Link"
+msgstr ""
+
+#: blog/models.py:117 videos/models.py:37
+msgid "Video file"
+msgstr ""
+
+#: blog/models.py:118 blog/models.py:159
+msgid "Script"
+msgstr ""
+
+#: blog/models.py:131
+msgid "Post"
+msgstr ""
+
+#: blog/models.py:148
+msgid "File"
+msgstr ""
+
+#: blog/models.py:169
+msgid "Rank"
+msgstr ""
+
+#: blog/models.py:175 restaurants/models.py:114 restaurants/models.py:161
+msgid "Active"
+msgstr ""
+
+#: blog/views.py:35
+msgid "You do not have permission"
+msgstr ""
+
+#: blog/views.py:50
+msgid "Attachment added"
+msgstr ""
+
+#: blog/views.py:86 templates/bookstore/static_bookstore.html:71
+msgid "Blog"
 msgstr ""
 
 #: bookstore/views.py:13 templates/bookstore/bookstore.html:9
@@ -144,37 +275,45 @@ msgstr ""
 msgid "Bookstore solution"
 msgstr ""
 
-#: contacts/forms.py:12
+#: contacts/forms.py:15
 msgid "Tilte"
 msgstr ""
 
-#: contacts/forms.py:14 templates/contacts/contacts.html:40
+#: contacts/forms.py:17 templates/contacts/contacts.html:40
 msgid "Email"
 msgstr ""
 
-#: contacts/forms.py:15
+#: contacts/forms.py:18
 msgid "Phone"
 msgstr ""
 
-#: contacts/views.py:12
+#: contacts/views.py:14
 msgid "Contacts"
 msgstr ""
 
-#: contacts/views.py:40
+#: contacts/views.py:51
+msgid "It seems you write spam messages"
+msgstr ""
+
+#: contacts/views.py:62
 msgid "Thanks a lot, Your message is registered and I will contact you"
 msgstr ""
 
-#: core/settings/base.py:136
+#: core/settings/base.py:145
 msgid "English"
 msgstr ""
 
-#: core/settings/base.py:137
+#: core/settings/base.py:146
 msgid "Farsi"
 msgstr ""
 
-#: generals/views.py:13 templates/404.html:17 templates/500.html:17
+#: generals/views.py:19 templates/404.html:17 templates/500.html:17
 #: templates/_navbar.html:16
 msgid "Home"
+msgstr ""
+
+#: generals/views.py:83
+msgid "No Access"
 msgstr ""
 
 #: quizes/models.py:15
@@ -237,40 +376,264 @@ msgstr ""
 msgid "0"
 msgstr ""
 
-#: quizes/views.py:34 templates/quizes/question_create.html:13
+#: quizes/views.py:41 templates/quizes/question_create.html:13
 msgid "Create question"
 msgstr ""
 
-#: quizes/views.py:53
+#: quizes/views.py:66
 msgid "Update question"
 msgstr ""
 
-#: quizes/views.py:76
+#: quizes/views.py:95
 msgid "Questions list"
 msgstr ""
 
-#: quizes/views.py:144 quizes/views.py:206
+#: quizes/views.py:163 quizes/views.py:225
 msgid "My quiz"
 msgstr ""
 
-#: quizes/views.py:167
+#: quizes/views.py:186
 msgid "Please choose one"
 msgstr ""
 
-#: quizes/views.py:263
+#: quizes/views.py:282
 msgid "Quiz results"
 msgstr ""
 
-#: quizes/views.py:392
+#: quizes/views.py:366
 msgid "Create compliment"
 msgstr ""
 
-#: quizes/views.py:410
+#: quizes/views.py:390
 msgid "Update compliment"
 msgstr ""
 
-#: quizes/views.py:433 templates/quizes/question_list.html:46
+#: quizes/views.py:420 templates/quizes/question_list.html:46
 msgid "Compliment list"
+msgstr ""
+
+#: restaurants/forms.py:20 restaurants/forms.py:31
+msgid "The value is not valid"
+msgstr ""
+
+#: restaurants/forms.py:59
+msgid "Extra Notes"
+msgstr ""
+
+#: restaurants/forms.py:60
+msgid "Optional notes..."
+msgstr ""
+
+#: restaurants/models.py:45
+msgid "Categories"
+msgstr ""
+
+#: restaurants/models.py:77
+msgid "category"
+msgstr ""
+
+#: restaurants/models.py:81 templates/restaurants/res_home.html:31
+msgid "City"
+msgstr ""
+
+#: restaurants/models.py:85
+msgid "Address"
+msgstr ""
+
+#: restaurants/models.py:91
+msgid "Latitude in decimal degrees (e.g., -90.000000 to 90.000000)"
+msgstr ""
+
+#: restaurants/models.py:98
+msgid "Longitude in decimal degrees (e.g., -180.000000 to 180.000000)"
+msgstr ""
+
+#: restaurants/models.py:103 restaurants/models.py:282
+msgid "Score"
+msgstr ""
+
+#: restaurants/models.py:108 templates/restaurants/res_home.html:41
+msgid "Tags"
+msgstr ""
+
+#: restaurants/models.py:121 restaurants/models.py:240
+#: restaurants/models.py:317 restaurants/models.py:373
+msgid "Place"
+msgstr ""
+
+#: restaurants/models.py:122 templates/restaurants/res_home.html:107
+msgid "Places"
+msgstr ""
+
+#: restaurants/models.py:171
+msgid "Food Quality"
+msgstr ""
+
+#: restaurants/models.py:172
+msgid "Coffee Quality"
+msgstr ""
+
+#: restaurants/models.py:173
+msgid "Drinks Quality"
+msgstr ""
+
+#: restaurants/models.py:174
+msgid "Menu Variety"
+msgstr ""
+
+#: restaurants/models.py:175
+msgid "Service"
+msgstr ""
+
+#: restaurants/models.py:176
+msgid "Ambiance & Atmosphere"
+msgstr ""
+
+#: restaurants/models.py:177
+msgid "Value for Money"
+msgstr ""
+
+#: restaurants/models.py:180
+msgid "Cleanliness Quality"
+msgstr ""
+
+#: restaurants/models.py:181
+msgid "Location & Accessibility"
+msgstr ""
+
+#: restaurants/models.py:182
+msgid "Parking Availability"
+msgstr ""
+
+#: restaurants/models.py:183
+msgid "Comfort & Facilities Quality"
+msgstr ""
+
+#: restaurants/models.py:184
+msgid "Family Friendliness"
+msgstr ""
+
+#: restaurants/models.py:185
+msgid "Suitability for Groups"
+msgstr ""
+
+#: restaurants/models.py:186
+msgid "Suitability for Working/Studying"
+msgstr ""
+
+#: restaurants/models.py:192 restaurants/models.py:234
+#: templates/restaurants/res_home.html:154
+msgid "Review"
+msgstr ""
+
+#: restaurants/models.py:195 restaurants/models.py:376
+msgid "Item Type"
+msgstr ""
+
+#: restaurants/models.py:200
+msgid "Order"
+msgstr ""
+
+#: restaurants/models.py:204 restaurants/models.py:277
+msgid "Is Applicable"
+msgstr ""
+
+#: restaurants/models.py:206
+msgid ""
+"Uncheck this if the item is not applicable for this review (e.g., no coffee)."
+msgstr ""
+
+#: restaurants/models.py:216 restaurants/models.py:274
+msgid "Review Item"
+msgstr ""
+
+#: restaurants/models.py:217
+msgid "Review Items"
+msgstr ""
+
+#: restaurants/models.py:268
+msgid "Vote"
+msgstr ""
+
+#: restaurants/models.py:279
+msgid ""
+"Uncheck this if the item is not applicable for this review (e.g., no coffee)"
+msgstr ""
+
+#: restaurants/models.py:289
+msgid "Extra notes"
+msgstr ""
+
+#: restaurants/models.py:291
+msgid "If the item needs any extra details, mention them as short as possible"
+msgstr ""
+
+#: restaurants/models.py:297
+msgid "Vote Response"
+msgstr ""
+
+#: restaurants/models.py:298
+msgid "Vote Responses"
+msgstr ""
+
+#: restaurants/models.py:321
+msgid "Total Votes"
+msgstr ""
+
+#: restaurants/models.py:325 restaurants/models.py:385
+msgid "Average Score"
+msgstr ""
+
+#: restaurants/models.py:332
+msgid "Place Vote Summary"
+msgstr ""
+
+#: restaurants/models.py:333
+msgid "Place Vote Summaries"
+msgstr ""
+
+#: restaurants/models.py:367
+msgid "Vote Summary"
+msgstr ""
+
+#: restaurants/models.py:381
+msgid "Total Applicable Votes"
+msgstr ""
+
+#: restaurants/models.py:391
+msgid "All Notes"
+msgstr ""
+
+#: restaurants/models.py:393
+msgid "A compilation of all extra notes provided for this item."
+msgstr ""
+
+#: restaurants/models.py:397
+msgid "Place Review Item Summary"
+msgstr ""
+
+#: restaurants/models.py:398
+msgid "Place Review Item Summaries"
+msgstr ""
+
+#: restaurants/views.py:54 templates/_navbar.html:64
+msgid "Restaurants"
+msgstr ""
+
+#: restaurants/views.py:80
+msgid "There are no active reviews at the moment."
+msgstr ""
+
+#: restaurants/views.py:85
+msgid "You have already submitted a review for this place."
+msgstr ""
+
+#: restaurants/views.py:93
+msgid "Thank you! Your review has been submitted successfully."
+msgstr ""
+
+#: restaurants/views.py:100
+msgid "Review "
 msgstr ""
 
 #: templates/404.html:6 templates/500.html:6
@@ -325,15 +688,19 @@ msgstr ""
 msgid "Bookstore"
 msgstr ""
 
-#: templates/_navbar.html:42
+#: templates/_navbar.html:33
+msgid "AI"
+msgstr ""
+
+#: templates/_navbar.html:48
 msgid "Quizes"
 msgstr ""
 
-#: templates/_navbar.html:49
+#: templates/_navbar.html:55
 msgid "Accounting"
 msgstr ""
 
-#: templates/_navbar.html:52
+#: templates/_navbar.html:58
 msgid "Admin"
 msgstr ""
 
@@ -383,13 +750,14 @@ msgid "To"
 msgstr ""
 
 #: templates/accounting/_accounting_header.html:16
-#: templates/contacts/contacts.html:34
+#: templates/contacts/contacts.html:34 templates/videos/add_category.html:10
 msgid "Submit"
 msgstr ""
 
 #: templates/accounting/_accounting_header.html:23
 #: templates/accounting/transactions_list.html:44
 #: templates/quizes/question_list.html:20
+#: templates/restaurants/res_home.html:93
 msgid "Search"
 msgstr ""
 
@@ -414,10 +782,6 @@ msgstr ""
 #: templates/accounting/add_payment.html:22
 #: templates/quizes/question_create.html:19
 msgid "Save"
-msgstr ""
-
-#: templates/accounting/bank_accounts_list.html:23
-msgid "Title"
 msgstr ""
 
 #: templates/accounting/bank_accounts_list.html:24
@@ -447,6 +811,19 @@ msgstr ""
 
 #: templates/accounting/transactions_list.html:41
 msgid "Bank"
+msgstr ""
+
+#: templates/accounts/register.html:5 templates/registration/login.html:5
+#: templates/registration/logout.html:5
+msgid "Login"
+msgstr ""
+
+#: templates/accounts/register_done.html:5
+msgid "Register Completed"
+msgstr ""
+
+#: templates/blog/_add_attachment.html:12
+msgid "Add"
 msgstr ""
 
 #: templates/bookstore/static_bookstore.html:18
@@ -562,10 +939,6 @@ msgstr ""
 
 #: templates/bookstore/static_bookstore.html:68
 msgid "And also"
-msgstr ""
-
-#: templates/bookstore/static_bookstore.html:71
-msgid "Blog"
 msgstr ""
 
 #: templates/bookstore/static_bookstore.html:79
@@ -1078,10 +1451,6 @@ msgstr ""
 msgid "Published"
 msgstr ""
 
-#: templates/quizes/question_list.html:56
-msgid "Link"
-msgstr ""
-
 #: templates/quizes/question_list.html:57
 msgid "Uses"
 msgstr ""
@@ -1140,4 +1509,50 @@ msgstr ""
 
 #: templates/quizes/show_results.html:151
 msgid "Do a hard quiz"
+msgstr ""
+
+#: templates/restaurants/res_home.html:13
+msgid "My Favorite places"
+msgstr ""
+
+#: templates/restaurants/res_home.html:60
+msgid "Find Places Near a Point"
+msgstr ""
+
+#: templates/restaurants/res_home.html:67
+msgid ""
+"Click on the map to select a location or use the button to find your current "
+"position"
+msgstr ""
+
+#: templates/restaurants/res_home.html:90
+msgid "My Location"
+msgstr ""
+
+#: templates/restaurants/res_home.html:109
+msgid "Your seleceted location"
+msgstr ""
+
+#: templates/restaurants/res_home.html:115
+msgid "No place is available near you"
+msgstr ""
+
+#: templates/restaurants/res_home.html:149
+msgid "Direction"
+msgstr ""
+
+#: templates/restaurants/res_home.html:193
+msgid "There is not any results"
+msgstr ""
+
+#: templates/restaurants/review.html:39
+msgid "Submit Review"
+msgstr ""
+
+#: templates/videos/add_category.html:6
+msgid "Add category"
+msgstr ""
+
+#: templates/videos/video_upload.html:10
+msgid "Upload"
 msgstr ""
