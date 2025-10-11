@@ -68,59 +68,6 @@ def update_place_summaries(place: Place):
                 item_type=item_type
             ).delete()
 
-    
-    
-    
-    # # =================================
-    # # Get all applicable vote responses for the given place
-    # responses = VoteResponse.objects.filter(
-    #     vote__place=place,
-    #     is_applicable=True
-    # )
-
-    # # Use Django's aggregation to calculate everything in one database query
-    # # We group by the 'review_item__item_type'
-    # summary_data = responses.values(
-    #     'review_item__item_type'
-    # ).annotate(
-    #     avg_score=Avg('score'),
-    #     total=Count('pk'),
-    #     # Use StringAgg for PostgreSQL to concatenate non-empty notes
-    #     notes=StringAgg(
-    #         'extra_notes',
-    #         delimiter=' | ', 
-    #         filter=Q(extra_notes__isnull=False) & ~Q(extra_notes='')
-    #     )
-    # )
-
-    # # Create a dictionary for quick lookups of the aggregated data
-    # current_summaries = {item['review_item__item_type']: item for item in summary_data}
-
-    # # Get all possible item types to check against
-    # all_item_types = [choice[0] for choice in ReviewItem.ItemTypeChoice.choices]
-
-    # for item_type in all_item_types:
-    #     data = current_summaries.get(item_type)
-
-    #     if data:
-    #         # If there is aggregated data, update or create the summary object
-    #         PlaceReviewItemSummary.objects.update_or_create(
-    #             place=place,
-    #             item_type=item_type,
-    #             defaults={
-    #                 'average_score': data['avg_score'] or 0.0,
-    #                 'total_votes': data['total'] or 0,
-    #                 'concatenated_notes': data['notes'] or ''
-    #             }
-    #         )
-    #     else:
-    #         # --- MODIFIED PART ---
-    #         # If no votes exist for this item_type, delete the corresponding summary object if it exists.
-    #         PlaceReviewItemSummary.objects.filter(
-    #             place=place,
-    #             item_type=item_type
-    #         ).delete()
-
 
 @receiver(post_save, sender=VoteResponse)
 @receiver(post_delete, sender=VoteResponse)
