@@ -35,8 +35,9 @@
                     </div>
                 {% endfor %}
 
-                <div class="d-grid">
+                <div class="">
                     <button type="submit" class="btn btn-primary btn-lg">{% trans "Submit Review" %}</button>
+                    <a href="{% url 'restaurants:res_home' %}" class="btn btn-secondary btn-lg ms-3">{% trans "Cancle" %}</a>
                 </div>
             </form>
         </div>

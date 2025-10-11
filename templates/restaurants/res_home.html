@@ -87,10 +87,10 @@
 
                             <div class="d-flex align-items-center">
                                 <button type="button" id="get-location-btn" class="btn btn-outline-secondary">
-                                    <i class="bi bi-geo-alt-fill"></i>My Location
+                                    <i class="bi bi-geo-alt-fill"></i>{% trans "My Location" %}
                                 </button>
                                 <button type="submit" id="search-location-btn" class="btn btn-success ms-2" disabled>
-                                    Search
+                                    {% trans "Search" %}
                                 </button>
                                 <span id="selected-coords" class="ms-3 text-secondary"></span>
                                 
@@ -104,7 +104,7 @@
     </div>
     <div>
         <div class="col">
-            <h2 class="h2" id="search-results">Places</h2>
+            <h2 class="h2" id="search-results">{% trans "Places" %}</h2>
             {% if selected_lat and selected_lon %}
             <p>{% trans "Your seleceted location" %}</p>
             <span class="ms-3 text-secondary">
@@ -146,7 +146,7 @@
                         {% if place.latitude and place.longitude %}
                         <div class="my-3">
                             <a href="https://www.google.com/maps/dir/?api=1&destination={{ place.latitude }},{{ place.longitude }}" target="_blank" class="btn btn-sm btn-secondary">
-                                Direction <img src="{% static 'img/arrows.png' %}" alt="" class="ms-2" width="20x" height="auto">
+                                {% trans "Direction" %} <img src="{% static 'img/arrows.png' %}" alt="" class="ms-2" width="20x" height="auto">
                             </a>
                         </div>
                         {% endif %}

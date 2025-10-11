@@ -80,12 +80,15 @@ def ReviewView(request, place_uuid):
         messages.warning(request, _("There are no active reviews at the moment."))
         return redirect('restaurants:res_home') # or some other appropriate page
 
+    try:
+       vote = Vote.objects.get(user=request.user, review=review, place=place) 
+    except:
+        vote = None
     # ADD for production Check if user has already voted on this review
-    if Vote.objects.filter(user=request.user, review=review, place=place).exists():
+    if vote:        
         messages.info(request, _("You have already submitted a review for this place."))
-        return redirect('restaurants:res_home')
+        return redirect('restaurants:res_vote_view', vote.uuid)
     
-
     if request.method == 'POST':
         form = ReviewSubmissionForm(request.POST, review=review)
         if form.is_valid():
@@ -104,6 +107,40 @@ def ReviewView(request, place_uuid):
     return render(
         request,
         'restaurants/review.html',
+        context
+    )
+    
+    
+@login_required
+def VoteDetailsView(request, vote_uuid):
+    try:
+        vote = Vote.objects.prefetch_related('responses').get(uuid=vote_uuid)
+    except:
+        messages.warning(request, _("This vote is not exists"))
+        return redirect('restaurants:res_home')
+    
+    review = vote.review
+    place = vote.place
+    
+    # for edit we should change the form 
+    # if request.method == 'POST':
+    #     form = ReviewSubmissionForm(request.POST, review=review, instance=vote)
+    #     if form.is_valid():
+    #         form.save(user=request.user, place=place)
+    #         messages.success(request, _("Thank you! Your review has been submitted successfully."))
+    #         return redirect('restaurants:res_home') # Redirect to a success page
+    # else:
+    #     form = ReviewSubmissionForm(review=review, instance=vote)
+
+    context = dict(
+        page_title= _("Review ") + place.name,
+        review= review,
+        # form= form, 
+        vote=vote,
+    )
+    return render(
+        request,
+        'restaurants/review_details.html',
         context
     )
     

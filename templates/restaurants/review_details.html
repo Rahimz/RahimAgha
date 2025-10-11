@@ -1,0 +1,66 @@
+{% extends "_base_restaurants.html" %}
+ {% load i18n static %}
+
+{% block title %}
+  {{ page_title }}
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-2 bg-dark text-light">
+        <div class="col">
+            <h1>{{ page_title }}</h1>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col">
+            <ul>
+                <li>{% trans "Review" %}: {{ request.user.username }}</li>
+                <li><span class="text-muted fst-italic">{{ vote.created|date }} | {{ vote.created|time:"H:i"}}</span></li>
+            </ul>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">            
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <th scope="col">#</th>
+                        <th scope="col">{% trans "Item Type" %}</th>
+                        <th scope="col">{% trans "Description" %}</th>
+                        <th scope="col">{% trans "Is Applicable" %}</th>
+                        <th scope="col">{% trans "Score" %}</th>
+                        <th scope="col">{% trans "Extra Notes" %}</th>
+                    </thead>
+                    <tbody>
+                        {% for item in vote.responses.all %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ item.review_item.get_item_type_display }}</td>
+                            <td>{{ item.review_item.description }}</td>
+                            <td>
+                                {% if item.is_applicable %}
+                                <span class="text-success fw-bold">&check;</span>
+                                {% else %}
+                                <span class="text-danger fw-bold">&cross;</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ item.score }}</td>
+                            <td>{{ item.extra_notes }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>            
+            </div>
+            <a href="{% url 'restaurants:res_home' %}" class="btn btn-secondary btn-lg ms-3">{% trans "Back" %}</a>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}
+
+{% block script %}
+
+
+{% endblock script %}
