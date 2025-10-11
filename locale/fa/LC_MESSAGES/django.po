@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-11 09:25+0330\n"
-"PO-Revision-Date: 2025-10-11 09:50+0330\n"
+"POT-Creation-Date: 2025-10-11 11:24+0330\n"
+"PO-Revision-Date: 2025-10-11 11:24+0330\n"
 "Last-Translator:   <rahim.aghareb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -76,6 +76,7 @@ msgstr "تاریخ تراکنیش"
 
 #: accounting/models.py:152 contacts/forms.py:16
 #: templates/accounting/_transactions_list.html:8
+#: templates/restaurants/review_details.html:31
 msgid "Description"
 msgstr "توضیحات"
 
@@ -418,11 +419,23 @@ msgstr "لیست تشویق‌ها"
 msgid "The value is not valid"
 msgstr "این مقدار معتبر نیست"
 
-#: restaurants/forms.py:59
+#: restaurants/forms.py:59 restaurants/models.py:204 restaurants/models.py:283
+#: templates/restaurants/review_details.html:32
+msgid "Is Applicable"
+msgstr "این ویژگی وجود دارد"
+
+#: restaurants/forms.py:61 restaurants/models.py:285
+msgid ""
+"Uncheck this if the item is not applicable for this review (e.g., no coffee)"
+msgstr ""
+"اگر این آیتم در این مکان قابل دسترسی نیست یا ارائه نمی‌شود این تیک را حذف "
+"کنید"
+
+#: restaurants/forms.py:73 templates/restaurants/review_details.html:34
 msgid "Extra Notes"
 msgstr "یادداشت‌های اضافه"
 
-#: restaurants/forms.py:60
+#: restaurants/forms.py:74
 msgid "Optional notes..."
 msgstr "یادداشت‌های اضافه"
 
@@ -450,7 +463,8 @@ msgstr "عرض جغرافیایی به صورت درجه اعشاری (بین -9
 msgid "Longitude in decimal degrees (e.g., -180.000000 to 180.000000)"
 msgstr "طول جغرافیایی به صورت درجه اعشاری (بین -180.000000 و  180.000000)"
 
-#: restaurants/models.py:103 restaurants/models.py:282
+#: restaurants/models.py:103 restaurants/models.py:288
+#: templates/restaurants/review_details.html:33
 msgid "Score"
 msgstr "امتیاز"
 
@@ -459,7 +473,7 @@ msgid "Tags"
 msgstr "برچسب‌ها"
 
 #: restaurants/models.py:121 restaurants/models.py:240
-#: restaurants/models.py:317 restaurants/models.py:373
+#: restaurants/models.py:325 restaurants/models.py:381
 msgid "Place"
 msgstr "مکان"
 
@@ -525,20 +539,18 @@ msgstr "مناسب برای کارکردن/درس خواندن"
 
 #: restaurants/models.py:192 restaurants/models.py:234
 #: templates/restaurants/res_home.html:154
+#: templates/restaurants/review_details.html:18
 msgid "Review"
 msgstr "نقد"
 
-#: restaurants/models.py:195 restaurants/models.py:376
+#: restaurants/models.py:195 restaurants/models.py:384
+#: templates/restaurants/review_details.html:30
 msgid "Item Type"
 msgstr "نوع آیتم"
 
 #: restaurants/models.py:200
 msgid "Order"
 msgstr "ترتیب"
-
-#: restaurants/models.py:204 restaurants/models.py:277
-msgid "Is Applicable"
-msgstr "این ویژگی وجود دارد"
 
 #: restaurants/models.py:206
 msgid ""
@@ -548,7 +560,7 @@ msgstr ""
 "اگر این آیتم در این مکان قابل دسترسی نیست یا ارائه نمی‌شود این تیک را حذف "
 "کنید"
 
-#: restaurants/models.py:216 restaurants/models.py:274
+#: restaurants/models.py:216 restaurants/models.py:278
 msgid "Review Item"
 msgstr "آیتم نقد"
 
@@ -556,72 +568,69 @@ msgstr "آیتم نقد"
 msgid "Review Items"
 msgstr "آیتم‌های نقد"
 
-#: restaurants/models.py:268
+#: restaurants/models.py:249
+msgid "Editable"
+msgstr "قابل ویرایش"
+
+#: restaurants/models.py:272
 msgid "Vote"
 msgstr "رای"
 
-#: restaurants/models.py:279
-msgid ""
-"Uncheck this if the item is not applicable for this review (e.g., no coffee)"
-msgstr ""
-"اگر این آیتم در این مکان قابل دسترسی نیست یا ارائه نمی‌شود این تیک را حذف "
-"کنید"
-
-#: restaurants/models.py:289
+#: restaurants/models.py:297
 msgid "Extra notes"
 msgstr "توضیح بیشتر"
 
-#: restaurants/models.py:291
+#: restaurants/models.py:299
 msgid "If the item needs any extra details, mention them as short as possible"
 msgstr ""
 "اگر این آیتم به توضیح بیشتری نیاز دارد به کوتاه‌ترین حالت ممکن آن را ثبت "
 "کنید"
 
-#: restaurants/models.py:297
+#: restaurants/models.py:305
 msgid "Vote Response"
 msgstr "پاسخ رای"
 
-#: restaurants/models.py:298
+#: restaurants/models.py:306
 msgid "Vote Responses"
 msgstr "پاسخ‌های رای"
 
-#: restaurants/models.py:321
+#: restaurants/models.py:329
 msgid "Total Votes"
 msgstr "تعداد رای‌ها"
 
-#: restaurants/models.py:325 restaurants/models.py:385
+#: restaurants/models.py:333 restaurants/models.py:393
 msgid "Average Score"
 msgstr "میانگین امتیاز"
 
-#: restaurants/models.py:332
+#: restaurants/models.py:340
 msgid "Place Vote Summary"
 msgstr "خلاصه رای مکان"
 
-#: restaurants/models.py:333
+#: restaurants/models.py:341
 msgid "Place Vote Summaries"
 msgstr "خلاصه‌های رای‌ مکان"
 
-#: restaurants/models.py:367
+#: restaurants/models.py:375
 msgid "Vote Summary"
 msgstr "خلاصه رای"
 
-#: restaurants/models.py:381
+#: restaurants/models.py:389
 msgid "Total Applicable Votes"
 msgstr "تعداد رای‌های قابل اعمال"
 
-#: restaurants/models.py:391
+#: restaurants/models.py:399
 msgid "All Notes"
 msgstr "تمام یادداشت‌ها"
 
-#: restaurants/models.py:393
+#: restaurants/models.py:401
 msgid "A compilation of all extra notes provided for this item."
 msgstr "تجمیعی از همه یادداشت‌های اضافه برای این آیتم"
 
-#: restaurants/models.py:397
+#: restaurants/models.py:405
 msgid "Place Review Item Summary"
 msgstr "خلاصه نقد آیتم‌های مکان"
 
-#: restaurants/models.py:398
+#: restaurants/models.py:406
 msgid "Place Review Item Summaries"
 msgstr "خلاصه‌های نقد آیتم‌های مکان"
 
@@ -633,17 +642,22 @@ msgstr "رستوران‌ها"
 msgid "There are no active reviews at the moment."
 msgstr "هیچ نقد فعالی وجود ندارد"
 
-#: restaurants/views.py:85
+#: restaurants/views.py:89
 msgid "You have already submitted a review for this place."
 msgstr "شما یک نقد برای این مکان ثبت کرده‌اید"
 
-#: restaurants/views.py:93
+#: restaurants/views.py:96
 msgid "Thank you! Your review has been submitted successfully."
 msgstr "متشکریم!‌نقد شما با موفقیت ثبت شد"
 
-#: restaurants/views.py:100
+#: restaurants/views.py:103 restaurants/views.py:136
 msgid "Review "
 msgstr "نقد"
+
+#: restaurants/views.py:119
+#| msgid "There is not any results"
+msgid "This vote is not exists"
+msgstr "نتیجه‌ای وجود ندارد"
 
 #: templates/404.html:6 templates/500.html:6
 msgid "Error"
@@ -1611,13 +1625,21 @@ msgstr "هیچ‌مکانی نزدیک به این موقعیت پیدا نشد"
 msgid "Direction"
 msgstr "جهت‌یابی"
 
-#: templates/restaurants/res_home.html:193
+#: templates/restaurants/res_home.html:196
 msgid "There is not any results"
 msgstr "نتیجه‌ای وجود ندارد"
 
-#: templates/restaurants/review.html:39
+#: templates/restaurants/review.html:79
 msgid "Submit Review"
 msgstr "ثبت نقد"
+
+#: templates/restaurants/review.html:80
+msgid "Cancle"
+msgstr "لغو"
+
+#: templates/restaurants/review_details.html:56
+msgid "Back"
+msgstr "بازگشت"
 
 #: templates/videos/add_category.html:6
 msgid "Add category"
