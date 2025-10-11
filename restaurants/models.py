@@ -300,11 +300,7 @@ class VoteResponse(models.Model):
     def __str__(self):
         return f'Response for {self.vote} on {self.review_item}'
     
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)  # Save the VoteResponse instance
-        # Update the PlaceVoteSummary for the related place
-        summary, created = PlaceVoteSummary.objects.get_or_create(place=self.vote.place)
-        summary.update_summary()
+ 
 
     
 class PlaceVoteSummary(TimeStampedModel):
@@ -314,12 +310,13 @@ class PlaceVoteSummary(TimeStampedModel):
         unique=True,
         primary_key=True,
     )
-    place = models.ForeignKey(
+    place = models.OneToOneField(
         Place,
         on_delete=models.CASCADE,
-        related_name='vote_summaries',
+        related_name='vote_summary',
         verbose_name=_("Place"),
     )
+    # I'll keep it as your model has it, but you could access it via `vote_summary.place`.
     total_votes = models.PositiveIntegerField(
         _("Total Votes"),
         default=0,
@@ -338,15 +335,70 @@ class PlaceVoteSummary(TimeStampedModel):
     def __str__(self):
         return f'Summary for {self.place.name}'
 
-    def update_summary(self):
-        """Updates the total_votes and average_score based on current VoteResponses."""        
-        votes_responses = VoteResponse.objects.filter(vote__place=self.place, is_applicable=True)
-        total_score = 0
-        self.total_votes = votes_responses.count()
+    # def update_summary(self):
+    #     """Updates the total_votes and average_score based on current VoteResponses."""        
+    #     votes_responses = VoteResponse.objects.filter(vote__place=self.place, is_applicable=True)
+    #     total_score = 0
+    #     self.total_votes = votes_responses.count()
 
-        if self.total_votes > 0:
-            total_score = votes_responses.aggregate(sum=models.Sum('score')).get('sum', 0)
-            self.average_score = total_score / self.total_votes
-            # print(self.average_score, total_score, self.total_votes)
+    #     if self.total_votes > 0:
+    #         total_score = votes_responses.aggregate(sum=models.Sum('score')).get('sum', 0)
+    #         self.average_score = total_score / self.total_votes
+    #         # print(self.average_score, total_score, self.total_votes)
 
-        self.save()
+    #     self.save()
+
+
+class PlaceReviewItemSummary(TimeStampedModel):
+    """
+    Stores the aggregated vote results for a specific review item type
+    (e.g., Food, Service) for a single Place.
+    """
+    uuid = models.UUIDField(
+        default=uuid.uuid4,
+        unique=True,
+        primary_key=True,
+        editable=False,
+    )
+    vote_summary = models.ForeignKey(
+        PlaceVoteSummary,
+        on_delete=models.CASCADE,
+        related_name='item_summaries',
+        verbose_name=_("Vote Summary"),
+    )
+    place = models.ForeignKey(
+        Place,
+        on_delete=models.CASCADE,
+        related_name='item_summaries',
+        verbose_name=_("Place"),
+    )
+    item_type = models.CharField(
+        _("Item Type"),
+        max_length=35,
+        choices=ReviewItem.ItemTypeChoice.choices,
+    )
+    total_votes = models.PositiveIntegerField(
+        _("Total Applicable Votes"),
+        default=0
+    )
+    average_score = models.DecimalField(
+        _("Average Score"),
+        max_digits=3,   # e.g., 4.75
+        decimal_places=2,
+        default=0.0
+    )
+    concatenated_notes = models.TextField(
+        _("All Notes"),
+        blank=True,
+        help_text=_("A compilation of all extra notes provided for this item.")
+    )
+
+    class Meta:
+        verbose_name = _("Place Review Item Summary")
+        verbose_name_plural = _("Place Review Item Summaries")
+        # Ensure there is only one summary object per place and item_type
+        unique_together = ('place', 'item_type')
+        ordering = ['place', 'item_type']
+
+    def __str__(self):
+        return f'{self.vote_summary.place.name} - {self.get_item_type_display()} Summary'

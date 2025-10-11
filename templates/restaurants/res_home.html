@@ -135,20 +135,37 @@
                            <a href="{% url 'restaurants:res_home' %}?tag={{ taag.slug }}{% if city %}&city={{ city }}{% endif %}{% if category %}&category={{ category }}{% endif %}" class="badge rounded border {% if tag == taag.slug %}bg-success text-light{% else %}border-success text-secondary{% endif %}" style="text-decoration: none;">{{ taag.name }}</a>
                         {% endfor %}                        
                     </div>
-                    {% if place.description %}
-                      {{ place.description | linebreaksbr }}
-                    {% endif %}
-                    <!-- Drive Link -->
-                    {% if place.latitude and place.longitude %}
-                    <div class="my-3">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination={{ place.latitude }},{{ place.longitude }}" target="_blank" class="btn btn-sm btn-secondary">
-                            Direction <img src="{% static 'img/arrows.png' %}" alt="" class="ms-2" width="20x" height="auto">
-                        </a>
-                    </div>
-                    {% endif %}
-                    {% if request.user.is_authenticated %}
+                    <div class="row">
+                        
+                        <div class="col-md-6">
+
+                        {% if place.description %}
+                        {{ place.description | linebreaksbr }}
+                        {% endif %}
+                        <!-- Drive Link -->
+                        {% if place.latitude and place.longitude %}
+                        <div class="my-3">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination={{ place.latitude }},{{ place.longitude }}" target="_blank" class="btn btn-sm btn-secondary">
+                                Direction <img src="{% static 'img/arrows.png' %}" alt="" class="ms-2" width="20x" height="auto">
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% if request.user.is_authenticated %}
                         <a href="{% url 'restaurants:review' place.uuid %}" class="btn btn-sm btn-dark">{% trans "Review" %}</a>
-                    {% endif %}
+                        {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <span class="badge bg-dark text-light rounded">{{ place.vote_summary.average_score }} ☆ </span>
+                            <a href=""><span class="badge rounded-circle bg-secondary text-light ">i</span></a>
+                            {% for item in place.vote_summary.item_summaries.all %}
+                            <br>{{item.get_item_type_display }}: {{ item.average_score }}
+                            {% if item.concatenated_notes %}
+                            <br>{{ item.concatenated_notes }}
+                              
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
                 {% if place.latitude and place.longitude %}
                 <div class="col-md-6 pe-md-0">

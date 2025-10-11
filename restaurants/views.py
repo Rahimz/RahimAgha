@@ -5,14 +5,14 @@ from decimal import Decimal
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from restaurants.models import Place, Category, Review, Vote, VoteResponse
+from restaurants.models import Place, Category, Review, Vote
 from .forms import ReviewSubmissionForm
 
 def ResHomeView(request):
     city = request.GET.get('city', None)
     tag = request.GET.get('tag', None)
     category = request.GET.get('category', None)
-    places = Place.actives.select_related('category').all()
+    places = Place.actives.select_related('category').prefetch_related('vote_summary').all()
     categories = Category.objects.values_list('slug', flat=True)
     
     
