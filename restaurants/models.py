@@ -245,6 +245,10 @@ class Vote(TimeStampedModel):
         related_name='votes',
         verbose_name=_("User"),
     )
+    editable = models.BooleanField(
+        _("Editable"),
+        default=False
+    )
 
     class Meta:
         unique_together = ('user', 'review', 'place')  # Ensure a user only votes once per review
@@ -272,6 +276,8 @@ class VoteResponse(models.Model):
         on_delete=models.CASCADE,
         related_name='responses',
         verbose_name=_("Review Item"),
+        # null=True,
+        # blank=True,
     )
     is_applicable = models.BooleanField(
         _("Is Applicable"),
@@ -284,6 +290,8 @@ class VoteResponse(models.Model):
             MinValueValidator(1), 
             MaxValueValidator(5)
             ],
+        null=True, 
+        blank=True
     )
     extra_notes = models.TextField(
         _("Extra notes"),

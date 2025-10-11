@@ -46,6 +46,12 @@ class ReviewSubmissionForm(forms.Form):
 
         # Dynamically create fields for each ReviewItem
         for item in self.review.items.all():
+            self.fields[f'is_applicable_{item.id}'] = forms.BooleanField(
+                initial=True,
+                label=_("Is Applicable"),
+                required=False,
+                help_text=_("Uncheck this if the item is not applicable for this review (e.g., no coffee)")
+            )
             # A field for the score (1-5) using radio buttons
             self.fields[f'score_{item.id}'] = forms.ChoiceField(
                 label=item.get_item_type_display(),
@@ -60,7 +66,28 @@ class ReviewSubmissionForm(forms.Form):
                 widget=forms.Textarea(attrs={'rows': 2, 'placeholder': _("Optional notes...")}),
                 required=False
             )
+    
+    
+    def clean(self):
+        """
+        This method handles cross-field validation. We use it to make the 'score'
+        field optional if the 'not_applicable' checkbox is checked for that item.
+        """
+        cleaned_data = super().clean()
 
+        for item in self.review.items.all():
+            is_applicable = cleaned_data.get(f'is_applicable_{item.id}')
+            score_field_name = f'score_{item.id}'
+
+            if not is_applicable:
+                # If marked as not applicable, the score is no longer required.
+                # 1. Remove the potential "this field is required" error from the form.
+                if score_field_name in self._errors:
+                    del self._errors[score_field_name]
+
+                # 2. Set the score in cleaned_data to None for the save method.
+                cleaned_data[score_field_name] = None
+                
     def save(self, user, place):
         # Create the Vote and VoteResponse objects when the form is saved
 
@@ -76,6 +103,7 @@ class ReviewSubmissionForm(forms.Form):
             VoteResponse.objects.create(
                 vote=vote,
                 review_item=item,
+                is_applicable=self.cleaned_data.get(f'is_applicable_{item.id}', True),
                 score=self.cleaned_data[f'score_{item.id}'],
                 extra_notes=self.cleaned_data[f'extra_notes_{item.id}']
             )
