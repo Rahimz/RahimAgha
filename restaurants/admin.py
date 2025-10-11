@@ -8,6 +8,11 @@ class VoteResponseInline(admin.TabularInline):
     raw_id_fields = ['vote']
     extra = 0
 
+class PlaceReviewItemInline(admin.TabularInline):
+    model = PlaceReviewItemSummary
+    raw_id_fields = ['vote_summary']
+    extra = 0
+
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
     form = PlaceAdminForm
@@ -44,7 +49,8 @@ class VoteResponseAdmin(admin.ModelAdmin):
 
 @admin.register(PlaceVoteSummary)
 class PlaceVoteSummaryAdmin(admin.ModelAdmin):
-    list_display = ['uuid', 'place', 'total_votes', 'average_score',]    
+    list_display = ['uuid', 'place', 'total_votes', 'average_score',]
+    inlines = [PlaceReviewItemInline]    
 
 
 @admin.register(PlaceReviewItemSummary)
