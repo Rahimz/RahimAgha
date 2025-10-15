@@ -178,13 +178,12 @@
                                         <span>&#11088;</span>
                                     </span>
                                     <hr>
-                                    <table class="table">
+                                    <table class="table table-sm">
                                         <tbody>
-                                            
                                             {% for item in place.vote_summary.item_summaries.all %}
                                             <tr>
                                                 <td>{{item.get_item_type_display }}:</td>
-                                                <td><span class="fw-bold">{{ item.average_score }}</span> ({{ item.total_votes }} {% trans "Votes" %})</td>
+                                                <td><span class="fw-bold">{{ item.average_score }}</span> ({{ item.total_votes }}{#  {% trans "Votes" %} #})</td>
                                                 <td>
                                                     {% if item.concatenated_notes %}
                                                     {{ item.concatenated_notes }}
