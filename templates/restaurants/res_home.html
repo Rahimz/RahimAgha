@@ -68,7 +68,7 @@
 
                         <!-- Map for user interaction -->
                         <div id="interactive-map" 
-                            style="height: 250px; width: 100%; border-radius: 8px; cursor: pointer;"
+                            style="height: 200px; width: 100%; border-radius: 8px; cursor: pointer;"
                             {% if selected_lat and selected_lon %}
                                 data-initial-lat="{{ selected_lat|floatformat:'-5' }}"
                                 data-initial-lon="{{ selected_lon|floatformat:'-5' }}"
@@ -178,12 +178,23 @@
                                         <span>&#11088;</span>
                                     </span>
                                     <hr>
-                                    {% for item in place.vote_summary.item_summaries.all %}
-                                    <br>{{item.get_item_type_display }}: <span class="fw-bold">{{ item.average_score }}</span> ({{ item.total_votes }} {% trans "Votes" %})
-                                    {% if item.concatenated_notes %}
-                                    <br>{{ item.concatenated_notes }}
-                                    {% endif %}
-                                    {% endfor %}
+                                    <table class="table">
+                                        <tbody>
+                                            
+                                            {% for item in place.vote_summary.item_summaries.all %}
+                                            <tr>
+                                                <td>{{item.get_item_type_display }}:</td>
+                                                <td><span class="fw-bold">{{ item.average_score }}</span> ({{ item.total_votes }} {% trans "Votes" %})</td>
+                                                <td>
+                                                    {% if item.concatenated_notes %}
+                                                    {{ item.concatenated_notes }}
+                                                    {% endif %}
+                                                </td>
+                                                
+                                            </tr>
+                                                {% endfor %}
+                                        </tbody>
+                                    </table>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>                                    
@@ -209,7 +220,7 @@
                          data-lon="{{ place.longitude }}"
                          data-name="{{ place.name }}"
                          class="map-container" 
-                         style="height: 300px; width: 100%; border-radius: 8px;">
+                         style="height: 200px; width: 100%; border-radius: 8px;">
                     </div>
                 </div>
                 {% endif %}
