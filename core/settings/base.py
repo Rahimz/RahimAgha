@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'drf_yasg',
     'corsheaders',
+    'django.contrib.postgres',
 
     'crispy_forms',
     'crispy_bootstrap4',
@@ -67,6 +68,7 @@ INSTALLED_APPS = [
     'tools.apps.ToolsConfig',
     'ai.apps.AiConfig',
     'restaurants.apps.RestaurantsConfig',
+    'projects.apps.ProjectsConfig',
 ]
 
 MIDDLEWARE = [
