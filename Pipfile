@@ -26,6 +26,7 @@ langchain-openai = "*"
 pygments = "*"
 crispy-bootstrap4 = "*"
 django-taggit = "*"
+django-parler = "*"
 
 [dev-packages]
 
