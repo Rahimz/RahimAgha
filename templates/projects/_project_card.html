@@ -1,0 +1,22 @@
+{% load static i18n %}
+
+<div class="  text-center p-4">
+    <div class="text-center image-projects-container" >
+        {% if project.cover_image %}
+        <img class="rounded image-projects" src="{{ project.cover_image.url }}" alt="{{ project.alt_image}}" >
+        {% else %}
+        <img class="rounded image-projects" src="{% static 'img/no-image.jpg' %}" alt="No image placeholder" >
+        {% endif %}
+    </div>
+    <h4 class="mt-3" >{{ project.name }}</h4>
+    <p>
+        {% if project.description %}
+        {{ project.description | linebreaksbr }}  
+        {% endif %}
+        
+    </p>
+    {% if project.link %}
+    <a href="{{ porject.link }}" target="_blank" class="btn-special">{% trans "Link" %}  &#8599</a>
+    {% endif %}
+
+</div> 

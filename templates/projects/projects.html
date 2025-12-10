@@ -2,10 +2,29 @@
 {% load i18n %}
 {% load static %}
 
+{% block title %}
+  {{ page_title }}
+{% endblock title %}
+
 {% block content %}
-  <div class="container">
+  <div class="container bg-brown">
     <div class="row">
-        <h1>{% trans "Projects" %}</h1>
+        <h1>{% trans "Projects" %}</h1>        
+    </div>
+    <div class="row text-light">
+      {% for category in projects.all %}
+      <div class="col-md-12">
+        <h2>{{ category }}</h2>
+        <div class="row">
+          {% for project in category.projects.all %}
+          <div class="col-md-6">
+            {% include "projects/_project_card.html" %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+        
+      {% endfor %}
     </div>
   </div>
 {% endblock content %}
