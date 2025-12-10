@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'corsheaders',
     'django.contrib.postgres',
+    'parler',
 
     'crispy_forms',
     'crispy_bootstrap4',
@@ -237,3 +238,15 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
+
+# django-parler settings
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'en'},
+        {'code': 'fa'},
+    ),
+    'default': {
+        'fallback': 'en',
+        'hide_untranslated': False,
+    }
+}
