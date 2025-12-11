@@ -2,7 +2,7 @@ from django.contrib import admin
 from parler.admin import TranslatableAdmin
 
 
-from .models import Project, ProjectCategory, Image
+from .models import Project, ProjectCategory, Image, Role, Colleague
 
 
 class ImageInline(admin.StackedInline):
@@ -22,3 +22,12 @@ class ProjectAdmin(TranslatableAdmin):
 @admin.register(ProjectCategory)
 class ProjectCategoryAdmin(TranslatableAdmin):
     list_display = ['name']
+    
+@admin.register(Role)
+class RoleAdmin(TranslatableAdmin):
+    list_display = ['title']
+    
+    
+@admin.register(Colleague)
+class ColleagueAdmin(TranslatableAdmin):
+    list_display = ['first_name', 'last_name']

@@ -14,6 +14,20 @@
         {{ project.description | linebreaksbr }}  
         {% endif %}
         
+        {% if project.colleagues.all %}
+            {% trans "Colleagues" %}:
+            {% for coll in project.colleagues.all %}
+              {{ coll.first_name }} {{ coll.last_name }} 
+              {% if coll.roles.all %}
+                
+              ({% for role in coll.roles.all %}
+                  {{ role.title }}{% if not forloop.last %}, {% endif %}
+                  {% endfor %})
+            {% endif %}
+            {% endfor %}
+          
+        {% endif %}
+        
     </p>
     {% if project.link %}
     <a href="{{ project.link }}" target="_blank" class="btn-special">{% trans "Link" %}  &#8599</a>
