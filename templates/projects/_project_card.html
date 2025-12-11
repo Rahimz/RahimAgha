@@ -15,17 +15,24 @@
         {% endif %}
         
         {% if project.colleagues.all %}
-            {% trans "Colleagues" %}:
+            <br>
+            {% trans "Colleagues" %}: <br>
             {% for coll in project.colleagues.all %}
-              {{ coll.first_name }} {{ coll.last_name }} 
+              {{ coll.first_name }} {{ coll.last_name }}
               {% if coll.roles.all %}
-                
               ({% for role in coll.roles.all %}
                   {{ role.title }}{% if not forloop.last %}, {% endif %}
-                  {% endfor %})
+                  {% endfor %}){% if not forloop.last %}, {% endif %}
             {% endif %}
             {% endfor %}
-          
+        {% endif %}
+
+        {% if project.stacks.all %}
+        <br>
+        {% trans "Tech stacks" %}:
+          {% for stack in project.stacks.all %}
+            <span class="badge badge-sm bg-light text-dark">{{ stack }}</span>
+          {% endfor %}
         {% endif %}
         
     </p>
