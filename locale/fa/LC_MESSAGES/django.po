@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-11 11:24+0330\n"
-"PO-Revision-Date: 2025-10-11 11:24+0330\n"
+"POT-Creation-Date: 2025-12-11 11:54+0330\n"
+"PO-Revision-Date: 2025-12-11 11:55+0330\n"
 "Last-Translator:   <rahim.aghareb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Translated-Using: django-rosetta 0.10.2\n"
+"X-Translated-Using: django-rosetta 0.10.3\n"
 
 #: accounting/models.py:16
 msgid "Account title"
@@ -74,7 +74,7 @@ msgstr "تراز حساب"
 msgid "Transaction date"
 msgstr "تاریخ تراکنیش"
 
-#: accounting/models.py:152 contacts/forms.py:16
+#: accounting/models.py:152 contacts/forms.py:16 projects/models.py:37
 #: templates/accounting/_transactions_list.html:8
 #: templates/restaurants/review_details.html:31
 msgid "Description"
@@ -232,7 +232,8 @@ msgstr "کد"
 msgid "DOCS"
 msgstr "مستندات"
 
-#: blog/models.py:116 blog/models.py:154
+#: blog/models.py:116 blog/models.py:154 projects/models.py:53
+#: templates/projects/_project_card.html:19
 #: templates/quizes/question_list.html:56
 msgid "Link"
 msgstr "لینک‌"
@@ -257,7 +258,8 @@ msgstr "فایل"
 msgid "Rank"
 msgstr "رتبه"
 
-#: blog/models.py:175 restaurants/models.py:114 restaurants/models.py:161
+#: blog/models.py:175 projects/models.py:64 restaurants/models.py:114
+#: restaurants/models.py:161
 msgid "Active"
 msgstr "فعال"
 
@@ -302,11 +304,11 @@ msgstr "به نظر می‌رسد که شما پیام‌های اسپم می‌
 msgid "Thanks a lot, Your message is registered and I will contact you"
 msgstr "متشکرم، پیغام شما ثبت شد. به زودی با شما تماس خواهم گرفت"
 
-#: core/settings/base.py:145
+#: core/settings/base.py:148
 msgid "English"
 msgstr "انگلیسی"
 
-#: core/settings/base.py:146
+#: core/settings/base.py:149
 msgid "Farsi"
 msgstr "فارسی"
 
@@ -318,6 +320,24 @@ msgstr "خانه"
 #: generals/views.py:83
 msgid "No Access"
 msgstr "دسترسی وجود ندارد"
+
+#: projects/models.py:22 projects/models.py:49
+msgid "Slug"
+msgstr "نامک"
+
+#: projects/models.py:58
+msgid "Cover image"
+msgstr "تصویر جلد"
+
+#: projects/models.py:89
+#| msgid "Receipt image"
+msgid "Alt image"
+msgstr "آلترناتیو تصویر"
+
+#: projects/views.py:19
+#| msgid "Projects"
+msgid "Project"
+msgstr "پروژه"
 
 #: quizes/models.py:15
 msgid "created"
@@ -655,7 +675,6 @@ msgid "Review "
 msgstr "نقد"
 
 #: restaurants/views.py:119
-#| msgid "There is not any results"
 msgid "This vote is not exists"
 msgstr "نتیجه‌ای وجود ندارد"
 
@@ -702,10 +721,11 @@ msgid "Contact me"
 msgstr "تماس با من"
 
 #: templates/_navbar.html:20 templates/home.html:60
+#: templates/projects/projects.html:12
 msgid "Projects"
 msgstr "پروژه‌ها"
 
-#: templates/_navbar.html:23 templates/home.html:94 templates/home.html:110
+#: templates/_navbar.html:23 templates/home.html:97 templates/home.html:113
 msgid "Resume"
 msgstr "رزومه"
 
@@ -1389,8 +1409,11 @@ msgid "Website"
 msgstr "وبسایت"
 
 #: templates/home.html:82
+#| msgid ""
+#| "Computer museum is the first Itan computer museum and the website has "
+#| "Exhibition, Timeline, Science Tour and Oral History project"
 msgid ""
-"Computer museum is the first Itan computer museum and the website has "
+"Computer museum is the first Iran computer museum and the website has "
 "Exhibition, Timeline, Science Tour and Oral History project"
 msgstr ""
 "وبسایت موزه کامپیوتر ایران که متعلق به اولین موزه کامپیوتر در ایران است، "
@@ -1404,11 +1427,16 @@ msgstr ""
 "در بکند، این وب‌سایت یک سیستم استاندارد نگهداری اطلاعات اشیا موزه را "
 "پشتیبانی می‌کند"
 
-#: templates/home.html:96
+#: templates/home.html:91
+#| msgid "Some of the projects"
+msgid "Other projects"
+msgstr "سایر پروژه‌ها"
+
+#: templates/home.html:99
 msgid "Rahim Aghareb (1979) Python/Django developer"
 msgstr "رحیم اقارب (۱۳۵۸) توسعه دهنده با پایتون و جنگو"
 
-#: templates/home.html:98
+#: templates/home.html:101
 msgid ""
 "I develop small size websites with Python and Django in back-end and enhance"
 " them with HTML, CSS, Bootstrap and JavaScript in front-end. Then I publish "
@@ -1418,49 +1446,49 @@ msgstr ""
 " HTML و CSS، بوتسترپ و جاوااسکریپت در فرانت اند، توسعه می‌دهم. سپس این "
 "وب‌سایت‌ها را بر روی سرور‌های لینوکسی منتشر می‌کنم"
 
-#: templates/home.html:100
+#: templates/home.html:103
 msgid "Some of the projects"
 msgstr "برخی از پروژه‌ها"
 
-#: templates/home.html:102
+#: templates/home.html:105
 msgid "A mini online shop now change to this site (as developer)"
 msgstr ""
 "یک فروشگاه آنلاین کوچک که الان به وب‌سایت فعلی تغییر کرده (به عنوان توسعه "
 "دهنده)"
 
-#: templates/home.html:103
+#: templates/home.html:106
 msgid "An Online marketplace for interior products (as project manager)"
 msgstr "یک مارکت پلیس برای محصولات دکوراسیون داخلی (به عنوان مدیر پروژه)"
 
-#: templates/home.html:104
+#: templates/home.html:107
 msgid "cooking weblog (as content manager and photographer)"
 msgstr "وبلاگ آشپزی (به عنوان مدیر محتوا و عکاس)"
 
-#: templates/home.html:105
+#: templates/home.html:108
 msgid "One of the biggest chain confectionery in Iran (as project manager)"
 msgstr "وبسایت یک قنادی زنجیره‌ای (مدیر پروژه وب‌سایت)"
 
-#: templates/home.html:106
+#: templates/home.html:109
 msgid "A platform for disabled job seekers (as project manager)"
 msgstr "یک پلتفرم برای کاریابی معلولان (مدیر پروژه وب‌سایت)"
 
-#: templates/home.html:107
+#: templates/home.html:110
 msgid "Company website (as developer)"
 msgstr "وبسایت شرکتی (به عنوان برنامه‌نویس)"
 
-#: templates/home.html:108
+#: templates/home.html:111
 msgid "A website for hand-made leather products (as developer)"
 msgstr "وب‌سایت برای کالای دست دوز چرمی (به عنوان برنامه نویس)"
 
-#: templates/home.html:112
+#: templates/home.html:115
 msgid "Voluntary Jobs"
 msgstr "فعالیت‌های داوطلبانه"
 
-#: templates/home.html:113
+#: templates/home.html:116
 msgid "Django Girls"
 msgstr "جنگو گرلز"
 
-#: templates/home.html:114
+#: templates/home.html:117
 msgid ""
 "is a non-profit organization to help people to organize free, one-day "
 "programming workshop."
@@ -1468,11 +1496,11 @@ msgstr ""
 "یک موسسه خیریه غیر انتفاعی است که به برگزاری کارگاه‌های رایگان و یک روزه "
 "آموزش برنامه نویسی کمک می‌کند."
 
-#: templates/home.html:116
+#: templates/home.html:119
 msgid "I was responsible for the first Django Girls workshop in Tehran"
 msgstr "من مسول برگزاری اولین کارگاه جنگو گرلز در تهران بودم"
 
-#: templates/home.html:118
+#: templates/home.html:121
 msgid "Now responsible for Farsi translation of Django Girls tutorial"
 msgstr "هم‌اکنون مسول ترجمه بخش فارسی دوره آموزشی جنگو گرلز هستم"
 
@@ -1625,7 +1653,12 @@ msgstr "هیچ‌مکانی نزدیک به این موقعیت پیدا نشد"
 msgid "Direction"
 msgstr "جهت‌یابی"
 
-#: templates/restaurants/res_home.html:196
+#: templates/restaurants/res_home.html:176
+#| msgid "Average Score"
+msgid "Overal score"
+msgstr "امتیاز کلی"
+
+#: templates/restaurants/res_home.html:232
 msgid "There is not any results"
 msgstr "نتیجه‌ای وجود ندارد"
 

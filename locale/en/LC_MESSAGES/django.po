@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-11 11:24+0330\n"
+"POT-Creation-Date: 2025-12-11 11:54+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,7 +73,7 @@ msgstr ""
 msgid "Transaction date"
 msgstr ""
 
-#: accounting/models.py:152 contacts/forms.py:16
+#: accounting/models.py:152 contacts/forms.py:16 projects/models.py:37
 #: templates/accounting/_transactions_list.html:8
 #: templates/restaurants/review_details.html:31
 msgid "Description"
@@ -231,7 +231,9 @@ msgstr ""
 msgid "DOCS"
 msgstr ""
 
-#: blog/models.py:116 blog/models.py:154 templates/quizes/question_list.html:56
+#: blog/models.py:116 blog/models.py:154 projects/models.py:53
+#: templates/projects/_project_card.html:19
+#: templates/quizes/question_list.html:56
 msgid "Link"
 msgstr ""
 
@@ -255,7 +257,8 @@ msgstr ""
 msgid "Rank"
 msgstr ""
 
-#: blog/models.py:175 restaurants/models.py:114 restaurants/models.py:161
+#: blog/models.py:175 projects/models.py:64 restaurants/models.py:114
+#: restaurants/models.py:161
 msgid "Active"
 msgstr ""
 
@@ -300,11 +303,11 @@ msgstr ""
 msgid "Thanks a lot, Your message is registered and I will contact you"
 msgstr ""
 
-#: core/settings/base.py:145
+#: core/settings/base.py:148
 msgid "English"
 msgstr ""
 
-#: core/settings/base.py:146
+#: core/settings/base.py:149
 msgid "Farsi"
 msgstr ""
 
@@ -315,6 +318,22 @@ msgstr ""
 
 #: generals/views.py:83
 msgid "No Access"
+msgstr ""
+
+#: projects/models.py:22 projects/models.py:49
+msgid "Slug"
+msgstr ""
+
+#: projects/models.py:58
+msgid "Cover image"
+msgstr ""
+
+#: projects/models.py:89
+msgid "Alt image"
+msgstr ""
+
+#: projects/views.py:19
+msgid "Project"
 msgstr ""
 
 #: quizes/models.py:15
@@ -690,10 +709,11 @@ msgid "Contact me"
 msgstr ""
 
 #: templates/_navbar.html:20 templates/home.html:60
+#: templates/projects/projects.html:12
 msgid "Projects"
 msgstr ""
 
-#: templates/_navbar.html:23 templates/home.html:94 templates/home.html:110
+#: templates/_navbar.html:23 templates/home.html:97 templates/home.html:113
 msgid "Resume"
 msgstr ""
 
@@ -1333,7 +1353,7 @@ msgstr ""
 
 #: templates/home.html:82
 msgid ""
-"Computer museum is the first Itan computer museum and the website has "
+"Computer museum is the first Iran computer museum and the website has "
 "Exhibition, Timeline, Science Tour and Oral History project"
 msgstr ""
 
@@ -1343,68 +1363,72 @@ msgid ""
 "record keeping"
 msgstr ""
 
-#: templates/home.html:96
+#: templates/home.html:91
+msgid "Other projects"
+msgstr ""
+
+#: templates/home.html:99
 msgid "Rahim Aghareb (1979) Python/Django developer"
 msgstr ""
 
-#: templates/home.html:98
+#: templates/home.html:101
 msgid ""
 "I develop small size websites with Python and Django in back-end and enhance "
 "them with HTML, CSS, Bootstrap and JavaScript in front-end. Then I publish "
 "them on Linux VPS"
 msgstr ""
 
-#: templates/home.html:100
+#: templates/home.html:103
 msgid "Some of the projects"
 msgstr ""
 
-#: templates/home.html:102
+#: templates/home.html:105
 msgid "A mini online shop now change to this site (as developer)"
 msgstr ""
 
-#: templates/home.html:103
+#: templates/home.html:106
 msgid "An Online marketplace for interior products (as project manager)"
 msgstr ""
 
-#: templates/home.html:104
+#: templates/home.html:107
 msgid "cooking weblog (as content manager and photographer)"
 msgstr ""
 
-#: templates/home.html:105
+#: templates/home.html:108
 msgid "One of the biggest chain confectionery in Iran (as project manager)"
 msgstr ""
 
-#: templates/home.html:106
+#: templates/home.html:109
 msgid "A platform for disabled job seekers (as project manager)"
 msgstr ""
 
-#: templates/home.html:107
+#: templates/home.html:110
 msgid "Company website (as developer)"
 msgstr ""
 
-#: templates/home.html:108
+#: templates/home.html:111
 msgid "A website for hand-made leather products (as developer)"
 msgstr ""
 
-#: templates/home.html:112
+#: templates/home.html:115
 msgid "Voluntary Jobs"
 msgstr ""
 
-#: templates/home.html:113
+#: templates/home.html:116
 msgid "Django Girls"
 msgstr ""
 
-#: templates/home.html:114
+#: templates/home.html:117
 msgid ""
 "is a non-profit organization to help people to organize free, one-day "
 "programming workshop."
 msgstr ""
 
-#: templates/home.html:116
+#: templates/home.html:119
 msgid "I was responsible for the first Django Girls workshop in Tehran"
 msgstr ""
 
-#: templates/home.html:118
+#: templates/home.html:121
 msgid "Now responsible for Farsi translation of Django Girls tutorial"
 msgstr ""
 
@@ -1554,7 +1578,11 @@ msgstr ""
 msgid "Direction"
 msgstr ""
 
-#: templates/restaurants/res_home.html:196
+#: templates/restaurants/res_home.html:176
+msgid "Overal score"
+msgstr ""
+
+#: templates/restaurants/res_home.html:232
 msgid "There is not any results"
 msgstr ""
 
