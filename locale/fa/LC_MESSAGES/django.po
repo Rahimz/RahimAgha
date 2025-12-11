@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-11 11:54+0330\n"
-"PO-Revision-Date: 2025-12-11 11:55+0330\n"
+"POT-Creation-Date: 2025-12-11 14:05+0330\n"
+"PO-Revision-Date: 2025-12-11 14:06+0330\n"
 "Last-Translator:   <rahim.aghareb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -74,7 +74,7 @@ msgstr "تراز حساب"
 msgid "Transaction date"
 msgstr "تاریخ تراکنیش"
 
-#: accounting/models.py:152 contacts/forms.py:16 projects/models.py:37
+#: accounting/models.py:152 contacts/forms.py:16 projects/models.py:140
 #: templates/accounting/_transactions_list.html:8
 #: templates/restaurants/review_details.html:31
 msgid "Description"
@@ -205,8 +205,8 @@ msgstr "نقش"
 msgid "Parent category"
 msgstr "دسته‌بندی والد"
 
-#: blog/models.py:19 restaurants/models.py:32 restaurants/models.py:62
-#: restaurants/models.py:157 videos/models.py:18
+#: blog/models.py:19 projects/models.py:100 restaurants/models.py:32
+#: restaurants/models.py:62 restaurants/models.py:157 videos/models.py:18
 msgid "Name"
 msgstr "نام"
 
@@ -215,7 +215,7 @@ msgstr "نام"
 msgid "Category"
 msgstr "دسته‌بندی"
 
-#: blog/models.py:110 blog/models.py:121
+#: blog/models.py:110 blog/models.py:121 projects/models.py:61
 #: templates/accounting/bank_accounts_list.html:23
 msgid "Title"
 msgstr "عنوان"
@@ -232,8 +232,8 @@ msgstr "کد"
 msgid "DOCS"
 msgstr "مستندات"
 
-#: blog/models.py:116 blog/models.py:154 projects/models.py:53
-#: templates/projects/_project_card.html:19
+#: blog/models.py:116 blog/models.py:154 projects/models.py:86
+#: projects/models.py:156 templates/projects/_project_card.html:40
 #: templates/quizes/question_list.html:56
 msgid "Link"
 msgstr "لینک‌"
@@ -258,7 +258,7 @@ msgstr "فایل"
 msgid "Rank"
 msgstr "رتبه"
 
-#: blog/models.py:175 projects/models.py:64 restaurants/models.py:114
+#: blog/models.py:175 projects/models.py:175 restaurants/models.py:114
 #: restaurants/models.py:161
 msgid "Active"
 msgstr "فعال"
@@ -321,21 +321,36 @@ msgstr "خانه"
 msgid "No Access"
 msgstr "دسترسی وجود ندارد"
 
-#: projects/models.py:22 projects/models.py:49
+#: projects/models.py:77
+msgid "First name"
+msgstr "نام"
+
+#: projects/models.py:81
+#| msgid "Bank name"
+msgid "Last name"
+msgstr "نام خانوادگی"
+
+#: projects/models.py:123 projects/models.py:152
 msgid "Slug"
 msgstr "نامک"
 
-#: projects/models.py:58
+#: projects/models.py:161
 msgid "Cover image"
 msgstr "تصویر جلد"
 
-#: projects/models.py:89
-#| msgid "Receipt image"
+#: projects/models.py:168 templates/projects/_project_card.html:19
+msgid "Colleagues"
+msgstr "همکاران"
+
+#: projects/models.py:172
+msgid "Tech Stack"
+msgstr "استک فنی"
+
+#: projects/models.py:200
 msgid "Alt image"
 msgstr "آلترناتیو تصویر"
 
-#: projects/views.py:19
-#| msgid "Projects"
+#: projects/views.py:20
 msgid "Project"
 msgstr "پروژه"
 
@@ -1409,9 +1424,6 @@ msgid "Website"
 msgstr "وبسایت"
 
 #: templates/home.html:82
-#| msgid ""
-#| "Computer museum is the first Itan computer museum and the website has "
-#| "Exhibition, Timeline, Science Tour and Oral History project"
 msgid ""
 "Computer museum is the first Iran computer museum and the website has "
 "Exhibition, Timeline, Science Tour and Oral History project"
@@ -1428,7 +1440,6 @@ msgstr ""
 "پشتیبانی می‌کند"
 
 #: templates/home.html:91
-#| msgid "Some of the projects"
 msgid "Other projects"
 msgstr "سایر پروژه‌ها"
 
@@ -1503,6 +1514,10 @@ msgstr "من مسول برگزاری اولین کارگاه جنگو گرلز �
 #: templates/home.html:121
 msgid "Now responsible for Farsi translation of Django Girls tutorial"
 msgstr "هم‌اکنون مسول ترجمه بخش فارسی دوره آموزشی جنگو گرلز هستم"
+
+#: templates/projects/_project_card.html:32
+msgid "Tech stacks"
+msgstr "استک‌های فنی"
 
 #: templates/quizes/my_quiz.html:13 templates/quizes/my_quiz_proccess.html:13
 #: templates/quizes/show_results.html:47
@@ -1654,7 +1669,6 @@ msgid "Direction"
 msgstr "جهت‌یابی"
 
 #: templates/restaurants/res_home.html:176
-#| msgid "Average Score"
 msgid "Overal score"
 msgstr "امتیاز کلی"
 

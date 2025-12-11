@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-11 11:54+0330\n"
+"POT-Creation-Date: 2025-12-11 14:05+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,7 +73,7 @@ msgstr ""
 msgid "Transaction date"
 msgstr ""
 
-#: accounting/models.py:152 contacts/forms.py:16 projects/models.py:37
+#: accounting/models.py:152 contacts/forms.py:16 projects/models.py:140
 #: templates/accounting/_transactions_list.html:8
 #: templates/restaurants/review_details.html:31
 msgid "Description"
@@ -204,8 +204,8 @@ msgstr ""
 msgid "Parent category"
 msgstr ""
 
-#: blog/models.py:19 restaurants/models.py:32 restaurants/models.py:62
-#: restaurants/models.py:157 videos/models.py:18
+#: blog/models.py:19 projects/models.py:100 restaurants/models.py:32
+#: restaurants/models.py:62 restaurants/models.py:157 videos/models.py:18
 msgid "Name"
 msgstr ""
 
@@ -214,7 +214,7 @@ msgstr ""
 msgid "Category"
 msgstr ""
 
-#: blog/models.py:110 blog/models.py:121
+#: blog/models.py:110 blog/models.py:121 projects/models.py:61
 #: templates/accounting/bank_accounts_list.html:23
 msgid "Title"
 msgstr ""
@@ -231,8 +231,8 @@ msgstr ""
 msgid "DOCS"
 msgstr ""
 
-#: blog/models.py:116 blog/models.py:154 projects/models.py:53
-#: templates/projects/_project_card.html:19
+#: blog/models.py:116 blog/models.py:154 projects/models.py:86
+#: projects/models.py:156 templates/projects/_project_card.html:40
 #: templates/quizes/question_list.html:56
 msgid "Link"
 msgstr ""
@@ -257,7 +257,7 @@ msgstr ""
 msgid "Rank"
 msgstr ""
 
-#: blog/models.py:175 projects/models.py:64 restaurants/models.py:114
+#: blog/models.py:175 projects/models.py:175 restaurants/models.py:114
 #: restaurants/models.py:161
 msgid "Active"
 msgstr ""
@@ -320,19 +320,35 @@ msgstr ""
 msgid "No Access"
 msgstr ""
 
-#: projects/models.py:22 projects/models.py:49
+#: projects/models.py:77
+msgid "First name"
+msgstr ""
+
+#: projects/models.py:81
+msgid "Last name"
+msgstr ""
+
+#: projects/models.py:123 projects/models.py:152
 msgid "Slug"
 msgstr ""
 
-#: projects/models.py:58
+#: projects/models.py:161
 msgid "Cover image"
 msgstr ""
 
-#: projects/models.py:89
+#: projects/models.py:168 templates/projects/_project_card.html:19
+msgid "Colleagues"
+msgstr ""
+
+#: projects/models.py:172
+msgid "Tech Stack"
+msgstr ""
+
+#: projects/models.py:200
 msgid "Alt image"
 msgstr ""
 
-#: projects/views.py:19
+#: projects/views.py:20
 msgid "Project"
 msgstr ""
 
@@ -1430,6 +1446,10 @@ msgstr ""
 
 #: templates/home.html:121
 msgid "Now responsible for Farsi translation of Django Girls tutorial"
+msgstr ""
+
+#: templates/projects/_project_card.html:32
+msgid "Tech stacks"
 msgstr ""
 
 #: templates/quizes/my_quiz.html:13 templates/quizes/my_quiz_proccess.html:13
