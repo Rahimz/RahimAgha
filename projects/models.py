@@ -166,6 +166,7 @@ class Project(TranslatableModel, TimeStampedModel):
     colleagues = models.ManyToManyField(        
         Colleague,
         verbose_name=_("Colleagues"),
+        blank=True
     )
     stacks = models.ManyToManyField(
         Stack,
