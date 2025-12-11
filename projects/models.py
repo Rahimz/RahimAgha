@@ -172,6 +172,10 @@ class Project(TranslatableModel, TimeStampedModel):
         Stack,
         verbose_name=_("Tech Stack"),
     )
+    rank = models.PositiveSmallIntegerField(
+        _("Rank"),
+        default=1
+    )
     active = models.BooleanField(
         _("Active"),
         default=True
@@ -181,9 +185,13 @@ class Project(TranslatableModel, TimeStampedModel):
         unique=True,
         editable=False,
     )
+    
     objects = TranslatableManager()
     actives = ActiveManagerTranslatable()
     
+    class Meta:
+        ordering = ('rank',)
+        
     def __str__(self):
         return self.safe_translation_getter('name', str(self.name))
     

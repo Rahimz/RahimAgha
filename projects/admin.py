@@ -13,8 +13,10 @@ class ImageInline(admin.StackedInline):
     
 @admin.register(Project)
 class ProjectAdmin(TranslatableAdmin):
-    list_display = ['name', 'category',  'uuid', 'active']
+    list_display = ['name', 'category',  'uuid', 'rank', 'active']
+    list_filter = ['category']
     readonly_fields = ['uuid']
+    list_editable = ['rank']
     
     inlines = [ImageInline]
 
