@@ -35,7 +35,7 @@ def generate_unique_random_number():
 @staff_member_required
 def AiView(request):
     context = dict(
-        page_title = ('ai test')
+        page_title = _('ai test')
     )
     all_messages = None
     ai_message = None
@@ -135,7 +135,7 @@ def AiCreateNewChatView(request, chat_id=None):
                 try:
                     # just work with image for now
                     # Get the MIME type (e.g., 'image/png', 'application/pdf')
-                    mime_type, _ = mimetypes.guess_type(uploaded_file.name)
+                    mime_type, x = mimetypes.guess_type(uploaded_file.name)
                     if not mime_type:
                         # Provide a fallback if MIME type can't be guessed
                         mime_type = "application/octet-stream"
