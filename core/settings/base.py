@@ -97,6 +97,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'generals.context_processors.hreflang_alternates',
             ],
         },
     },
@@ -145,8 +146,8 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en'
 
 LANGUAGES = (
-    ('en', _('English')),
     ('fa', _('Farsi')),
+    ('en', _('English')),
 )
 # https://docs.djangoproject.com/en/3.0/ref/settings/#globalization-i18n-l10n
 LOCALE_PATHS = (

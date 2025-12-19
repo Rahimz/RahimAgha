@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-11 14:05+0330\n"
+"POT-Creation-Date: 2025-12-19 10:10+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -253,11 +253,11 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-#: blog/models.py:169
+#: blog/models.py:169 projects/models.py:176
 msgid "Rank"
 msgstr ""
 
-#: blog/models.py:175 projects/models.py:175 restaurants/models.py:114
+#: blog/models.py:175 projects/models.py:180 restaurants/models.py:114
 #: restaurants/models.py:161
 msgid "Active"
 msgstr ""
@@ -303,12 +303,12 @@ msgstr ""
 msgid "Thanks a lot, Your message is registered and I will contact you"
 msgstr ""
 
-#: core/settings/base.py:148
-msgid "English"
-msgstr ""
-
 #: core/settings/base.py:149
 msgid "Farsi"
+msgstr ""
+
+#: core/settings/base.py:150
+msgid "English"
 msgstr ""
 
 #: generals/views.py:19 templates/404.html:17 templates/500.html:17
@@ -340,11 +340,11 @@ msgstr ""
 msgid "Colleagues"
 msgstr ""
 
-#: projects/models.py:172
+#: projects/models.py:173
 msgid "Tech Stack"
 msgstr ""
 
-#: projects/models.py:200
+#: projects/models.py:209
 msgid "Alt image"
 msgstr ""
 
@@ -702,6 +702,17 @@ msgstr ""
 
 #: templates/500.html:16
 msgid "There is an error in our server! Please try later or contact admins."
+msgstr ""
+
+#: templates/_base.html:11
+msgid ""
+"I am a software designer and developer. I have more than 10 years experience "
+"in website design and now I am developing web-applications based on django "
+"and python."
+msgstr ""
+
+#: templates/_base.html:35 templates/_base.html:95
+msgid "RahimAgha"
 msgstr ""
 
 #: templates/_footer.html:8
