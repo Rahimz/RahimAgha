@@ -11,6 +11,26 @@
         <div class="col">
             <div class="d-flex align-items-center justify-content-between">
                 <h1>{% trans "My Favorite places" %}</h1>
+                
+                {% if LANGUAGE_CODE == 'en' %}
+                    <form action="{% url 'set_language' %}" method="post" class="me-2">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}">
+                        <input name="language" type="hidden" value="fa">
+                        <a href="#" onclick="this.closest('form').submit();" class="nav-link text-muted">fa</a>
+                    </form>
+                    {% elif LANGUAGE_CODE == 'fa' %}
+                    <form action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}">
+                        <input name="language" type="hidden" value="en">
+                        <a href="#" onclick="this.closest('form').submit();" class="nav-link  text-muted">en</a>
+                    </form>
+                {% endif %}
+                
+                <a class="navbar-brand" href="{% url 'generals:home' %}">
+                    <img src="{% static 'img/rahimagha_logo_sq.png' %}" alt="RahimAgha logo" width="70px" height="auto">
+                </a>
             </div>
         </div>
     </div>
