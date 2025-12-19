@@ -76,9 +76,10 @@ def AiView(request):
 @login_required
 @ai_access_required
 def AiCreateNewChatView(request, chat_id=None):
+    chats = Chat.objects.select_related('user').prefetch_related('messages').filter(user=request.user)
     context = dict(
         page_title = 'create ai chat',
-        chats=Chat.objects.filter(user=request.user).order_by('-id'),
+        chats=chats,
     )
     all_messages = None
     ai_message = []
@@ -89,8 +90,9 @@ def AiCreateNewChatView(request, chat_id=None):
      
     if chat_id:
         try:
-            chat=get_object_or_404(Chat, chat_id=chat_id, user=request.user)
-            all_messages = Message.objects.filter(chat=chat).order_by('created')
+            chat=chats.get(chat_id=chat_id)
+            all_messages = chat.messages.all()
+            
             for item in all_messages:
                 ai_message.append({"role": item.role, "content": item.content})            
             last_message_id = all_messages.last().id
@@ -245,6 +247,19 @@ def AiCreateNewChatView(request, chat_id=None):
         'ai/ai_chat.html',
         context
     )
+
+
+@staff_member_required
+def EditPromptView(request, message_id):
+    message = get_object_or_404(Message, id= message_id)
+    chat = message.chat
+    print(':'* 30)
+    print(message.id)
+    message_ids = list(chat.messages.all().values_list('id', flat=True))
+    print(message_ids)
+    print(message_ids.index(message.id))
+    return redirect('ai:ai_continue_chat', chat.chat_id)
+
 
 @staff_member_required
 def AiModelsListView(request):

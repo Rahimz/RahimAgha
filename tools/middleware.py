@@ -104,7 +104,7 @@ class QueryCountDebugMiddleware(MiddlewareMixin):
         # Count occurrences of each query
         query_frequency = defaultdict(int)
         for query in queries:
-            print(query['sql'])
+            # print(query['sql'])
             query_frequency[query['sql']] += 1
 
         duplicated_queries = {sql: count for sql, count in query_frequency.items() if count > 1}

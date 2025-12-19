@@ -1,7 +1,5 @@
 {% extends "_base.html" %}
-{% load crispy_forms_tags %}
-{% load markdown_extras %} 
-
+{% load crispy_forms_tags markdown_extras static %}
 {% block content %}
 <div class="container text-light">
     <div class="row">
@@ -40,7 +38,7 @@
 
                     <div >
                         {% if message.role == 'user' %}                            
-
+                        <a href="{% url 'ai:ai_edit_prompt' message.id %}"><img src="{% static 'img/edit.png' %}" alt="edit icon" width="24px" height="auto"></a>
                         {{ message.content|linebreaksbr|truncatechars:700 }}
                         
                         {% if message.file %}

@@ -91,6 +91,9 @@ class Chat(TimeStampedModel):
     output_token = models.IntegerField(_("Output token"))
     total_token = models.IntegerField(_("Total token"))
 
+    class Meta:
+        ordering = ('-created',)
+        
     def __str__(self):
         return self.chat_id
     
@@ -136,6 +139,9 @@ class Message(TimeStampedModel):
         blank=True
     )
     
+    class Meta:
+        ordering = ('created',)
+        
     def __str__(self):
         return str(self.id)
     
