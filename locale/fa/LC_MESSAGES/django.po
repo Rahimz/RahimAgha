@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-19 11:25+0330\n"
-"PO-Revision-Date: 2025-12-19 11:28+0330\n"
+"POT-Creation-Date: 2025-12-19 17:45+0330\n"
+"PO-Revision-Date: 2025-12-19 17:46+0330\n"
 "Last-Translator:   <rahim.aghareb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -165,41 +165,61 @@ msgstr "توکن خروجی"
 msgid "Total token"
 msgstr "مجموع توکن"
 
-#: ai/models.py:103 restaurants/models.py:246
+#: ai/models.py:106 restaurants/models.py:246
 msgid "User"
 msgstr "کاربر"
 
-#: ai/models.py:104
+#: ai/models.py:107
 msgid "Assistant"
 msgstr "دستیار"
 
-#: ai/models.py:107
+#: ai/models.py:110
 msgid "Not Applied"
 msgstr "تعیین‌نشده"
 
-#: ai/models.py:108 blog/models.py:115
+#: ai/models.py:111 blog/models.py:115
 msgid "Image"
 msgstr "تصویر"
 
-#: ai/models.py:109
+#: ai/models.py:112
 msgid "Audio"
 msgstr "صدا"
 
-#: ai/models.py:110
+#: ai/models.py:113
 msgid "Video"
 msgstr "ویدئو"
 
-#: ai/models.py:111
+#: ai/models.py:114
 msgid "Document"
 msgstr "مستند"
 
-#: ai/models.py:112 blog/models.py:113
+#: ai/models.py:115 blog/models.py:113
 msgid "PDF"
 msgstr "پی‌دی‌اف"
 
-#: ai/models.py:120
+#: ai/models.py:123
 msgid "Role"
 msgstr "نقش"
+
+#: ai/views.py:82
+msgid "AI chat"
+msgstr "چت AI"
+
+#: ai/views.py:277
+msgid "ai models list"
+msgstr "لیست مدل‌های AI"
+
+#: ai/views.py:304
+msgid "add ai model"
+msgstr "اضافه کردن مدل AI"
+
+#: ai/views.py:344
+msgid "AI Image Chat"
+msgstr "چت تصویری AI"
+
+#: ai/views.py:449
+msgid "AI Chats list"
+msgstr "لیست چت‌های AI"
 
 #: blog/models.py:13
 msgid "Parent category"
@@ -284,8 +304,6 @@ msgid "The blog of Rahim Agha website"
 msgstr "وبلاگ وبسایت رحیم اقا"
 
 #: bookstore/views.py:13
-#| msgid ""
-#| "The bookstore solution is an online sulotin for anyone who sells books"
 msgid "Damavand bookstore solution is an online app for managing a book store"
 msgstr "راهکار کتاب‌فروشی یک نرم‌افزار آنلاین برای مدیریت کتاب‌فروشی است"
 
@@ -465,7 +483,6 @@ msgid "The page for answering book quiz questions"
 msgstr "صفحه پاسخ به سوالات آزمون کتاب"
 
 #: quizes/views.py:280
-#| msgid "Welcome to book quiz"
 msgid "The result of Book quiz"
 msgstr "نتیجه آزمون کتاب"
 

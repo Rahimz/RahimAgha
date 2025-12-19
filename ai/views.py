@@ -13,6 +13,7 @@ from openai import OpenAI
 from django.core.files.base import ContentFile
 import random
 from django.db.models import Count, Case, When, IntegerField, Q
+from django.utils.translation import gettext_lazy as _
 
 from accounts.permissions import ai_access_required
 from .forms import ChatForm, ChatModelForm, CreateChatModelForm
@@ -34,7 +35,7 @@ def generate_unique_random_number():
 @staff_member_required
 def AiView(request):
     context = dict(
-        page_title = 'ai'
+        page_title = ('ai test')
     )
     all_messages = None
     ai_message = None
@@ -78,7 +79,7 @@ def AiView(request):
 def AiCreateNewChatView(request, chat_id=None):
     chats = Chat.objects.select_related('user').prefetch_related('messages').filter(user=request.user)
     context = dict(
-        page_title = 'create ai chat',
+        page_title = _('AI chat'),
         chats=chats,
     )
     all_messages = None
@@ -273,7 +274,7 @@ def AiModelsListView(request):
     sorted_data = sorted(data, key=lambda item: (item.get('min_tier'), item.get('owned_by', '')))
     
     context = dict(
-        page_title = 'ai models list',
+        page_title = _('ai models list'),
         models_added=ChatModel.objects.all().values_list('name', flat=True),
         sorted_data=sorted_data,
     )
@@ -300,7 +301,7 @@ def AiModelAddView(request):
         form = CreateChatModelForm()
     
     context = dict(
-        page_title = 'add ai model',
+        page_title = _('add ai model'),
         form=form,
     )
     return render(
@@ -340,7 +341,7 @@ def generate_image(prompt, chat):
 @ai_access_required
 def AiImageView(request, chat_id=None):
     context = {
-        'page_title': 'AI Chat',
+        'page_title': _('AI Image Chat'),
         'chats': Chat.objects.filter(user=request.user).order_by('-id'),
     }
 
@@ -445,7 +446,7 @@ def ChatListView(request):
         chats = chats.filter(messages__content__icontains=query.strip())
     
     context = dict(        
-        page_title= 'AI Chats list',
+        page_title= _('AI Chats list'),
         chats= chats,
         query=query,
     )

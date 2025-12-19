@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-19 11:25+0330\n"
+"POT-Creation-Date: 2025-12-19 17:45+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -164,40 +164,60 @@ msgstr ""
 msgid "Total token"
 msgstr ""
 
-#: ai/models.py:103 restaurants/models.py:246
+#: ai/models.py:106 restaurants/models.py:246
 msgid "User"
 msgstr ""
 
-#: ai/models.py:104
+#: ai/models.py:107
 msgid "Assistant"
 msgstr ""
 
-#: ai/models.py:107
+#: ai/models.py:110
 msgid "Not Applied"
 msgstr ""
 
-#: ai/models.py:108 blog/models.py:115
+#: ai/models.py:111 blog/models.py:115
 msgid "Image"
 msgstr ""
 
-#: ai/models.py:109
+#: ai/models.py:112
 msgid "Audio"
 msgstr ""
 
-#: ai/models.py:110
+#: ai/models.py:113
 msgid "Video"
 msgstr ""
 
-#: ai/models.py:111
+#: ai/models.py:114
 msgid "Document"
 msgstr ""
 
-#: ai/models.py:112 blog/models.py:113
+#: ai/models.py:115 blog/models.py:113
 msgid "PDF"
 msgstr ""
 
-#: ai/models.py:120
+#: ai/models.py:123
 msgid "Role"
+msgstr ""
+
+#: ai/views.py:82
+msgid "AI chat"
+msgstr ""
+
+#: ai/views.py:277
+msgid "ai models list"
+msgstr ""
+
+#: ai/views.py:304
+msgid "add ai model"
+msgstr ""
+
+#: ai/views.py:344
+msgid "AI Image Chat"
+msgstr ""
+
+#: ai/views.py:449
+msgid "AI Chats list"
 msgstr ""
 
 #: blog/models.py:13
