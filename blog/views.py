@@ -70,7 +70,8 @@ def BlogPostView(request, slug, attach_type=None):
         attachments=attachments,
         dict_form=dict_form,
         attach_type=attach_type,
-        form=form
+        form=form,
+        meta_description=_("Blog post:") + f" {post.title}",
     )
     return render(
         request,
@@ -84,7 +85,8 @@ def BlogPostListView(request):
     posts = Post.actives.filter(published=True)
     context = dict(
         page_title=_("Blog"),
-        posts=posts
+        posts=posts,
+        meta_description=_("The blog of Rahim Agha website"),
     )
     return render(
         request,

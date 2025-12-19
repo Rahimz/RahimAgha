@@ -155,14 +155,15 @@ def MyQuizView(request, pk=None):
         return redirect ('quizes:my_quiz_proccess', quiz.pk, 1)
     
 
-        
+    context = dict(
+        meta_description=_("A simple and experimental quiz about books"),
+        page_title= _('My quiz'),
+        quiz= quiz,
+    ) 
     return render(
         request,
         'quizes/my_quiz.html',
-        {
-            'page_title': _('My quiz'),
-            'quiz': quiz ,
-        }
+        context
     )
 
 
@@ -218,18 +219,19 @@ def NewMyQuizProccessView(request, quiz_pk, step=1, error=None):
         else:
             return redirect ('quizes:my_quiz_result', quiz.pk)
 
+    context = dict(
+        page_title= _('My quiz'),
+        quiz= quiz,
+        question= question,
+        answers= answers,
+        step= step, 
+        required_ms= required_msg,
+        meta_description=_("The page for answering book quiz questions"),
+    )
     return render(
         request,
         'quizes/my_quiz_proccess.html',
-        {
-            'page_title': _('My quiz'),
-            'quiz': quiz,
-            'question': question,
-            'answers': answers,
-            'step': step, 
-            'required_msg': required_msg,
-           
-        }
+        context
     )
 
 
@@ -274,17 +276,19 @@ def QuizResultView(request, pk):
     compliment = random.sample(compliment_qs, 1)
     if len(compliment) > 0:
         compliment = compliment[0]
+    context = dict(
+        meta_description=_("The result of Book quiz"),
+        quiz= quiz,
+        page_title= _('Quiz results'),
+        responses= responses,
+        responses_dict= responses_dict,
+        sum= sum, 
+        compliment= compliment, 
+    )
     return render(
         request,
         'quizes/show_results.html',
-        {
-            'quiz': quiz,
-            'page_title': _('Quiz results'),
-            'responses': responses,
-            'responses_dict': responses_dict,
-            'sum': sum, 
-            'compliment': compliment, 
-        }
+        context
     )
 
 

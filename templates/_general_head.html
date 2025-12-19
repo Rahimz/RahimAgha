@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="description" content="{% block meta_description %}{% trans 'I am a software designer and developer. I have more than 10 years experience in website design and now I am developing web-applications based on django and python.' %}{% endblock meta_description %}">
+<meta name="description" content="{% if meta_description %}{{ meta_description }}{% else %}{% trans 'I am a software designer and developer. I have more than 10 years experience in website design and now I am developing web-applications based on django and python.' %}{% endif %}">
 <!-- favicon -->
 <link rel="apple-touch-icon" sizes="57x57" href="{% static 'icon/apple-icon-57x57.png' %}">
 <link rel="apple-touch-icon" sizes="60x60" href="{% static 'icon/apple-icon-60x60.png' %}">
@@ -73,4 +73,4 @@
 
 {% block head %}{% endblock %}
 
-<title>{% block title %}{% endblock title %}{% if page_title %} | {% endif %}{% trans "RahimAgha" %}</title>
+<title>{% block title %}{{ page_title }}{% endblock title %}{% if page_title %} | {% endif %}{% trans "RahimAgha" %}</title>

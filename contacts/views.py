@@ -66,13 +66,16 @@ def contacts(request):
                     })
     else:
         form = ContactForm()
+        
+    context = dict(
+        form= form,
+        page_title= page_title,
+        require= require,
+        mainNavSection= mainNavSection,
+        meta_description=_("Contact form to send feedbacks")
+    )
     return render (
         request, 
         'contacts/contacts.html',
-        {
-            'form': form,
-            'page_title': page_title,
-            'require': require,
-            'mainNavSection': mainNavSection,
-        }
+        context
     )

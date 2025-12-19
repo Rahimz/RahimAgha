@@ -61,6 +61,7 @@ def ResHomeView(request):
         categories=categories,
         selected_lat=lat,
         selected_lon=lon,
+        meta_description=_("The favorite places is a side project whihch I list my favorite restaurants and cafes")
     )
     return render(
         request,

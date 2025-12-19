@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-19 10:10+0330\n"
-"PO-Revision-Date: 2025-12-19 10:11+0330\n"
+"POT-Creation-Date: 2025-12-19 11:25+0330\n"
+"PO-Revision-Date: 2025-12-19 11:28+0330\n"
 "Last-Translator:   <rahim.aghareb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -211,7 +211,7 @@ msgid "Name"
 msgstr "نام"
 
 #: blog/models.py:46 restaurants/models.py:44
-#: templates/restaurants/res_home.html:21
+#: templates/restaurants/res_home.html:41
 msgid "Category"
 msgstr "دسته‌بندی"
 
@@ -271,11 +271,25 @@ msgstr "شما مجوز دسترسی ندارید"
 msgid "Attachment added"
 msgstr "ضمیمه اضافه شد"
 
-#: blog/views.py:86 templates/bookstore/static_bookstore.html:71
+#: blog/views.py:74
+msgid "Blog post:"
+msgstr "پست وبلاگ؛"
+
+#: blog/views.py:87 templates/bookstore/static_bookstore.html:71
 msgid "Blog"
 msgstr "وبلاگ"
 
-#: bookstore/views.py:13 templates/bookstore/bookstore.html:9
+#: blog/views.py:89
+msgid "The blog of Rahim Agha website"
+msgstr "وبلاگ وبسایت رحیم اقا"
+
+#: bookstore/views.py:13
+#| msgid ""
+#| "The bookstore solution is an online sulotin for anyone who sells books"
+msgid "Damavand bookstore solution is an online app for managing a book store"
+msgstr "راهکار کتاب‌فروشی یک نرم‌افزار آنلاین برای مدیریت کتاب‌فروشی است"
+
+#: bookstore/views.py:14 templates/bookstore/bookstore.html:9
 #: templates/bookstore/static_bookstore.html:9 templates/home.html:28
 msgid "Bookstore solution"
 msgstr "راهکار کتابفروشی"
@@ -303,6 +317,10 @@ msgstr "به نظر می‌رسد که شما پیام‌های اسپم می‌
 #: contacts/views.py:62
 msgid "Thanks a lot, Your message is registered and I will contact you"
 msgstr "متشکرم، پیغام شما ثبت شد. به زودی با شما تماس خواهم گرفت"
+
+#: contacts/views.py:75
+msgid "Contact form to send feedbacks"
+msgstr "فرم تماس برای ارسال بازخورد"
 
 #: core/settings/base.py:149
 msgid "Farsi"
@@ -349,9 +367,14 @@ msgstr "استک فنی"
 msgid "Alt image"
 msgstr "آلترناتیو تصویر"
 
-#: projects/views.py:20
-msgid "Project"
-msgstr "پروژه"
+#: projects/views.py:20 templates/_navbar.html:20 templates/home.html:60
+#: templates/projects/projects.html:12
+msgid "Projects"
+msgstr "پروژه‌ها"
+
+#: projects/views.py:21
+msgid "The list of main projects done by Rahim Aghareb"
+msgstr "لیست پروژه‌های مهم انجام شده توسط رحیم اقارب"
 
 #: quizes/models.py:15
 msgid "created"
@@ -425,27 +448,40 @@ msgstr "به روزرسانی سوال"
 msgid "Questions list"
 msgstr "لیست سوال‌ها"
 
-#: quizes/views.py:163 quizes/views.py:225
+#: quizes/views.py:159
+msgid "A simple and experimental quiz about books"
+msgstr "یک مسابقه ساده و یک پروژه تجربی برای آزمون کتاب‌خوانی"
+
+#: quizes/views.py:160 quizes/views.py:223
 msgid "My quiz"
 msgstr "آزمون من"
 
-#: quizes/views.py:186
+#: quizes/views.py:187
 msgid "Please choose one"
 msgstr "لطفاً یک گزینه را انتخاب کنید"
+
+#: quizes/views.py:229
+msgid "The page for answering book quiz questions"
+msgstr "صفحه پاسخ به سوالات آزمون کتاب"
+
+#: quizes/views.py:280
+#| msgid "Welcome to book quiz"
+msgid "The result of Book quiz"
+msgstr "نتیجه آزمون کتاب"
 
 #: quizes/views.py:282
 msgid "Quiz results"
 msgstr "نتایج آزمون"
 
-#: quizes/views.py:366
+#: quizes/views.py:370
 msgid "Create compliment"
 msgstr "ایجاد یک تشویق"
 
-#: quizes/views.py:390
+#: quizes/views.py:394
 msgid "Update compliment"
 msgstr "به‌روزرسانی تشویق"
 
-#: quizes/views.py:420 templates/quizes/question_list.html:46
+#: quizes/views.py:424 templates/quizes/question_list.html:46
 msgid "Compliment list"
 msgstr "لیست تشویق‌ها"
 
@@ -481,7 +517,7 @@ msgstr "دسته‌بندی‌ها"
 msgid "category"
 msgstr "دسته‌بندی"
 
-#: restaurants/models.py:81 templates/restaurants/res_home.html:31
+#: restaurants/models.py:81 templates/restaurants/res_home.html:51
 msgid "City"
 msgstr "شهر"
 
@@ -502,7 +538,7 @@ msgstr "طول جغرافیایی به صورت درجه اعشاری (بین -1
 msgid "Score"
 msgstr "امتیاز"
 
-#: restaurants/models.py:108 templates/restaurants/res_home.html:41
+#: restaurants/models.py:108 templates/restaurants/res_home.html:61
 msgid "Tags"
 msgstr "برچسب‌ها"
 
@@ -511,7 +547,7 @@ msgstr "برچسب‌ها"
 msgid "Place"
 msgstr "مکان"
 
-#: restaurants/models.py:122 templates/restaurants/res_home.html:107
+#: restaurants/models.py:122 templates/restaurants/res_home.html:127
 msgid "Places"
 msgstr "مکان‌ها"
 
@@ -572,7 +608,7 @@ msgid "Suitability for Working/Studying"
 msgstr "مناسب برای کارکردن/درس خواندن"
 
 #: restaurants/models.py:192 restaurants/models.py:234
-#: templates/restaurants/res_home.html:154
+#: templates/restaurants/res_home.html:174
 #: templates/restaurants/review_details.html:18
 msgid "Review"
 msgstr "نقد"
@@ -672,23 +708,31 @@ msgstr "خلاصه‌های نقد آیتم‌های مکان"
 msgid "Restaurants"
 msgstr "رستوران‌ها"
 
-#: restaurants/views.py:80
+#: restaurants/views.py:64
+msgid ""
+"The favorite places is a side project whihch I list my favorite restaurants "
+"and cafes"
+msgstr ""
+"مکان‌های محبوب من، یک پروژه جانبی است که من به کمک آن لیست رستوران‌ها و "
+"کافه‌های مورد علاقه‌ام را ثبت می‌کنم"
+
+#: restaurants/views.py:81
 msgid "There are no active reviews at the moment."
 msgstr "هیچ نقد فعالی وجود ندارد"
 
-#: restaurants/views.py:89
+#: restaurants/views.py:90
 msgid "You have already submitted a review for this place."
 msgstr "شما یک نقد برای این مکان ثبت کرده‌اید"
 
-#: restaurants/views.py:96
+#: restaurants/views.py:97
 msgid "Thank you! Your review has been submitted successfully."
 msgstr "متشکریم!‌نقد شما با موفقیت ثبت شد"
 
-#: restaurants/views.py:103 restaurants/views.py:136
+#: restaurants/views.py:104 restaurants/views.py:137
 msgid "Review "
 msgstr "نقد"
 
-#: restaurants/views.py:119
+#: restaurants/views.py:120
 msgid "This vote is not exists"
 msgstr "نتیجه‌ای وجود ندارد"
 
@@ -712,24 +756,6 @@ msgstr "خطا ۵۰۰"
 msgid "There is an error in our server! Please try later or contact admins."
 msgstr "خطایی در سرور است لطفا بعدا تلاش کنید یا با ادمین وب‌سایت تماس بگیرید"
 
-#: templates/_base.html:11
-#| msgid ""
-#| "I am a software designer and developer. I have more than 10 years "
-#| "experiences in website design and now I am developing web-applications based"
-#| " on django and python."
-msgid ""
-"I am a software designer and developer. I have more than 10 years experience"
-" in website design and now I am developing web-applications based on django "
-"and python."
-msgstr ""
-"من یک توسعه‌دهنده نرم‌افزار هستم. بیش از ۱۰ سال تجربه در زمینه طراحی و "
-"وب‌سایت دارم و الان به کمک پایتون و جنگو، اپلیکیشن‌های تحت وب می‌سازم."
-
-#: templates/_base.html:35 templates/_base.html:95
-#| msgid "Rahim Aghareb"
-msgid "RahimAgha"
-msgstr "رحیم اقا"
-
 #: templates/_footer.html:8
 msgid "Rahim Aghareb"
 msgstr "رحیم اقارب"
@@ -752,10 +778,18 @@ msgstr "لینک‌ها"
 msgid "Contact me"
 msgstr "تماس با من"
 
-#: templates/_navbar.html:20 templates/home.html:60
-#: templates/projects/projects.html:12
-msgid "Projects"
-msgstr "پروژه‌ها"
+#: templates/_general_head.html:7
+msgid ""
+"I am a software designer and developer. I have more than 10 years experience"
+" in website design and now I am developing web-applications based on django "
+"and python."
+msgstr ""
+"من یک توسعه‌دهنده نرم‌افزار هستم. بیش از ۱۰ سال تجربه در زمینه طراحی و "
+"وب‌سایت دارم و الان به کمک پایتون و جنگو، اپلیکیشن‌های تحت وب می‌سازم."
+
+#: templates/_general_head.html:31 templates/_general_head.html:76
+msgid "RahimAgha"
+msgstr "رحیم اقا"
 
 #: templates/_navbar.html:23 templates/home.html:97 templates/home.html:113
 msgid "Resume"
@@ -834,7 +868,7 @@ msgstr "تایید "
 #: templates/accounting/_accounting_header.html:23
 #: templates/accounting/transactions_list.html:44
 #: templates/quizes/question_list.html:20
-#: templates/restaurants/res_home.html:93
+#: templates/restaurants/res_home.html:113
 msgid "Search"
 msgstr "جستجو"
 
@@ -1657,11 +1691,11 @@ msgstr "یک آزمون خیلی سخت"
 msgid "My Favorite places"
 msgstr "مکان‌های محبوب من"
 
-#: templates/restaurants/res_home.html:60
+#: templates/restaurants/res_home.html:80
 msgid "Find Places Near a Point"
 msgstr "پیدا کردن مکان‌های نزدیک یک موقعیت"
 
-#: templates/restaurants/res_home.html:67
+#: templates/restaurants/res_home.html:87
 msgid ""
 "Click on the map to select a location or use the button to find your current"
 " position"
@@ -1669,27 +1703,27 @@ msgstr ""
 "روی نقشه کلیک کنید تا یک موقعیت را انتخاب کنید یا از دکمه موقعیت من استفاده "
 "کنید تا موقعیت فغلی شما در نظر گرفته شود"
 
-#: templates/restaurants/res_home.html:90
+#: templates/restaurants/res_home.html:110
 msgid "My Location"
 msgstr "موقعیت من"
 
-#: templates/restaurants/res_home.html:109
+#: templates/restaurants/res_home.html:129
 msgid "Your seleceted location"
 msgstr "موقعیت انتخاب شده شما"
 
-#: templates/restaurants/res_home.html:115
+#: templates/restaurants/res_home.html:135
 msgid "No place is available near you"
 msgstr "هیچ‌مکانی نزدیک به این موقعیت پیدا نشد"
 
-#: templates/restaurants/res_home.html:149
+#: templates/restaurants/res_home.html:169
 msgid "Direction"
 msgstr "جهت‌یابی"
 
-#: templates/restaurants/res_home.html:176
+#: templates/restaurants/res_home.html:196
 msgid "Overal score"
 msgstr "امتیاز کلی"
 
-#: templates/restaurants/res_home.html:232
+#: templates/restaurants/res_home.html:252
 msgid "There is not any results"
 msgstr "نتیجه‌ای وجود ندارد"
 
@@ -1712,6 +1746,9 @@ msgstr "اضافه کردن دسته‌بندی"
 #: templates/videos/video_upload.html:10
 msgid "Upload"
 msgstr "آپلود"
+
+#~ msgid "Project"
+#~ msgstr "پروژه"
 
 #~ msgid "Accounting dashboard"
 #~ msgstr "داشبورد حسابداری"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-19 10:10+0330\n"
+"POT-Creation-Date: 2025-12-19 11:25+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -210,7 +210,7 @@ msgid "Name"
 msgstr ""
 
 #: blog/models.py:46 restaurants/models.py:44
-#: templates/restaurants/res_home.html:21
+#: templates/restaurants/res_home.html:41
 msgid "Category"
 msgstr ""
 
@@ -270,11 +270,23 @@ msgstr ""
 msgid "Attachment added"
 msgstr ""
 
-#: blog/views.py:86 templates/bookstore/static_bookstore.html:71
+#: blog/views.py:74
+msgid "Blog post:"
+msgstr ""
+
+#: blog/views.py:87 templates/bookstore/static_bookstore.html:71
 msgid "Blog"
 msgstr ""
 
-#: bookstore/views.py:13 templates/bookstore/bookstore.html:9
+#: blog/views.py:89
+msgid "The blog of Rahim Agha website"
+msgstr ""
+
+#: bookstore/views.py:13
+msgid "Damavand bookstore solution is an online app for managing a book store"
+msgstr ""
+
+#: bookstore/views.py:14 templates/bookstore/bookstore.html:9
 #: templates/bookstore/static_bookstore.html:9 templates/home.html:28
 msgid "Bookstore solution"
 msgstr ""
@@ -301,6 +313,10 @@ msgstr ""
 
 #: contacts/views.py:62
 msgid "Thanks a lot, Your message is registered and I will contact you"
+msgstr ""
+
+#: contacts/views.py:75
+msgid "Contact form to send feedbacks"
 msgstr ""
 
 #: core/settings/base.py:149
@@ -348,8 +364,13 @@ msgstr ""
 msgid "Alt image"
 msgstr ""
 
-#: projects/views.py:20
-msgid "Project"
+#: projects/views.py:20 templates/_navbar.html:20 templates/home.html:60
+#: templates/projects/projects.html:12
+msgid "Projects"
+msgstr ""
+
+#: projects/views.py:21
+msgid "The list of main projects done by Rahim Aghareb"
 msgstr ""
 
 #: quizes/models.py:15
@@ -424,27 +445,39 @@ msgstr ""
 msgid "Questions list"
 msgstr ""
 
-#: quizes/views.py:163 quizes/views.py:225
+#: quizes/views.py:159
+msgid "A simple and experimental quiz about books"
+msgstr ""
+
+#: quizes/views.py:160 quizes/views.py:223
 msgid "My quiz"
 msgstr ""
 
-#: quizes/views.py:186
+#: quizes/views.py:187
 msgid "Please choose one"
+msgstr ""
+
+#: quizes/views.py:229
+msgid "The page for answering book quiz questions"
+msgstr ""
+
+#: quizes/views.py:280
+msgid "The result of Book quiz"
 msgstr ""
 
 #: quizes/views.py:282
 msgid "Quiz results"
 msgstr ""
 
-#: quizes/views.py:366
+#: quizes/views.py:370
 msgid "Create compliment"
 msgstr ""
 
-#: quizes/views.py:390
+#: quizes/views.py:394
 msgid "Update compliment"
 msgstr ""
 
-#: quizes/views.py:420 templates/quizes/question_list.html:46
+#: quizes/views.py:424 templates/quizes/question_list.html:46
 msgid "Compliment list"
 msgstr ""
 
@@ -478,7 +511,7 @@ msgstr ""
 msgid "category"
 msgstr ""
 
-#: restaurants/models.py:81 templates/restaurants/res_home.html:31
+#: restaurants/models.py:81 templates/restaurants/res_home.html:51
 msgid "City"
 msgstr ""
 
@@ -499,7 +532,7 @@ msgstr ""
 msgid "Score"
 msgstr ""
 
-#: restaurants/models.py:108 templates/restaurants/res_home.html:41
+#: restaurants/models.py:108 templates/restaurants/res_home.html:61
 msgid "Tags"
 msgstr ""
 
@@ -508,7 +541,7 @@ msgstr ""
 msgid "Place"
 msgstr ""
 
-#: restaurants/models.py:122 templates/restaurants/res_home.html:107
+#: restaurants/models.py:122 templates/restaurants/res_home.html:127
 msgid "Places"
 msgstr ""
 
@@ -569,7 +602,7 @@ msgid "Suitability for Working/Studying"
 msgstr ""
 
 #: restaurants/models.py:192 restaurants/models.py:234
-#: templates/restaurants/res_home.html:154
+#: templates/restaurants/res_home.html:174
 #: templates/restaurants/review_details.html:18
 msgid "Review"
 msgstr ""
@@ -664,23 +697,29 @@ msgstr ""
 msgid "Restaurants"
 msgstr ""
 
-#: restaurants/views.py:80
+#: restaurants/views.py:64
+msgid ""
+"The favorite places is a side project whihch I list my favorite restaurants "
+"and cafes"
+msgstr ""
+
+#: restaurants/views.py:81
 msgid "There are no active reviews at the moment."
 msgstr ""
 
-#: restaurants/views.py:89
+#: restaurants/views.py:90
 msgid "You have already submitted a review for this place."
 msgstr ""
 
-#: restaurants/views.py:96
+#: restaurants/views.py:97
 msgid "Thank you! Your review has been submitted successfully."
 msgstr ""
 
-#: restaurants/views.py:103 restaurants/views.py:136
+#: restaurants/views.py:104 restaurants/views.py:137
 msgid "Review "
 msgstr ""
 
-#: restaurants/views.py:119
+#: restaurants/views.py:120
 msgid "This vote is not exists"
 msgstr ""
 
@@ -704,17 +743,6 @@ msgstr ""
 msgid "There is an error in our server! Please try later or contact admins."
 msgstr ""
 
-#: templates/_base.html:11
-msgid ""
-"I am a software designer and developer. I have more than 10 years experience "
-"in website design and now I am developing web-applications based on django "
-"and python."
-msgstr ""
-
-#: templates/_base.html:35 templates/_base.html:95
-msgid "RahimAgha"
-msgstr ""
-
 #: templates/_footer.html:8
 msgid "Rahim Aghareb"
 msgstr ""
@@ -735,9 +763,15 @@ msgstr ""
 msgid "Contact me"
 msgstr ""
 
-#: templates/_navbar.html:20 templates/home.html:60
-#: templates/projects/projects.html:12
-msgid "Projects"
+#: templates/_general_head.html:7
+msgid ""
+"I am a software designer and developer. I have more than 10 years experience "
+"in website design and now I am developing web-applications based on django "
+"and python."
+msgstr ""
+
+#: templates/_general_head.html:31 templates/_general_head.html:76
+msgid "RahimAgha"
 msgstr ""
 
 #: templates/_navbar.html:23 templates/home.html:97 templates/home.html:113
@@ -817,7 +851,7 @@ msgstr ""
 #: templates/accounting/_accounting_header.html:23
 #: templates/accounting/transactions_list.html:44
 #: templates/quizes/question_list.html:20
-#: templates/restaurants/res_home.html:93
+#: templates/restaurants/res_home.html:113
 msgid "Search"
 msgstr ""
 
@@ -1583,37 +1617,37 @@ msgstr ""
 msgid "My Favorite places"
 msgstr ""
 
-#: templates/restaurants/res_home.html:60
+#: templates/restaurants/res_home.html:80
 msgid "Find Places Near a Point"
 msgstr ""
 
-#: templates/restaurants/res_home.html:67
+#: templates/restaurants/res_home.html:87
 msgid ""
 "Click on the map to select a location or use the button to find your current "
 "position"
 msgstr ""
 
-#: templates/restaurants/res_home.html:90
+#: templates/restaurants/res_home.html:110
 msgid "My Location"
 msgstr ""
 
-#: templates/restaurants/res_home.html:109
+#: templates/restaurants/res_home.html:129
 msgid "Your seleceted location"
 msgstr ""
 
-#: templates/restaurants/res_home.html:115
+#: templates/restaurants/res_home.html:135
 msgid "No place is available near you"
 msgstr ""
 
-#: templates/restaurants/res_home.html:149
+#: templates/restaurants/res_home.html:169
 msgid "Direction"
 msgstr ""
 
-#: templates/restaurants/res_home.html:176
+#: templates/restaurants/res_home.html:196
 msgid "Overal score"
 msgstr ""
 
-#: templates/restaurants/res_home.html:232
+#: templates/restaurants/res_home.html:252
 msgid "There is not any results"
 msgstr ""
 

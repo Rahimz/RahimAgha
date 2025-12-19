@@ -9,10 +9,11 @@ def bookstore(request):
     return render(
         request,
         'bookstore/static_bookstore.html',
-        {
-            'page_title': _('Bookstore solution'),
-            'mainNavSection': 'services'
-        }
+        dict(
+            meta_description=_("Damavand bookstore solution is an online app for managing a book store"),
+            page_title= _('Bookstore solution'),
+            mainNavSection= 'services'
+        )
     )
 
 
