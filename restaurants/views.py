@@ -12,7 +12,7 @@ def ResHomeView(request):
     city = request.GET.get('city', None)
     tag = request.GET.get('tag', None)
     category = request.GET.get('category', None)
-    places = Place.actives.select_related('category').prefetch_related('vote_summary').all()
+    places = Place.actives.select_related('category').prefetch_related('vote_summary').all().order_by('-score')
     categories = Category.objects.values_list('slug', flat=True)
     
     
