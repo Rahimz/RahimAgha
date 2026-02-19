@@ -18,6 +18,9 @@ from django.utils.translation import gettext_lazy as _
 from accounts.permissions import ai_access_required
 from .forms import ChatForm, ChatModelForm, CreateChatModelForm
 from .models import Chat, Message, ChatModel, FileTypeDetermine
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 API_KEY = settings.AVAL_API_KEY
 
@@ -474,5 +477,29 @@ def ChatListView(request):
     return render(
         request,
         'ai/ai_chats_list.html',
+        context
+    )
+    
+@staff_member_required
+def ChatReportView(request):
+    users = User.objects.filter(profile__ai_access=True).annotate(
+        input_token=Sum('chats__input_token'),
+        output_token=Sum('chats__output_token'),
+        total_token=Sum('chats__total_token')
+    )
+    statistics = Chat.objects.all().aggregate(
+        input_sum=Sum('input_token'),
+        output_sum=Sum('output_token'),
+        total_sum=Sum('total_token'),
+    )
+    context = dict(        
+        page_title= _('AI Chat Reports'),
+        users=users,
+        statistics=statistics,
+        
+    )
+    return render(
+        request,
+        'ai/ai_chats_reports.html',
         context
     )

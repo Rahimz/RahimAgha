@@ -9,6 +9,7 @@ urlpatterns = [
     path('test/', views.AiView, name='ai'),
         
     path('chats-list/', views.ChatListView, name='ai_chats_list'),
+    path('reports/', views.ChatReportView, name='ai_chats_report'),
     path('image/new/', views.AiImageView, name='ai_image_new_chat'),
     
     path('image/<str:chat_id>/', views.AiImageView, name='ai_image_continue_chat'),  # For continuing existing chat

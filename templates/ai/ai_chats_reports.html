@@ -1,0 +1,81 @@
+{% extends "_base.html" %}
+
+{% load humanize i18n %}
+
+{% block content %}
+<div class="container text-light">
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-left align-items-center my-3">                
+                {% include "ai/_chat_header.html" with chats=chat_menu %}
+            </div>
+            {% if m_filter %}
+            <div class="my-2">
+                {% trans "Filter by model" %}: <span class="ms-2 fw-bold">{{ m_filter }}</span> <a href="{% url 'ai:ai_chats_list' %}{%if query %}&q={{ query }}{% endif %}" class="btn btn-sm btn-outline-danger ms-3">X</a>
+            </div> default:0 | 
+            {% endif %}
+            {% comment %}
+            <!-- <div>
+                <form action="{% url 'ai:ai_chats_list' %}">
+                    {# This hidden input holds the current model filter #}
+                    {% if m_filter %}
+                        <input type="hidden" name="m-filter" value="{{ m_filter }}">
+                    {% endif %}
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="q" id="searchQuery" placeholder="Search" aria-label="Search Query" value="{{ query|default_if_none:'' }}" autofocus>
+                        <button type="submit"  class="btn btn-light">Search</button>
+                    </div>
+                </form>                
+                {% if query %}
+                <div class="my-2">
+                    {{ query }} <a href="{% url 'ai:ai_chats_list' %}{% if m_filter %}?m-filter={{ m_filter }}{% endif %}" class="ms-3 d-inline btn btn-outline-danger">x</a>
+                </div>
+                                  
+                {% endif %}
+            </div> -->
+            {% endcomment %}
+
+            <div class="table-responsive">                
+                <table class="table table-ight">
+                    <thead>
+                        <th scope="col">#</th>
+                        <th scope="col">User</th>
+                        <th scope="col">Input token
+                            <br>
+                            <span>{{ statistics.input_sum |intcomma:False }}</span>
+                        </th>
+                        <th scope="col">Output token
+                            <br>
+                            <span>{{ statistics.output_sum |intcomma:False }}</span>
+                        </th>
+                        <th scope="col">Total token
+                            <br>
+                            <span>{{ statistics.total_sum |intcomma:False }}</span>
+                        </th>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                          <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ user }}</td>
+                            <td>{{ user.input_token | default:0 | intcomma:False }}</td>
+                            <td>{{ user.output_token | default:0 | intcomma:False }}</td>
+                            <td>{{ user.total_token | default:0 | intcomma:False }}</td>
+                          </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+           
+            
+    </div>     
+    
+</div>
+  
+{% endblock content %}
+
+{% block script %}
+  
+{% endblock script %}
