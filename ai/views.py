@@ -259,6 +259,9 @@ def EditPromptView(request, message_id):
     message_ids = list(chat.messages.all().values_list('id', flat=True))
     print(message_ids)
     print(message_ids.index(message.id))
+    # 1- deprecate all extended chat messages
+    # 2- edit the selected message
+    # 3- send to llm 
     return redirect('ai:ai_continue_chat', chat.chat_id)
 
 
