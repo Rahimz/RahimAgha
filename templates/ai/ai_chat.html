@@ -1,5 +1,5 @@
 {% extends "_base.html" %}
-{% load crispy_forms_tags markdown_extras static %}
+{% load crispy_forms_tags markdown_extras static humanize %}
 {% block content %}
 <div class="container text-light">
     <div class="row">
@@ -15,8 +15,15 @@
             <!-- chat title -->
             <div class="">
                 {% if chat %}
-                <h2>{{ chat.model_name }}</h2>
+                <h2>{{ chat.model_name }}</h2>                
                 <h4>{{ chat.chat_id }}</h4>
+                <span>Total token: <b>{{ chat.total_token | intcomma:False }}</b></span>
+                <span>Input token: <b>{{ chat.input_token | intcomma:False }}</b></span>
+                <span>Output token: <b>{{ chat.output_token | intcomma:False }}</b></span>
+                <br>
+                <span class="text-muted"><i>created: {{ chat.created }}</i></span>
+                <br>
+                <span class="text-muted"><i>Last update: {{ chat.updated }}</i></span>
                 {% endif %}
             </div>
             <!-- chat messages -->
