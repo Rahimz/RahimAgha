@@ -12,7 +12,7 @@ from langchain_openai import ChatOpenAI
 from openai import OpenAI
 from django.core.files.base import ContentFile
 import random
-from django.db.models import Count, Case, When, IntegerField, Q
+from django.db.models import Count, Case, When, IntegerField, Q, Sum
 from django.utils.translation import gettext_lazy as _
 
 from accounts.permissions import ai_access_required
@@ -430,7 +430,10 @@ def AiImageView(request, chat_id=None):
 @login_required
 def ChatListView(request):
     query = request.GET.get('q')
-    
+    m_filter = request.GET.get('m-filter', '')
+   
+    models_list = ChatModel.objects.all().values_list('name', flat=True)
+   
     chats = Chat.objects.filter(user=request.user).prefetch_related('messages').annotate(
         total_messages=Count('messages'),
         user_messages=Count(Case(
@@ -442,13 +445,28 @@ def ChatListView(request):
             output_field=IntegerField(),
         )),
     ).order_by('-id')
+    chat_menu = chats
+        
+    # Apply model filter if applicable
+    if m_filter and (m_filter in models_list):
+        chats = chats.filter(model_name=m_filter)
+
+    # Apply search filter if applicable
     if query:
         chats = chats.filter(messages__content__icontains=query.strip())
-    
+        
+    statistics = chats.aggregate(
+        input_sum=Sum('input_token'),
+        output_sum=Sum('output_token'),
+        total_sum=Sum('total_token'),
+    )
     context = dict(        
         page_title= _('AI Chats list'),
         chats= chats,
         query=query,
+        statistics=statistics,
+        m_filter=m_filter,
+        chat_menu=chat_menu,
     )
     return render(
         request,

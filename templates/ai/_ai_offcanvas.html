@@ -8,7 +8,7 @@
 <div class="offcanvas-body">
     <!-- Make the list scrollable and constrain height -->
     <div class="list-group" style="max-height: calc(100vh - 140px); overflow:auto;">
-    {% for chat in chats %}
+    {% for chat in chat_menu %}
         <a class="list-group-item list-group-item-action" href="{% url 'ai:ai_continue_chat' chat.chat_id %}">
         {{ chat.get_first_message }}
         </a>

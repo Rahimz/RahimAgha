@@ -1,5 +1,7 @@
 {% extends "_base.html" %}
 
+{% load humanize i18n %}
+
 {% block content %}
 <div class="container text-light">
     <div class="row">
@@ -7,18 +9,30 @@
             <div class="d-flex justify-left align-items-center my-3">                
                 {% include "ai/_chat_header.html" %}
             </div>
-            
+            {% if m_filter %}
+            <div class="my-2">
+                {% trans "Filter by model" %}: <span class="ms-2 fw-bold">{{ m_filter }}</span> <a href="{% url 'ai:ai_chats_list' %}{%if query %}&q={{ query }}{% endif %}" class="btn btn-sm btn-outline-danger ms-3">X</a>
+            </div>
+            {% endif %}
+            <div>
+
+            </div>
             {% include "ai/_ai_offcanvas.html" %}
             <div>
-                <form action="">
+                <form action="{% url 'ai:ai_chats_list' %}">
+                    {# This hidden input holds the current model filter #}
+                    {% if m_filter %}
+                        <input type="hidden" name="m-filter" value="{{ m_filter }}">
+                    {% endif %}
+
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="q" id="searchQuery" placeholder="Search" aria-label="Search Query" autofocus>
+                        <input type="text" class="form-control" name="q" id="searchQuery" placeholder="Search" aria-label="Search Query" value="{{ query|default_if_none:'' }}" autofocus>
                         <button type="submit"  class="btn btn-light">Search</button>
                     </div>
                 </form>                
                 {% if query %}
                 <div class="my-2">
-                    {{ query }} <a href="{% url 'ai:ai_chats_list' %}" class="ms-3 d-inline btn btn-outline-danger">x</a>
+                    {{ query }} <a href="{% url 'ai:ai_chats_list' %}{% if m_filter %}?m-filter={{ m_filter }}{% endif %}" class="ms-3 d-inline btn btn-outline-danger">x</a>
                 </div>
                                   
                 {% endif %}
@@ -30,7 +44,20 @@
                         <th scope="col">#</th>
                         <th scope="col">Chat</th>
                         <th scope="col">Messages</th>
+                        <th scope="col">Model</th>
                         <th scope="col">Date</th>
+                        <th scope="col">Input token
+                            <br>
+                            <span>{{ statistics.input_sum |intcomma:False }}</span>
+                        </th>
+                        <th scope="col">Output token
+                            <br>
+                            <span>{{ statistics.output_sum |intcomma:False }}</span>
+                        </th>
+                        <th scope="col">Total token
+                            <br>
+                            <span>{{ statistics.total_sum |intcomma:False }}</span>
+                        </th>
                     </thead>
                     <tbody>
                         {% for chat in chats %}
@@ -38,7 +65,11 @@
                             <td>{{ forloop.counter }}</td>
                             <td><a class="" href="{% url 'ai:ai_continue_chat' chat.chat_id %}">{{ chat.get_first_message }}</a></td>
                             <td>{{ chat.total_messages }} (u:{{ chat.user_messages }}, a:{{ chat.assistant_messages }}) </td>
+                            <td><a href="{% url 'ai:ai_chats_list' %}?m-filter={{ chat.model_name }}{%if query %}&q={{ query }}{% endif %}">{{ chat.model_name }}</a></td>
                             <td>{{ chat.created }}</td>
+                            <td>{{ chat.input_token }}</td>
+                            <td>{{ chat.output_token }}</td>
+                            <td>{{ chat.total_token }}</td>
                           </tr>
                         {% endfor %}
                     </tbody>
