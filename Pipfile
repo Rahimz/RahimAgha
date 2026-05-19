@@ -1,5 +1,6 @@
 [[source]]
-url = "https://pypi.org/simple"
+#url = "https://pypi.org/simple"
+url = "https://mirror-pypi.runflare.com/"
 verify_ssl = true
 name = "pypi"
 
