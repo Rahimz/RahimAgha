@@ -45,8 +45,11 @@ def AiView(request):
     # Initialize the ChatOpenAI model
     model_name = "gpt-4o-mini"
     # model_name = "claude-3-opus"
+    base_url="https://api.avalai.ir/v1" # outside
+    base_url = "https://api.avalapis.ir/v1" # intranet
+    
     llm = ChatOpenAI(
-        model=model_name, base_url="https://api.avalai.ir/v1", api_key=API_KEY
+        model=model_name, base_url=base_url, api_key=API_KEY
     )
     if request.method == 'POST':
         form = ChatForm(data=request.POST)
