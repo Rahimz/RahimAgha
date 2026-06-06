@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.utils.translation import gettext_lazy as _
-
+from django.db.models import F
 import requests
 from django.http import JsonResponse
 from django.views import View
 
 from .models import GeoRecord
 from core.settings.secret import API_KEY_LOCATION
+from geoips.geoip import GeoLocation
+
 
 def HomeView(request):
     # if request.GET.get('SwitchNight') == 'on':
@@ -34,37 +36,54 @@ class GetCountryFromIP(View):
         if GeoRecord.objects.filter(ip=ip).exists():
             # print('in databse')
             record = GeoRecord.objects.filter(ip=ip).latest('created')
-            record.count += 1 
-            record.save()
+            record.count = F('count') + 1
+            record.save(update_fields=['count'])
             return JsonResponse({'country': record.country}, status=200)
-            
-        # Make a request 
+
+        
         try:
-            # print('in api')
-            # response = requests.get(f"https://ipinfo.io/{ip}/json")
-            # country = response.json().get('country')
+            location_data = GeoLocation(ip)
+            country_code = location_data.get('country_code', None)
+            if country_code:
+                print('get from DB')
+                try:
+                    record = GeoRecord.objects.create(ip=ip, country=country_code)
+                except:
+                    pass
+                return JsonResponse({'country': country_code}, status=200)
             
-            response = requests.get(f"https://api.ip2location.io/?key={API_KEY_LOCATION}&ip={ip}")
-            response.raise_for_status()  # Raise an error for bad responses
-
-            # Extract country information
-            country = response.json().get('country_code')
-
-            try:
-                record = GeoRecord.objects.create(
-                    ip=ip,
-                    country=country
-                )
-            except:
-                pass
-
-
-            # Return the country in a JSON response
-            return JsonResponse({'country': country}, status=200)
-
         except requests.RequestException as e:
-            # print('in api exception')
-            return JsonResponse({'error': str(e)}, status=500)
+            return JsonResponse({'error': str(e)}, status=500)   
+        except:
+            return JsonResponse({'error': 'Something went wrong'}, status=500)   
+                
+        # # Make a request 
+        # try:
+        #     # print('in api')
+        #     # response = requests.get(f"https://ipinfo.io/{ip}/json")
+        #     # country = response.json().get('country')
+            
+        #     response = requests.get(f"https://api.ip2location.io/?key={API_KEY_LOCATION}&ip={ip}")
+        #     response.raise_for_status()  # Raise an error for bad responses
+
+        #     # Extract country information
+        #     country = response.json().get('country_code')
+
+        #     try:
+        #         record = GeoRecord.objects.create(
+        #             ip=ip,
+        #             country=country
+        #         )
+        #     except:
+        #         pass
+
+
+        #     # Return the country in a JSON response
+        #     return JsonResponse({'country': country}, status=200)
+
+        # except requests.RequestException as e:
+        #     # print('in api exception')
+        #     return JsonResponse({'error': str(e)}, status=500)
 
     def is_valid_ip(self, ip):
         # Simple IP validation (IPv4 and IPv6)

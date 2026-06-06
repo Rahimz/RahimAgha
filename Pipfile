@@ -28,6 +28,7 @@ pygments = "*"
 crispy-bootstrap4 = "*"
 django-taggit = "*"
 django-parler = "*"
+geoip2 = "*"
 
 [dev-packages]
 
