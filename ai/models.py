@@ -87,6 +87,12 @@ class Chat(TimeStampedModel):
     chat_id = models.CharField(
         _("Chat ID"), max_length=100
     )
+    name = models.CharField(
+        _("Name"),
+        max_length=100,
+        null=True,
+        blank=True
+    )
     input_token = models.IntegerField(_("Input token"))
     output_token = models.IntegerField(_("Output token"))
     total_token = models.IntegerField(_("Total token"))

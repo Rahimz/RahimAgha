@@ -7,6 +7,7 @@ urlpatterns = [
     path('models-list/add/', views.AiModelAddView, name='add_model'),
     path('models-list/', views.AiModelsListView, name='ai_models_list'),
     path('test/', views.AiView, name='ai'),
+    path('update-name/<str:chat_id>/', views.update_chat_name, name="update_chat_name"),
         
     path('chats-list/', views.ChatListView, name='ai_chats_list'),
     path('reports/', views.ChatReportView, name='ai_chats_report'),

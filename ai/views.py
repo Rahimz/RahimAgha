@@ -462,7 +462,12 @@ def ChatListView(request):
 
     # Apply search filter if applicable
     if query:
-        chats = chats.filter(messages__content__icontains=query.strip())
+        
+        chats = chats.filter(
+            Q(messages__content__icontains=query.strip()) |
+            Q(name__icontains=query.strip()) |
+            Q(model_name__icontains=query.strip())
+        )
         
     statistics = chats.aggregate(
         input_sum=Sum('input_token'),
@@ -506,3 +511,94 @@ def ChatReportView(request):
         'ai/ai_chats_reports.html',
         context
     )
+    
+    
+
+
+def generate_and_update_chat_name_with_llm(chat_id: str):
+    """
+    Generates a descriptive name for a chat using an LLM and updates the Chat object.
+
+    This function fetches the entire message history for a given chat,
+    sends it to the LLM with a prompt to create a title, and saves the
+    resulting title to the chat's 'name' field. This operation is not
+    recorded in the message history.
+
+    Args:
+        chat_id (str): The chat_id of the Chat instance to be updated.
+
+    Returns:
+        str: The generated chat name if successful, otherwise None.
+    """
+    try:
+        chat = Chat.objects.get(chat_id=chat_id)
+
+        # Only generate a name if one doesn't already exist to save API calls.
+        # You can remove this check if you want to regenerate the name every time.
+        if chat.name:
+            return chat.name
+
+        messages = chat.messages.all().order_by('created')
+
+        # If there are no messages, we can't generate a name.
+        if not messages:
+            return None
+
+        # 1. Format the existing conversation history
+        chat_history = []
+        for message in messages:
+            chat_history.append({"role": message.role, "content": message.content})
+
+        # 2. Add the special prompt to generate the title
+        # This prompt is engineered to get a clean, direct response.
+        title_generation_prompt = (
+            "Based on the conversation history above, generate a short, descriptive title for this chat. "
+            "The title must be 100 characters or less. "
+            "IMPORTANT: Respond with ONLY the title itself, without any extra text, "
+            "explanations, or quotation marks. For example, if the topic is 'Planning a trip to Paris', "
+            "your entire response should be 'Planning a trip to Paris'."
+        )
+        chat_history.append({"role": "user", "content": title_generation_prompt})
+
+        # 3. Initialize and call the LLM
+        # Use the same model associated with the chat for consistency
+        llm = ChatOpenAI(
+            model=chat.model_name,
+            base_url="https://api.avalai.ir/v1",
+            api_key=API_KEY,
+            temperature=0.2 # Use a lower temperature for more predictable, factual titles
+        )
+
+        response = llm.invoke(chat_history)
+
+        if response and response.content:
+            # 4. Clean the response and save it
+            # The prompt asks for no quotes, but we clean them just in case.
+            raw_title = response.content
+            cleaned_title = raw_title.strip().strip('"\'')
+
+            # Enforce the max_length constraint
+            final_title = cleaned_title[:100]
+
+            chat.name = final_title
+            chat.save(update_fields=['name'])
+
+            print(f"Generated and saved name for chat {chat_id}: '{final_title}'")
+            return final_title
+
+    except Chat.DoesNotExist:
+        print(f"Error: Chat with chat_id '{chat_id}' not found.")
+        return None
+    except Exception as e:
+        # Handle potential API errors or other issues
+        print(f"An error occurred while generating chat name for {chat_id}: {e}")
+        return None
+
+    return None
+
+
+@ai_access_required
+@login_required
+def update_chat_name(request, chat_id):
+    generate_and_update_chat_name_with_llm(chat_id)
+    return redirect(request.META['HTTP_REFERER'])
