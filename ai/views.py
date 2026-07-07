@@ -221,9 +221,9 @@ def AiCreateNewChatView(request, chat_id=None):
             if ai_response:
                 print('.. get ai response')
                 chat.chat_id = ai_response.id
-                chat.input_token=ai_response.usage_metadata["input_tokens"]
-                chat.output_token=ai_response.usage_metadata["output_tokens"]
-                chat.total_token=ai_response.usage_metadata["total_tokens"]
+                chat.input_token += ai_response.usage_metadata["input_tokens"]
+                chat.output_token += ai_response.usage_metadata["output_tokens"]
+                chat.total_token += ai_response.usage_metadata["total_tokens"]
                 chat.save()
                 
                 prompt_content = ai_response.content
@@ -538,7 +538,8 @@ def generate_and_update_chat_name_with_llm(chat_id: str):
         if chat.name:
             return chat.name
 
-        messages = chat.messages.all().order_by('created')
+        # update name based on first 4 messages
+        messages = chat.messages.all().order_by('created')[:4]
 
         # If there are no messages, we can't generate a name.
         if not messages:
@@ -581,7 +582,21 @@ def generate_and_update_chat_name_with_llm(chat_id: str):
             final_title = cleaned_title[:100]
 
             chat.name = final_title
-            chat.save(update_fields=['name'])
+            fields_to_update = ['name']
+            # --- CHANGE 2: Track and update token usage ---
+            if hasattr(response, 'usage_metadata') and response.usage_metadata:
+                input_tokens = response.usage_metadata.get("input_tokens", 0)
+                output_tokens = response.usage_metadata.get("output_tokens", 0)
+                total_tokens = response.usage_metadata.get("total_tokens", 0)
+
+                chat.input_token += input_tokens
+                chat.output_token += output_tokens
+                chat.total_token += total_tokens
+
+                fields_to_update.extend(['input_token', 'output_token', 'total_token'])
+                print(f"Adding {total_tokens} tokens to chat {chat_id} for name generation.")
+            
+            chat.save(update_fields=fields_to_update)
 
             print(f"Generated and saved name for chat {chat_id}: '{final_title}'")
             return final_title
